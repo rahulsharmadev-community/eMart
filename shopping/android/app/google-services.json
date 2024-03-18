@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "958085585998",
+    "firebase_url": "https://emart-consumer-only-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "emart-consumer-only",
+    "storage_bucket": "emart-consumer-only.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958085585998:android:bef834deaea7f412dc771f",
+        "android_client_info": {
+          "package_name": "emart.shopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958085585998-hc8mpd460mard38fg6el3o18kq6ujsnj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCcLlBl15CtGfPvz4RunIxwt-KsjK3yH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958085585998-hc8mpd460mard38fg6el3o18kq6ujsnj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

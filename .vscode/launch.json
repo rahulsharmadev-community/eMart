@@ -1,0 +1,74 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "business",
+            "cwd": "business",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "business (profile mode)",
+            "cwd": "business",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "business (release mode)",
+            "cwd": "business",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "shared",
+            "cwd": "shared",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shopping",
+            "cwd": "shopping",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shopping (profile mode)",
+            "cwd": "shopping",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "shopping (release mode)",
+            "cwd": "shopping",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "repositories",
+            "cwd": "shopping\\packages\\repositories",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "repositories (profile mode)",
+            "cwd": "shopping\\packages\\repositories",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "repositories (release mode)",
+            "cwd": "shopping\\packages\\repositories",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

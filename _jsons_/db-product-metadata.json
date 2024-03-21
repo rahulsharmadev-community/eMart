@@ -1,0 +1,46 @@
+{
+  "product-id1": {
+    "monthly-activities": {
+      "22024": {
+        "sold": 45,
+        "reach": 1,
+        "views": 1
+      },
+      "32024": {
+        "sold": 1,
+        "reach": 1,
+        "views": 1
+      }
+    },
+    "ratings": {
+      "star1": 1,
+      "star2": 1,
+      "star3": 1,
+      "star4": 1,
+      "star5": 1,
+      "totalReviews": 1
+    }
+  },
+  "product-id2": {
+    "monthly-activities": {
+      "22024": {
+        "sold": 1,
+        "reach": 1,
+        "views": 1
+      },
+      "32024": {
+        "sold": 1,
+        "reach": 1,
+        "views": 1
+      }
+    },
+    "ratings": {
+      "star1": 1,
+      "star2": 1,
+      "star3": 1,
+      "star4": 1,
+      "star5": 1,
+      "totalReviews": 1
+    }
+  }
+}

@@ -1,15 +1,16 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:regpatterns/regpatterns.dart';
+import 'package:shared/src/helper.dart';
 import 'general/typedef.dart';
 import 'general/address.dart';
 import 'package:uuid/uuid.dart';
 
-part '../shop.g.dart';
+part 'shop.g.dart';
 
 // Class for representing abstract shop information fetched from the server
 // This class is used only for reading or fetching shop data from the server
-@JsonSerializable(constructor: '_')
+@JsonSerializable(constructor: '_', explicitToJson: true)
 class AbstractShopInfo {
   final String shopId;
   final String name;
@@ -40,7 +41,7 @@ class AbstractShopInfo {
 }
 
 @CopyWith()
-@JsonSerializable()
+@defJson
 class Shop {
   /// Shop Class: Represents a real shop owned by a seller.\
   /// This class facilitates the creation, reading, and updating of shop data on the server.

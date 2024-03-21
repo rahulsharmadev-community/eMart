@@ -8,8 +8,10 @@ export 'src/models/order.dart';
 export 'src/models/orderstatus.dart';
 export 'src/models/review.dart';
 export 'src/models/states.dart';
+export 'src/models/productmetadata.dart';
 
 export 'src/models/general/address.dart';
 export 'src/models/general/location.dart';
 export 'src/models/general/personname.dart';
 export 'src/models/general/typedef.dart';
+export 'src/models/general/durationperiod.dart';

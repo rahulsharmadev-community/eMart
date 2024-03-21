@@ -11,10 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+  
+  
   dio: ^5.4.1
   http: ^1.2.1
   logger: ^2.1.0
+
+  flutter_bloc: ^8.1.4
+  hydrated_bloc: ^9.1.4
+
   google_sign_in: ^6.2.1
   
   firebase_messaging: ^14.7.20
@@ -23,11 +28,31 @@ dependencies:
   cloud_firestore: ^4.15.9
   firebase_database: ^10.4.10
   firebase_core: ^2.27.1
+  json_annotation: ^4.8.1
+  jars:
+    git:
+      url: https://github.com/rahulsharmadev-community/jars.git
+      ref: main
+      path: packages/jars
 
   shared:
     path: ../../../shared
+
+  copy_with_extension:
+    git:
+      url: https://github.com/rahulsharmadev-community/copy_with_extension.git
+      ref: main
+      path: copy_with_extension
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  copy_with_extension_gen:
+    git:
+      url: https://github.com/rahulsharmadev-community/copy_with_extension.git
+      ref: main
+      path: copy_with_extension_gen
+

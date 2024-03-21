@@ -11,20 +11,21 @@
 
   "emulators": {
     "auth": {
-      "port": 7101
+      "port": 7201
     },
     "firestore": {
-      "port": 7102
+      "port": 7202
     },
     "database": {
-      "port": 7103
+      "port": 7203
     },
     "storage": {
-      "port": 7104
+      "port": 7204
     },
     "ui": {
       "enabled": true,
-      "port": 7111
+      "port": 7211
     }
-  }
+  },
+  "kill": "npx kill-port 7201 7202 7203 7204 7211"
 }

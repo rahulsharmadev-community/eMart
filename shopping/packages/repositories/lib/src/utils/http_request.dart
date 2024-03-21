@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:shared/models.dart';
 import 'error_handler.dart';
 
 class HttpService with CustomExceptionHandler {
@@ -24,6 +25,14 @@ class HttpService with CustomExceptionHandler {
     if (limitToLast != null) url = '${url}limitToLast=$limitToLast&';
     return errorHandler<http.Response>(() {
       return http.get(Uri.parse(url));
+    });
+  }
+
+  Future<http.Response?> patch(JSON json) {
+    var url = '$baseUrl?';
+    if (auth != null) url = '${url}auth=$auth&';
+    return errorHandler<http.Response>(() {
+      return http.patch(Uri.parse(url), body: json);
     });
   }
 }

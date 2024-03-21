@@ -10,24 +10,24 @@
   },
 
   "emulators": {
-    
     "singleProjectMode": false,
 
     "auth": {
-      "port": 9101
+      "port": 9201
     },
     "firestore": {
-      "port": 9102
+      "port": 9202
     },
     "database": {
-      "port": 9103
+      "port": 9203
     },
     "storage": {
-      "port": 9104
+      "port": 9204
     },
     "ui": {
       "enabled": true,
-      "port": 9111
+      "port": 9211
     }
-  }
+  },
+  "kill": "npx kill-port 9201 9202 9203 9204 9211"
 }

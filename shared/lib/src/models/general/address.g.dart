@@ -180,7 +180,7 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'area': instance.area,
       'floorLevel': instance.floorLevel,
       'district': instance.district,
-      'location': instance.location,
+      'location': instance.location?.toJson(),
       'createdAt': instance.createdAt?.toIso8601String(),
       'lastUpdateAt': instance.lastUpdateAt?.toIso8601String(),
     };

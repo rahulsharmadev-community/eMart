@@ -11,17 +11,18 @@
   
   "emulators": {
     "firestore": {
-      "port": 8101
+      "port": 8201
     },
     "database": {
-      "port": 8102
+      "port": 8202
     },
     "storage": {
-      "port": 8103
+      "port": 8203
     },
     "ui": {
       "enabled": true,
-      "port": 8111
+      "port": 8211
     }
-  }
+  },
+  "kill": "npx kill-port 8201 8202 8203 8211"
 }

@@ -3,11 +3,12 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shared/models.dart';
+import 'package:shared/src/helper.dart';
 import 'package:uuid/uuid.dart';
-part '../order.g.dart';
+part 'order.g.dart';
 
+@defJson
 @CopyWith()
-@JsonSerializable()
 class OrderedProduct {
   OrderedProduct({
     required this.mrp,
@@ -50,8 +51,8 @@ class OrderedProduct {
   JSON toJson() => _$OrderedProductToJson(this);
 }
 
+@defJson
 @CopyWith()
-@JsonSerializable()
 class Order {
   Order({
     String? orderId,

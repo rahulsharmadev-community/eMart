@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'general/typedef.dart';
-part '../orderstatus.g.dart';
+part 'orderstatus.g.dart';
 
 enum PaymentMode {
   creditCard,
@@ -31,7 +31,7 @@ enum OrderState {
   cancelled,
 }
 
-@JsonSerializable(constructor: '_')
+@JsonSerializable(explicitToJson: true, constructor: '_')
 class OrderStatus {
   final String orderId;
   final DateTime lastUpdateAt;

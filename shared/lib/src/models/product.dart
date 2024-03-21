@@ -1,14 +1,16 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:shared/src/helper.dart';
+import 'package:shared/src/models/general/durationperiod.dart';
 import 'states.dart';
 import 'general/typedef.dart';
 import 'package:uuid/uuid.dart';
-part '../product.g.dart';
+part 'product.g.dart';
 
 enum ProductStockStatus { available, outOfStock, unavailable }
 
 @CopyWith()
-@JsonSerializable()
+@defJson
 class Product {
   Product({
     String? productId,
@@ -23,7 +25,6 @@ class Product {
     this.replacement,
     this.refund,
     this.afterSalesService,
-    this.views = 0,
     this.discount = 0,
     this.feature = const [],
     this.imageUrls = const [],
@@ -31,7 +32,6 @@ class Product {
     this.category = const [],
     this.keywords = const [],
     this.detailedSpecs = const {},
-    this.productReviews = const [],
     this.deliveryMetaData = const {},
     this.status = ProductStockStatus.available,
     DateTime? createdAt,
@@ -92,9 +92,6 @@ class Product {
   ///(lazy load) Detailed specifications of the product.
   final JSON<String> detailedSpecs;
 
-  ///(lazy load) List of reviews for the product.
-  final List<String> productReviews;
-
   /// (lazy load)
   final DurationPeriod? replacement;
 
@@ -106,8 +103,6 @@ class Product {
 
   /// (lazy load)
   final ProductStockStatus status;
-
-  final int views;
 
   /// Discount applicable to the
   final double discount;
@@ -125,37 +120,9 @@ class Product {
   JSON toJson() => _$ProductToJson(this);
 }
 
-@JsonSerializable()
-class ReviewMetaData {
-  /// Don't increase manually increase automatically in server
-  ReviewMetaData({
-    this.star1 = 0,
-    this.star2 = 0,
-    this.star3 = 0,
-    this.star4 = 0,
-    this.star5 = 0,
-    this.totalReviews = 0,
-  });
-
-  final int star1;
-  final int star2;
-  final int star3;
-  final int star4;
-  final int star5;
-  final int totalReviews;
-
-  factory ReviewMetaData.fromJson(JSON json) => _$ReviewMetaDataFromJson(json);
-
-  JSON toJson() => _$ReviewMetaDataToJson(this);
-  double get rating {
-    int count = (star1 + star2 * 2 + star3 * 3 + star4 * 4 + star5 * 5);
-    return count / totalReviews;
-  }
-}
-
 enum LengthMeasurement { cm, m, km, inch, foot }
 
-@JsonSerializable(constructor: '_')
+@JsonSerializable(constructor: '_', explicitToJson: true)
 class ProductUnit {
   ProductUnit._(
     this.quantity,
@@ -204,7 +171,7 @@ enum DeliveryEstimation {
 }
 
 @CopyWith()
-@JsonSerializable()
+@defJson
 class DeliveryMetaData {
   /// The `ProductMetaData` class encapsulates essential information about a product.
   /// It includes the product's unique identifier (`productId`), discount, and optional details
@@ -224,7 +191,7 @@ class DeliveryMetaData {
 }
 
 @CopyWith()
-@JsonSerializable()
+@defJson
 class AfterSalesService {
   /// [AfterSalesService] class represents information about after-sales services for a product.
   /// It includes details such as serviceId, serviceName, free call support, free technical support,
@@ -259,36 +226,4 @@ class AfterSalesService {
 
   factory AfterSalesService.fromJson(JSON json) => _$AfterSalesServiceFromJson(json);
   JSON toJson() => _$AfterSalesServiceToJson(this);
-}
-
-@JsonSerializable(constructor: "_")
-class DurationPeriod {
-  DurationPeriod._(this.duration, this.durationType);
-  final int duration;
-  final String durationType;
-
-  // Check if the duration is zero.
-  bool get isZero => duration == -1;
-
-  // Check if the duration is a lifetime.
-  bool get isLifeTime => duration == 100;
-
-  // Factory method to create a zero-duration instance.
-  factory DurationPeriod.zero() => DurationPeriod._(-1, 'day');
-
-  // Factory method to create a lifetime-duration instance.
-  factory DurationPeriod.lifeTime() => DurationPeriod._(100, 'year');
-
-  // Factory method to create a specific duration in days.
-  factory DurationPeriod.day(int day) => DurationPeriod._(day, 'year');
-
-  // Factory method to create a specific duration in years.
-  factory DurationPeriod.year(int year) => DurationPeriod._(year, 'year');
-
-  factory DurationPeriod.fromJson(JSON json) => _$DurationPeriodFromJson(json);
-  JSON toJson() => _$DurationPeriodToJson(this);
-
-  @override
-  String toString() =>
-      duration == -1 ? 'Zero' : '${duration == 100 ? 'LifeTime ' : ''}$duration $durationType';
 }

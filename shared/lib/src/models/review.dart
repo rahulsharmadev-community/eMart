@@ -1,11 +1,11 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:shared/src/helper.dart';
 import 'general/typedef.dart';
 import 'package:uuid/uuid.dart';
-part '../review.g.dart';
+part 'review.g.dart';
 
 @CopyWith()
-@JsonSerializable()
+@defJson
 class Review {
   Review({
     String? reviewId,

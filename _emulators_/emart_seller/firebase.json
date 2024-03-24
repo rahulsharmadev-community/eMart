@@ -27,5 +27,7 @@
       "port": 7211
     }
   },
-  "kill": "npx kill-port 7201 7202 7203 7204 7211"
+  "kill": "npx kill-port 7201 7202 7203 7204 7211",
+
+  "start": "firebase emulators:start --import=./data-path --export-on-exit"
 }

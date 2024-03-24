@@ -22,7 +22,7 @@ class DurationPeriod {
   factory DurationPeriod.lifeTime() => DurationPeriod._(100, 'year');
 
   // Factory method to create a specific duration in days.
-  factory DurationPeriod.day(int day) => DurationPeriod._(day, 'year');
+  factory DurationPeriod.day(int day) => DurationPeriod._(day, 'day');
 
   // Factory method to create a specific duration in years.
   factory DurationPeriod.year(int year) => DurationPeriod._(year, 'year');

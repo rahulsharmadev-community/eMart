@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
 import 'package:shopping/utility/extensions.dart';
+import 'package:shopping/utility/utility.dart';
 import 'components/_components.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
             title: TextField(
               decoration: const InputDecoration(hintText: 'Serach Product..', prefixIcon: Icon(Icons.search)),
               readOnly: true,
-              onTap: () {},
+              onTap: () =>AppRoutes.ProductSearchScreen.push(),
             ),
             actions: [
               IconBtnWithCounter(svgSrc: "assets/icons/Cart Icon.svg", press: () => {}),

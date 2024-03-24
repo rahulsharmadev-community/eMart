@@ -1,0 +1,393 @@
+{
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd89": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd89",
+    "shopId": "198ce2a5-730a-5c4f-8fcc-27c3c46c6dcc",
+    "title": "JBL Tune 510BT",
+    "thumbnail": "https://m.media-amazon.com/images/I/41ULm0i+k7L._SX466_.jpg",
+    "categories": ["headphone", "soundbar"],
+    "shotDescription": "The JBL Tune 510BT headphones let you stream powerful JBL Pure Bass sound with no strings attached.",
+    "keywords": ["JBL", "headphone"],
+    "productBrand": "JBL",
+    "mrp": 2200.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/41ULm0i+k7L._SX466_.jpg",
+      "https://m.media-amazon.com/images/I/41gLWKu5qkL._SX466_.jpg",
+      "https://m.media-amazon.com/images/I/41gLWKu5qkL._SX466_.jpg",
+      "https://m.media-amazon.com/images/I/41gLWKu5qkL._SX466_.jpg"
+    ],
+
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Quick Charging", "Dual Pairing", "Bluetooth 5.0", "Voice Assistant Support"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "JBL",
+      "Model Name": "Tune",
+      "Colour": "White",
+      "Form Factor": "On Ear",
+      "Connectivity Technology": "Wireless"
+    },
+    "replacement": { "duration": 7, "durationType": "year" },
+    "refund": { "duration": 7, "durationType": "year" },
+    "afterSalesServiceId": "9ef1ca31-2c4c-593f0ed858070c97",
+    "status": "available",
+    "discount": 20.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "tenToFifteen" },
+      "INDL": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "oneToTwo" }
+    },
+    "createdAt": "2024-03-23T20:20:40.861972",
+    "lastUpdateAt": "2024-03-23T20:20:40.861972"
+  },
+
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd90": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd90",
+    "shopId": "fb05d6b8-a0e3-54ea-8293-723be8663fe2",
+    "title": "Sony WH-1000XM4",
+    "thumbnail": "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
+    "categories": ["headphone"],
+    "shotDescription": "Experience the next level of silence with the Sony WH-1000XM4 wireless noise cancelling headphones.",
+    "keywords": ["Sony", "headphone"],
+    "productBrand": "Sony",
+    "mrp": 349.99,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg"
+    ],
+
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Noise Cancelling", "Bluetooth 5.0", "Touch Controls"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Sony",
+      "Model Name": "WH-1000XM4",
+      "Colour": "Black",
+      "Form Factor": "Over Ear",
+      "Connectivity Technology": "Wireless"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 14, "durationType": "day" },
+    "afterSalesServiceId": "gjQdgLMIjEuGBNnry5xT",
+    "status": "available",
+    "discount": 10.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T08:10:20.861972",
+    "lastUpdateAt": "2024-03-24T08:10:20.861972"
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd91": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd91",
+    "shopId": "fb05d6b8-a0e3-54ea-8293-723be8663fe2",
+    "title": "Bose QuietComfort 35 II",
+    "thumbnail": "https://m.media-amazon.com/images/I/81auGd6a3KL._AC_SL1500_.jpg",
+    "categories": ["headphone"],
+    "shotDescription": "Enjoy immersive sound and unbeatable comfort with Bose QuietComfort 35 II wireless headphones.",
+    "keywords": ["Bose", "headphone"],
+    "productBrand": "Bose",
+    "mrp": 299.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/81auGd6a3KL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81auGd6a3KL._AC_SL1500_.jpg"
+    ],
+    "variants": ["b4bb71ec-b644-4d81-ab9d-25efa925bd89", "b4bb71ec-b644-4d81-ab9d-25efa925bd90"],
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Noise Cancelling", "Bluetooth", "Voice Assistant Support"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Bose",
+      "Model Name": "QuietComfort 35 II",
+      "Colour": "Black",
+      "Form Factor": "Over Ear",
+      "Connectivity Technology": "Wireless"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 14, "durationType": "day" },
+    "afterSalesServiceId": "7c0b2a67-287f9743d46c3af4",
+    "status": "available",
+    "discount": 15.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T08:20:20.861972",
+    "lastUpdateAt": "2024-03-24T08:20:20.861972"
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd92": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd92",
+    "shopId": "198ce2a5-730a-5c4f-8fcc-27c3c46c6dcc",
+    "title": "Samsung Galaxy Buds Pro",
+    "thumbnail": "https://m.media-amazon.com/images/I/61TXx5U94GL._AC_SL1500_.jpg",
+    "categories": ["earbuds"],
+    "shotDescription": "Elevate your listening experience with the Samsung Galaxy Buds Pro featuring intelligent Active Noise Cancelling.",
+    "keywords": ["Samsung", "earbuds"],
+    "productBrand": "Samsung",
+    "mrp": 199.99,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/61TXx5U94GL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/61TXx5U94GL._AC_SL1500_.jpg"
+    ],
+
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Active Noise Cancellation", "Bluetooth 5.0", "Wireless Charging"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Samsung",
+      "Model Name": "Galaxy Buds Pro",
+      "Colour": "Phantom Black",
+      "Form Factor": "In Ear",
+      "Connectivity Technology": "Wireless"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 30, "durationType": "day" },
+    "afterSalesServiceId": "9ef1ca31-2c4c-593f0ed858070c97",
+    "status": "available",
+    "discount": 10.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T09:00:00.000Z",
+    "lastUpdateAt": "2024-03-24T09:00:00.000Z"
+  },
+
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd93": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd93",
+    "shopId": "b407e451-4d0b-5079-bfd6-df458bff132c",
+    "title": "Sony WH-XB900N",
+    "thumbnail": "https://m.media-amazon.com/images/I/61-+EIX0gaL._AC_SL1200_.jpg",
+    "categories": ["headphone"],
+    "shotDescription": "Immerse yourself in deep, punchy sound with Sony WH-XB900N Extra Bass Wireless Noise Cancelling Headphones.",
+    "keywords": ["Sony", "headphone"],
+    "productBrand": "Sony",
+    "mrp": 248.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/61-+EIX0gaL._AC_SL1200_.jpg",
+      "https://m.media-amazon.com/images/I/61-+EIX0gaL._AC_SL1200_.jpg"
+    ],
+
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Extra Bass", "Noise Cancelling", "Voice Assistant Support"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Sony",
+      "Model Name": "WH-XB900N",
+      "Colour": "Black",
+      "Form Factor": "Over Ear",
+      "Connectivity Technology": "Wireless"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 14, "durationType": "day" },
+    "afterSalesServiceId": "e3417039-7ce6-59d1-b9ac-67804386c925",
+    "status": "available",
+    "discount": 10.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T09:10:00.000Z",
+    "lastUpdateAt": "2024-03-24T09:10:00.000Z"
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd96": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd96",
+    "shopId": "198ce2a5-730a-5c4f-8fcc-27c3c46c6dcc",
+    "title": "Samsung Galaxy S22 Ultra",
+    "thumbnail": "https://m.media-amazon.com/images/I/71zj7xJNjvL._AC_SL1500_.jpg",
+    "categories": ["mobile"],
+    "shotDescription": "Unleash your creativity with the Samsung Galaxy S22 Ultra, featuring a versatile quad-camera system and stunning AMOLED display.",
+    "keywords": ["Samsung", "Galaxy"],
+    "productBrand": "Samsung",
+    "mrp": 1299.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/71zj7xJNjvL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71zj7xJNjvL._AC_SL1500_.jpg"
+    ],
+
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Quad-Camera System", "AMOLED Display", "5G Connectivity"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Samsung",
+      "Model Name": "Galaxy S22 Ultra",
+      "Colour": "Phantom Black",
+      "Screen Size": "6.8 inches",
+      "Processor": "Exynos 2200",
+      "Storage": "256GB",
+      "Operating System": "Android 12"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 30, "durationType": "day" },
+    "afterSalesServiceId": "9ef1ca31-2c4c-593f0ed858070c97",
+    "status": "available",
+    "discount": 10.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T09:30:00.000Z",
+    "lastUpdateAt": "2024-03-24T09:30:00.000Z"
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd95": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd95",
+    "shopId": "fb05d6b8-a0e3-54ea-8293-723be8663fe2",
+    "title": "iPhone 13 Pro Max",
+    "thumbnail": "https://m.media-amazon.com/images/I/71DVgBTdyLL._AC_SL1500_.jpg",
+    "categories": ["mobile"],
+    "shotDescription": "Experience the power of the iPhone 13 Pro Max with its stunning Super Retina XDR display and groundbreaking performance.",
+    "keywords": ["Apple", "iPhone"],
+    "productBrand": "Apple",
+    "mrp": 1099.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/71DVgBTdyLL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71DVgBTdyLL._AC_SL1500_.jpg"
+    ],
+
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Super Retina XDR Display", "A15 Bionic Chip", "5G Connectivity"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Apple",
+      "Model Name": "iPhone 13 Pro Max",
+      "Colour": "Graphite",
+      "Screen Size": "6.7 inches",
+      "Processor": "A15 Bionic",
+      "Storage": "128GB",
+      "Operating System": "iOS 15"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 14, "durationType": "day" },
+    "afterSalesServiceId": "gjQdgLMIjEuGBNnry5xT",
+    "status": "available",
+    "discount": 5.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T09:20:00.000Z",
+    "lastUpdateAt": "2024-03-24T09:20:00.000Z"
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd98": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd98",
+    "shopId": "2781bd4c-fde7-5c4a-8ea9-85d7920bd6f4",
+    "title": "Google Pixel 7 Pro",
+    "thumbnail": "https://m.media-amazon.com/images/I/81l2VzLgCFL._AC_SL1500_.jpg",
+    "categories": ["mobile"],
+    "shotDescription": "Discover the Google Pixel 7 Pro with its exceptional camera capabilities and smooth performance.",
+    "keywords": ["Google", "Pixel"],
+    "productBrand": "Google",
+    "mrp": 899.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/81l2VzLgCFL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/81l2VzLgCFL._AC_SL1500_.jpg"
+    ],
+    "variants": ["b4bb71ec-b644-4d81-ab9d-25efa925bd99"],
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["Exceptional Camera", "Smooth Performance", "5G Connectivity"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Google",
+      "Model Name": "Pixel 7 Pro",
+      "Colour": "Sorta Sage",
+      "Screen Size": "6.7 inches",
+      "Processor": "Google Tensor",
+      "Storage": "256GB",
+      "Operating System": "Android 12"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 30, "durationType": "day" },
+    "afterSalesServiceId": "fdf6868a-e9cf-584f-9c9e-73102534aa19",
+    "status": "available",
+    "discount": 10.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T09:40:00.000Z",
+    "lastUpdateAt": "2024-03-24T09:40:00.000Z"
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd99": {
+    "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd99",
+    "shopId": "fb05d6b8-a0e3-54ea-8293-723be8663fe2",
+    "title": "Xiaomi Mi 11 Ultra",
+    "thumbnail": "https://m.media-amazon.com/images/I/71HjU2bUcyL._AC_SL1500_.jpg",
+    "categories": ["mobile"],
+    "shotDescription": "Experience flagship performance with the Xiaomi Mi 11 Ultra featuring a stunning AMOLED display and powerful Snapdragon processor.",
+    "keywords": ["Xiaomi", "Mi"],
+    "productBrand": "Xiaomi",
+    "mrp": 999.0,
+    "imageUrls": [
+      "https://m.media-amazon.com/images/I/71HjU2bUcyL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71HjU2bUcyL._AC_SL1500_.jpg"
+    ],
+    "variants": ["b4bb71ec-b644-4d81-ab9d-25efa925bd98"],
+    "warrantyPeriod": { "duration": 1, "durationType": "year" },
+    "features": ["AMOLED Display", "Snapdragon Processor", "120x Ultra Zoom"],
+    "unit": {
+      "quantity": 1.0,
+      "unitName": "Piece",
+      "unitSymbol": "piece",
+      "dimension": null,
+      "dimensionMeasurement": null
+    },
+    "detailedSpecs": {
+      "Brand": "Xiaomi",
+      "Model Name": "Mi 11 Ultra",
+      "Colour": "Ceramic White",
+      "Screen Size": "6.81 inches",
+      "Processor": "Snapdragon 888",
+      "Storage": "512GB",
+      "Operating System": "MIUI 12.5"
+    },
+    "replacement": { "duration": 1, "durationType": "year" },
+    "refund": { "duration": 14, "durationType": "day" },
+    "afterSalesServiceId": "gjQdgLMIjEuGBNnry5xT",
+    "status": "available",
+    "discount": 8.0,
+    "deliveryMetaData": {
+      "INAS": { "shippingCost": 0.0, "deliveryCost": 0.0, "deliveryEstimation": "fiveToSeven" }
+    },
+    "createdAt": "2024-03-24T09:50:00.000Z",
+    "lastUpdateAt": "2024-03-24T09:50:00.000Z"
+  }
+}

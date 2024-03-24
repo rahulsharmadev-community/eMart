@@ -1,9 +1,10 @@
 library repositories;
 
-export 'src/apis/keywords/keywords_repository.dart';
 export 'src/apis/order_api.dart';
-export 'src/apis/products/product_model.dart';
 export 'src/apis/primary_user_api.dart';
+export 'src/apis/keywords/keyword_api.dart';
+export 'src/apis/keywords/keywords_cache.dart';
+export 'src/apis/keywords/keywords_repository.dart';
 export 'src/apis/products/product_api.dart';
 export 'src/extenstion.dart';
 
@@ -14,8 +15,8 @@ import 'package:shared/credentials.dart';
 Future<void> initializeRepository({bool emulator = false}) async {
   await FirebaseService.initialize();
 
-  const host = 'localhost';
   if (emulator) {
+    const host = 'localhost';
     // eMartConsumer
     await FirebaseService.eMartConsumer.instanceOfAuth.useAuthEmulator(host, 9201);
     FirebaseService.eMartConsumer.instanceOfFirestore.useFirestoreEmulator(host, 9202);

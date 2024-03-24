@@ -1,9 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:regpatterns/regpatterns.dart';
+import 'package:shared/models.dart';
 import 'package:shared/src/helper.dart';
-import 'general/typedef.dart';
-import 'general/address.dart';
 import 'package:uuid/uuid.dart';
 
 part 'shop.g.dart';
@@ -62,6 +61,7 @@ class Shop {
     this.electricityBillNumber,
     this.isVerifiedShop = false,
     this.shopImgs = const [],
+    this.afterSalesServices = const {},
     DateTime? createdAt,
     DateTime? lastUpdateAt,
   })  : assert(sellerId.length > 8, 'Invalid seller id.'),
@@ -106,6 +106,10 @@ class Shop {
 
   /// The electricity bill number associated with the shop, providing a reference for the electricity bill documentation.
   final String? electricityBillNumber;
+
+  /// Represents services applicable to products that have been sold.
+  /// Sellers are permitted to create or read these services, but deletion is not allowed.
+  final JSON<AfterSalesService> afterSalesServices;
 
   @CopyWithField.immutable()
   final DateTime createdAt;

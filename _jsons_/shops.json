@@ -1,0 +1,202 @@
+{
+  "fb05d6b8-a0e3-54ea-8293-723be8663fe2": {
+    "shopId": "fb05d6b8-a0e3-54ea-8293-723be8663fe2",
+    "sellerId": "12bQW71ec-b644-4d81-ab9d-25efa925bd89",
+    "name": "Jay Prakash Shop",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "email": "valid@example.com",
+    "phoneNumber": "+1234567890",
+    "rating": 4.5,
+    "gstNumber": "GST123456",
+    "gstDocImg": "https://example.com/gstdoc.jpg",
+    "panNumber": "PAN123456",
+    "panDocImg": "https://example.com/pandoc.jpg",
+    "shopImgs": ["https://example.com/shopimg1.jpg", "https://example.com/shopimg2.jpg"],
+    "isVerifiedShop": true,
+    "electricityBillDocImg": "https://example.com/electricitybilldoc.jpg",
+    "electricityBillNumber": "EBN123456",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654",
+    "__collections__": {
+      " afterSalesServices": {
+        "gjQdgLMIjEuGBNnry5xT": {
+          "serviceId": "gjQdgLMIjEuGBNnry5xT",
+          "serviceName": "1-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": false,
+          "repairingDiscount": 10.0,
+          "period": {
+            "duration": 1,
+            "durationType": "year"
+          }
+        },
+        "7c0b2a67-287f9743d46c3af4": {
+          "serviceId": "7c0b2a67-287f9743d46c3af4",
+          "serviceName": "2-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": true,
+          "repairingDiscount": 15.0,
+          "period": {
+            "duration": 2,
+            "durationType": "year"
+          }
+        }
+      }
+    }
+  },
+  "198ce2a5-730a-5c4f-8fcc-27c3c46c6dcc": {
+    "shopId": "198ce2a5-730a-5c4f-8fcc-27c3c46c6dcc",
+    "sellerId": "9d80106d-79e2-5545-b9d6-28e1884bd6dc",
+    "name": "Chul Sachin Shop",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "email": "sachin@gmail.com",
+    "phoneNumber": "+1234567890",
+    "rating": 4.5,
+    "gstNumber": "GST123456",
+    "gstDocImg": "https://example.com/gstdoc.jpg",
+    "panNumber": "PAN123456",
+    "panDocImg": "https://example.com/pandoc.jpg",
+    "shopImgs": ["https://example.com/shopimg1.jpg", "https://example.com/shopimg2.jpg"],
+    "isVerifiedShop": true,
+    "electricityBillDocImg": "https://example.com/electricitybilldoc.jpg",
+    "electricityBillNumber": "EBN123456",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654",
+    "__collections__": {
+      " afterSalesServices": {
+        "9ef1ca31-2c4c-593f0ed858070c97": {
+          "serviceId": "9ef1ca31-2c4c-593f0ed858070c97",
+          "serviceName": "1-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": false,
+          "repairingDiscount": 10.0,
+          "period": {
+            "duration": 1,
+            "durationType": "year"
+          }
+        },
+        "b126bbf3-a672-502699d057b5c5f7": {
+          "serviceId": "b126bbf3-a672-502699d057b5c5f7",
+          "serviceName": "2-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": true,
+          "repairingDiscount": 15.0,
+          "period": {
+            "duration": 2,
+            "durationType": "year"
+          }
+        }
+      }
+    }
+  },
+  "b407e451-4d0b-5079-bfd6-df458bff132c": {
+    "shopId": "b407e451-4d0b-5079-bfd6-df458bff132c",
+    "sellerId": "9d80106d-79e2-5545-b9d6-28e1884bd6dc",
+    "name": "Sachin Shop",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "email": "sachin@example.com",
+    "phoneNumber": "+1234567890",
+    "rating": 4.5,
+    "gstNumber": "GST123456",
+    "gstDocImg": "https://example.com/gstdoc.jpg",
+    "panNumber": "PAN123456",
+    "panDocImg": "https://example.com/pandoc.jpg",
+    "shopImgs": ["https://example.com/shopimg1.jpg", "https://example.com/shopimg2.jpg"],
+    "isVerifiedShop": true,
+    "electricityBillDocImg": "https://example.com/electricitybilldoc.jpg",
+    "electricityBillNumber": "EBN123456",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654",
+    "__collections__": {
+      " afterSalesServices": {
+        "000fb44d-b5b4-5cb9-80b8-6e4b760718cb": {
+          "serviceId": "000fb44d-b5b4-5cb9-80b8-6e4b760718cb",
+          "serviceName": "1-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": false,
+          "repairingDiscount": 10.0,
+          "period": {
+            "duration": 1,
+            "durationType": "year"
+          }
+        },
+        "e3417039-7ce6-59d1-b9ac-67804386c925": {
+          "serviceId": "e3417039-7ce6-59d1-b9ac-67804386c925",
+          "serviceName": "2-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": true,
+          "repairingDiscount": 15.0,
+          "period": {
+            "duration": 2,
+            "durationType": "year"
+          }
+        }
+      }
+    }
+  },
+  "2781bd4c-fde7-5c4a-8ea9-85d7920bd6f4": {
+    "shopId": "2781bd4c-fde7-5c4a-8ea9-85d7920bd6f4",
+    "sellerId": "09ad46c0-d40d-53ea-b410-9e56ca80baef",
+    "name": "Suraj Shop",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "email": "valid@example.com",
+    "phoneNumber": "+1234567890",
+    "rating": 4.5,
+    "gstNumber": "GST123456",
+    "gstDocImg": "https://example.com/gstdoc.jpg",
+    "panNumber": "PAN123456",
+    "panDocImg": "https://example.com/pandoc.jpg",
+    "shopImgs": ["https://example.com/shopimg1.jpg", "https://example.com/shopimg2.jpg"],
+    "isVerifiedShop": true,
+    "electricityBillDocImg": "https://example.com/electricitybilldoc.jpg",
+    "electricityBillNumber": "EBN123456",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654",
+    "__collections__": {
+      " afterSalesServices": {
+        "fdf6868a-e9cf-584f-9c9e-73102534aa19": {
+          "serviceId": "fdf6868a-e9cf-584f-9c9e-73102534aa19",
+          "serviceName": "1-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": false,
+          "repairingDiscount": 10.0,
+          "period": {
+            "duration": 1,
+            "durationType": "year"
+          }
+        },
+        "49173b4e-4bce-5ae0-8bf1-4a9341123c3e": {
+          "serviceId": "49173b4e-4bce-5ae0-8bf1-4a9341123c3e",
+          "serviceName": "2-Year-Plain",
+          "freeCallSupport": true,
+          "freeTechnicalSupport": true,
+          "repairingDiscount": 15.0,
+          "period": {
+            "duration": 2,
+            "durationType": "year"
+          }
+        }
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ class ProductModel extends Product {
     super.warrantyPeriod,
     super.replacement,
     super.refund,
-    super.afterSalesService,
+    super.afterSalesServiceId,
     super.discount,
     super.feature,
     super.imageUrls,

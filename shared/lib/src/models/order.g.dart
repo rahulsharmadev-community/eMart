@@ -35,7 +35,7 @@ abstract class _$OrderedProductCWProxy {
 
   OrderedProduct warrantyPeriod(DurationPeriod? warrantyPeriod);
 
-  OrderedProduct afterSalesService(AfterSalesService? afterSalesService);
+  OrderedProduct afterSalesServiceId(String? afterSalesServiceId);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `OrderedProduct(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -58,7 +58,7 @@ abstract class _$OrderedProductCWProxy {
     DurationPeriod? refund,
     DurationPeriod? replacement,
     DurationPeriod? warrantyPeriod,
-    AfterSalesService? afterSalesService,
+    String? afterSalesServiceId,
   });
 }
 
@@ -117,8 +117,8 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
       this(warrantyPeriod: warrantyPeriod);
 
   @override
-  OrderedProduct afterSalesService(AfterSalesService? afterSalesService) =>
-      this(afterSalesService: afterSalesService);
+  OrderedProduct afterSalesServiceId(String? afterSalesServiceId) =>
+      this(afterSalesServiceId: afterSalesServiceId);
 
   @override
 
@@ -143,7 +143,7 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
     Object? refund = const $CopyWithPlaceholder(),
     Object? replacement = const $CopyWithPlaceholder(),
     Object? warrantyPeriod = const $CopyWithPlaceholder(),
-    Object? afterSalesService = const $CopyWithPlaceholder(),
+    Object? afterSalesServiceId = const $CopyWithPlaceholder(),
   }) {
     return OrderedProduct(
       mrp: mrp == const $CopyWithPlaceholder() || mrp == null
@@ -206,10 +206,10 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
           ? _value.warrantyPeriod
           // ignore: cast_nullable_to_non_nullable
           : warrantyPeriod as DurationPeriod?,
-      afterSalesService: afterSalesService == const $CopyWithPlaceholder()
-          ? _value.afterSalesService
+      afterSalesServiceId: afterSalesServiceId == const $CopyWithPlaceholder()
+          ? _value.afterSalesServiceId
           // ignore: cast_nullable_to_non_nullable
-          : afterSalesService as AfterSalesService?,
+          : afterSalesServiceId as String?,
     );
   }
 }
@@ -315,10 +315,7 @@ OrderedProduct _$OrderedProductFromJson(Map<String, dynamic> json) =>
           ? null
           : DurationPeriod.fromJson(
               json['warrantyPeriod'] as Map<String, dynamic>),
-      afterSalesService: json['afterSalesService'] == null
-          ? null
-          : AfterSalesService.fromJson(
-              json['afterSalesService'] as Map<String, dynamic>),
+      afterSalesServiceId: json['afterSalesServiceId'] as String?,
     );
 
 Map<String, dynamic> _$OrderedProductToJson(OrderedProduct instance) =>
@@ -338,13 +335,13 @@ Map<String, dynamic> _$OrderedProductToJson(OrderedProduct instance) =>
       'replacement': instance.replacement?.toJson(),
       'refund': instance.refund?.toJson(),
       'warrantyPeriod': instance.warrantyPeriod?.toJson(),
-      'afterSalesService': instance.afterSalesService?.toJson(),
+      'afterSalesServiceId': instance.afterSalesServiceId,
     };
 
 const _$DeliveryEstimationEnumMap = {
   DeliveryEstimation.oneToTwo: 'oneToTwo',
   DeliveryEstimation.twoToThree: 'twoToThree',
-  DeliveryEstimation.fourToSeven: 'fourToSeven',
+  DeliveryEstimation.fiveToSeven: 'fiveToSeven',
   DeliveryEstimation.tenToFifteen: 'tenToFifteen',
 };
 

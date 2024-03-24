@@ -35,6 +35,8 @@ abstract class _$ShopCWProxy {
 
   Shop shopImgs(List<String>? shopImgs);
 
+  Shop afterSalesServices(Map<String, AfterSalesService> afterSalesServices);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Shop(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -56,6 +58,7 @@ abstract class _$ShopCWProxy {
     String? electricityBillNumber,
     bool? isVerifiedShop,
     List<String>? shopImgs,
+    Map<String, AfterSalesService>? afterSalesServices,
   });
 }
 
@@ -111,6 +114,10 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
   Shop shopImgs(List<String>? shopImgs) => this(shopImgs: shopImgs);
 
   @override
+  Shop afterSalesServices(Map<String, AfterSalesService> afterSalesServices) =>
+      this(afterSalesServices: afterSalesServices);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Shop(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -133,6 +140,7 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
     Object? electricityBillNumber = const $CopyWithPlaceholder(),
     Object? isVerifiedShop = const $CopyWithPlaceholder(),
     Object? shopImgs = const $CopyWithPlaceholder(),
+    Object? afterSalesServices = const $CopyWithPlaceholder(),
   }) {
     return Shop(
       shopId: _value.shopId,
@@ -198,6 +206,11 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
           ? _value.shopImgs
           // ignore: cast_nullable_to_non_nullable
           : shopImgs as List<String>?,
+      afterSalesServices: afterSalesServices == const $CopyWithPlaceholder() ||
+              afterSalesServices == null
+          ? _value.afterSalesServices
+          // ignore: cast_nullable_to_non_nullable
+          : afterSalesServices as Map<String, AfterSalesService>,
       createdAt: _value.createdAt,
     );
   }
@@ -261,6 +274,12 @@ Shop _$ShopFromJson(Map<String, dynamic> json) => Shop(
               ?.map((e) => e as String)
               .toList() ??
           const [],
+      afterSalesServices:
+          (json['afterSalesServices'] as Map<String, dynamic>?)?.map(
+                (k, e) => MapEntry(
+                    k, AfterSalesService.fromJson(e as Map<String, dynamic>)),
+              ) ??
+              const {},
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -286,6 +305,8 @@ Map<String, dynamic> _$ShopToJson(Shop instance) => <String, dynamic>{
       'isVerifiedShop': instance.isVerifiedShop,
       'electricityBillDocImg': instance.electricityBillDocImg,
       'electricityBillNumber': instance.electricityBillNumber,
+      'afterSalesServices':
+          instance.afterSalesServices.map((k, e) => MapEntry(k, e.toJson())),
       'createdAt': instance.createdAt.toIso8601String(),
       'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
     };

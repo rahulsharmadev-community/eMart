@@ -9,13 +9,12 @@ import 'package:repositories/repositories.dart';
 import 'package:shared/credentials.dart';
 import 'package:shopping/modules/flutter_app_run.dart';
 import 'package:shopping/utility/utility.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeRepository(emulator: true);
+  await initializeRepository();
   // ignore: invalid_use_of_visible_for_testing_member
-  setFirebaseUiIsTestMode(true);
+  // setFirebaseUiIsTestMode(true);
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     PhoneAuthProvider(),

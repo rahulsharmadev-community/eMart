@@ -1,7 +1,9 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:repositories/repositories.dart';
+import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';
+import 'package:shopping/utility/extensions.dart';
 
 part 'primary_user_event.dart';
 part 'primary_user_state.dart';
@@ -14,18 +16,16 @@ class PrimaryUserBloc extends HydratedBloc<PrimaryUserEvent, PrimaryUserState> {
   PrimaryUserBloc(
     this.api,
   ) : super(PrimaryUserLoading()) {
-    // if (state is PrimaryUserLoading) {
-
-    //   userApi.get().then((value) {
-    //     if (value == null) {
-    //       var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
-    //       PrimaryUserApi.createNewUser(result).then((v) => emit(PrimaryUserLoaded(result)));
-    //     } else {
-    //       emit(PrimaryUserLoaded(value));
-    //     }
-    //   });
-    // }
-    print('Run');
+    if (state is PrimaryUserLoading) {
+      api.get().then((value) {
+        if (value == null) {
+          var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
+          PrimaryUserApi.createNewUser(result).then((v) => add(PrimaryUserInitialize(result)));
+        } else {
+          add(PrimaryUserInitialize(value));
+        }
+      });
+    }
 
     on<PrimaryUserInitialize>((event, emit) => emit(PrimaryUserLoaded(event.user)));
     on<PrimaryUserDispose>((event, emit) => emit(PrimaryUserLoading()));

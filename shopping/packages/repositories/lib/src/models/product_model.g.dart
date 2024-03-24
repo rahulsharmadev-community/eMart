@@ -25,7 +25,7 @@ abstract class _$ProductModelCWProxy {
     DurationPeriod? warrantyPeriod,
     DurationPeriod? replacement,
     DurationPeriod? refund,
-    AfterSalesService? afterSalesService,
+    String? afterSalesServiceId,
     double? discount,
     List<String>? feature,
     List<String>? imageUrls,
@@ -67,7 +67,7 @@ class _$ProductModelCWProxyImpl implements _$ProductModelCWProxy {
     Object? warrantyPeriod = const $CopyWithPlaceholder(),
     Object? replacement = const $CopyWithPlaceholder(),
     Object? refund = const $CopyWithPlaceholder(),
-    Object? afterSalesService = const $CopyWithPlaceholder(),
+    Object? afterSalesServiceId = const $CopyWithPlaceholder(),
     Object? discount = const $CopyWithPlaceholder(),
     Object? feature = const $CopyWithPlaceholder(),
     Object? imageUrls = const $CopyWithPlaceholder(),
@@ -126,10 +126,10 @@ class _$ProductModelCWProxyImpl implements _$ProductModelCWProxy {
           ? _value.refund
           // ignore: cast_nullable_to_non_nullable
           : refund as DurationPeriod?,
-      afterSalesService: afterSalesService == const $CopyWithPlaceholder()
-          ? _value.afterSalesService
+      afterSalesServiceId: afterSalesServiceId == const $CopyWithPlaceholder()
+          ? _value.afterSalesServiceId
           // ignore: cast_nullable_to_non_nullable
-          : afterSalesService as AfterSalesService?,
+          : afterSalesServiceId as String?,
       discount: discount == const $CopyWithPlaceholder() || discount == null
           ? _value.discount
           // ignore: cast_nullable_to_non_nullable
@@ -215,10 +215,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       refund: json['refund'] == null
           ? null
           : DurationPeriod.fromJson(json['refund'] as Map<String, dynamic>),
-      afterSalesService: json['afterSalesService'] == null
-          ? null
-          : AfterSalesService.fromJson(
-              json['afterSalesService'] as Map<String, dynamic>),
+      afterSalesServiceId: json['afterSalesServiceId'] as String?,
       discount: (json['discount'] as num?)?.toDouble() ?? 0,
       feature: (json['feature'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -284,7 +281,7 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'detailedSpecs': instance.detailedSpecs,
       'replacement': instance.replacement?.toJson(),
       'refund': instance.refund?.toJson(),
-      'afterSalesService': instance.afterSalesService?.toJson(),
+      'afterSalesServiceId': instance.afterSalesServiceId,
       'status': _$ProductStockStatusEnumMap[instance.status]!,
       'discount': instance.discount,
       'deliveryMetaData': instance.deliveryMetaData

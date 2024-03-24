@@ -1,4 +1,4 @@
-import 'package:jars/extensions.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/src/models/product_model.dart';
 import 'package:shared/models.dart';
 
@@ -15,6 +15,11 @@ class ProductsCache {
   void add(ProductModel product) {
     var expiry = DateTime.now().add(2.minutes);
     _cache.addAll({product.productId: (product: product, expiry: expiry)});
+  }
+
+  void addAll(List<ProductModel> products) {
+    var expiry = DateTime.now().add(2.minutes);
+    _cache.addAll({for (var e in products) e.productId: (product: e, expiry: expiry)});
   }
 
   void remove(String key) => _cache.remove(key);

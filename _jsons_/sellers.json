@@ -1,0 +1,59 @@
+{
+  "12bQW71ec-b644-4d81-ab9d-25efa925bd89": {
+    "uid": "12bQW71ec-b644-4d81-ab9d-25efa925bd89",
+    "profileImg": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
+    "name": "Prakash",
+    "email": "valid@example.com",
+    "phoneNumber": "9876543211",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "isVerified": true,
+    "sellerType": "retailer",
+    "shopIds": ["fb05d6b8-a0e3-54ea-8293-723be8663fe2"],
+    "panNumber": "AQE124324",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654"
+  },
+  "9d80106d-79e2-5545-b9d6-28e1884bd6dc": {
+    "uid": "9d80106d-79e2-5545-b9d6-28e1884bd6dc",
+    "profileImg": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
+    "name": "Sachin",
+    "email": "sachin@gmail.com",
+    "phoneNumber": "9876543211",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "isVerified": true,
+    "sellerType": "distributor",
+    "shopIds": ["198ce2a5-730a-5c4f-8fcc-27c3c46c6dcc", "b407e451-4d0b-5079-bfd6-df458bff132c"],
+    "panNumber": "A13124324",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654"
+  },
+  "09ad46c0-d40d-53ea-b410-9e56ca80baef": {
+    "uid": "09ad46c0-d40d-53ea-b410-9e56ca80baef",
+    "profileImg": "https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg",
+    "name": "Suraj",
+    "email": "suraj@example.com",
+    "phoneNumber": "9876543211",
+    "address": {
+      "houseNo": "123 Main St",
+      "country": "Cityville",
+      "state": "Stateville",
+      "pincode": "12345"
+    },
+    "isVerified": true,
+    "sellerType": "retailer",
+    "shopIds": ["2781bd4c-fde7-5c4a-8ea9-85d7920bd6f4"],
+    "panNumber": "AQR124320",
+    "createdAt": "2024-03-12T23:57:11.987654",
+    "lastUpdateAt": "2024-03-12T23:57:11.987654"
+  }
+}

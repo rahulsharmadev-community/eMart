@@ -1,6 +1,7 @@
 import "package:repositories/src/apis/products/product_api.dart";
 import "package:repositories/src/apis/products/products_cache.dart";
 import "package:repositories/src/models/product_model.dart";
+import 'package:repositories/src/models/query.dart';
 import 'dart:async';
 
 class ProductRepository {
@@ -14,10 +15,14 @@ class ProductRepository {
       result = await api.getByProductId(productId);
       if (result != null) cache.add(result);
     } else {
-      api.viewIncrement(productId);
+      api.viewIncrement([productId]);
     }
     return result;
   }
 
-  
+  FutureOr<List<ProductModel>> getByQuery(List<Query> queries) async {
+    final result = await api.getByQueries(queries);
+    cache.addAll(result);
+    return result;
+  }
 }

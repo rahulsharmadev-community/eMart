@@ -25,7 +25,7 @@ class OrderedProduct {
     this.refund,
     this.replacement,
     this.warrantyPeriod,
-    this.afterSalesService,
+    this.afterSalesServiceId,
   });
 
   OrderState get status => orderStatus.status;
@@ -44,7 +44,7 @@ class OrderedProduct {
   final DurationPeriod? replacement;
   final DurationPeriod? refund;
   final DurationPeriod? warrantyPeriod;
-  final AfterSalesService? afterSalesService;
+  final String? afterSalesServiceId;
 
   factory OrderedProduct.fromJson(JSON json) => _$OrderedProductFromJson(json);
 

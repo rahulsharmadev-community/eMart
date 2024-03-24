@@ -4,7 +4,7 @@ class _AppRouter {
   _AppRouter.internal();
 
   GoRouter get run => GoRouter(
-      initialLocation: '/${AppRoutes.LoadingScreen.name}',
+      initialLocation: '/${AppRoutes.HomeScreen.name}',
       navigatorKey: AppNavigator.navigatorKey,
       observers: [AppNavigatorObserver()],
       routes: _routes);

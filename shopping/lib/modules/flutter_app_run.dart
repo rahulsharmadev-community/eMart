@@ -7,6 +7,7 @@ import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/screens/auth_screen/auth_screen.dart';
+import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
 import 'package:shopping/utility/navigation/app_navigator.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
 
@@ -55,13 +56,21 @@ class eMartAppHome extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: MaterialApp.router(
-        // theme: theme.light.themeData,
-        // darkTheme: theme.dark.themeData,
-        // themeMode: themeMode,
-        routerConfig: AppRoutes.config,
-        scaffoldMessengerKey: AppNavigator.messengerKey,
-        debugShowCheckedModeBanner: kDebugMode,
+      child: BlocBuilder<PrimaryUserBloc, PrimaryUserState>(
+        builder: (context, state) {
+          if (state is PrimaryUserLoaded) {
+            return MaterialApp.router(
+              // theme: theme.light.themeData,
+              // darkTheme: theme.dark.themeData,
+              // themeMode: themeMode,
+              routerConfig: AppRoutes.config,
+              scaffoldMessengerKey: AppNavigator.messengerKey,
+              debugShowCheckedModeBanner: kDebugMode,
+            );
+          } else {
+            return const LoadingScreen(materialAppWraper: true);
+          }
+        },
       ),
     );
   }

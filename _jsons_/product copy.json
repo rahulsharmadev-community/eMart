@@ -1,0 +1,29 @@
+{
+  "productId": "b4bb71ec-b644-4d81-ab9d-25efa925bd89",
+  "title": "JBL Tune 510BT",
+  "thumbnail": "https://m.media-amazon.com/images/I/41ULm0i+k7L._SX466_.jpg",
+  "category": ["headphone", "soundbar"],
+  "keywords": ["JBL", "headphone"],
+  "productBrand": "JBL",
+  "variants": ["productid1", "productid02"],
+  "warrantyPeriod": { "duration": 1, "durationType": "year" },
+  "replacement": { "duration": 7, "durationType": "day" },
+  "refund": { "duration": 7, "durationType": "day" },
+  "afterSalesServiceId": "8f9e8646-ddf5-453c-afee-59c897fbb1cc",
+  
+  "mrp": 2200.0,
+  "discount": 20.0,
+  "ratings": {
+    "star1": 1,
+    "star2": 1,
+    "star3": 1,
+    "star4": 1,
+    "star5": 1,
+    "totalReviews": 1
+  },
+  "monthly-activities": {
+    "sold": 45,
+    "reach": 1,
+    "views": 1
+  }
+}

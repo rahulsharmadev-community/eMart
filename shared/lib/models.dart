@@ -10,6 +10,7 @@ export 'src/models/review.dart';
 export 'src/models/states.dart';
 export 'src/models/productmetadata.dart';
 export 'src/models/after_sales_service.dart';
+export 'src/models/keyword.dart';
 
 export 'src/models/general/address.dart';
 export 'src/models/general/location.dart';

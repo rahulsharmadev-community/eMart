@@ -1,26 +1,26 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:jars/extensions.dart';
+import 'package:logger/logger.dart';
 import 'package:meta/meta.dart';
 import 'package:repositories/repositories.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:shared/models.dart';
+import 'package:equatable/equatable.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
 
-const _duration = Duration(milliseconds: 300);
-
-EventTransformer<Event> debounce<Event>(Duration duration) {
-  return (events, mapper) => events.debounceTime(duration).switchMap(mapper);
-}
+EventTransformer<Event> debounce<Event>(Duration duration) =>
+    (events, mapper) => events.debounceTime(duration).switchMap(mapper);
 
 class KeywordBloc extends Bloc<SearchEvent, SearchState> {
   final KeywordsRepository repository;
   KeywordBloc(this.repository) : super(SearchStateEmpty()) {
-    on<SearchTextChanged>(newMethod, transformer: debounce(_duration));
+    on<SearchTextChanged>(newMethod, transformer: debounce(300.milliseconds));
   }
 
   FutureOr<void> newMethod(SearchTextChanged event, Emitter<SearchState> emit) async {
-    repository.searchWord(event.text);
     if (event.text.isEmpty) return emit(SearchStateEmpty());
 
     emit(SearchStateLoading());

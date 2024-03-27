@@ -27,7 +27,19 @@ class _AppRouter {
           //     );
           //   },
           // ),
-
+          GoRoute(
+            path: AppRoutes.SearchKeywordScreen.name,
+            name: AppRoutes.SearchKeywordScreen.name,
+            builder: (context, state) {
+              var extra = state.extra as JSON?;
+              return SearchKeywordScreen(
+                initalText: extra?['initalText'],
+                hintText: extra?['hintText'],
+                whenEmpty: extra?['whenEmpty'],
+                whenNotFound: extra?['whenNotFound'],
+              );
+            },
+          ),
           GoRoute(
             name: AppRoutes.ImagePreviewScreen.name,
             path: AppRoutes.ImagePreviewScreen.name,

@@ -1,10 +1,12 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:async';
 import 'package:go_router/go_router.dart';
+import 'package:shared/models.dart';
 import 'package:shopping/modules/screens/home_screen/home_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/image_preview_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
+import 'package:shopping/modules/screens/search_screen/search_screen.dart';
 import 'package:shopping/utility/utility.dart';
 part 'app_router.dart';
 
@@ -13,9 +15,7 @@ part 'app_router.dart';
 /// A static [config] variable that holds the [GoRouter] configuration.
 enum AppRoutes {
   HomeScreen('home_screen'),
-  ProductSearchScreen('product_search_screen'),
-
-
+  SearchKeywordScreen('search_keyword_screen'),
 
   ///```
   /// Function(List<(String, Uint8List)>) onPreview: extra['onPreview'],

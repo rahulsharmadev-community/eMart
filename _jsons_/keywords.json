@@ -1,0 +1,809 @@
+{
+  "computersaccessories": {
+    "label": "Computers & Accessories",
+    "image": "https://m.media-amazon.com/images/I/71jnByVetPL._SX150_.jpg"
+  },
+  "mobilephonesaccessories": {
+    "label": "Mobile Phones & Accessories",
+    "image": "https://m.media-amazon.com/images/I/61QRgOgBx0L._SX150_.jpg"
+  },
+  "audiovideoequipment": {
+    "label": "Audio & Video Equipment"
+  },
+  "camerasphotography": {
+    "label": "Cameras & Photography"
+  },
+  "homeappliances": {
+    "label": "Home Appliances"
+  },
+  "clothing": {
+    "label": "Clothing"
+  },
+  "shoes": {
+    "label": "Shoes"
+  },
+  "accessories": {
+    "label": "Accessories"
+  },
+  "watches": {
+    "label": "Watches"
+  },
+  "eyewear": {
+    "label": "Eyewear"
+  },
+  "furniture": {
+    "label": "Furniture"
+  },
+  "homedecor": {
+    "label": "Home Decor"
+  },
+  "kitchenappliances": {
+    "label": "Kitchen Appliances"
+  },
+  "beddingbath": {
+    "label": "Bedding & Bath"
+  },
+  "storageorganization": {
+    "label": "Storage & Organization"
+  },
+  "skincare": {
+    "label": "Skincare"
+  },
+  "makeup": {
+    "label": "Makeup"
+  },
+  "haircare": {
+    "label": "Haircare"
+  },
+  "fragrances": {
+    "label": "Fragrances"
+  },
+  "personalhygieneproducts": {
+    "label": "Personal Hygiene Products"
+  },
+  "vitaminssupplements": {
+    "label": "Vitamins & Supplements"
+  },
+  "fitnessequipment": {
+    "label": "Fitness Equipment"
+  },
+  "sportsnutrition": {
+    "label": "Sports Nutrition"
+  },
+  "wellnessproducts": {
+    "label": "Wellness Products"
+  },
+  "healthmonitors": {
+    "label": "Health Monitors"
+  },
+  "officefurniture": {
+    "label": "Office Furniture"
+  },
+  "printersink": {
+    "label": "Printers & Ink"
+  },
+  "officeelectronics": {
+    "label": "Office Electronics"
+  },
+  "deskaccessories": {
+    "label": "Desk Accessories"
+  },
+  "householdcleaning": {
+    "label": "Household & Cleaning"
+  },
+  "oralcare": {
+    "label": "Oral Care"
+  },
+  "bodyskincare": {
+    "label": "Body & Skin Care"
+  },
+  "babycare": {
+    "label": "Baby Care"
+  },
+  "teacoffee": {
+    "label": "Tea & Coffee"
+  },
+  "dairyeggs": {
+    "label": "Dairy & Eggs"
+  },
+  "meatseafood": {
+    "label": "Meat & Seafood"
+  },
+  "bakery": {
+    "label": "Bakery"
+  },
+  "frozenfoods": {
+    "label": "Frozen Foods"
+  },
+  "sweetstreats": {
+    "label": "Sweets & Treats"
+  },
+  "dogsupplies": {
+    "label": "Dog Supplies"
+  },
+  "catsupplies": {
+    "label": "Cat Supplies"
+  },
+  "birdsupplies": {
+    "label": "Bird Supplies"
+  },
+  "breakfastfood": {
+    "label": "Breakfast Food"
+  },
+  "snacksbiscuits": {
+    "label": "Snacks & Biscuits"
+  },
+  "drinksjuices": {
+    "label": "Drinks & Juices"
+  },
+  "riceattadal": {
+    "label": "Rice, Atta & Dal"
+  },
+  "fruitsvegetables": {
+    "label": "Fruits & Vegetables"
+  },
+  "spices": {
+    "label": "Spices"
+  },
+  "cookingoil": {
+    "label": "Cooking Oil"
+  },
+
+  "apple": {
+    "label": "Apple"
+  },
+  "samsung": {
+    "label": "Samsung"
+  },
+  "xiaomi": {
+    "label": "Xiaomi"
+  },
+  "transsion": {
+    "label": "Transsion"
+  },
+  "oppo": {
+    "label": "OPPO"
+  },
+  "vivo": {
+    "label": "Vivo"
+  },
+  "honor": {
+    "label": "Honor"
+  },
+  "motorola": {
+    "label": "Motorola"
+  },
+  "huawei": {
+    "label": "Huawei"
+  },
+  "realme": {
+    "label": "Realme"
+  },
+  "nike": {
+    "label": "Nike"
+  },
+  "gucci": {
+    "label": "Gucci"
+  },
+  "louisvuitton": {
+    "label": "Louis Vuitton"
+  },
+  "adidas": {
+    "label": "Adidas"
+  },
+  "lululemon": {
+    "label": "Lululemon"
+  },
+  "zara": {
+    "label": "Zara"
+  },
+  "chanel": {
+    "label": "Chanel"
+  },
+  "uniqlo": {
+    "label": "UNIQLO"
+  },
+  "wirelessheadphones": {
+    "label": "Wireless headphones"
+  },
+  "smartphones": {
+    "label": "Smartphones"
+  },
+  "laptops": {
+    "label": "Laptops"
+  },
+  "televisions": {
+    "label": "Televisions"
+  },
+  "gamingconsoles": {
+    "label": "Gaming consoles"
+  },
+  "fitnesstrackers": {
+    "label": "Fitness trackers"
+  },
+  "coffeemachines": {
+    "label": "Coffee machines"
+  },
+  "airpurifiers": {
+    "label": "Air purifiers"
+  },
+  "instantpots": {
+    "label": "Instant pots"
+  },
+  "robotvacuums": {
+    "label": "Robot vacuums"
+  },
+  "runningshoes": {
+    "label": "Running shoes"
+  },
+  "yogamats": {
+    "label": " yoga mats"
+  },
+  "activewear": {
+    "label": "Activewear"
+  },
+  "makeup": {
+    "label": "Makeup"
+  },
+  "skincareproducts": {
+    "label": "Skincare products"
+  },
+  "haircareproducts": {
+    "label": "Hair care products"
+  },
+  "razors": {
+    "label": " razors"
+  },
+  "shavingcream": {
+    "label": "Shaving cream"
+  },
+  "vitamins": {
+    "label": "Vitamins"
+  },
+
+  "womensclothing": {
+    "label": "Women's clothing"
+  },
+  "mensclothing": {
+    "label": "Men's clothing"
+  },
+  "jewelry": {
+    "label": "Jewelry"
+  },
+  "watches": {
+    "label": "Watches"
+  },
+  "sunglasses": {
+    "label": "Sunglasses"
+  },
+  "mattresses": {
+    "label": "Mattresses"
+  },
+  "pillows": {
+    "label": "Pillows"
+  },
+  "bedding": {
+    "label": "Bedding"
+  },
+  "bathtowels": {
+    "label": "Bath towels"
+  },
+  "kitchenknives": {
+    "label": "Kitchen knives"
+  },
+  "cookwaresets": {
+    "label": "Cookware sets"
+  },
+  "foodstoragecontainers": {
+    "label": "Food storage containers"
+  },
+  "waterbottles": {
+    "label": "Water bottles"
+  },
+  "toolsets": {
+    "label": "Tool sets"
+  },
+  "powertools": {
+    "label": "Power tools"
+  },
+  "securitycameras": {
+    "label": "Security cameras"
+  },
+  "smarthomedevices": {
+    "label": "Smart home devices"
+  },
+  "printers": {
+    "label": "Printers"
+  },
+  "inkcartridges": {
+    "label": "Ink cartridges"
+  },
+  "desktops": {
+    "label": "Desktops"
+  },
+  "computermonitors": {
+    "label": "Computer monitors"
+  },
+  "gamingchairs": {
+    "label": "Gaming chairs"
+  },
+  "backpacks": {
+    "label": "Backpacks"
+  },
+  "luggage": {
+    "label": "Luggage"
+  },
+  "toys": {
+    "label": "Toys"
+  },
+  "boardgames": {
+    "label": "Board games"
+  },
+  "videogames": {
+    "label": "Video games"
+  },
+  "books": {
+    "label": "Books"
+  },
+  "petfood": {
+    "label": "Pet food"
+  },
+  "petsupplies": {
+    "label": "Pet supplies"
+  },
+  "babyclothes": {
+    "label": "Baby clothes"
+  },
+  "diapers": {
+    "label": "Diapers"
+  },
+  "babywipes": {
+    "label": "Baby wipes"
+  },
+  "applewatch": {
+    "label": "Apple Watch"
+  },
+  "crocs": {
+    "label": "Crocs"
+  },
+  "airpods": {
+    "label": "AirPods"
+  },
+  "kindle": {
+    "label": "Kindle"
+  },
+  "airfryer": {
+    "label": "Air Fryer"
+  },
+  "ipad": {
+    "label": "iPad"
+  },
+  "ps5": {
+    "label": "PS5"
+  },
+  "ringdoorbell": {
+    "label": "Ring Doorbell"
+  },
+  "firestick": {
+    "label": "Fire Stick"
+  },
+  "portableairconditioners": {
+    "label": "Portable Air Conditioners"
+  },
+  "stanley40oztumblerwithhandle": {
+    "label": "Stanley 40 oz Tumbler with Handle"
+  },
+  "iphone14promaxcase": {
+    "label": "iPhone 14 Pro Max Case"
+  },
+  "laptop": {
+    "label": "Laptop"
+  },
+  "applewatchband": {
+    "label": "Apple Watch Band"
+  },
+  "nintendoswitch": {
+    "label": "Nintendo Switch"
+  },
+  "papertowels": {
+    "label": "Paper Towels"
+  },
+  "ninjacreami": {
+    "label": "Ninja Creami"
+  },
+  "iphonecharger": {
+    "label": "iPhone Charger"
+  },
+  "desk": {
+    "label": "Desk"
+  },
+  "tv": {
+    "label": "TV"
+  },
+  "iphone13case": {
+    "label": "iPhone 13 Case"
+  },
+  "toiletpaper": {
+    "label": "Toilet Paper"
+  },
+  "showercurtain": {
+    "label": "Shower Curtain"
+  },
+  "crocswomens": {
+    "label": "Crocs Womens"
+  },
+  "alexa": {
+    "label": "Alexa"
+  },
+  "minifridge": {
+    "label": "Mini Fridge"
+  },
+  "proteinpowder": {
+    "label": "Protein Powder"
+  },
+  "soldejaneiro": {
+    "label": "Sol de Janeiro"
+  },
+  "liquidiv": {
+    "label": "Liquid IV"
+  },
+  "fan": {
+    "label": "Fan"
+  },
+  "kindlepaperwhite2023": {
+    "label": "Kindle Paperwhite 2023"
+  },
+  "lego": {
+    "label": "Lego"
+  },
+  "icemaker": {
+    "label": "Ice Maker"
+  },
+  "schoolsupplies": {
+    "label": "School Supplies"
+  },
+  "applewatchseries8": {
+    "label": "Apple Watch Series 8"
+  },
+  "neckfan": {
+    "label": "Neck Fan"
+  },
+  "officechair": {
+    "label": "Office Chair"
+  },
+  "electricbike": {
+    "label": "Electric Bike"
+  },
+  "gamingchair": {
+    "label": "Gaming Chair"
+  },
+  "ledlights": {
+    "label": "LED Lights"
+  },
+  "crocsmens": {
+    "label": "Crocs Mens"
+  },
+  "airtag": {
+    "label": "AirTag"
+  },
+
+  "blinkoutdoorcamera": {
+    "label": "Blink Outdoor Camera"
+  },
+
+  "portablecharger": {
+    "label": "Portable Charger"
+  },
+  "shoerack": {
+    "label": "Shoe Rack"
+  },
+  "coffeemaker": {
+    "label": "Coffee Maker"
+  },
+  "yeti": {
+    "label": "Yeti"
+  },
+  "highlighters": {
+    "label": "Highlighters"
+  },
+  "applewatch": {
+    "label": "Apple Watch"
+  },
+  "crocs": {
+    "label": "Crocs"
+  },
+  "airpods": {
+    "label": "Airpods"
+  },
+  "kindle": {
+    "label": "Kindle"
+  },
+  "airfryer": {
+    "label": "Air Fryer"
+  },
+  "ipad": {
+    "label": "Ipad"
+  },
+  "ps5": {
+    "label": "Ps5"
+  },
+  "ringdoorbell": {
+    "label": "Ring Doorbell"
+  },
+  "firestick": {
+    "label": "Fire Stick"
+  },
+  "portableairconditioners": {
+    "label": "Portable Air Conditioners"
+  },
+  "stanley40oztumblerwithhandle": {
+    "label": "Stanley 40 Oz Tumbler With Handle"
+  },
+  "iphone14promaxcase": {
+    "label": "Iphone 14 Pro Max Case"
+  },
+  "laptop": {
+    "label": "Laptop"
+  },
+  "applewatchband": {
+    "label": "Apple Watch Band"
+  },
+  "nintendoswitch": {
+    "label": "Nintendo Switch"
+  },
+  "papertowels": {
+    "label": "Paper Towels"
+  },
+  "ninjacreami": {
+    "label": "Ninja Creami"
+  },
+  "iphonecharger": {
+    "label": "Iphone Charger"
+  },
+  "desk": {
+    "label": "Desk"
+  },
+  "tv": {
+    "label": "Tv"
+  },
+  "iphone13case": {
+    "label": "Iphone 13 Case"
+  },
+  "toiletpaper": {
+    "label": "Toilet Paper"
+  },
+  "showercurtain": {
+    "label": "Shower Curtain"
+  },
+  "crocswomens": {
+    "label": "Crocs Womens"
+  },
+  "alexa": {
+    "label": "Alexa"
+  },
+  "minifridge": {
+    "label": "Mini Fridge"
+  },
+  "proteinpowder": {
+    "label": "Protein Powder"
+  },
+  "soldejaneiro": {
+    "label": "Sol De Janeiro"
+  },
+  "liquidiv": {
+    "label": "Liquid Iv"
+  },
+  "fan": {
+    "label": "Fan"
+  },
+  "kindlepaperwhite2023": {
+    "label": "Kindle Paperwhite 2023"
+  },
+  "lego": {
+    "label": "Lego"
+  },
+  "icemaker": {
+    "label": "Ice Maker"
+  },
+  "schoolsupplies": {
+    "label": "School Supplies"
+  },
+  "applewatchseries8": {
+    "label": "Apple Watch Series 8"
+  },
+  "neckfan": {
+    "label": "Neck Fan"
+  },
+  "officechair": {
+    "label": "Office Chair"
+  },
+  "electricbike": {
+    "label": "Electric Bike"
+  },
+  "gamingchair": {
+    "label": "Gaming Chair"
+  },
+  "ledlights": {
+    "label": "Led Lights"
+  },
+  "crocsmens": {
+    "label": "Crocs Mens"
+  },
+  "airtag": {
+    "label": "Airtag"
+  },
+  "airpurifiers": {
+    "label": "Air Purifiers"
+  },
+  "blinkoutdoorcamera": {
+    "label": "Blink Outdoor Camera"
+  },
+  "luggage": {
+    "label": "Luggage"
+  },
+  "portablecharger": {
+    "label": "Portable Charger"
+  },
+  "shoerack": {
+    "label": "Shoe Rack"
+  },
+  "coffeemaker": {
+    "label": "Coffee Maker"
+  },
+  "yeti": {
+    "label": "Yeti"
+  },
+  "highlighters": {
+    "label": "Highlighters"
+  },
+  "iphone14procase": {
+    "label": "Iphone 14 Pro Case"
+  },
+  "caraccessories": {
+    "label": "Car Accessories"
+  },
+  "airconditioner": {
+    "label": "Air Conditioner"
+  },
+  "ringcamera": {
+    "label": "Ring Camera"
+  },
+  "makeup": {
+    "label": "Makeup"
+  },
+  "showerhead": {
+    "label": "Shower Head"
+  },
+  "giftcardsamazonecard": {
+    "label": "Gift Cards Amazon Ecard"
+  },
+  "pencilcase": {
+    "label": "Pencil Case"
+  },
+  "magnesiumglycinate": {
+    "label": "Magnesium Glycinate"
+  },
+  "travelessentials": {
+    "label": "Travel Essentials"
+  },
+  "airpodspro2ndgeneration": {
+    "label": "Airpods Pro 2nd Generation"
+  },
+  "hismile": {
+    "label": "Hismile"
+  },
+  "jansportbackpack": {
+    "label": "Jansport Backpack"
+  },
+  "partyplates": {
+    "label": "Party Plates"
+  },
+  "pens": {
+    "label": "Pens"
+  },
+  "dresser": {
+    "label": "Dresser"
+  },
+  "iphone13promaxcase": {
+    "label": "Iphone 13 Pro Max Case"
+  },
+  "queenbedframe": {
+    "label": "Queen Bed Frame"
+  },
+  "backpackforschool": {
+    "label": "Backpack For School"
+  },
+  "watershoes": {
+    "label": "Water Shoes"
+  },
+  "pencilpouch": {
+    "label": "Pencil Pouch"
+  },
+  "bluetoothspeakers": {
+    "label": "Bluetooth Speakers"
+  },
+  "stanleycup": {
+    "label": "Stanley Cup"
+  },
+  "birkenstocksandalswomen": {
+    "label": "Birkenstock Sandals Women"
+  },
+  "aabatteries": {
+    "label": "Aa Batteries"
+  },
+  "dressesforwomen2023": {
+    "label": "Dresses For Women 2023"
+  },
+  "laptopcomputer": {
+    "label": "Laptop Computer"
+  },
+  "iphone": {
+    "label": "Iphone"
+  },
+  "packingcubes": {
+    "label": "Packing Cubes"
+  },
+  "vacuum": {
+    "label": "Vacuum"
+  },
+  "monitor": {
+    "label": "Monitor"
+  },
+  "heydudesformen": {
+    "label": "Hey Dudes For Men"
+  },
+  "playstation5": {
+    "label": "Playstation 5"
+  },
+  "gamingpc": {
+    "label": "Gaming Pc"
+  },
+  "backpack": {
+    "label": "Backpack"
+  },
+  "xboxseriesx": {
+    "label": "Xbox Series X"
+  },
+  "portablefan": {
+    "label": "Portable Fan"
+  },
+  "jblbluetoothspeaker": {
+    "label": "Jbl Bluetooth Speaker"
+  },
+  "cattree": {
+    "label": "Cat Tree"
+  },
+  "makeupbag": {
+    "label": "Makeup Bag"
+  },
+  "stanley": {
+    "label": "Stanley"
+  },
+  "pool": {
+    "label": "Pool"
+  },
+  "beatsheadphones": {
+    "label": "Beats Headphones"
+  },
+  "fitbit": {
+    "label": "Fitbit"
+  },
+  "projector": {
+    "label": "Projector"
+  },
+  "vanity": {
+    "label": "Vanity"
+  },
+  "earbuds": {
+    "label": "Ear Buds"
+  },
+  "amazongiftcard": {
+    "label": "Amazon Gift Card"
+  },
+  "iphone11case": {
+    "label": "Iphone 11 Case"
+  },
+  "showercaddy": {
+    "label": "Shower Caddy"
+  }
+}

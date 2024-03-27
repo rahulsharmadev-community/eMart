@@ -39,7 +39,7 @@ class AuthenticationScreen extends StatelessWidget {
 
     return MaterialApp(
       initialRoute: initialRoute,
-      title: 'Authentication',
+      title: 'eMart Authentication',
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) {

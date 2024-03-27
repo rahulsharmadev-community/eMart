@@ -22,10 +22,11 @@ void main() async {
   ], app: FirebaseService.eMartConsumer);
 
   Bloc.observer = FlutterBlocObserver();
+
   HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory:
-        PlatformQuery.isWeb ? HydratedStorage.webStorageDirectory : await getApplicationDocumentsDirectory(),
-  );
+      storageDirectory: PlatformQuery.isWeb
+          ? HydratedStorage.webStorageDirectory
+          : await getApplicationDocumentsDirectory());
 
   runApp(const eMartShoppingAppRunner({}));
 }

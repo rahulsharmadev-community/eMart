@@ -1,0 +1,348 @@
+{
+  "en": {
+    "policies": {
+      "about-us": "http://",
+      "contact-us": "http://",
+      "privacy-policy": "http://",
+      "terms-of-service": "http://"
+    },
+    "categories": [
+      {
+        "label": "Electronics",
+        "subcategory": [
+          {
+            "title": "Computers & Accessories",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Mobile Phones & Accessories",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Audio & Video Equipment",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Cameras & Photography",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Home Appliances",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      },
+      {
+        "label": "Fashion",
+        "subcategory": [
+          {
+            "title": "Clothing",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Shoes",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Accessories",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Watches",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Eyewear",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      },
+      {
+        "label": "Home & Kitchen",
+        "subcategory": [
+          {
+            "title": "Furniture",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Home Decor",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Kitchen Appliances",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Bedding & Bath",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Storage & Organization",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      },
+      {
+        "label": "Beauty & Personal Care",
+        "subcategory": [
+          {
+            "title": "Skincare",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Makeup",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Haircare",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Fragrances",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Personal Hygiene Products",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      },
+      {
+        "label": "Health & Wellness",
+        "subcategory": [
+          {
+            "title": "Vitamins & Supplements",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Fitness Equipment",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Sports Nutrition",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Wellness Products",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Health Monitors",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      },
+
+      {
+        "label": "Stationery",
+        "subcategory": [
+          {
+            "title": "Office Furniture",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Printers & Ink",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Office Electronics",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Desk Accessories",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      },
+      {
+        "label": "Grocery",
+        "subcategory": [
+          {
+            "title": "Household & Cleaning",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Oral Care",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Hair Care",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Body & Skin Care",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Baby Care",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Tea & Coffee",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Dairy & Eggs",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Meat & Seafood",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Bakery",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Frozen Foods",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Sweets & Treats",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Dog Supplies",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Cat Supplies",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Bird Supplies",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Breakfast Food",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Snacks & Biscuits",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Drinks & Juices",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Rice, Atta & Dal",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Fruits & Vegetables",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Spices",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          },
+          {
+            "title": "Cooking Oil",
+            "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
+            "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+            "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -13,7 +13,7 @@ import 'package:shopping/utility/utility.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeRepository();
-  // ignore: invalid_use_of_visible_for_testing_member
+
   // setFirebaseUiIsTestMode(true);
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),

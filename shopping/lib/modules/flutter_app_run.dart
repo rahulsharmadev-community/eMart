@@ -7,7 +7,7 @@ import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/screens/auth_screen/auth_screen.dart';
-import 'package:shopping/core/blocs/bloc/categories_cubit.dart';
+import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
 import 'package:shopping/utility/navigation/app_navigator.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
@@ -28,26 +28,18 @@ class eMartShoppingAppRunner extends StatelessWidget {
       builder: (context, snap) {
         return snap.data == null && snap.data == null
             ? AuthenticationScreen(auth: auth)
-            : eMartAppHome(uid: snap.data!.uid);
+            : eMartAppBuilder(uid: snap.data!.uid);
       },
     );
   }
 }
 
-class eMartAppHome extends StatelessWidget {
+class eMartAppBuilder extends StatelessWidget {
   final String uid;
 
-  const eMartAppHome({super.key, required this.uid});
+  const eMartAppBuilder({super.key, required this.uid});
   @override
   Widget build(BuildContext context) {
-    // Rebuild only when the selected parameter changes.
-    // var themeMode =
-    //     context.select<PrimaryUserBloc, ThemeMode>((state) => state.primaryUser!.settings.themeMode);
-
-    // var theme = context.select<PrimaryUserBloc, AppThemes>((state) {
-    //   return state.primaryUser!.settings.theme;
-    // }).appTheme;
-
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
@@ -64,29 +56,30 @@ class eMartAppHome extends StatelessWidget {
           create: (context) => PrimaryUserBloc(PrimaryUserApi(uid))..add(PrimaryUserInitialize()),
           lazy: false,
         ),
-      ], child: const _BuilderBody()),
+      ], child: const _MaterialAppBuilder()),
     );
   }
 }
 
-class _BuilderBody extends StatelessWidget {
-  const _BuilderBody();
+class _MaterialAppBuilder extends StatelessWidget {
+  const _MaterialAppBuilder();
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PrimaryUserBloc, PrimaryUserState>(
       builder: (context, state) {
-        if (state is PrimaryUserLoaded) {
-          return MaterialApp.router(
-            // theme: theme.light.themeData,
-            // darkTheme: theme.dark.themeData,
-            // themeMode: themeMode,
-            routerConfig: AppRoutes.config,
-            scaffoldMessengerKey: AppNavigator.messengerKey,
-            debugShowCheckedModeBanner: kDebugMode,
-          );
-        } else {
-          return const LoadingScreen(materialAppWraper: true);
+        switch (state) {
+          case PrimaryUserLoaded _:
+            return MaterialApp.router(
+              title: 'eMart Shopping',
+              routerConfig: AppRoutes.config,
+              scaffoldMessengerKey: AppNavigator.messengerKey,
+              debugShowCheckedModeBanner: kDebugMode,
+            );
+          case PrimaryUserError _:
+            return ErrorScreen(materialAppWraper: true, msg: state.errorMsg);
+          default:
+            return const LoadingScreen(materialAppWraper: true);
         }
       },
     );

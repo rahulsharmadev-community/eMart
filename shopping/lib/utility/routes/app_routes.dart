@@ -1,12 +1,19 @@
 // ignore_for_file: constant_identifier_names
 import 'dart:async';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jars/jars.dart';
 import 'package:shared/models.dart';
+import 'package:shopping/modules/screens/categories_screen/categories_screen.dart';
+import 'package:shopping/modules/screens/dashboard/dashboard.dart';
 import 'package:shopping/modules/screens/home_screen/home_screen.dart';
+import 'package:shopping/modules/screens/order_screen/order_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/image_preview_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
 import 'package:shopping/modules/screens/search_screen/search_screen.dart';
+import 'package:shopping/modules/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:shopping/utility/utility.dart';
 part 'app_router.dart';
 
@@ -15,6 +22,15 @@ part 'app_router.dart';
 /// A static [config] variable that holds the [GoRouter] configuration.
 enum AppRoutes {
   HomeScreen('home_screen'),
+  OrdersScreen('orders_screen'),
+  WishlistScreen('wishlist_screen'),
+  CategoriesScreen('categories_screen'),
+  ProfileScreen('profile_screen'),
+  CartScreen('cart_screen'),
+
+  NotificationsScreen('notifications_screen'),
+  SettingsScreen('settings_screen'),
+
   SearchKeywordScreen('search_keyword_screen'),
 
   ///```
@@ -28,7 +44,6 @@ enum AppRoutes {
   /// String? url\
   /// Uint8List? bytes
   ImagePreviewScreen('image_preview_screen'),
-  SettingsScreen('settings_screen'),
   PrivacyHandlingScreen('privacy_handling_screen'),
   HelpCenterScreen('help_center_screen'),
   ErrorScreen('error_screen'),

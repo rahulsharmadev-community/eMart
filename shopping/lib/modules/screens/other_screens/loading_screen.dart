@@ -11,12 +11,12 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaffold = WillPopScope(
-      onWillPop: () async => canPop,
+    final scaffold = PopScope(
+      canPop: canPop,
       child: const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       ),
     );
-    return materialAppWraper ? MaterialApp(home: scaffold) : scaffold;
+    return materialAppWraper ? MaterialApp(title: 'Wait...', home: scaffold) : scaffold;
   }
 }

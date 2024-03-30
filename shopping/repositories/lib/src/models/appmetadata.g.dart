@@ -9,8 +9,6 @@ part of 'appmetadata.dart';
 abstract class _$AppMetaDataCWProxy {
   AppMetaData categories(List<Categories> categories);
 
-  AppMetaData policies(Policies policies);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppMetaData(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -19,7 +17,6 @@ abstract class _$AppMetaDataCWProxy {
   /// ````
   AppMetaData call({
     List<Categories>? categories,
-    Policies? policies,
   });
 }
 
@@ -30,10 +27,8 @@ class _$AppMetaDataCWProxyImpl implements _$AppMetaDataCWProxy {
   final AppMetaData _value;
 
   @override
-  AppMetaData categories(List<Categories> categories) => this(categories: categories);
-
-  @override
-  AppMetaData policies(Policies policies) => this(policies: policies);
+  AppMetaData categories(List<Categories> categories) =>
+      this(categories: categories);
 
   @override
 
@@ -45,7 +40,6 @@ class _$AppMetaDataCWProxyImpl implements _$AppMetaDataCWProxy {
   /// ````
   AppMetaData call({
     Object? categories = const $CopyWithPlaceholder(),
-    Object? policies = const $CopyWithPlaceholder(),
   }) {
     return AppMetaData(
       categories == const $CopyWithPlaceholder() || categories == null
@@ -72,6 +66,7 @@ AppMetaData _$AppMetaDataFromJson(Map<String, dynamic> json) => AppMetaData(
           .toList(),
     );
 
-Map<String, dynamic> _$AppMetaDataToJson(AppMetaData instance) => <String, dynamic>{
+Map<String, dynamic> _$AppMetaDataToJson(AppMetaData instance) =>
+    <String, dynamic>{
       'categories': instance.categories.map((e) => e.toJson()).toList(),
     };

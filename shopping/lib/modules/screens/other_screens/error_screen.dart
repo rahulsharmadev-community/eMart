@@ -10,6 +10,7 @@ class ErrorScreen extends StatelessWidget {
     this.msg,
     super.key,
   });
+  
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,6 @@ class ErrorScreen extends StatelessWidget {
         child: Scaffold(
           body: Center(child: Text(msg ?? 'Ooops... Error Occor!')),
         ));
-    return materialAppWraper ? MaterialApp(title: 'Error!', home: scaffold) : scaffold;
+    return materialAppWraper ? MaterialApp(title: 'Error!', home:  scaffold) : scaffold;
   }
 }

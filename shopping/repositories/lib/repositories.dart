@@ -7,6 +7,7 @@ export 'src/extenstion.dart';
 export 'src/models/query.dart';
 export 'src/models/product_model.dart';
 export 'src/apis/products/products_repository.dart';
+export 'src/apis/categories/categories_repository.dart';
 export 'src/apis/app_metadata/app_metadata_repository.dart';
 export 'src/models/appmetadata.dart';
 export 'src/models/categories.dart';

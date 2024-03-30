@@ -1,7 +1,10 @@
 // ignore_for_file: use_build_context_synchronously, camel_case_types
+import 'dart:ui';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';
@@ -50,6 +53,8 @@ class eMartAppBuilder extends StatelessWidget {
             create: (context) => KeywordsRepository(api: KeywordsApi(), cache: KeywordsCache())),
         RepositoryProvider(
             create: (context) => AppMetaDataRepository(api: AppMetaDataApi(), cache: AppMetaDataCache())),
+        RepositoryProvider(
+            create: (context) => CategoriesRepository(api: CategoriesApi(), cache: CategoriesCache())),
       ],
       child: MultiBlocProvider(providers: [
         BlocProvider<PrimaryUserBloc>(
@@ -70,7 +75,12 @@ class _MaterialAppBuilder extends StatelessWidget {
       builder: (context, state) {
         switch (state) {
           case PrimaryUserLoaded _:
+            const msb = MaterialScrollBehavior();
             return MaterialApp.router(
+              scrollBehavior: !PlatformQuery.isMobileorTablet
+                  ? msb.copyWith(dragDevices: {PointerDeviceKind.mouse})
+                  : msb,
+              theme: context.theme.copyWith(visualDensity: VisualDensity.adaptivePlatformDensity),
               title: 'eMart Shopping',
               routerConfig: AppRoutes.config,
               scaffoldMessengerKey: AppNavigator.messengerKey,

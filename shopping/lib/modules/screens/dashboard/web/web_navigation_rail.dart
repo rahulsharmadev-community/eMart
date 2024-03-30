@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ico/ico.dart';
 import 'package:jars/jars.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/modules/screens/dashboard/const.dart';
 
 class WebNavigationRail extends StatefulWidget {
   const WebNavigationRail({super.key});
@@ -13,15 +12,8 @@ class WebNavigationRail extends StatefulWidget {
 class _WebNavigationRailState extends State<WebNavigationRail> {
   int currentIndex = 0;
 
-  List<(NavigationRailDestination, AppRoutes)> items = [
-    (_navItem(Ico.home_outline, 'Home'), AppRoutes.HomeScreen),
-    (_navItem(Ico.layout_outline, 'Categories'), AppRoutes.CategoriesScreen),
-    (_navItem(Ico.box_outline, 'Orders'), AppRoutes.OrdersScreen),
-    (_navItem(Ico.heart_outline, 'Wishlist'), AppRoutes.WishlistScreen),
-    (_navItem(Ico.user_outline, 'Profile'), AppRoutes.ProfileScreen),
-  ];
   onTap(int value) {
-    items[value].$2.goNamed();
+    items[value].route.goNamed();
     setState(() => currentIndex = value);
   }
 
@@ -34,7 +26,7 @@ class _WebNavigationRailState extends State<WebNavigationRail> {
           extended: extended,
           selectedLabelTextStyle: context.textTheme.bodyMedium
               ?.copyWith(color: context.theme.primaryColor, fontWeight: FontWeight.w600),
-          destinations: items.map((e) => e.$1).toList(),
+          destinations: items.map((e) => _navItem(e.icon, e.title)).toList(),
           selectedIndex: currentIndex,
           onDestinationSelected: onTap,
           useIndicator: true,

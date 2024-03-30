@@ -1,9 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:ico/ico.dart';
-import 'package:shopping/utility/utility.dart';
-
+import 'package:shopping/modules/screens/dashboard/const.dart';
 
 class eMartMobileDashBoard extends StatefulWidget {
   final Widget child;
@@ -17,22 +15,15 @@ class _eMartMobileDashBoardState extends State<eMartMobileDashBoard> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    List<(BottomNavigationBarItem, AppRoutes)> items = [
-      (navItem(Ico.home_outline, 'Home'), AppRoutes.HomeScreen),
-      (navItem(Ico.layout_outline, 'Categories'), AppRoutes.CategoriesScreen),
-      (navItem(Ico.box_outline, 'Orders'), AppRoutes.OrdersScreen),
-      (navItem(Ico.book_mark_outline, 'Wishlist'), AppRoutes.WishlistScreen),
-      (navItem(Ico.user_outline, 'Profile'), AppRoutes.ProfileScreen),
-    ];
     onTap(int value) {
-      items[value].$2.goNamed();
+      items[value].route.goNamed();
       setState(() => currentIndex = value);
     }
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        items: items.map((e) => e.$1).toList(),
+        items: items.map((e) => navItem(e.icon, e.title)).toList(),
         onTap: onTap,
       ),
       body: widget.child,

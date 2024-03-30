@@ -13,7 +13,7 @@ class AppMetaDataRepository {
   final AppMetaDataCache cache;
   AppMetaDataRepository({required this.api, required this.cache});
 
-  FutureOr<AppMetaData?> get() async {
+  Future<AppMetaData?> get() async {
     AppMetaData? result = cache.get();
     if (result == null) {
       result = await api.getComplete();

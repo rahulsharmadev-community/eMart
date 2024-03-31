@@ -85,13 +85,9 @@ extension $KeywordCopyWith on Keyword {
 Keyword _$KeywordFromJson(Map<String, dynamic> json) => Keyword(
       label: json['label'] as String,
       image: json['image'] as String?,
-      lastSearchedAt: json['lastSearchedAt'] == null
-          ? null
-          : DateTime.parse(json['lastSearchedAt'] as String),
     );
 
 Map<String, dynamic> _$KeywordToJson(Keyword instance) => <String, dynamic>{
       'label': instance.label,
       'image': instance.image,
-      'lastSearchedAt': instance.lastSearchedAt.toIso8601String(),
     };

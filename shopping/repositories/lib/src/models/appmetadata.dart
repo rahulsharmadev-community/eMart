@@ -9,12 +9,13 @@ part 'appmetadata.g.dart';
 @CopyWith()
 @JsonSerializable(explicitToJson: true)
 class AppMetaData {
+  final List<String> publicCategories;
   final List<Categories> categories;
 
   @CopyWithField.immutable()
   final DateTime expiry;
 
-  AppMetaData(this.categories) : expiry = DateTime.now().add(24.hours);
+  AppMetaData(this.categories, this.publicCategories) : expiry = DateTime.now().add(24.hours);
 
   factory AppMetaData.fromJson(JSON json) => _$AppMetaDataFromJson(json);
 

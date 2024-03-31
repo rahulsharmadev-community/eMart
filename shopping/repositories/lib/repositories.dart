@@ -5,7 +5,6 @@ export 'src/apis/primary_user_api.dart';
 export 'src/apis/keywords/keywords_repository.dart';
 export 'src/extenstion.dart';
 export 'src/models/query.dart';
-export 'src/models/product_model.dart';
 export 'src/apis/products/products_repository.dart';
 export 'src/apis/categories/categories_repository.dart';
 export 'src/apis/app_metadata/app_metadata_repository.dart';

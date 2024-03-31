@@ -35,6 +35,8 @@ class Product {
     this.keywords = const [],
     this.detailedSpecs = const {},
     this.deliveryMetaData = const {},
+    this.rating = 0,
+    this.totalReviews = 0,
     this.status = ProductStockStatus.available,
     DateTime? createdAt,
     DateTime? lastUpdateAt,
@@ -111,6 +113,9 @@ class Product {
 
   ///(lazy load)
   final Map<State, DeliveryMetaData> deliveryMetaData;
+
+  final int totalReviews;
+  final int rating;
 
   @CopyWithField.immutable()
   final DateTime createdAt;

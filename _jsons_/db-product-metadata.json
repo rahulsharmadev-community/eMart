@@ -1,46 +1,86 @@
 {
-  "product-id1": {
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd89": {
     "monthly-activities": {
       "22024": {
         "sold": 45,
-        "reach": 1,
-        "views": 1
+        "reach": 600,
+        "views": 89
       },
       "32024": {
-        "sold": 1,
-        "reach": 1,
-        "views": 1
+        "sold": 10,
+        "reach": 199,
+        "views": 100
       }
     },
     "ratings": {
       "star1": 1,
       "star2": 1,
       "star3": 1,
-      "star4": 1,
-      "star5": 1,
-      "totalReviews": 1
+      "star4": 10,
+      "star5": 10
     }
   },
-  "product-id2": {
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd90": {
     "monthly-activities": {
       "22024": {
-        "sold": 1,
-        "reach": 1,
-        "views": 1
+        "sold": 19,
+        "reach": 144,
+        "views": 190
       },
       "32024": {
         "sold": 1,
-        "reach": 1,
-        "views": 1
+        "reach": 100,
+        "views": 10
       }
     },
     "ratings": {
       "star1": 1,
       "star2": 1,
       "star3": 1,
-      "star4": 1,
-      "star5": 1,
-      "totalReviews": 1
+      "star4": 10,
+      "star5": 10
+    }
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd99": {
+    "monthly-activities": {
+      "22024": {
+        "sold": 19,
+        "reach": 144,
+        "views": 190
+      },
+      "32024": {
+        "sold": 1,
+        "reach": 100,
+        "views": 10
+      }
+    },
+    "ratings": {
+      "star1": 1,
+      "star2": 1,
+      "star3": 1,
+      "star4": 10,
+      "star5": 10
+    }
+  },
+  "b4bb71ec-b644-4d81-ab9d-25efa925bd98": {
+    "monthly-activities": {
+      "22024": {
+        "sold": 9,
+        "reach": 44,
+        "views": 90
+      },
+      "32024": {
+        "sold": 1,
+        "reach": 100,
+        "views": 10
+      }
+    },
+    "ratings": {
+      "star1": 1,
+      "star2": 1,
+      "star3": 16,
+      "star4": 10,
+      "star5": 10
     }
   }
 }

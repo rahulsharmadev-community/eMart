@@ -12,24 +12,19 @@ class PrimaryUserApi {
       : _collection = FirebaseService.eMartConsumer.instanceOfFirestore.collection('USERS').doc(uid);
 
   static Future<void> createNewUser(Consumer value) async {
-    try {
-      logs.i(value.toJson());
-      await FirebaseService.eMartConsumer.instanceOfFirestore
-          .collection('USERS')
-          .doc(value.uid)
-          .set(value.toJson());
-    } catch (e) {
-      logs.e(e);
-    }
+    await FirebaseService.eMartConsumer.instanceOfFirestore
+        .collection('USERS')
+        .doc(value.uid)
+        .set(value.toJson())
+        .then((_) => logs.i(value.toJson()))
+        .catchError((e) => logs.e(e));
   }
 
   Future<Consumer?> get() async {
     try {
       final resp = await _collection
           .withConverter(
-            fromFirestore: (_, s) => Consumer.fromJson(_.data()!),
-            toFirestore: (_, s) => _.toJson(),
-          )
+              fromFirestore: (_, s) => Consumer.fromJson(_.data()!), toFirestore: (_, s) => _.toJson())
           .get();
       logs.d('Success: ${resp.data()?.toJson()}');
       return resp.data();
@@ -37,6 +32,14 @@ class PrimaryUserApi {
       logs.e(e);
     }
     return null;
+  }
+
+  Stream<Consumer?> get getStream {
+    return _collection
+        .withConverter(
+            fromFirestore: (_, s) => Consumer.fromJson(_.data()!), toFirestore: (_, s) => _.toJson())
+        .snapshots()
+        .map((event) => event.data());
   }
 
   Future<void> update(Consumer newValue, Consumer oldValue) async {

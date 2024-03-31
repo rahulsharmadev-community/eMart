@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart' as fs;
 import 'package:firebase_database/firebase_database.dart' as db;
-import 'package:repositories/src/extenstion.dart';
-import 'package:repositories/src/models/product_model.dart';
-import 'package:repositories/src/models/query.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:jars/extensions.dart';
+import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';
@@ -16,8 +16,8 @@ class ProductRepository {
   final ProductsCache cache;
   ProductRepository({required this.api, required this.cache});
 
-  FutureOr<ProductModel?> get(String productId) async {
-    ProductModel? result = cache.get(productId);
+  FutureOr<Product?> get(String productId) async {
+    Product? result = cache.get(productId);
     if (result == null) {
       result = await api.getByProductId(productId);
       if (result != null) cache.add(result);
@@ -27,7 +27,7 @@ class ProductRepository {
     return result;
   }
 
-  FutureOr<List<ProductModel>> getByQuery(List<Query> queries) async {
+  FutureOr<List<Product>> getByQuery(List<Query> queries) async {
     final result = await api.getByQueries(queries);
     cache.addAll(result);
     return result;

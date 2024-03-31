@@ -43,6 +43,10 @@ abstract class _$ProductCWProxy {
 
   Product deliveryMetaData(Map<State, DeliveryMetaData> deliveryMetaData);
 
+  Product rating(int rating);
+
+  Product totalReviews(int totalReviews);
+
   Product status(ProductStockStatus status);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Product(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -70,6 +74,8 @@ abstract class _$ProductCWProxy {
     List<String>? keywords,
     Map<String, String>? detailedSpecs,
     Map<State, DeliveryMetaData>? deliveryMetaData,
+    int? rating,
+    int? totalReviews,
     ProductStockStatus? status,
   });
 }
@@ -142,6 +148,12 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
       this(deliveryMetaData: deliveryMetaData);
 
   @override
+  Product rating(int rating) => this(rating: rating);
+
+  @override
+  Product totalReviews(int totalReviews) => this(totalReviews: totalReviews);
+
+  @override
   Product status(ProductStockStatus status) => this(status: status);
 
   @override
@@ -171,6 +183,8 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
     Object? keywords = const $CopyWithPlaceholder(),
     Object? detailedSpecs = const $CopyWithPlaceholder(),
     Object? deliveryMetaData = const $CopyWithPlaceholder(),
+    Object? rating = const $CopyWithPlaceholder(),
+    Object? totalReviews = const $CopyWithPlaceholder(),
     Object? status = const $CopyWithPlaceholder(),
   }) {
     return Product(
@@ -250,6 +264,15 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           ? _value.deliveryMetaData
           // ignore: cast_nullable_to_non_nullable
           : deliveryMetaData as Map<State, DeliveryMetaData>,
+      rating: rating == const $CopyWithPlaceholder() || rating == null
+          ? _value.rating
+          // ignore: cast_nullable_to_non_nullable
+          : rating as int,
+      totalReviews:
+          totalReviews == const $CopyWithPlaceholder() || totalReviews == null
+              ? _value.totalReviews
+              // ignore: cast_nullable_to_non_nullable
+              : totalReviews as int,
       status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -398,6 +421,8 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
                     DeliveryMetaData.fromJson(e as Map<String, dynamic>)),
               ) ??
               const {},
+      rating: json['rating'] as int? ?? 0,
+      totalReviews: json['totalReviews'] as int? ?? 0,
       status:
           $enumDecodeNullable(_$ProductStockStatusEnumMap, json['status']) ??
               ProductStockStatus.available,
@@ -432,6 +457,8 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'discount': instance.discount,
       'deliveryMetaData': instance.deliveryMetaData
           .map((k, e) => MapEntry(_$StateEnumMap[k]!, e.toJson())),
+      'totalReviews': instance.totalReviews,
+      'rating': instance.rating,
       'createdAt': instance.createdAt.toIso8601String(),
       'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
     };

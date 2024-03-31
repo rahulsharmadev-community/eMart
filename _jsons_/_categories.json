@@ -1,5 +1,76 @@
 {
   "__collections__": {},
+  "dasboardBanners": [
+    {
+      "title": "Big Sell",
+      "type":"",
+      
+      "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
+      "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg",
+      "productIds": [
+        "b4bb71ec-b644-4d81-ab9d-25efa925bd89",
+        "b4bb71ec-b644-4d81-ab9d-25efa925bd90",
+        "b4bb71ec-b644-4d81-ab9d-25efa925bd91",
+        "b4bb71ec-b644-4d81-ab9d-25efa925bd95",
+        "b4bb71ec-b644-4d81-ab9d-25efa925bd98",
+        "b4bb71ec-b644-4d81-ab9d-25efa925bd99"
+      ]
+    }
+  ],
+  "publicCategories": [
+    "laptops",
+    "video_games",
+    "computers_accessories",
+    "smartphone",
+    "mobile_covers",
+    "power_banks",
+    "music_equipment",
+    "cameras_accessories",
+    "home_appliances",
+    "clothing",
+    "shoes",
+    "accessories",
+    "watches",
+    "eyewear",
+    "furniture",
+    "home_decor",
+    "kitchen_appliances",
+    "bedding_bath",
+    "home_storage",
+    "skincare",
+    "makeup",
+    "fragrances",
+    "hygiene_products",
+    "vitamins_supplements",
+    "fitness_equipment",
+    "sports_nutrition",
+    "wellness_products",
+    "health_monitors",
+    "office_furniture",
+    "printers_ink",
+    "office_electronics",
+    "desk_accessories",
+    "household_cleaning",
+    "oral_care",
+    "hair_care",
+    "baby_care",
+    "tea_coffee",
+    "dairy_eggs",
+    "meat_seafood",
+    "bakery",
+    "frozen_foods",
+    "sweets_treats",
+    "dog_supplies",
+    "cat_supplies",
+    "bird_supplies",
+    "breakfast_food",
+    "snacks_biscuits",
+    "drinks_juices",
+    "rice_atta_Dal",
+    "fruits_vegetables",
+    "spices",
+    "cooking_oil"
+  ],
   "categories": [
     {
       "title": "Electronics",
@@ -22,26 +93,14 @@
       "categories": ["clothing", "shoes", "accessories", "watches", "eyewear"]
     },
     {
-      "title": "Home _ Kitchen",
+      "title": "Home & Kitchen",
       "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
-      "categories": [
-        "furniture",
-        "home_decor",
-        "kitchen_appliances",
-        "bedding_bath",
-        "home_storage"
-      ]
+      "categories": ["furniture", "home_decor", "kitchen_appliances", "bedding_bath", "home_storage"]
     },
     {
       "title": "Beauty & Personal Care",
       "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
-      "categories": [
-        "skincare",
-        "makeup",
-        "haircare",
-        "fragrances",
-        "hygiene_products"
-      ]
+      "categories": ["skincare", "makeup", "haircare", "fragrances", "hygiene_products"]
     },
     {
       "title": "Health & Wellness",
@@ -58,12 +117,7 @@
     {
       "title": "Stationery",
       "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
-      "categories": [
-        "office_furniture",
-        "printers_ink",
-        "office_electronics",
-        "desk_accessories"
-      ]
+      "categories": ["office_furniture", "printers_ink", "office_electronics", "desk_accessories"]
     },
     {
       "title": "Grocery",

@@ -1,0 +1,65 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "shopping",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "shopping (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "shopping (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "banner",
+            "cwd": "banner",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "banner (profile mode)",
+            "cwd": "banner",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "banner (release mode)",
+            "cwd": "banner",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "repositories",
+            "cwd": "repositories",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "repositories (profile mode)",
+            "cwd": "repositories",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "repositories (release mode)",
+            "cwd": "repositories",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

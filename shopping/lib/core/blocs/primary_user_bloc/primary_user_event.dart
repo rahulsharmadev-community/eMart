@@ -6,8 +6,6 @@ sealed class PrimaryUserEvent {
   static UpdateEvent update(Consumer consumer) => UpdateEvent(consumer);
 }
 
-class PrimaryUserInitialize extends PrimaryUserEvent {}
-
 class PrimaryUserDispose extends PrimaryUserEvent {}
 
 class UpdateEvent extends PrimaryUserEvent {

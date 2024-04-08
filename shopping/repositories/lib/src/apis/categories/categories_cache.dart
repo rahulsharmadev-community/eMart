@@ -9,7 +9,7 @@ class CategoriesCache extends HydratedCubit<List<Category>> {
     logs.i("AppMetaDataCache:get() initiating");
     var dateTime = DateTime.now();
     if (state.any((e) => e.expiry.isBefore(dateTime))) return null;
-    return ids.map((a) => state.firstWhere((e) => e.id == a)).toList();
+    return ids.map((a) => state.firstWhereOrNull((e) => e.id == a)).nonNulls().toList();
   }
 
   List<Category>? getAll() {

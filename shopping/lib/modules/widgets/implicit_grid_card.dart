@@ -7,6 +7,7 @@ class ImplicitGridCard extends StatelessWidget {
   final String imageUrl;
   final double width;
   final int maxLines;
+  final VoidCallback? onTap;
 
   final EdgeInsetsGeometry? margin;
   const ImplicitGridCard(
@@ -14,20 +15,24 @@ class ImplicitGridCard extends StatelessWidget {
       this.label,
       this.imageUrl = "https://via.placeholder.com/56x56",
       required this.width,
-      this.maxLines=2,
-      this.margin = const EdgeInsets.symmetric(horizontal: 4)});
+      this.maxLines = 2,
+      this.margin = const EdgeInsets.symmetric(horizontal: 4),
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      margin: margin,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CachedNetworkImage(imageUrl: imageUrl, width: width, height: width, fit: BoxFit.fill),
-          if (label != null) Center(child: textWidget(context)),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: width,
+        margin: margin,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CachedNetworkImage(imageUrl: imageUrl, width: width, height: width, fit: BoxFit.fill),
+            if (label != null) Center(child: textWidget(context)),
+          ],
+        ),
       ),
     );
   }

@@ -33,7 +33,11 @@ class _AppRouter {
           GoRoute(
               path: '/${AppRoutes.CategoriesScreen.name}',
               name: AppRoutes.CategoriesScreen.name,
-              pageBuilder: (context, state) => withFadeTran(const CategoriesScreen())),
+              pageBuilder: (context, state) {
+                return withFadeTran(CategoriesScreen(
+                  category: state.uri.queryParameters['search'],
+                ));
+              }),
           GoRoute(
               path: '/${AppRoutes.OrdersScreen.name}',
               name: AppRoutes.OrdersScreen.name,

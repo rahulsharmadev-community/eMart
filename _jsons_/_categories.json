@@ -1,10 +1,22 @@
 {
   "__collections__": {},
+  "gloabalAlertBanner": {},
+  "localAlertBanner": {
+    "homeScreen": {},
+    "productScreen": {},
+    "settingScreen": {},
+    "CartScreen": {}
+  },
+  "producHighReturnAlertBanner": {},
+  "orderProgressAlertBanner": {},
+
+  "liveCountdownBanner": {},
+
   "dasboardBanners": [
     {
       "title": "Big Sell",
-      "type":"",
-      
+      "type": "",
+
       "bannerImg": "https://dummyimage.com/960x540/919191/ffffff.jpg",
       "leaderboardImg": "https://dummyimage.com/1200x400/919191/ffffff.jpg",
       "productIds": [
@@ -95,12 +107,24 @@
     {
       "title": "Home & Kitchen",
       "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
-      "categories": ["furniture", "home_decor", "kitchen_appliances", "bedding_bath", "home_storage"]
+      "categories": [
+        "furniture",
+        "home_decor",
+        "kitchen_appliances",
+        "bedding_bath",
+        "home_storage"
+      ]
     },
     {
       "title": "Beauty & Personal Care",
       "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
-      "categories": ["skincare", "makeup", "haircare", "fragrances", "hygiene_products"]
+      "categories": [
+        "skincare",
+        "makeup",
+        "haircare",
+        "fragrances",
+        "hygiene_products"
+      ]
     },
     {
       "title": "Health & Wellness",
@@ -117,7 +141,12 @@
     {
       "title": "Stationery",
       "iconImg": "https://dummyimage.com/300x300/919191/ffffff.jpg",
-      "categories": ["office_furniture", "printers_ink", "office_electronics", "desk_accessories"]
+      "categories": [
+        "office_furniture",
+        "printers_ink",
+        "office_electronics",
+        "desk_accessories"
+      ]
     },
     {
       "title": "Grocery",

@@ -37,13 +37,7 @@ dependencies:
   
   device_info_plus: ^9.1.2
   flutter_svg: ^2.0.10+1
-  
-  jars:
-    git:
-      url: https://github.com/rahulsharmadev-community/jars.git
-      ref: main
-      path: packages/jars
-  
+
   shared:
     path: ../shared
 
@@ -51,6 +45,11 @@ dependencies:
     path: repositories
   meta: ^1.11.0
 
+  jars:
+    git:
+      url: https://github.com/rahulsharmadev-community/jars.git
+      ref: main
+      path: packages/jars
 
 dev_dependencies:
   bloc_test: ^9.1.6

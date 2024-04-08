@@ -1,7 +1,7 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart'
     show EmailAuthProvider, FirebaseUIAuth, PhoneAuthProvider, setFirebaseUiIsTestMode;
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
-import 'package:jars/utility.dart';
+import 'package:jars/jars.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';

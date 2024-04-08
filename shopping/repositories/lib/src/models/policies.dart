@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:shared/models.dart';
+import 'package:jars/jars.dart';
 
 part 'policies.g.dart';
 

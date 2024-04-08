@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import 'package:shared/models.dart';
+import 'package:jars/jars.dart';
 import 'error_handler.dart';
 
 class HttpService with CustomExceptionHandler {

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
 import 'package:shared/credentials.dart';
-import 'package:shared/models.dart';
 part 'categories_api.dart';
 part 'categories_cache.dart';
 
@@ -24,7 +24,7 @@ class CategoriesRepository {
   }
 
   Future<List<Category>> getALL() async {
-    final result =await cache.getAll()!;
+    final result = await api.getAll();
     cache.set(result);
     return result;
   }

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:jars/extensions.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/credentials.dart';

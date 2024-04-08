@@ -1,25 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
+import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/screens/categories_screen/cubit/categories_cubit.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
 import 'package:shopping/utility/bloc_state.dart';
 
 class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+  final String? category;
+  const CategoriesScreen({super.key, this.category});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => CategoriesCubit(
-            categoriesRepository: context.read<CategoriesRepository>(),
-            metaDataRepository: context.read<AppMetaDataRepository>())
-          ..fetchData(),
-        child: Builder(builder: (context) {
-          return BlocBuilder<CategoriesCubit, CategoriesState>(
-            builder: (context, state) => buildWidget(state.categories, state.categoriesMetaData),
-          );
-        }));
+    var all = ((context.read<AppMetaDataBloc>().state as BlocStateSuccess).data as AppMetaData).categories;
+    List<String>? categories = ifNotNull(category, (_) => all.firstWhere((e) => e.title == _))?.categories;
+
+    categories = categories ?? [for (var n in all) ...n.categories];
+
+    var repo = context.read<CategoriesRepository>();
+
+    return BlocProvider(create: (context) {
+      return CategoriesCubit(categoriesRepository: repo)..fetchData(categories);
+    }, child: Builder(builder: (context) {
+      return BlocBuilder<CategoriesCubit, CategoriesState>(
+          builder: (context, state) => Material(
+                child: ListView(
+                  shrinkWrap: true,
+                  children: [
+                    buildCategoriesWidget(state.categories),
+                    const Divider(),
+                    // buildCategoriesBanners(categoriesMetaData),
+                  ],
+                ),
+              ));
+    }));
   }
 
   Widget buildCategoriesWidget(BlocState categories) {
@@ -43,17 +58,6 @@ class CategoriesScreen extends StatelessWidget {
       default:
         return const CircularProgressIndicator();
     }
-  }
-
-  Widget buildWidget(BlocState categories, BlocState categoriesMetaData) {
-    return ListView(
-      shrinkWrap: true,
-      children: [
-        buildCategoriesWidget(categories),
-        const Divider(),
-        // buildCategoriesBanners(categoriesMetaData),
-      ],
-    );
   }
 
   // Widget buildCategoriesBanners(BlocState categories, BlocState metadata) {

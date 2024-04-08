@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
+import 'package:jars/jars.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';

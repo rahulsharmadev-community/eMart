@@ -8,10 +8,12 @@ import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/credentials.dart';
 import 'package:shared/models.dart';
+import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/screens/auth_screen/auth_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
+import 'package:shopping/utility/bloc_state.dart';
 import 'package:shopping/utility/navigation/app_navigator.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
 
@@ -45,20 +47,21 @@ class eMartAppBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-            create: (context) => AppMetaDataRepository(api: AppMetaDataApi(), cache: AppMetaDataCache())),
+        // RepositoryProvider(create: (context) => AppMetaDataRepository(api: AppMetaDataApi())),
         RepositoryProvider(
             create: (context) => ProductRepository(api: ProductsApi(), cache: ProductsCache())),
         RepositoryProvider(
             create: (context) => KeywordsRepository(api: KeywordsApi(), cache: KeywordsCache())),
         RepositoryProvider(
-            create: (context) => AppMetaDataRepository(api: AppMetaDataApi(), cache: AppMetaDataCache())),
-        RepositoryProvider(
             create: (context) => CategoriesRepository(api: CategoriesApi(), cache: CategoriesCache())),
       ],
       child: MultiBlocProvider(providers: [
         BlocProvider<PrimaryUserBloc>(
-          create: (context) => PrimaryUserBloc(PrimaryUserApi(uid))..add(PrimaryUserInitialize()),
+          create: (context) => PrimaryUserBloc(PrimaryUserApi(uid)),
+          lazy: false,
+        ),
+        BlocProvider<AppMetaDataBloc>(
+          create: (context) => AppMetaDataBloc(AppMetaDataRepository(api: AppMetaDataApi())),
           lazy: false,
         ),
       ], child: const _MaterialAppBuilder()),
@@ -71,10 +74,10 @@ class _MaterialAppBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PrimaryUserBloc, PrimaryUserState>(
+    return BlocBuilder<PrimaryUserBloc, BlocState>(
       builder: (context, state) {
         switch (state) {
-          case PrimaryUserLoaded _:
+          case BlocStateSuccess _:
             const msb = MaterialScrollBehavior();
             return MaterialApp.router(
               scrollBehavior: !PlatformQuery.isMobileorTablet
@@ -86,8 +89,8 @@ class _MaterialAppBuilder extends StatelessWidget {
               scaffoldMessengerKey: AppNavigator.messengerKey,
               debugShowCheckedModeBanner: kDebugMode,
             );
-          case PrimaryUserError _:
-            return ErrorScreen(materialAppWraper: true, msg: state.errorMsg);
+          case BlocStateFailure _:
+            return ErrorScreen(materialAppWraper: true, msg: state.message);
           default:
             return const LoadingScreen(materialAppWraper: true);
         }

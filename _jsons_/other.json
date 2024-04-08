@@ -1,0 +1,100 @@
+{
+  "__collections__": {},
+  "gloabalAlertBanner": {
+    "content": {
+      "text": "This Gloabal banner was supposed to take place on my other channel",
+      "isMarquee": false,
+      "maxLines": null,
+      "imageUrl": "https://static.vecteezy.com/system/resources/previews/002/282/919/large_2x/abstract-fluid-gradient-background-free-vector.jpg",
+      "textColor": "#ffffd740",
+      "buttonAlignment": null,
+      "buttons": null
+    },
+    "decoration": true,
+    "border": false,
+    "prefixIcon": { "codePoint": 59083, "color": null, "fontFamily": null },
+    "showCloseButton": true,
+    "backgroundColor": null,
+    "expiry": 1712519894514
+  },
+  "localAlertBanner": {
+    "homeScreen": {
+      "content": {
+        "text": "This livestream was supposed to take place on my other channel Watch Roz VLOGS This livestream was supposed to take place on my other channel Watch Roz VLOGS",
+        "isMarquee": false,
+        "maxLines": null,
+        "imageUrl": null,
+        "textColor": "#ffffd740",
+        "buttonAlignment": null,
+        "buttons": [
+          {
+            "text": null,
+            "imageUrl": "https://static.vecteezy.com/system/resources/previews/002/282/919/large_2x/abstract-fluid-gradient-background-free-vector.jpg",
+            "textColor": null,
+            "backgroundColor": null,
+            "isOutlineButton": false,
+            "returnOnPressed": null
+          },
+          {
+            "text": "Image Button",
+            "imageUrl": "https://static.vecteezy.com/system/resources/previews/002/282/919/large_2x/abstract-fluid-gradient-background-free-vector.jpg",
+            "textColor": null,
+            "backgroundColor": null,
+            "isOutlineButton": false,
+            "returnOnPressed": null
+          },
+          {
+            "text": "Cancel",
+            "imageUrl": null,
+            "textColor": null,
+            "backgroundColor": null,
+            "isOutlineButton": false,
+            "returnOnPressed": null
+          },
+          {
+            "text": "Cancel",
+            "imageUrl": null,
+            "textColor": null,
+            "backgroundColor": null,
+            "isOutlineButton": true,
+            "returnOnPressed": null
+          }
+        ]
+      },
+      "decoration": false,
+      "border": false,
+      "prefixIcon": null,
+      "showCloseButton": true,
+      "backgroundColor": null,
+      "expiry": 1712520038652
+    },
+    "productScreen": {},
+    "settingScreen": {
+      "content": {
+        "text": "This settingScreen was supposed to take place on my other channel Watch Roz VLOGS This livestream was supposed to take place on my other channel Watch Roz VLOGS",
+        "isMarquee": true,
+        "maxLines": null,
+        "imageUrl": null,
+        "textColor": "#ffffd740",
+        "buttonAlignment": null
+      },
+      "decoration": false,
+      "border": false,
+      "prefixIcon": null,
+      "showCloseButton": true,
+      "backgroundColor": null,
+      "expiry": 1712520038652
+    },
+    "cartScreen": {}
+  },
+  "producHighReturnAlertBanner": {},
+  "orderProgressAlertBanner": {},
+
+  "liveCountdownBanner": {
+    "height": 100,
+    "target": 1712951117402,
+    "imageUrl": "https://i.pinimg.com/originals/7d/2a/9f/7d2a9fca264faa93561f72b5fc885fec.gif",
+    "backgroundColor": null,
+    "returnOnDone": null
+  }
+}

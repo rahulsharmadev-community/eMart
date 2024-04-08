@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:shared/src/helper.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
 import 'states.dart';
-import 'general/typedef.dart';
+import 'package:jars_core/jars_core.dart';
 import 'package:uuid/uuid.dart';
 part 'product.g.dart';
 

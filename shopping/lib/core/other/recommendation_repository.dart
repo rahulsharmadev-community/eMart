@@ -1,7 +1,5 @@
 import "package:hydrated_bloc/hydrated_bloc.dart";
-import "package:jars/extensions.dart";
-import "package:shared/models.dart";
-
+import 'package:jars/jars.dart';
 
 class RecommendationRepository extends HydratedCubit<JSON<DateTime>> {
   RecommendationRepository() : super(const {});

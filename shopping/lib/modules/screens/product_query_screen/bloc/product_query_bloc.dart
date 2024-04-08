@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:repositories/repositories.dart';
+import 'package:shared/models.dart';
 
 part 'product_query_event.dart';
 part 'product_query_state.dart';

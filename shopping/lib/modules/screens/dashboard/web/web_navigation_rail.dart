@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jars/jars.dart';
 import 'package:shopping/modules/screens/dashboard/const.dart';
 
@@ -10,11 +11,13 @@ class WebNavigationRail extends StatefulWidget {
 }
 
 class _WebNavigationRailState extends State<WebNavigationRail> {
-  int currentIndex = 0;
+  static int _calculateSelectedIndex(BuildContext context) {
+    final String location = GoRouterState.of(context).uri.toString();
+    var result = items.firstWhereOrNull((e) => location.startsWith('/${e.route.name}'));
 
-  onTap(int value) {
-    items[value].route.goNamed();
-    setState(() => currentIndex = value);
+    if (result == null) return 0;
+
+    return items.indexOf(result);
   }
 
   @override
@@ -27,8 +30,8 @@ class _WebNavigationRailState extends State<WebNavigationRail> {
           selectedLabelTextStyle: context.textTheme.bodyMedium
               ?.copyWith(color: context.theme.primaryColor, fontWeight: FontWeight.w600),
           destinations: items.map((e) => _navItem(e.icon, e.title)).toList(),
-          selectedIndex: currentIndex,
-          onDestinationSelected: onTap,
+          selectedIndex: _calculateSelectedIndex(context),
+          onDestinationSelected: (i) => items[i].route.goNamed(),
           useIndicator: true,
         );
       },

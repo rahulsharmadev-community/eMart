@@ -6,13 +6,12 @@ homepage: homepage
 documentation: documentation
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  
-  
+
   dio: ^5.4.1
   http: ^1.2.1
   logger: ^2.1.0
@@ -21,7 +20,7 @@ dependencies:
   hydrated_bloc: ^9.1.4
 
   google_sign_in: ^6.2.1
-  
+
   firebase_messaging: ^14.7.20
   firebase_storage: ^11.6.10
   firebase_auth: ^4.17.9
@@ -55,4 +54,3 @@ dev_dependencies:
       url: https://github.com/rahulsharmadev-community/copy_with_extension.git
       ref: main
       path: copy_with_extension_gen
-

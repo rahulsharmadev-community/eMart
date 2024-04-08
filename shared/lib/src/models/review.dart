@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:shared/src/helper.dart';
-import 'general/typedef.dart';
 import 'package:uuid/uuid.dart';
+import 'package:jars_core/jars_core.dart';
 part 'review.g.dart';
 
 @CopyWith()

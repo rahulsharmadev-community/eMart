@@ -2,7 +2,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/helper.dart';
 import 'package:uuid/uuid.dart';
-
+import 'package:jars_core/jars_core.dart';
 part 'after_sales_service.g.dart';
 
 @CopyWith()

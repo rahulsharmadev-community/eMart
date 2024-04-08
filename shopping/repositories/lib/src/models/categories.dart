@@ -1,7 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/extensions.dart';
+import 'package:jars/jars.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:shared/models.dart';
 
 part 'categories.g.dart';
 

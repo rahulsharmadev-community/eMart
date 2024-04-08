@@ -6,18 +6,17 @@ class AppMetaDataApi {
   AppMetaDataApi({String language = 'en'})
       : documentRef = FirebaseService.eMartConsumer.instanceOfFirestore.doc('AppMetaData/$language');
 
-  Future<AppMetaData?> getComplete() async {
+  Stream<AppMetaData?> get stream {
     logs.i("AppMetaDataApi:getComplete initiating");
-    var result = await documentRef
+    return documentRef
         .withConverter<AppMetaData>(
             fromFirestore: (snap, _) {
-
-                           logs.w(snap.data());
+              logs.w(snap.data());
               return AppMetaData.fromJson(snap.data()!);
             },
             toFirestore: (snap, _) => snap.toJson())
-        .get();
-    return result.data();
+        .snapshots()
+        .map((event) => event.data());
   }
 
   // Future<void> update(AppMetaData data) async {

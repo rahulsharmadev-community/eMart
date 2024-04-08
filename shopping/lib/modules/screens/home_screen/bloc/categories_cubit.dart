@@ -7,12 +7,9 @@ class CategoriesBloc extends Cubit<BlocState<List<Categories>>> {
   CategoriesBloc(this.repository) : super(const BlocStateLoading()) {
     _inital();
   }
-  void _inital() async {
-    try {
-      var n = await repository.get();
-      emit(BlocStateSuccess(n?.categories ?? []));
-    } catch (e) {
-      emit(BlocStateFailure(e.toString()));
-    }
+  void _inital() {
+    repository.stream.listen((event) {
+      emit(BlocStateSuccess(event?.categories ?? []));
+    });
   }
 }

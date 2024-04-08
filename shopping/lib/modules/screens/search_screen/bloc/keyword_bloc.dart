@@ -1,7 +1,6 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
-import 'package:jars/extensions.dart';
-import 'package:logger/logger.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jars/jars.dart';
 import 'package:meta/meta.dart';
 import 'package:repositories/repositories.dart';
 import 'package:rxdart/rxdart.dart';

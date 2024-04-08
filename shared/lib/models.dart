@@ -15,5 +15,4 @@ export 'src/models/keyword.dart';
 export 'src/models/general/address.dart';
 export 'src/models/general/location.dart';
 export 'src/models/general/personname.dart';
-export 'src/models/general/typedef.dart';
 export 'src/models/general/durationperiod.dart';

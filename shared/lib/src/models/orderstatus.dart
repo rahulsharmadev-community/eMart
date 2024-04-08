@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'general/typedef.dart';
+import 'package:jars_core/jars_core.dart';
 part 'orderstatus.g.dart';
 
 enum PaymentMode {

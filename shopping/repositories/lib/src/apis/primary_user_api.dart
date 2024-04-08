@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
-import 'package:jars/extensions.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/src/extenstion.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/credentials.dart';

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:shared/models.dart';
+import 'package:jars_core/jars_core.dart';
 
 part 'durationperiod.g.dart';
 

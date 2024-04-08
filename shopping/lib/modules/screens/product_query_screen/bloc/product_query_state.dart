@@ -11,6 +11,6 @@ final class ProductQueryError extends ProductQueryState {
 }
 
 final class ProductQuerySuccess extends ProductQueryState {
-  final List<ProductModel> products;
+  final List<Product> products;
   ProductQuerySuccess(this.products);
 }

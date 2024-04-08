@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:jars/extensions.dart';
+import 'package:jars/jars.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:repositories/src/utils/http_request.dart';
 import 'package:shared/credentials.dart';

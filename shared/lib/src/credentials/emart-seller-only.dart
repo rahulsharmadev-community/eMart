@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 class eMartSellerFirebaseOptions {
-  static String get name => currentPlatform.projectId;
+  static const name = '[EMARTSELLERONLY]';
 
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {

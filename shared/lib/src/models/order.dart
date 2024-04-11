@@ -1,13 +1,12 @@
 // ignore_for_file: equal_keys_in_map
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:shared/models.dart';
-import 'package:shared/src/helper.dart';import 'package:jars_core/jars_core.dart';
+import 'package:shared/src/json_converters.dart';import 'package:jars/jars.dart';
 import 'package:uuid/uuid.dart';
 part 'order.g.dart';
 
-@defJson
+@defJsonSerializable
 @CopyWith()
 class OrderedProduct {
   OrderedProduct({
@@ -51,7 +50,7 @@ class OrderedProduct {
   JSON toJson() => _$OrderedProductToJson(this);
 }
 
-@defJson
+@defJsonSerializable
 @CopyWith()
 class Order {
   Order({

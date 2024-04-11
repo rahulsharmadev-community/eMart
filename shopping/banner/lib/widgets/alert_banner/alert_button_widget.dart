@@ -4,24 +4,35 @@ import 'package:banner/com.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
-import 'alert_model.dart';
+import 'alert_dart';
 
 class AlertButtonWidget extends StatelessWidget {
-  final AlertButton model;
+  final String? text;
+  final String? imageUrl;
+  final Color? textColor;
+  final Color? backgroundColor;
+  final String? returnOnPressed;
+  final bool isOutlineButton;
   final void Function()? onPressed;
-  const AlertButtonWidget(this.model, {super.key, this.onPressed});
+  const AlertButtonWidget(
+      {super.key,
+      this.onPressed,
+      this.text,
+      this.imageUrl,
+      this.textColor,
+      this.backgroundColor,
+      this.returnOnPressed,
+      required this.isOutlineButton});
 
-  bool get imageExist => model.imageUrl != null && model.imageUrl!.isNotEmpty;
+  bool get imageExist => imageUrl != null && imageUrl!.isNotEmpty;
 
-  ButtonStyle get style => ElevatedButton.styleFrom(
-        minimumSize: Size.zero,
-        padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
-      );
+  ButtonStyle get style =>
+      ElevatedButton.styleFrom(minimumSize: Size.zero, padding: const EdgeInsets.fromLTRB(10, 12, 10, 12));
 
   @override
   Widget build(BuildContext context) {
-    Text? textWidget = ifNotNull(
-        model.text, (_) => Text(_, style: context.textTheme.labelMedium?.copyWith(color: model.textColor)));
+    Text? textWidget =
+        ifNotNull(text, (_) => Text(_, style: context.textTheme.labelMedium?.copyWith(color: textColor)));
 
     if (imageExist) {
       return Container(
@@ -33,15 +44,15 @@ class AlertButtonWidget extends StatelessWidget {
         ),
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-            color: model.backgroundColor,
+            color: backgroundColor,
             borderRadius: BorderRadius.circular(500),
-            image: ifNotNull(model.imageUrl,
-                (_) => DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(_)))),
+            image: ifNotNull(
+                imageUrl, (_) => DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(_)))),
         child: textWidget,
       );
     }
 
-    return model.isOutlineButton
+    return isOutlineButton
         ? OutlinedButton(style: style, onPressed: onPressed, child: textWidget)
         : ElevatedButton(style: style, onPressed: onPressed, child: textWidget);
   }

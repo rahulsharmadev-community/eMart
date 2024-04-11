@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, Tar
 
 // ignore: camel_case_types
 class eMartConsumerFirebaseOptions {
-  static String get name => currentPlatform.projectId;
+  static const name = '[EMARTCONSUMERONLY]';
   static const String clientId = '958085585998-hc8mpd460mard38fg6el3o18kq6ujsnj.apps.googleusercontent.com';
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {

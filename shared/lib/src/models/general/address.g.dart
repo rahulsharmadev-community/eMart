@@ -162,12 +162,10 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
       location: json['location'] == null
           ? null
           : Location.fromJson(json['location'] as Map<String, dynamic>),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
@@ -181,6 +179,20 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'floorLevel': instance.floorLevel,
       'district': instance.district,
       'location': instance.location?.toJson(),
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt?.toIso8601String(),
+      'createdAt': _$JsonConverterToJson<int, DateTime>(
+          instance.createdAt, const DateTimeConverter().toJson),
+      'lastUpdateAt': _$JsonConverterToJson<int, DateTime>(
+          instance.lastUpdateAt, const DateTimeConverter().toJson),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);

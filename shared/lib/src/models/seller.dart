@@ -1,8 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:jars_core/jars_core.dart';
+import 'package:jars/jars.dart';
 import 'package:shared/models.dart';
-import 'package:shared/src/helper.dart';
+import 'package:shared/src/json_converters.dart';
 import 'package:uuid/uuid.dart';
 
 part 'seller.g.dart';
@@ -10,7 +10,7 @@ part 'seller.g.dart';
 enum SellerType { retailer, distributor, wholesaler }
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class Seller {
   Seller({
     String? uid,

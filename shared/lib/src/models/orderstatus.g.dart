@@ -15,13 +15,14 @@ OrderStatus _$OrderStatusFromJson(Map<String, dynamic> json) => OrderStatus._(
       deliveryStatus:
           $enumDecodeNullable(_$DeliveryStatusEnumMap, json['deliveryStatus']),
       reason: json['reason'] as String?,
-      lastUpdateAt: DateTime.parse(json['lastUpdateAt'] as String),
+      lastUpdateAt:
+          const DateTimeConverter().fromJson(json['lastUpdateAt'] as int),
     );
 
 Map<String, dynamic> _$OrderStatusToJson(OrderStatus instance) =>
     <String, dynamic>{
       'orderId': instance.orderId,
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
       'status': _$OrderStateEnumMap[instance.status]!,
       'paymentMode': _$PaymentModeEnumMap[instance.paymentMode],
       'reason': instance.reason,

@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
 
 class LiveCountdownModel {
-  final double height;
-  final DateTime target;
-  final String? imageUrl;
-  final Color? backgroundColor;
-  final String? returnOnDone;
+
   const LiveCountdownModel({
     required this.target,
     this.height = kToolbarHeight,

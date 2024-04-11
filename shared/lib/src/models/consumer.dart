@@ -1,13 +1,19 @@
 // ignore_for_file: unused_element
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:shared/src/helper.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
-import 'package:uuid/uuid.dart';import 'package:jars_core/jars_core.dart';
+import 'package:uuid/uuid.dart';import 'package:jars/jars.dart';
 part 'consumer.g.dart';
 
-@JsonSerializable(explicitToJson: true, constructor: '_')
+@JsonSerializable(
+  explicitToJson: true,
+  constructor: '_',
+  converters: [
+    DateTimeConverter(),
+    ColorConverter(),
+  ],
+)
 class AbstractConsumerInfo {
   final String uid;
   final PersonName name;
@@ -27,7 +33,7 @@ class AbstractConsumerInfo {
   JSON toJson() => _$AbstractConsumerInfoToJson(this);
 }
 
-@defJson
+@defJsonSerializable
 @CopyWith()
 class Consumer {
   Consumer({
@@ -93,7 +99,7 @@ class Consumer {
 }
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class Wishlist {
   Wishlist({
     required this.productIds,

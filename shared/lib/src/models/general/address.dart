@@ -1,12 +1,12 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:shared/src/helper.dart';
-import 'package:jars_core/jars_core.dart';
+import 'package:shared/src/json_converters.dart';
+import 'package:jars/jars.dart';
 import 'location.dart';
 import 'package:uuid/uuid.dart';
 part 'address.g.dart';
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class Address {
   @CopyWithField.immutable()
   final String addressId;

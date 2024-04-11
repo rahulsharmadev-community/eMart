@@ -22,9 +22,15 @@ class _AppRouter {
   final _routes = [
     ShellRoute(
         navigatorKey: AppNavigator.shellNavigatorKey,
-        builder: (context, state, child) => PlatformQuery.isMobileorTablet
-            ? eMartMobileDashBoard(child: child)
-            : eMartWebDashBoard(child: child),
+        builder: (context, state, child) {
+          return BlocBuilder<AppMetaDataBloc, BlocState>(
+            builder: (context, state) {
+              return PlatformQuery.isMobileorTablet
+                  ? eMartMobileDashBoard(child: child)
+                  : eMartWebDashBoard(child: child);
+            },
+          );
+        },
         routes: [
           GoRoute(
               path: '/${AppRoutes.HomeScreen.name}',
@@ -50,6 +56,16 @@ class _AppRouter {
               path: '/${AppRoutes.ProfileScreen.name}',
               name: AppRoutes.ProfileScreen.name,
               pageBuilder: (context, state) => withFadeTran(const ProfileScreen())),
+          GoRoute(
+            name: AppRoutes.ProductQueryScreen.name,
+            path: '/${AppRoutes.ProductQueryScreen.name}',
+            builder: (context, state) {
+              Set<Query> child = {};
+              if (state.extra is Query) child = {state.extra as Query};
+              if (state.extra is Iterable) child = (state.extra as Iterable<Query>).toSet();
+              return ProductQueryScreen(child);
+            },
+          ),
         ]),
 
     GoRoute(
@@ -65,6 +81,7 @@ class _AppRouter {
         );
       },
     ),
+
     GoRoute(
       name: AppRoutes.ImagePreviewScreen.name,
       path: '/${AppRoutes.ImagePreviewScreen.name}',

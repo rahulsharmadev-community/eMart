@@ -6,6 +6,7 @@ import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/screens/categories_screen/cubit/categories_cubit.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
 import 'package:shopping/utility/bloc_state.dart';
+import 'package:shopping/utility/utility.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final String? category;
@@ -13,27 +14,23 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var all = ((context.read<AppMetaDataBloc>().state as BlocStateSuccess).data as AppMetaData).categories;
-    List<String>? categories = ifNotNull(category, (_) => all.firstWhere((e) => e.title == _))?.categories;
-
-    categories = categories ?? [for (var n in all) ...n.categories];
-
+    var data = context.read<AppMetaDataBloc>().appMetaData!;
+    var categories = ifNotNull(category, (_) => data.getCategoriesByTitle(_)) ?? data.publicCategories;
     var repo = context.read<CategoriesRepository>();
 
     return BlocProvider(create: (context) {
       return CategoriesCubit(categoriesRepository: repo)..fetchData(categories);
     }, child: Builder(builder: (context) {
-      return BlocBuilder<CategoriesCubit, CategoriesState>(
-          builder: (context, state) => Material(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    buildCategoriesWidget(state.categories),
-                    const Divider(),
-                    // buildCategoriesBanners(categoriesMetaData),
-                  ],
-                ),
-              ));
+      return BlocBuilder<CategoriesCubit, CategoriesState>(builder: (context, state) {
+        return ListView(
+          shrinkWrap: true,
+          children: [
+            buildCategoriesWidget(state.categories),
+            const Divider(),
+            // buildCategoriesBanners(categoriesMetaData),
+          ],
+        );
+      });
     }));
   }
 
@@ -45,15 +42,17 @@ class CategoriesScreen extends StatelessWidget {
         return Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: categories.data.where((e) => e.iconImg != null).map((e) {
-            return ImplicitGridCard(
-              width: 90,
-              imageUrl: e.iconImg!,
-              label: e.title,
-              maxLines: 3,
-              margin: EdgeInsets.zero,
-            );
-          }).toList(),
+          children: categories.data
+              .where((e) => e.iconImg != null)
+              .map((e) => ImplicitGridCard(
+                    width: 90,
+                    imageUrl: e.iconImg!,
+                    label: e.title,
+                    maxLines: 3,
+                    margin: EdgeInsets.zero,
+                    onTap: () => AppRoutes.ProductQueryScreen.goNamed(extra: CategoriesQuery([e.title])),
+                  ))
+              .toList(),
         );
       default:
         return const CircularProgressIndicator();

@@ -1,4 +1,3 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/models/alert_model.dart';
@@ -16,6 +15,9 @@ class AppMetaData {
   final AlertModel? producHighReturnAlertBanner;
   final AlertModel? orderProgressAlertBanner;
   final LiveCountdownModel? liveCountdownBanner;
+
+  List<String>? getCategoriesByTitle(String title) =>
+      categories.firstWhereOrNull((e) => e.title == title)?.categories;
 
   AppMetaData(
     this.categories,

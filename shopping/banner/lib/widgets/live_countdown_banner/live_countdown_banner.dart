@@ -1,15 +1,25 @@
 import 'dart:async';
 import 'package:banner/com.dart';
 
-import 'live_countdown_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
 
 class LiveCountdownBanner extends StatefulWidget {
-  final LiveCountdownModel model;
+  final double height;
+  final DateTime target;
+  final String? imageUrl;
+  final Color? backgroundColor;
+  final String? returnOnDone;
   final void Function(String?)? onDone;
-  const LiveCountdownBanner(this.model, {super.key, this.onDone});
+  const LiveCountdownBanner(
+      {super.key,
+      this.onDone,
+      required this.height,
+      required this.target,
+      this.imageUrl,
+      this.backgroundColor,
+      this.returnOnDone});
 
   @override
   State<LiveCountdownBanner> createState() => LiveCountdownBannerState();
@@ -24,10 +34,10 @@ class LiveCountdownBannerState extends State<LiveCountdownBanner> {
     controller = StreamController<Duration>();
 
     timer = Timer.periodic(1.seconds, (_) {
-      var difference = widget.model.target.difference(DateTime.now());
+      var difference = widget.target.difference(DateTime.now());
       controller.sink.add(difference);
       if (difference == Duration.zero) {
-        if (widget.onDone != null) widget.onDone!(widget.model.returnOnDone);
+        if (widget.onDone != null) widget.onDone!(widget.returnOnDone);
         timer.cancel();
         controller.close();
       }
@@ -46,11 +56,11 @@ class LiveCountdownBannerState extends State<LiveCountdownBanner> {
   @override
   Widget build(BuildContext context) {
     var boxDecoration = BoxDecoration(
-        color: widget.model.backgroundColor,
-        image: ifNotNull(widget.model.imageUrl,
+        color: widget.backgroundColor,
+        image: ifNotNull(widget.imageUrl,
             (url) => DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(url))));
     return Container(
-      height: widget.model.height,
+      height: widget.height,
       decoration: boxDecoration,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       child: StreamBuilder(

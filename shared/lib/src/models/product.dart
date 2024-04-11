@@ -1,9 +1,9 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:shared/src/helper.dart';
+import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
 import 'states.dart';
-import 'package:jars_core/jars_core.dart';
+import 'package:jars/jars.dart';
 import 'package:uuid/uuid.dart';
 part 'product.g.dart';
 
@@ -12,7 +12,7 @@ enum ProductStockStatus { available, outOfStock, unavailable }
 class AbstractProductModel {}
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class Product {
   Product({
     String? productId,
@@ -42,7 +42,7 @@ class Product {
     DateTime? lastUpdateAt,
   })  : assert(shopId.length > 8, 'Invalid Seller ID.'),
         assert(mrp > 0, 'MRP must be greater than zero.'),
-        assert(title.length >= 3 && title.length <= 50, 'Title should be between 3 and 50 characters.'),
+        assert(title.length >= 3 && title.length <= 500, 'Title should be between 3 and 150 characters.'),
         assert(Uri.parse(thumbnail).isAbsolute, 'Invalid thumbnail URL.'),
         assert((discount >= 0 && discount <= 100), 'Discount should be between 0 and 100.'),
         assert(shotDescription == null || shotDescription.length > 30,
@@ -115,7 +115,7 @@ class Product {
   final Map<State, DeliveryMetaData> deliveryMetaData;
 
   final int totalReviews;
-  final int rating;
+  final double rating;
 
   @CopyWithField.immutable()
   final DateTime createdAt;
@@ -129,39 +129,24 @@ class Product {
 
 enum LengthMeasurement { cm, m, km, inch, foot }
 
-@JsonSerializable(constructor: '_', explicitToJson: true)
+enum WeightMeasurement { gram, kilogram }
+
+@CopyWith()
+@defJsonSerializable
 class ProductUnit {
-  ProductUnit._(
-    this.quantity,
-    this.unitName,
-    this.unitSymbol, {
+  ProductUnit({
+    double? quantity,
+    this.weight,
+    this.weightMeasurement,
     this.dimension,
     this.dimensionMeasurement,
-  });
+  }) : quantity = quantity ?? 1;
 
   final double quantity;
-  final String unitName;
-  final String unitSymbol;
+  final double? weight;
+  final WeightMeasurement? weightMeasurement;
   final Dimension? dimension;
   final LengthMeasurement? dimensionMeasurement;
-
-  factory ProductUnit.piece(double quantity,
-          {Dimension? dimension, LengthMeasurement? dimensionMeasurement}) =>
-      ProductUnit._(quantity, 'Piece', 'piece',
-          dimension: dimension, dimensionMeasurement: dimensionMeasurement);
-  factory ProductUnit.kilogram(double quantity,
-          {Dimension? dimension, LengthMeasurement? dimensionMeasurement}) =>
-      ProductUnit._(quantity, 'Kilogram', 'kg',
-          dimension: dimension, dimensionMeasurement: dimensionMeasurement);
-  factory ProductUnit.gram(double quantity,
-          {Dimension? dimension, LengthMeasurement? dimensionMeasurement}) =>
-      ProductUnit._(quantity, 'Gram', 'g', dimension: dimension, dimensionMeasurement: dimensionMeasurement);
-  factory ProductUnit.liter(double quantity,
-          {Dimension? dimension, LengthMeasurement? dimensionMeasurement}) =>
-      ProductUnit._(quantity, 'Liter', 'l', dimension: dimension, dimensionMeasurement: dimensionMeasurement);
-  factory ProductUnit.meter(double quantity,
-          {Dimension? dimension, LengthMeasurement? dimensionMeasurement}) =>
-      ProductUnit._(quantity, 'Meter', 'm', dimension: dimension, dimensionMeasurement: dimensionMeasurement);
 
   factory ProductUnit.fromJson(JSON json) => _$ProductUnitFromJson(json);
   JSON toJson() => _$ProductUnitToJson(this);
@@ -178,7 +163,7 @@ enum DeliveryEstimation {
 }
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class DeliveryMetaData {
   /// The `ProductMetaData` class encapsulates essential information about a product.
   /// It includes the product's unique identifier (`productId`), discount, and optional details

@@ -1,11 +1,11 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars_core/jars_core.dart';
-import 'package:shared/src/helper.dart';
+import 'package:jars/jars.dart';
+import 'package:shared/src/json_converters.dart';
 
- part 'activities.g.dart';
+part 'activities.g.dart';
 
 @CopyWith(skipFields: true)
-@defJson
+@defJsonSerializable
 class Activities {
   final int sold;
   final int reach;

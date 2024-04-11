@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_ui_auth/firebase_ui_auth.dart'
     show EmailAuthProvider, FirebaseUIAuth, PhoneAuthProvider, setFirebaseUiIsTestMode;
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
@@ -28,5 +30,5 @@ void main() async {
           ? HydratedStorage.webStorageDirectory
           : await getApplicationDocumentsDirectory());
 
-  runApp(const eMartShoppingAppRunner({}));
+  runApp(const eMartShoppingAppRunner());
 }

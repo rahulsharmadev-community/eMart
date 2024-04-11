@@ -16,7 +16,7 @@ class CategoriesRepository {
 
   Future<List<Category>?> get(List<String> ids) async {
     List<Category>? result = cache.get(ids);
-    if (result == null) {
+    if (result == null || result.isEmpty) {
       result = await api.getByKey(ids);
       cache.set(result);
     }

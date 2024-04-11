@@ -10,10 +10,7 @@ class AppMetaDataApi {
     logs.i("AppMetaDataApi:getComplete initiating");
     return documentRef
         .withConverter<AppMetaData>(
-            fromFirestore: (snap, _) {
-              logs.w(snap.data());
-              return AppMetaData.fromJson(snap.data()!);
-            },
+            fromFirestore: (snap, _) => AppMetaData.fromJson(snap.data()!),
             toFirestore: (snap, _) => snap.toJson())
         .snapshots()
         .map((event) => event.data());

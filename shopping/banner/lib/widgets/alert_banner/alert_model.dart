@@ -2,7 +2,6 @@ import 'package:banner/com.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
-import 'package:uuid/uuid.dart';
 
 class AlertModel {
   final AlertContent content;
@@ -102,47 +101,5 @@ class IconModel {
         'codePoint': codePoint,
         'color': color?.toHex,
         'fontFamily': fontFamily,
-      };
-}
-
-class AlertContent {
-  final String? text;
-  final String? imageUrl;
-  final Color? textColor;
-  final bool isMarquee;
-  final int? maxLines;
-  final List<AlertButton>? buttons;
-  final MainAxisAlignment? buttonAlignment;
-
-  AlertContent(
-      {this.text,
-      this.imageUrl,
-      this.textColor,
-      this.maxLines,
-      this.isMarquee = false,
-      this.buttonAlignment,
-      this.buttons});
-
-  bool get isOnyImage => imageUrl != null && text == null;
-
-  factory AlertContent.fromJson(Map<String, dynamic> json) => AlertContent(
-      text: json['text'],
-      imageUrl: json['imageUrl'],
-      maxLines: json['maxLines'],
-      isMarquee: json['isMarquee'] ?? false,
-      textColor: json['textColor'] == null ? null : (json['textColor'] as String).toColor,
-      buttons:
-          ifNotNull(json['buttons'] as List<dynamic>?, (_) => _.map((e) => AlertButton.fromJson(e)).toList()),
-      buttonAlignment:
-          json['buttonAlignment'] == null ? null : MainAxisAlignment.values[json['buttonAlignment']]);
-
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'text': text,
-        'isMarquee': isMarquee,
-        'maxLines': maxLines,
-        'imageUrl': imageUrl,
-        'textColor': textColor?.toHex,
-        'buttonAlignment': buttonAlignment?.index,
-        'buttons': buttons?.map((e) => e.toJson()).toList()
       };
 }

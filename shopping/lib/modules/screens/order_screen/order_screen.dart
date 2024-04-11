@@ -5,6 +5,6 @@ class OrdersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text('CategoriesScreen'));
+    return const Center(child: Text('CategoriesScreen'));
   }
 }

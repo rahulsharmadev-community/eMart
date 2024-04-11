@@ -280,12 +280,10 @@ Shop _$ShopFromJson(Map<String, dynamic> json) => Shop(
                     k, AfterSalesService.fromJson(e as Map<String, dynamic>)),
               ) ??
               const {},
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$ShopToJson(Shop instance) => <String, dynamic>{
@@ -307,6 +305,12 @@ Map<String, dynamic> _$ShopToJson(Shop instance) => <String, dynamic>{
       'electricityBillNumber': instance.electricityBillNumber,
       'afterSalesServices':
           instance.afterSalesServices.map((k, e) => MapEntry(k, e.toJson())),
-      'createdAt': instance.createdAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);

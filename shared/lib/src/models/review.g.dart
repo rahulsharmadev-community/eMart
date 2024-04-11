@@ -101,12 +101,10 @@ Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       text: json['text'] as String?,
       rating: json['rating'] as int,
       reviewedBy: json['reviewedBy'] as String,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
       imageUrls: (json['imageUrls'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -120,6 +118,12 @@ Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
       'imageUrls': instance.imageUrls,
       'text': instance.text,
       'rating': instance.rating,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);

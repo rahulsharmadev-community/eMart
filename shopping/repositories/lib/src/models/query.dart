@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as fs;
+import 'package:jars/jars.dart';
 
 enum DescendingSortBy {
   mrp('mrp'),
@@ -6,7 +7,7 @@ enum DescendingSortBy {
   rating('rating'),
   reviews('totalReviews');
 
-  final Object field;
+  final String field;
   const DescendingSortBy(this.field);
 }
 
@@ -71,7 +72,8 @@ final class KeywordQuery extends Query {
   @override
   Object get field => 'keywords';
   @override
-  fs.Filter applyFilter() => fs.Filter(field, arrayContainsAny: value);
+  fs.Filter applyFilter() =>
+      fs.Filter(field, arrayContainsAny: value.map((e) => e.removeAllSpace.toLowerCase()).toList());
 }
 
 final class CategoriesQuery extends Query {
@@ -80,9 +82,10 @@ final class CategoriesQuery extends Query {
   const CategoriesQuery(this.value);
 
   @override
-  Object get field => 'categories';
+  Object get field => 'category';
   @override
-  fs.Filter applyFilter() => fs.Filter(field, arrayContainsAny: value);
+  fs.Filter applyFilter() =>
+      fs.Filter(field, arrayContainsAny: value.map((e) => e.removeAllSpace.toLowerCase()).toList());
 }
 
 final class DiscountQuery extends Query {

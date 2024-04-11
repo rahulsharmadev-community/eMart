@@ -37,7 +37,9 @@ class ProductsApi {
         .catchError((e) => logs.e(e));
   }
 
-  Future<List<Product>> getByQueries(List<Query> queries, {DescendingSortBy? sortBy}) async {
+  Future<List<Product>> getByQueries(Set<Query> queries, {DescendingSortBy? sortBy}) async {
+    logs.i('ProductsApi: getByQueries');
+
     if (queries.isEmpty) return const [];
 
     List<Product> list = [];
@@ -48,14 +50,15 @@ class ProductsApi {
       }
     }
 
-    var query = productsCol.where(Query.combineFilter(queries));
+    var combineFilter = Query.combineFilter(queries.toList());
+
+    var query = productsCol.where(combineFilter);
 
     if (sortBy != null) {
       await query.orderBy(sortBy.field, descending: true).get().then(onValue);
     } else {
       await query.get().then(onValue);
     }
-
     return list;
   }
 

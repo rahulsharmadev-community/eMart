@@ -1,12 +1,12 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:shared/models.dart';
-import 'package:shared/src/helper.dart';
+import 'package:shared/src/json_converters.dart';
 import 'package:uuid/uuid.dart';
-import 'package:jars_core/jars_core.dart';
+import 'package:jars/jars.dart';
 part 'after_sales_service.g.dart';
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class AfterSalesService {
   /// [AfterSalesService] class represents information about after-sales services for a product.
   /// It includes details such as serviceId, serviceName, free call support, free technical support,

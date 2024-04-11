@@ -353,12 +353,10 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
           .toList(),
       deliveryAddress:
           Address.fromJson(json['deliveryAddress'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -366,6 +364,12 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'consumerId': instance.consumerId,
       'deliveryAddress': instance.deliveryAddress.toJson(),
       'products': instance.products.map((e) => e.toJson()).toList(),
-      'createdAt': instance.createdAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);

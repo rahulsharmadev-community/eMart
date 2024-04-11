@@ -11,8 +11,12 @@ export 'src/apis/app_metadata/app_metadata_repository.dart';
 export 'src/models/appmetadata.dart';
 export 'src/models/categories.dart';
 export 'src/models/policies.dart';
+export 'src/models/alert_model.dart';
+export 'src/models/live_countdown_model.dart';
 
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'src/extenstion.dart';
 import 'package:shared/credentials.dart';
 

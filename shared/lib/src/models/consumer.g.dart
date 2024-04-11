@@ -288,12 +288,10 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      joinAt: json['joinAt'] == null
-          ? null
-          : DateTime.parse(json['joinAt'] as String),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
+      joinAt: _$JsonConverterFromJson<int, DateTime>(
+          json['joinAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$ConsumerToJson(Consumer instance) => <String, dynamic>{
@@ -309,29 +307,33 @@ Map<String, dynamic> _$ConsumerToJson(Consumer instance) => <String, dynamic>{
       'complains': instance.complains,
       'orders': instance.orders,
       'addresses': instance.addresses,
-      'joinAt': instance.joinAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'joinAt': const DateTimeConverter().toJson(instance.joinAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
 
 Wishlist _$WishlistFromJson(Map<String, dynamic> json) => Wishlist(
       productIds: (json['productIds'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(k, DateTime.parse(e as String)),
+        (k, e) => MapEntry(k, const DateTimeConverter().fromJson(e as int)),
       ),
       name: json['name'] as String,
       wishlistId: json['wishlistId'] as String?,
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$WishlistToJson(Wishlist instance) => <String, dynamic>{
       'wishlistId': instance.wishlistId,
-      'productIds':
-          instance.productIds.map((k, e) => MapEntry(k, e.toIso8601String())),
+      'productIds': instance.productIds
+          .map((k, e) => MapEntry(k, const DateTimeConverter().toJson(e))),
       'name': instance.name,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };

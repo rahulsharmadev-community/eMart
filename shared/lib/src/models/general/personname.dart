@@ -1,10 +1,10 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:shared/src/helper.dart';
-import 'package:jars_core/jars_core.dart';
+import 'package:shared/src/json_converters.dart';
+import 'package:jars/jars.dart';
 part 'personname.g.dart';
 
 @CopyWith()
-@defJson
+@defJsonSerializable
 class PersonName {
   final String firstName;
   final String? lastName;

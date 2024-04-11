@@ -25,6 +25,7 @@ class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<Consumer>> {
         var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
         asyncGuard(() => PrimaryUserApi.createNewUser(result));
       } else {
+        print(event.toJson());
         guard(
           // ignore: invalid_use_of_visible_for_testing_member
           () => emit(BlocStateSuccess<Consumer>(event)),

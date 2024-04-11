@@ -89,9 +89,8 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
       id: json['id'] as String?,
       name: json['name'] as String?,
       address: json['address'] as String?,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
       coordinate: _$recordConvert(
         json['coordinate'],
         ($jsonValue) => (
@@ -103,7 +102,7 @@ Location _$LocationFromJson(Map<String, dynamic> json) => Location(
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'coordinate': {
         'lat': instance.coordinate.lat,
         'long': instance.coordinate.long,
@@ -111,6 +110,12 @@ Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
       'name': instance.name,
       'address': instance.address,
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
 
 $Rec _$recordConvert<$Rec>(
   Object? value,

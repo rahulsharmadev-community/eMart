@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shopping/utility/bloc_state.dart';
 
@@ -13,7 +12,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   }) : super(const CategoriesState.loading());
 
   fetchData(List<String>? data) async {
-    print(data);
     CategoriesState temp = state;
     if (data == null) {
       categoriesRepository.getALL().then((value) {

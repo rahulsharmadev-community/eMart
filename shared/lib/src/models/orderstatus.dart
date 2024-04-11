@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:jars_core/jars_core.dart';
+import 'package:jars/jars.dart';
+import 'package:shared/src/json_converters.dart';
 part 'orderstatus.g.dart';
 
 enum PaymentMode {
@@ -31,7 +32,14 @@ enum OrderState {
   cancelled,
 }
 
-@JsonSerializable(explicitToJson: true, constructor: '_')
+@JsonSerializable(
+  explicitToJson: true,
+  constructor: '_',
+  converters: [
+    DateTimeConverter(),
+    ColorConverter(),
+  ],
+)
 class OrderStatus {
   final String orderId;
   final DateTime lastUpdateAt;

@@ -43,7 +43,7 @@ abstract class _$ProductCWProxy {
 
   Product deliveryMetaData(Map<State, DeliveryMetaData> deliveryMetaData);
 
-  Product rating(int rating);
+  Product rating(double rating);
 
   Product totalReviews(int totalReviews);
 
@@ -74,7 +74,7 @@ abstract class _$ProductCWProxy {
     List<String>? keywords,
     Map<String, String>? detailedSpecs,
     Map<State, DeliveryMetaData>? deliveryMetaData,
-    int? rating,
+    double? rating,
     int? totalReviews,
     ProductStockStatus? status,
   });
@@ -148,7 +148,7 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
       this(deliveryMetaData: deliveryMetaData);
 
   @override
-  Product rating(int rating) => this(rating: rating);
+  Product rating(double rating) => this(rating: rating);
 
   @override
   Product totalReviews(int totalReviews) => this(totalReviews: totalReviews);
@@ -267,7 +267,7 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
       rating: rating == const $CopyWithPlaceholder() || rating == null
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
-          : rating as int,
+          : rating as double,
       totalReviews:
           totalReviews == const $CopyWithPlaceholder() || totalReviews == null
               ? _value.totalReviews
@@ -286,6 +286,102 @@ extension $ProductCopyWith on Product {
   /// Returns a callable class that can be used as follows: `instanceOfProduct.copyWith(...)` or like so:`instanceOfProduct.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$ProductCWProxy get copyWith => _$ProductCWProxyImpl(this);
+}
+
+abstract class _$ProductUnitCWProxy {
+  ProductUnit quantity(double? quantity);
+
+  ProductUnit weight(double? weight);
+
+  ProductUnit weightMeasurement(WeightMeasurement? weightMeasurement);
+
+  ProductUnit dimension(({double h, double l, double w})? dimension);
+
+  ProductUnit dimensionMeasurement(LengthMeasurement? dimensionMeasurement);
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductUnit(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductUnit(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductUnit call({
+    double? quantity,
+    double? weight,
+    WeightMeasurement? weightMeasurement,
+    ({double h, double l, double w})? dimension,
+    LengthMeasurement? dimensionMeasurement,
+  });
+}
+
+/// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfProductUnit.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfProductUnit.copyWith.fieldName(...)`
+class _$ProductUnitCWProxyImpl implements _$ProductUnitCWProxy {
+  const _$ProductUnitCWProxyImpl(this._value);
+
+  final ProductUnit _value;
+
+  @override
+  ProductUnit quantity(double? quantity) => this(quantity: quantity);
+
+  @override
+  ProductUnit weight(double? weight) => this(weight: weight);
+
+  @override
+  ProductUnit weightMeasurement(WeightMeasurement? weightMeasurement) =>
+      this(weightMeasurement: weightMeasurement);
+
+  @override
+  ProductUnit dimension(({double h, double l, double w})? dimension) =>
+      this(dimension: dimension);
+
+  @override
+  ProductUnit dimensionMeasurement(LengthMeasurement? dimensionMeasurement) =>
+      this(dimensionMeasurement: dimensionMeasurement);
+
+  @override
+
+  /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ProductUnit(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// ProductUnit(...).copyWith(id: 12, name: "My name")
+  /// ````
+  ProductUnit call({
+    Object? quantity = const $CopyWithPlaceholder(),
+    Object? weight = const $CopyWithPlaceholder(),
+    Object? weightMeasurement = const $CopyWithPlaceholder(),
+    Object? dimension = const $CopyWithPlaceholder(),
+    Object? dimensionMeasurement = const $CopyWithPlaceholder(),
+  }) {
+    return ProductUnit(
+      quantity: quantity == const $CopyWithPlaceholder()
+          ? _value.quantity
+          // ignore: cast_nullable_to_non_nullable
+          : quantity as double?,
+      weight: weight == const $CopyWithPlaceholder()
+          ? _value.weight
+          // ignore: cast_nullable_to_non_nullable
+          : weight as double?,
+      weightMeasurement: weightMeasurement == const $CopyWithPlaceholder()
+          ? _value.weightMeasurement
+          // ignore: cast_nullable_to_non_nullable
+          : weightMeasurement as WeightMeasurement?,
+      dimension: dimension == const $CopyWithPlaceholder()
+          ? _value.dimension
+          // ignore: cast_nullable_to_non_nullable
+          : dimension as ({double h, double l, double w})?,
+      dimensionMeasurement: dimensionMeasurement == const $CopyWithPlaceholder()
+          ? _value.dimensionMeasurement
+          // ignore: cast_nullable_to_non_nullable
+          : dimensionMeasurement as LengthMeasurement?,
+    );
+  }
+}
+
+extension $ProductUnitCopyWith on ProductUnit {
+  /// Returns a callable class that can be used as follows: `instanceOfProductUnit.copyWith(...)` or like so:`instanceOfProductUnit.copyWith.fieldName(...)`.
+  // ignore: library_private_types_in_public_api
+  _$ProductUnitCWProxy get copyWith => _$ProductUnitCWProxyImpl(this);
 }
 
 abstract class _$DeliveryMetaDataCWProxy {
@@ -421,17 +517,15 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
                     DeliveryMetaData.fromJson(e as Map<String, dynamic>)),
               ) ??
               const {},
-      rating: json['rating'] as int? ?? 0,
+      rating: (json['rating'] as num?)?.toDouble() ?? 0,
       totalReviews: json['totalReviews'] as int? ?? 0,
       status:
           $enumDecodeNullable(_$ProductStockStatusEnumMap, json['status']) ??
               ProductStockStatus.available,
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -459,8 +553,8 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
           .map((k, e) => MapEntry(_$StateEnumMap[k]!, e.toJson())),
       'totalReviews': instance.totalReviews,
       'rating': instance.rating,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };
 
 const _$StateEnumMap = {
@@ -504,10 +598,17 @@ const _$ProductStockStatusEnumMap = {
   ProductStockStatus.unavailable: 'unavailable',
 };
 
-ProductUnit _$ProductUnitFromJson(Map<String, dynamic> json) => ProductUnit._(
-      (json['quantity'] as num).toDouble(),
-      json['unitName'] as String,
-      json['unitSymbol'] as String,
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+ProductUnit _$ProductUnitFromJson(Map<String, dynamic> json) => ProductUnit(
+      quantity: (json['quantity'] as num?)?.toDouble(),
+      weight: (json['weight'] as num?)?.toDouble(),
+      weightMeasurement: $enumDecodeNullable(
+          _$WeightMeasurementEnumMap, json['weightMeasurement']),
       dimension: _$recordConvertNullable(
         json['dimension'],
         ($jsonValue) => (
@@ -523,8 +624,9 @@ ProductUnit _$ProductUnitFromJson(Map<String, dynamic> json) => ProductUnit._(
 Map<String, dynamic> _$ProductUnitToJson(ProductUnit instance) =>
     <String, dynamic>{
       'quantity': instance.quantity,
-      'unitName': instance.unitName,
-      'unitSymbol': instance.unitSymbol,
+      'weight': instance.weight,
+      'weightMeasurement':
+          _$WeightMeasurementEnumMap[instance.weightMeasurement],
       'dimension': instance.dimension == null
           ? null
           : {
@@ -535,6 +637,11 @@ Map<String, dynamic> _$ProductUnitToJson(ProductUnit instance) =>
       'dimensionMeasurement':
           _$LengthMeasurementEnumMap[instance.dimensionMeasurement],
     };
+
+const _$WeightMeasurementEnumMap = {
+  WeightMeasurement.gram: 'gram',
+  WeightMeasurement.kilogram: 'kilogram',
+};
 
 $Rec? _$recordConvertNullable<$Rec>(
   Object? value,

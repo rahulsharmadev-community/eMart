@@ -1,32 +1,24 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:shopping/modules/screens/dashboard/const.dart';
+import 'mobile_appbar.dart';
+import 'package:shopping/modules/screens/dashboard/dashboard_navigation_controller.dart';
 
-class eMartMobileDashBoard extends StatefulWidget {
+class eMartMobileDashBoard extends StatelessWidget {
   final Widget child;
+
   const eMartMobileDashBoard({super.key, required this.child});
 
   @override
-  State<eMartMobileDashBoard> createState() => _eMartMobileDashBoardState();
-}
-
-class _eMartMobileDashBoardState extends State<eMartMobileDashBoard> {
-  int currentIndex = 0;
-  @override
   Widget build(BuildContext context) {
-    onTap(int value) {
-      items[value].route.goNamed();
-      setState(() => currentIndex = value);
-    }
-
     return Scaffold(
+      appBar: const MobileAppBar(),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
+        currentIndex: DashboardNavigationController.instance.selectedIndex,
         items: items.map((e) => navItem(e.icon, e.title)).toList(),
-        onTap: onTap,
+        onTap: (_) => items[_].route.goNamed(),
       ),
-      body: widget.child,
+      body: child,
     );
   }
 

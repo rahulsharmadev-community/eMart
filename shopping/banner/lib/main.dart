@@ -5,7 +5,6 @@ import 'package:banner/widgets/alert_banner/alert_banner.dart';
 import 'package:banner/widgets/alert_banner/alert_model.dart';
 import 'package:banner/widgets/shufflebox.dart';
 import 'package:flutter/material.dart';
-import 'package:banner/banner.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

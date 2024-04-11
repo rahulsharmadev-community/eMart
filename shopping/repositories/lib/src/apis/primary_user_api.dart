@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/src/extenstion.dart';
 import 'package:repositories/src/utils/error_handler.dart';
@@ -8,7 +9,7 @@ import 'package:shared/models.dart';
 class PrimaryUserApi {
   final cf.DocumentReference _collection;
   final String uid;
-  PrimaryUserApi(this.uid, {cf.FirebaseFirestore? firestore})
+  PrimaryUserApi(this.uid)
       : _collection = FirebaseService.eMartConsumer.instanceOfFirestore.collection('USERS').doc(uid);
 
   static Future<void> createNewUser(Consumer value) async {

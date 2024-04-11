@@ -168,12 +168,10 @@ Seller _$SellerFromJson(Map<String, dynamic> json) => Seller(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      createdAt: json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-      lastUpdateAt: json['lastUpdateAt'] == null
-          ? null
-          : DateTime.parse(json['lastUpdateAt'] as String),
+      createdAt: _$JsonConverterFromJson<int, DateTime>(
+          json['createdAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
+          json['lastUpdateAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$SellerToJson(Seller instance) => <String, dynamic>{
@@ -187,8 +185,8 @@ Map<String, dynamic> _$SellerToJson(Seller instance) => <String, dynamic>{
       'sellerType': _$SellerTypeEnumMap[instance.sellerType]!,
       'shopIds': instance.shopIds,
       'panNumber': instance.panNumber,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'lastUpdateAt': instance.lastUpdateAt.toIso8601String(),
+      'createdAt': const DateTimeConverter().toJson(instance.createdAt),
+      'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };
 
 const _$SellerTypeEnumMap = {
@@ -196,3 +194,9 @@ const _$SellerTypeEnumMap = {
   SellerType.distributor: 'distributor',
   SellerType.wholesaler: 'wholesaler',
 };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);

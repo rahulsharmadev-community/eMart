@@ -27,7 +27,9 @@ class ProductRepository {
     return result;
   }
 
-  FutureOr<List<Product>> getByQuery(List<Query> queries) async {
+  FutureOr<List<Product>> getByQuery(Set<Query> queries) async {
+    logs.i('ProductRepository: getByQuery');
+    print(queries.map((e) => e).toList());
     final result = await api.getByQueries(queries);
     cache.addAll(result);
     return result;

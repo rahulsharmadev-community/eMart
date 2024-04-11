@@ -2,9 +2,11 @@
 import 'dart:async';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jars/jars.dart';
-import 'package:shared/models.dart';
+import 'package:repositories/repositories.dart';
+import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/screens/categories_screen/categories_screen.dart';
 import 'package:shopping/modules/screens/dashboard/dashboard.dart';
 import 'package:shopping/modules/screens/home_screen/home_screen.dart';
@@ -12,8 +14,10 @@ import 'package:shopping/modules/screens/order_screen/order_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/image_preview_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
-import 'package:shopping/modules/screens/search_screen/search_screen.dart';
+import 'package:shopping/modules/screens/product_query_screen/product_query_screen.dart';
+import 'package:shopping/modules/screens/search_screen/mobile/search_screen.dart';
 import 'package:shopping/modules/screens/wishlist_screen/wishlist_screen.dart';
+import 'package:shopping/utility/bloc_state.dart';
 import 'package:shopping/utility/utility.dart';
 part 'app_router.dart';
 
@@ -21,33 +25,33 @@ part 'app_router.dart';
 ///
 /// A static [config] variable that holds the [GoRouter] configuration.
 enum AppRoutes {
-  HomeScreen('home_screen'),
-  OrdersScreen('orders_screen'),
-  WishlistScreen('wishlist_screen'),
-  CategoriesScreen('categories_screen'),
-  ProfileScreen('profile_screen'),
-  CartScreen('cart_screen'),
+  HomeScreen('home'),
+  OrdersScreen('orders'),
+  WishlistScreen('wishlist'),
+  CategoriesScreen('categories'),
+  ProfileScreen('profile'),
+  CartScreen('cart'),
+  ProductQueryScreen('product_query'),
+  NotificationsScreen('notifications'),
+  SettingsScreen('settings'),
 
-  NotificationsScreen('notifications_screen'),
-  SettingsScreen('settings_screen'),
-
-  SearchKeywordScreen('search_keyword_screen'),
+  SearchKeywordScreen('search_keyword'),
 
   ///```
   /// Function(List<(String, Uint8List)>) onPreview: extra['onPreview'],
   /// bool forceOnlyOneClick: extra['forceOnlyOneClick'],
   /// VoidCallback onPop: AppNavigator.pop,
   /// ```
-  CameraScreen('camera_screen'),
+  CameraScreen('camera'),
 
   /// String title\
   /// String? url\
   /// Uint8List? bytes
-  ImagePreviewScreen('image_preview_screen'),
-  PrivacyHandlingScreen('privacy_handling_screen'),
-  HelpCenterScreen('help_center_screen'),
-  ErrorScreen('error_screen'),
-  LoadingScreen('loading_screen');
+  ImagePreviewScreen('image_preview'),
+  PrivacyHandlingScreen('privacy_handling'),
+  HelpCenterScreen('help_center'),
+  ErrorScreen('error'),
+  LoadingScreen('loading');
 
   const AppRoutes(this.name);
   final String name;

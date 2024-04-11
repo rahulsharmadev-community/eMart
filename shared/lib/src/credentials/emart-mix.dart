@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, Tar
 
 // ignore: camel_case_types
 class eMartMixFirebaseOptions {
-  static String get name => currentPlatform.projectId;
+  static const name = '[EMARTMIX]';
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;

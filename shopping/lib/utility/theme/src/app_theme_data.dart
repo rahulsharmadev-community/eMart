@@ -46,7 +46,7 @@ class AppThemeData {
       canvasColor: colorScheme.background,
       scaffoldBackgroundColor: colorScheme.background,
       colorScheme: colorScheme,
-      buttonBarTheme: ButtonBarThemeData(buttonHeight: 48),
+      buttonBarTheme: const ButtonBarThemeData(buttonHeight: 48),
       inputDecorationTheme: decoration.inputDecorationTheme(
           unfocus: colorScheme.outline,
           disable: colorScheme.outline,

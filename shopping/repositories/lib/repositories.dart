@@ -15,14 +15,11 @@ export 'src/models/alert_model.dart';
 export 'src/models/live_countdown_model.dart';
 
 import 'dart:async';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'src/extenstion.dart';
-import 'package:shared/credentials.dart';
+import 'package:shared/firebase_service.dart';
 
 Future<void> initializeRepository({bool emulator = false}) async {
-  await FirebaseService.initialize();
-
   if (emulator) {
     const host = 'localhost';
     // eMartConsumer

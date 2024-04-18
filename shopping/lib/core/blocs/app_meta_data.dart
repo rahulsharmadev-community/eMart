@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repositories/repositories.dart';
-import 'package:shopping/utility/bloc_state.dart';
+import 'package:jars/jars.dart';
 
 class AppMetaDataBloc extends Cubit<BlocState<AppMetaData>> {
   final AppMetaDataRepository repository;

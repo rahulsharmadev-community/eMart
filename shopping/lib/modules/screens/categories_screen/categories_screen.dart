@@ -5,7 +5,6 @@ import 'package:repositories/repositories.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/screens/categories_screen/cubit/categories_cubit.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
-import 'package:shopping/utility/bloc_state.dart';
 import 'package:shopping/utility/utility.dart';
 
 class CategoriesScreen extends StatelessWidget {
@@ -15,7 +14,8 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var data = context.read<AppMetaDataBloc>().appMetaData!;
-    var categories = ifNotNull(category, (_) => data.getCategoriesByTitle(_)) ?? data.publicCategories;
+    var categories =
+        category.ifNotNull(def: data.publicCategories, callback: (_) => data.getCategoriesByTitle(_));
     var repo = context.read<CategoriesRepository>();
 
     return BlocProvider(create: (context) {

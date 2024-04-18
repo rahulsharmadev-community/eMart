@@ -1,7 +1,5 @@
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
-import 'package:repositories/src/models/alert_model.dart';
-import 'package:repositories/src/models/live_countdown_model.dart';
 import 'package:repositories/src/utils/json_converters.dart';
 
 part 'appmetadata.g.dart';

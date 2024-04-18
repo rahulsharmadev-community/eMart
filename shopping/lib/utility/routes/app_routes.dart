@@ -17,7 +17,6 @@ import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
 import 'package:shopping/modules/screens/product_query_screen/product_query_screen.dart';
 import 'package:shopping/modules/screens/search_screen/mobile/search_screen.dart';
 import 'package:shopping/modules/screens/wishlist_screen/wishlist_screen.dart';
-import 'package:shopping/utility/bloc_state.dart';
 import 'package:shopping/utility/utility.dart';
 part 'app_router.dart';
 

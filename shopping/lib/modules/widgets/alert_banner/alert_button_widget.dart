@@ -29,8 +29,9 @@ class AlertButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Text? textWidget =
-        ifNotNull(text, (_) => Text(_, style: context.textTheme.labelMedium?.copyWith(color: textColor)));
+    Text? textWidget = text.ifNotNull(
+        def: null,
+        callback: (_) => Text(_, style: context.textTheme.labelMedium?.copyWith(color: textColor)));
 
     if (imageExist) {
       return Container(
@@ -44,8 +45,9 @@ class AlertButtonWidget extends StatelessWidget {
         decoration: BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(500),
-            image: ifNotNull(
-                imageUrl, (_) => DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(_)))),
+            image: imageUrl.ifNotNull(
+                def: null,
+                callback: (_) => DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(_)))),
         child: textWidget,
       );
     }

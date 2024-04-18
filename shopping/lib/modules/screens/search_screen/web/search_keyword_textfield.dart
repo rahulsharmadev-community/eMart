@@ -91,9 +91,11 @@ class _SearchKeywordTextFieldState extends State<SearchKeywordTextField> {
   }
 
   void onSelected(Keyword? value) {
-    ifNotNull(value, (_) {
-      return AppRoutes.ProductQueryScreen.goNamed(extra: KeywordQuery([_.label]));
-    });
+    value.ifNotNull(
+        def: null,
+        callback: (_) {
+          return AppRoutes.ProductQueryScreen.goNamed(extra: KeywordQuery([_.label]));
+        });
   }
 
   void updateValue(BuildContext context, SearchState state) {
@@ -103,9 +105,9 @@ class _SearchKeywordTextFieldState extends State<SearchKeywordTextField> {
             .map((e) => DropdownMenuEntry(
                 value: e,
                 label: e.label,
-                leadingIcon: ifNotNull(
-                        e.image,
-                        (_) => CachedNetworkImage(
+                leadingIcon: e.image.ifNotNull(
+                        def: null,
+                        callback: (_) => CachedNetworkImage(
                               imageUrl: _,
                               fit: BoxFit.cover,
                               width: kToolbarHeight,

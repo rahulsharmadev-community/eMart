@@ -21,13 +21,12 @@ dependencies:
   hydrated_bloc: ^9.1.4
 
   google_sign_in: ^6.2.1
-
-  firebase_messaging: ^14.7.20
-  firebase_storage: ^11.6.10
+  firebase_messaging: ^14.8.1
+  firebase_storage: ^11.7.1
   firebase_auth: ^4.17.9
-  cloud_firestore: ^4.15.9
-  firebase_database: ^10.4.10
-  firebase_core: ^2.27.1
+  cloud_firestore: ^4.16.1
+  firebase_database: ^10.5.1
+  firebase_core: ^2.29.0
   json_annotation: ^4.8.1
   jars:
     git:

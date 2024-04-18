@@ -1,10 +1,18 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:shared/src/credentials/firebase_credential.dart';
 
 // ignore: camel_case_types
-class eMartMixFirebaseOptions {
-  static const name = '[EMARTMIX]';
-  static FirebaseOptions get currentPlatform {
+class eMartMixFirebaseCredential extends FirebaseCredential {
+  const eMartMixFirebaseCredential._();
+  static const _instance = eMartMixFirebaseCredential._();
+  static eMartMixFirebaseCredential get instance => _instance;
+
+  @override
+  String get name => '[EMARTMIX]';
+
+  @override
+  FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return web;
     }
@@ -38,22 +46,25 @@ class eMartMixFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBX0bQvdLZSyMMfuWDpx4-3AfmWIBoSB0k',
-    appId: '1:321032932616:web:c2c0518aed601f30b830bd',
-    databaseURL: 'https://emart-mix-default-rtdb.asia-southeast1.firebasedatabase.app',
-    messagingSenderId: '321032932616',
-    projectId: 'emart-mix',
-    authDomain: 'emart-mix.firebaseapp.com',
-    storageBucket: 'emart-mix.appspot.com',
-  );
+  FirebaseOptions get web => const FirebaseOptions(
+        apiKey: 'AIzaSyBX0bQvdLZSyMMfuWDpx4-3AfmWIBoSB0k',
+        appId: '1:321032932616:web:c2c0518aed601f30b830bd',
+        databaseURL: 'https://emart-mix-default-rtdb.asia-southeast1.firebasedatabase.app',
+        messagingSenderId: '321032932616',
+        projectId: 'emart-mix',
+        authDomain: 'emart-mix.firebaseapp.com',
+        storageBucket: 'emart-mix.appspot.com',
+      );
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDqi1hseHYAQnFOCfvFJtf-drYHrOSR_X4',
-    appId: '1:321032932616:android:4af314b62621b145b830bd',
-    databaseURL: 'https://emart-mix-default-rtdb.asia-southeast1.firebasedatabase.app',
-    messagingSenderId: '321032932616',
-    projectId: 'emart-mix',
-    storageBucket: 'emart-mix.appspot.com',
-  );
+  FirebaseOptions get android => const FirebaseOptions(
+        apiKey: 'AIzaSyDqi1hseHYAQnFOCfvFJtf-drYHrOSR_X4',
+        appId: '1:321032932616:android:4af314b62621b145b830bd',
+        databaseURL: 'https://emart-mix-default-rtdb.asia-southeast1.firebasedatabase.app',
+        messagingSenderId: '321032932616',
+        projectId: 'emart-mix',
+        storageBucket: 'emart-mix.appspot.com',
+      );
+
+  @override
+  String get clientId => '';
 }

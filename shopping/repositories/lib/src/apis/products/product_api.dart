@@ -30,14 +30,11 @@ class ProductsApi {
   }
 
   Future<void> addNewProduct(Product product) async {
-    await productsCol
-        .doc(product.productId)
-        .set(product.toJson())
-        .then((value) => product)
-        .catchError((e) => logs.e(e));
+    await productsCol.doc(product.productId).set(product.toJson()).then((value) => product);
   }
 
-  Future<List<Product>> getByQueries(Set<Query> queries, {DescendingSortBy? sortBy}) async {
+  Future<List<Product>> getByQueries(Set<Query> queries,
+      {DescendingSortBy sortBy = DescendingSortBy.reviews}) async {
     logs.i('ProductsApi: getByQueries');
 
     if (queries.isEmpty) return const [];
@@ -54,11 +51,10 @@ class ProductsApi {
 
     var query = productsCol.where(combineFilter);
 
-    if (sortBy != null) {
-      await query.orderBy(sortBy.field, descending: true).get().then(onValue);
-    } else {
-      await query.get().then(onValue);
-    }
+    // fs.Order();
+
+    await query.orderBy(sortBy.field, descending: true).limit(30).get().then(onValue);
+
     return list;
   }
 
@@ -81,28 +77,3 @@ class ProductsApi {
     await metaDataReference.update(map);
   }
 }
-
-// fs.Filter _getFilter(Query query) {
-//   switch (query) {
-//     case PriceQuery _:
-//       return fs.Filter(query.field, isGreaterThanOrEqualTo: query.min, isLessThanOrEqualTo: query.max);
-//     case DiscountQuery _:
-//       return fs.Filter(query.field, isGreaterThanOrEqualTo: query.discount);
-//     case KeywordQuery _:
-//       return fs.Filter(query.field, arrayContainsAny: query.value);
-//     case ReplacementQuery _:
-//       return fs.Filter(query.field, isNull: false);
-//     case RefundQuery _:
-//       return fs.Filter(query.field, isNull: false);
-//     case AfterSalesServiceQuery _:
-//       return fs.Filter(query.field, isNull: false, isEqualTo: query.seviceId);
-//     case CategoriesQuery _:
-//       return fs.Filter(query.field, arrayContainsAny: query.value);
-//     case ReviewQuery _:
-//       return fs.Filter(query.field, isGreaterThan: query.isGreaterThan);
-//     case RatingQuery _:
-//       return fs.Filter(query.field, isGreaterThan: query.isGreaterThan);
-//     default:
-//       return fs.Filter(query.field, arrayContainsAny: (query as FeaturesQuery).value);
-//   }
-// }

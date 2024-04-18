@@ -45,7 +45,7 @@ class FlutterBlocObserver extends BlocObserver {
     var str = {
       'BLOC': '${bloc.runtimeType}',
       'ACTION': action,
-      'CURRENT STATE': '${bloc.state.runtimeType}',
+      'CURRENT STATE': '${bloc.state}',
       'NEXT STATE': '${nextState.runtimeType}'
     };
     Logger().d(str);

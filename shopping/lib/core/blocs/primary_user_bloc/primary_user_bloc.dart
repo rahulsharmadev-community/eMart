@@ -3,9 +3,8 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:meta/meta.dart';
 import 'package:repositories/repositories.dart';
-import 'package:shared/credentials.dart';
+import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
-import 'package:shopping/utility/bloc_state.dart';
 import 'package:shopping/utility/extensions.dart';
 
 part 'primary_user_event.dart';

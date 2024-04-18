@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:repositories/repositories.dart';
-import 'package:shopping/utility/bloc_state.dart';
+import 'package:jars/jars.dart';
 
 part 'categories_state.dart';
 

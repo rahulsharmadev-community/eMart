@@ -3,8 +3,9 @@ import 'package:jars/jars.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
 import 'package:ico/ico.dart';
 
-class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MobileAppBar({super.key});
+class MobileSearchAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final PreferredSizeWidget? bottom;
+  const MobileSearchAppBar({super.key, this.bottom});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 8,
       toolbarHeight: 64,
       title: buildSearchField(context, data),
+      bottom: bottom,
       actions: [
         SizedBox.square(
             dimension: 48,
@@ -46,5 +48,5 @@ class MobileAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(48 + 16);
+  Size get preferredSize => Size.fromHeight(48 + 16 + (bottom?.preferredSize.height ?? 0));
 }

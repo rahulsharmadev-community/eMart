@@ -5,7 +5,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
-import 'package:shared/credentials.dart';
+import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
 
 part 'product_api.dart';
@@ -29,7 +29,6 @@ class ProductRepository {
 
   FutureOr<List<Product>> getByQuery(Set<Query> queries) async {
     logs.i('ProductRepository: getByQuery');
-    print(queries.map((e) => e).toList());
     final result = await api.getByQueries(queries);
     cache.addAll(result);
     return result;

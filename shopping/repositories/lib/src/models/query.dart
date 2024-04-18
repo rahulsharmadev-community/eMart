@@ -11,6 +11,8 @@ enum DescendingSortBy {
   const DescendingSortBy(this.field);
 }
 
+
+// Query is an Interface
 sealed class Query {
   /// The field or [FieldPath] to filter on.
   Object get field;

@@ -25,39 +25,38 @@ class AlertBanner extends StatelessWidget {
       required this.expiry,
       required this.decoration,
       required this.border});
-  AlertContent get ctx => content;
 
   @override
   Widget build(BuildContext context) {
     Widget? child;
-    if (ctx.isOnyImage) {
+    if (content.isOnyImage) {
       child = CachedNetworkImage(
-        imageUrl: ctx.imageUrl!,
+        imageUrl: content.imageUrl!,
         fit: BoxFit.cover,
         height: kToolbarHeight,
         width: MediaQuery.of(context).size.width,
       );
-      if (ctx.isMarquee) child = Marquee(widget: child, velocity: 25);
+      if (content.isMarquee) child = Marquee(widget: child, velocity: 25);
       return child;
     }
 
-    if (ctx.text != null) {
+    if (content.text != null) {
       child = Text(
-        ctx.text!,
-        maxLines: ctx.isMarquee ? 1 : ctx.maxLines,
-        overflow: ctx.maxLines != null ? TextOverflow.ellipsis : null,
+        content.text!,
+        maxLines: content.isMarquee ? 1 : content.maxLines,
+        overflow: content.maxLines != null ? TextOverflow.ellipsis : null,
         style: context.textTheme.labelMedium,
       );
     }
 
-    if (!ctx.isMarquee && ctx.buttons != null && ctx.buttons!.isNotEmpty) {
+    if (!content.isMarquee && content.buttons != null && content.buttons!.isNotEmpty) {
       child = Column(
         mainAxisSize: MainAxisSize.min,
         children: [child!, _buildButtons(context)],
       );
     }
 
-    if (ctx.isMarquee) child = Marquee(widget: child, blankSpace: 32, velocity: 25);
+    if (content.isMarquee) child = Marquee(widget: child, blankSpace: 32, velocity: 25);
 
     return Container(
       decoration: _getDecoration(),
@@ -74,9 +73,9 @@ class AlertBanner extends StatelessWidget {
   }
 
   BoxDecoration _getDecoration() {
-    var image = ctx.imageUrl == null
+    var image = content.imageUrl == null
         ? null
-        : DecorationImage(image: Image.network(ctx.imageUrl!).image, fit: BoxFit.cover);
+        : DecorationImage(image: Image.network(content.imageUrl!).image, fit: BoxFit.cover);
     return BoxDecoration(
         border: border && decoration ? Border.all() : null,
         borderRadius: decoration ? BorderRadius.circular(8) : null,
@@ -86,8 +85,8 @@ class AlertBanner extends StatelessWidget {
 
   Widget _buildButtons(BuildContext context) {
     return Row(
-      mainAxisAlignment: ctx.buttonAlignment ?? MainAxisAlignment.end,
-      children: ctx.buttons!.map((e) {
+      mainAxisAlignment: content.buttonAlignment ?? MainAxisAlignment.end,
+      children: content.buttons!.map((e) {
         return AlertButtonWidget(
             text: e.text,
             imageUrl: e.imageUrl,

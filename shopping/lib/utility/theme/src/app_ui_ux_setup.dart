@@ -1,8 +1,8 @@
 part of 'app_theme_data.dart';
 
 class AppDecoration {
-  Duration get animDelay => Duration(milliseconds: 300);
-  Duration get autoScrollDelay => Duration(milliseconds: 1000);
+  Duration get animDelay => const Duration(milliseconds: 300);
+  Duration get autoScrollDelay => const Duration(milliseconds: 1000);
   const AppDecoration._();
   BorderRadius messageBorderRadius(
           {bool isTopLeft = false,

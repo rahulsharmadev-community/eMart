@@ -1,6 +1,5 @@
 // ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
@@ -8,7 +7,6 @@ import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/widgets/alert_banner/alert_banner.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
 import 'package:shopping/modules/widgets/live_countdown_banner/live_countdown_banner.dart';
-import 'package:shopping/utility/bloc_state.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,6 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build HomeScreen');
     AppMetaData? appMetaData = context.read<AppMetaDataBloc>().appMetaData;
 
     var items = <Widget>[
@@ -98,14 +97,16 @@ List<Widget> buildStickyAlertBanners(AppMetaData data) {
         showCloseButton: data.localAlertBanner!.homeScreen!.showCloseButton,
         prefixIcon: data.localAlertBanner!.homeScreen!.prefixIcon,
       ),
-    if (data.liveCountdownBanner != null)
-      LiveCountdownBanner(
-        height: data.liveCountdownBanner!.height,
-        target: data.liveCountdownBanner!.target,
-        imageUrl: data.liveCountdownBanner!.imageUrl,
-        returnOnDone: data.liveCountdownBanner!.returnOnDone,
-        onDone: (p0) {},
-        backgroundColor: data.liveCountdownBanner!.backgroundColor,
-      ),
+    if (data.liveCountdownBanner != null) 
+    LiveCountdownBanner(
+      height: data.liveCountdownBanner!.height,
+      target: data.liveCountdownBanner!.target,
+      imageUrl: data.liveCountdownBanner!.imageUrl,
+      returnOnDone: data.liveCountdownBanner!.returnOnDone,
+      onDone: (p0) {},
+      backgroundColor: data.liveCountdownBanner!.backgroundColor,
+    ),
   ];
 }
+
+

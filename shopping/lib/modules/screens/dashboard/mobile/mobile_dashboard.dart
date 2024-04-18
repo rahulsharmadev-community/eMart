@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'mobile_appbar.dart';
+import '../../../widgets/mobile_appbar.dart';
 import 'package:shopping/modules/screens/dashboard/dashboard_navigation_controller.dart';
 
 class eMartMobileDashBoard extends StatelessWidget {
@@ -12,7 +12,7 @@ class eMartMobileDashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MobileAppBar(),
+      appBar: const MobileSearchAppBar(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: DashboardNavigationController.instance.selectedIndex,
         items: items.map((e) => navItem(e.icon, e.title)).toList(),

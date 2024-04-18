@@ -1,5 +1,4 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
 import 'states.dart';
@@ -153,13 +152,20 @@ class ProductUnit {
 }
 
 enum DeliveryEstimation {
-  oneToTwo("1-2 days"),
-  twoToThree("2-3 days"),
-  fiveToSeven("5-7 days"),
-  tenToFifteen("10-15 days");
+  oneToTwo(1, 2),
+  twoToThree(2, 3),
+  fiveToSeven(5, 7),
+  tenToFifteen(10, 15);
 
-  const DeliveryEstimation(this.description);
-  final String description;
+  const DeliveryEstimation(this.minDay, this.maxDay);
+  final int minDay;
+  final int maxDay;
+
+  @override
+  String toString() => "$minDay - $maxDay days";
+
+  String get label =>
+      DateTime.now().add(Duration(days: maxDay)).format().yMMMEd(isFull: true).split(',').first;
 }
 
 @CopyWith()

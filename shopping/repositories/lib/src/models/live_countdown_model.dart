@@ -5,7 +5,7 @@ import 'package:repositories/src/utils/json_converters.dart';
 
 part 'live_countdown_model.g.dart';
 
-textFrom(Map<String, dynamic> json) => ifNotNull(json['backgroundColor'] as String?, (_) => _.toColor);
+textFrom(Map<String, dynamic> json) => json['backgroundColor'].ifNotNull(null, (_) => _.toColor);
 textTo(LiveCountdownModel inst) => inst.backgroundColor?.toHex;
 
 @CopyWith()

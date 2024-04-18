@@ -26,29 +26,32 @@ class LiveCountdownBanner extends StatefulWidget {
 
 class LiveCountdownBannerState extends State<LiveCountdownBanner> {
   int dd = 0, hh = 0, mm = 0, ss = 0;
-  late StreamController<Duration> controller;
-  late Timer timer;
+  StreamController<Duration>? controller;
+  Timer? timer;
+
+  DateTime get now => DateTime.now();
+  Duration get difference => widget.target.difference(now);
+  bool get hasTimeLeft => difference > Duration.zero;
   @override
   void initState() {
-    controller = StreamController<Duration>();
-
-    timer = Timer.periodic(1.seconds, (_) {
-      var difference = widget.target.difference(DateTime.now());
-      controller.sink.add(difference);
-      if (difference == Duration.zero) {
-        if (widget.onDone != null) widget.onDone!(widget.returnOnDone);
-        timer.cancel();
-        controller.close();
-      }
-    });
-
+    if (hasTimeLeft) {
+      controller = StreamController<Duration>();
+      timer = Timer.periodic(1.seconds, (_) {
+        controller?.sink.add(difference);
+        if (difference <= Duration.zero) {
+          if (widget.onDone != null) widget.onDone!(widget.returnOnDone);
+          timer?.cancel();
+          controller?.close();
+        }
+      });
+    }
     super.initState();
   }
 
   @override
   void dispose() {
-    timer.cancel();
-    controller.close();
+    timer?.cancel();
+    controller?.close();
     super.dispose();
   }
 
@@ -56,38 +59,49 @@ class LiveCountdownBannerState extends State<LiveCountdownBanner> {
   Widget build(BuildContext context) {
     var boxDecoration = BoxDecoration(
         color: widget.backgroundColor,
-        image: ifNotNull(widget.imageUrl,
-            (url) => DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(url))));
+        image: widget.imageUrl.ifNotNull(
+            def: null,
+            callback: (url) {
+              return DecorationImage(fit: BoxFit.cover, image: CachedNetworkImageProvider(url));
+            }));
     return Container(
       height: widget.height,
       decoration: boxDecoration,
       alignment: Alignment.center,
       margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: StreamBuilder(
-        stream: controller.stream,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            setValue(snapshot.data!);
-            return buildCountdown();
-          }
-          return const CircularProgressIndicator();
-        },
-      ),
+      child: !hasTimeLeft ? text() : buildCountdown(),
     );
   }
 
-  Text buildCountdown() {
-    String time = '';
-    if (dd != 0) time += ' : ${'$dd'.padLeft(2, '0')}';
-    if (hh != 0) time += ' : ${'$hh'.padLeft(2, '0')}';
-    if (mm != 0) time += ' : ${'$mm'.padLeft(2, '0')}';
-    if (ss != 0) time += ' : ${'$ss'.padLeft(2, '0')}';
-
-    return Text(
-      time != '' ? time.substring(3) : 'Live Countdown End',
-      style: context.textTheme.headlineMedium,
+  StreamBuilder<Duration> buildCountdown() {
+    return StreamBuilder(
+      stream: controller!.stream,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          setValue(snapshot.data!);
+          return countdownText();
+        }
+        return const CircularProgressIndicator();
+      },
     );
   }
+
+  Text countdownText() {
+    final List<String> parts = [];
+    if (dd != 0) parts.add(dd.toString().padLeft(2, '0'));
+    if (hh != 0) parts.add(hh.toString().padLeft(2, '0'));
+    if (mm != 0) parts.add(mm.toString().padLeft(2, '0'));
+    if (ss != 0) parts.add(ss.toString().padLeft(2, '0'));
+
+    final String time = parts.join(' : ');
+
+    return text(time);
+  }
+
+  Text text([String? time]) => Text(
+        time.ifNotNull(def: 'Live Countdown End', callback: (_) => _),
+        style: context.textTheme.headlineMedium,
+      );
 
   void setValue(Duration duration) {
     dd = duration.inDays;

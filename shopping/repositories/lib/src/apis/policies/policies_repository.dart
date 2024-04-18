@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
-import 'package:shared/credentials.dart';
+import 'package:shared/firebase_service.dart';
 import 'package:firebase_database/firebase_database.dart' as db;
 
 part 'policies_api.dart';

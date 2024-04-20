@@ -69,6 +69,13 @@ class _AppRouter {
         ]),
 
     GoRoute(
+      name: AppRoutes.ProductScreen.name,
+      path: '/${AppRoutes.ProductScreen.name}',
+      builder: (context, state) {
+        return ProductScreen(state.extra as String);
+      },
+    ),
+    GoRoute(
       name: AppRoutes.SearchKeywordScreen.name,
       path: '/${AppRoutes.SearchKeywordScreen.name}',
       builder: (context, state) {

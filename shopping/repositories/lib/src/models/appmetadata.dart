@@ -14,6 +14,8 @@ class AppMetaData {
   final AlertModel? orderProgressAlertBanner;
   final LiveCountdownModel? liveCountdownBanner;
 
+  
+
   List<String>? getCategoriesByTitle(String title) =>
       categories.firstWhereOrNull((e) => e.title == title)?.categories;
 

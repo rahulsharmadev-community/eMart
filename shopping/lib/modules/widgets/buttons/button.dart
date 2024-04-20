@@ -41,6 +41,7 @@ class DefaultButton extends StatelessWidget {
       textStyle: style ?? context.textTheme.titleMedium,
       shape: RoundedRectangleBorder(borderRadius: borderRadius ?? BorderRadius.zero),
       fixedSize: const Size.fromHeight(double.maxFinite),
+      minimumSize: const Size.fromHeight(double.maxFinite),
     );
     child = !filledTone
         ? FilledButton(style: styleFrom, onPressed: onPressed, child: child)

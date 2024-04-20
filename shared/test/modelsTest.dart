@@ -1,51 +1,76 @@
+// ignore: file_names
+import 'dart:convert';
 
 import 'package:shared/models.dart';
 
+import 'json/products.dart';
 
 void main() {
-  var product = Product(
-      shopId: "shopid011",
-      mrp: 2200,
-      discount: 20,
-      title: "JBL Tune 510BT",
-      thumbnail: "https://m.media-amazon.com/images/I/41ULm0i+k7L._SX466_.jpg",
-      unit: ProductUnit.piece(1),
-      productBrand: "JBL",
-      warrantyPeriod: DurationPeriod.year(1),
-      category: ['headphone', 'soundbar'],
-      afterSalesServiceId: "f16ee39d-2599-5d85-b7e2-72bacb17edfe",
-      refund: DurationPeriod.day(7),
-      replacement: DurationPeriod.day(7),
-      keywords: ["JBL", "headphone"],
-      status: ProductStockStatus.available,
-      imageUrls: [
-        "https://m.media-amazon.com/images/I/41ULm0i+k7L._SX466_.jpg",
-        "https://m.media-amazon.com/images/I/41gLWKu5qkL._SX466_.jpg"
-      ],
-      shotDescription:
-          "The JBL Tune 510BT headphones let you stream powerful JBL Pure Bass sound with no strings attached. Easy to use, these headphones provide up to 40 hours of pure pleasure and an extra 2 hours of battery with just 5 minutes of power with the USB-C charging cable. And if a call comes in while you are watching a video on another device, the JBL Tune 510BT seamlessly switches to your mobile. Bluetooth 5.0 enabled and designed to be comfortable, the JBL Tune 510BT headphones also allow you to connect to Siri or Google without using your mobile device. Available in multiple fresh colors and foldable for easy portability, the JBL Tune 510BT headphones are a grab ‘n go solution that helps you to inject music into every aspect of your busy life.",
-      detailedSpecs: {
-        "Brand": "JBL",
-        "Model Name": "Tune",
-        "Colour": "White",
-        "Form Factor": "On Ear",
-        "Connectivity Technology": "Wireless",
-      },
-      feature: [
-        "Quick Charging",
-        "Dual Pairing",
-        "Bluetooth 5.0",
-        "Voice Assistant Support",
-      ],
-      deliveryMetaData: {
-        State.INAS: DeliveryMetaData(deliveryEstimation: DeliveryEstimation.tenToFifteen, deliveryCost: 20),
-        State.INDL: DeliveryMetaData(deliveryEstimation: DeliveryEstimation.oneToTwo)
-      },
-      variants: [
-        "productid1",
-        "productid02",
-      ]);
-  print(Product.fromJson(product.toJson()));
+  Map<String, dynamic> reviews = {
+    '0393caeb-c625-4b51-a25c-e829ed8edfb4': Review(
+      title: "Amazing Product!",
+      text: "This product exceeded my expectations. It's well-built, durable, and looks great!",
+      rating: 4.5,
+      reviewedBy: "JohnDoe",
+      imageUrls: ["https://example.com/image1.jpg", "https://example.com/image2.jpg"],
+    ).toJson(),
+    '088af770-8f60-4dca-9dd5-c3a958e59b0b': Review(
+      title: "Disappointing Quality",
+      text: "I was not satisfied with this product. The quality was poor and it broke easily.",
+      rating: 2.0,
+      reviewedBy: "JaneSmith",
+    ).toJson(),
+    '13b38bd2-7c67-431e-9e62-89566f1c9183': Review(
+      title: "Great Value for Money",
+      text: "This product is a steal for the price! It works perfectly and has all the features I need.",
+      rating: 5.0,
+      reviewedBy: "HappyCustomer123",
+    ).toJson(),
+    '250db886-7ff1-49cd-b7a0-c30970f67776': Review(
+      title: "Average Product",
+      text: "This product is neither great nor terrible. It gets the job done, but nothing special.",
+      rating: 3.0,
+      reviewedBy: "NeutralReviewer",
+    ).toJson(),
+    '272ade91-026b-499d-b954-2d29b05f4c7d': Review(
+      title: "Excellent Customer Service",
+      text:
+          "I had an issue with my order, but the customer service team was very helpful and resolved it quickly.",
+      rating: 4.5,
+      reviewedBy: "SatisfiedCustomer",
+    ).toJson(),
+    '331e61b5-5862-4e99-a336-4b37db657862': Review(
+      title: "Not Worth the Price",
+      text: "I expected more for the price I paid. The product feels cheaply made.",
+      rating: 2.5,
+      reviewedBy: "BudgetBuyer",
+    ).toJson(),
+    'b4bb71ec-b644-4d81-ab9d-25efa925bd93': Review(
+      title: "Fast Shipping",
+      text: "I received my order sooner than expected. The shipping was quick and hassle-free.",
+      rating: 4.0,
+      reviewedBy: "SpeedyDelivery",
+    ).toJson(),
+    '876c8b5e-fe88-4562-a092-be3a66e1dd5a': Review(
+      title: "Impressive Features",
+      text: "This product has so many useful features! It's definitely worth the investment.",
+      rating: 4.5,
+      reviewedBy: "TechEnthusiast",
+    ).toJson(),
+    '9753ecea-194d-4e4a-8ab1-45bf730b7c6b': Review(
+      title: "Poor Durability",
+      text: "Unfortunately, this product did not last long. It broke after just a few uses.",
+      rating: 2.0,
+      reviewedBy: "FrustratedBuyer",
+    ).toJson(),
+    'b4bb71ec-b644-4d81-ab9d-25efa925bd92': Review(
+      title: "Looks Better in Pictures",
+      text: "The product looks much nicer in the pictures than it does in person. I'm a bit disappointed.",
+      rating: 3.0,
+      reviewedBy: "VisualBuyer",
+    ).toJson(),
+  };
+  print(jsonEncode(reviews));
 
   // group('Product Validation\n\t- ', () {
   //   int i = 0;

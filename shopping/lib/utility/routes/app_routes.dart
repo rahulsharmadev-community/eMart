@@ -15,6 +15,7 @@ import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/image_preview_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
 import 'package:shopping/modules/screens/product_query_screen/product_query_screen.dart';
+import 'package:shopping/modules/screens/product_screen/product_screen.dart';
 import 'package:shopping/modules/screens/search_screen/mobile/search_screen.dart';
 import 'package:shopping/modules/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:shopping/utility/utility.dart';
@@ -33,6 +34,7 @@ enum AppRoutes {
   ProductQueryScreen('product_query'),
   NotificationsScreen('notifications'),
   SettingsScreen('settings'),
+  ProductScreen('product'),
 
   SearchKeywordScreen('search_keyword'),
 

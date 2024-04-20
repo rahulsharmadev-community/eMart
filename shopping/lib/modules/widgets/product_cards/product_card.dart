@@ -27,7 +27,7 @@ class RegularProductCard extends StatelessWidget {
     double? height;
     if (type == ItemCardType.vertical) height = 350;
     return InkWell(
-      onTap: () => AppRoutes.HomeScreen.pushNamed(),
+      onTap: () => AppRoutes.ProductScreen.pushNamed(extra: product.productId),
       child: ItemCard(
         key: globalKey,
         type,
@@ -58,12 +58,14 @@ class RegularProductCard extends StatelessWidget {
             onPressed: () {},
             filledTone: true,
             padding: EdgeInsets.zero,
+            borderRadius: BorderRadius.circular(100),
           ).tightFit(),
           const SizedBox(width: 6),
           DefaultButton(
             'Buy',
             onPressed: () {},
             padding: EdgeInsets.zero,
+            borderRadius: BorderRadius.circular(100),
           ).tightFit(),
         ],
       ),

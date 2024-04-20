@@ -17,6 +17,8 @@ class LiveCountdownModel {
   final Color? backgroundColor;
   final String? returnOnDone;
 
+  bool get isExpired => DateTime.now() > target;
+
   const LiveCountdownModel({
     required this.target,
     this.height = kToolbarHeight,

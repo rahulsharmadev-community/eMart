@@ -1,4 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:jars/jars.dart';
 import 'package:shared/src/json_converters.dart';
 part 'orderstatus.g.dart';

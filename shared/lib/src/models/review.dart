@@ -23,7 +23,7 @@ class Review {
   @CopyWithField.immutable()
   final String reviewId;
 
-  /// User ID of the reviewer.
+  /// User name of the reviewer.
   @CopyWithField.immutable()
   final String reviewedBy;
 
@@ -37,7 +37,7 @@ class Review {
   final String? text;
 
   /// Rating given by the reviewer (typically on a scale of 1 to 5).
-  final int rating;
+  final double rating;
 
   @CopyWithField.immutable()
   final DateTime createdAt;

@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('build HomeScreen');
     AppMetaData? appMetaData = context.read<AppMetaDataBloc>().appMetaData;
 
     var items = <Widget>[
@@ -97,16 +96,14 @@ List<Widget> buildStickyAlertBanners(AppMetaData data) {
         showCloseButton: data.localAlertBanner!.homeScreen!.showCloseButton,
         prefixIcon: data.localAlertBanner!.homeScreen!.prefixIcon,
       ),
-    if (data.liveCountdownBanner != null) 
-    LiveCountdownBanner(
-      height: data.liveCountdownBanner!.height,
-      target: data.liveCountdownBanner!.target,
-      imageUrl: data.liveCountdownBanner!.imageUrl,
-      returnOnDone: data.liveCountdownBanner!.returnOnDone,
-      onDone: (p0) {},
-      backgroundColor: data.liveCountdownBanner!.backgroundColor,
-    ),
+    if (data.liveCountdownBanner != null && !data.liveCountdownBanner!.isExpired)
+      LiveCountdownBanner(
+        height: data.liveCountdownBanner!.height,
+        target: data.liveCountdownBanner!.target,
+        imageUrl: data.liveCountdownBanner!.imageUrl,
+        returnOnDone: data.liveCountdownBanner!.returnOnDone,
+        onDone: (p0) {},
+        backgroundColor: data.liveCountdownBanner!.backgroundColor,
+      ),
   ];
 }
-
-

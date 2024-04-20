@@ -17,11 +17,11 @@ dependencies:
   ico: ^0.0.3
   logger: ^2.1.0
   rxdart: ^0.27.7
+  readmore: ^3.0.0
   path_provider: ^2.1.2
   device_info_plus: ^9.1.2
   flutter_svg: ^2.0.10+1
   flutter_markdown: ^0.6.23
-  carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
   smooth_page_indicator: ^1.1.0
   flutter_local_notifications: ^17.0.0

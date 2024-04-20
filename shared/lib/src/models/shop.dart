@@ -1,5 +1,4 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:jars/jars.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';

@@ -11,7 +11,7 @@ abstract class _$ReviewCWProxy {
 
   Review text(String? text);
 
-  Review rating(int rating);
+  Review rating(double rating);
 
   Review imageUrls(List<String> imageUrls);
 
@@ -24,7 +24,7 @@ abstract class _$ReviewCWProxy {
   Review call({
     String? title,
     String? text,
-    int? rating,
+    double? rating,
     List<String>? imageUrls,
   });
 }
@@ -42,7 +42,7 @@ class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
   Review text(String? text) => this(text: text);
 
   @override
-  Review rating(int rating) => this(rating: rating);
+  Review rating(double rating) => this(rating: rating);
 
   @override
   Review imageUrls(List<String> imageUrls) => this(imageUrls: imageUrls);
@@ -74,7 +74,7 @@ class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
       rating: rating == const $CopyWithPlaceholder() || rating == null
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
-          : rating as int,
+          : rating as double,
       reviewedBy: _value.reviewedBy,
       createdAt: _value.createdAt,
       imageUrls: imageUrls == const $CopyWithPlaceholder() || imageUrls == null
@@ -99,7 +99,7 @@ Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       reviewId: json['reviewId'] as String?,
       title: json['title'] as String?,
       text: json['text'] as String?,
-      rating: json['rating'] as int,
+      rating: (json['rating'] as num).toDouble(),
       reviewedBy: json['reviewedBy'] as String,
       createdAt: _$JsonConverterFromJson<int, DateTime>(
           json['createdAt'], const DateTimeConverter().fromJson),

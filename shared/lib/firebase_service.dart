@@ -8,7 +8,6 @@ export 'src/credentials/emart-mix.dart';
 export 'src/credentials/emart-seller-only.dart';
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart' as core;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared/src/credentials/firebase_credential.dart';
 import 'src/credentials/emart-consumer-only.dart';
 import 'src/credentials/emart-seller-only.dart';
@@ -36,14 +35,13 @@ abstract class FirebaseService {
 
     // var setting = FirebaseFirestore.instanceFor(app: eMartConsumer).settings;
 
-
     await Future.wait([
       eMartConsumerFirebaseCredential.instance,
       eMartSellerFirebaseCredential.instance,
       eMartMixFirebaseCredential.instance
     ].map((credential) {
       return core.Firebase.initializeApp(
-              name: (primary.name == credential.name) ? null : credential.name,
+              name: (_current == credential.name) ? core.defaultFirebaseAppName : credential.name,
               options: credential.currentPlatform)
           .then((value) => print('eMartConsumerFirebaseOptions SuccessFull'))
           .catchError((e) => print(e.toString()));

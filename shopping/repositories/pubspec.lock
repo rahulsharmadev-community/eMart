@@ -491,7 +491,7 @@ packages:
     source: hosted
     version: "2.3.1"
   hive:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: hive
       sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
@@ -826,7 +826,7 @@ packages:
     source: hosted
     version: "1.2.0"
   synchronized:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: synchronized
       sha256: "539ef412b170d65ecdafd780f924e5be3f60032a1128df156adad6c5b373d558"

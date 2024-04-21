@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart' as fs;
 import 'package:firebase_database/firebase_database.dart' as db;
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';

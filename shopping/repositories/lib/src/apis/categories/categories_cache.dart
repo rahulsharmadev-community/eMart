@@ -1,27 +1,39 @@
 part of 'categories_repository.dart';
 
-class CategoriesCache extends HydratedCubit<List<Category>> {
-  CategoriesCache() : super(const []);
+class CategoriesCache extends HiveCache<List<Category>> {
+  CategoriesCache();
 
-  void set(List<Category> data) => emit(data);
+  void set(List<Category> data) {
+    logs.i("AppMetaDataCache:data() initiating");
 
-  List<Category>? get(List<String> ids) {
-    logs.i("AppMetaDataCache:get() initiating");
-    var dateTime = DateTime.now();
-    if (state.any((e) => e.expiry.isBefore(dateTime))) return null;
-    return ids.map((a) => state.firstWhereOrNull((e) => e.id == a)).nonNulls().toList();
+    final temp = [...getByKey('state') ?? []];
+    putByKey('state', temp..addAll(data));
   }
 
-  List<Category>? getAll() {
+  List<Category> get(List<String> ids) {
     logs.i("AppMetaDataCache:get() initiating");
+
+    final temp = [...getByKey('state') ?? []];
     var dateTime = DateTime.now();
-    if (state.any((e) => e.expiry.isBefore(dateTime))) return null;
-    return state;
+    temp.removeWhere((e) => e.expiry.isBefore(dateTime));
+    putByKey('state', temp.map((e) => e).toList());
+
+    return ids.map((a) => temp.firstWhereOrNull((e) => e.id == a)).nonNulls().toList();
+  }
+
+  List<Category> getAll() {
+    logs.i("AppMetaDataCache:get() initiating");
+
+    final temp = ;
+    var dateTime = DateTime.now();
+    temp.removeWhere((e) => e.expiry.isBefore(dateTime));
+    putByKey('state', temp);
+    return temp;
   }
 
   @override
-  fromJson(Map<String, dynamic> json) => List.from(json['state']).map((e) => Category.fromJson(e)).toList();
+  fromJson(JSON json) => [for (var e in json.entries) Category.fromJson(e.value)];
 
   @override
-  Map<String, dynamic>? toJson(state) => {'state': state.map((e) => e.toJson()).toList()};
+  JSON toJson(state) => {for (var e in state) e.id: e.toJson()};
 }

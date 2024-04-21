@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:jars/jars.dart';
 import 'package:repositories/src/utils/error_handler.dart';
+import 'package:repositories/src/utils/hive_cache.dart';
 import 'package:repositories/src/utils/http_request.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';

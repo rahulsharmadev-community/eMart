@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
@@ -16,7 +15,7 @@ class CategoriesRepository {
 
   Future<List<Category>?> get(List<String> ids) async {
     List<Category>? result = cache.get(ids);
-    if (result == null || result.isEmpty) {
+    if (result.isEmpty) {
       result = await api.getByKey(ids);
       cache.set(result);
     }

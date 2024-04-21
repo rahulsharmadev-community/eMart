@@ -26,10 +26,11 @@ void main() async {
 
   Bloc.observer = FlutterBlocObserver();
 
-  HydratedBloc.storage = await HydratedStorage.build(
-      storageDirectory: PlatformQuery.isWeb
-          ? HydratedStorage.webStorageDirectory
-          : await getApplicationDocumentsDirectory());
+  var storageDirectory =
+      PlatformQuery.isWeb ? HydratedStorage.webStorageDirectory : await getApplicationDocumentsDirectory();
+
+  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storageDirectory);
+  await HiveStorage.build(storageDirectory: storageDirectory);
 
   runApp(const eMartShoppingAppRunner());
 }

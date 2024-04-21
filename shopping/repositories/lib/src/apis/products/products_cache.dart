@@ -2,6 +2,40 @@
 
 part of 'products_repository.dart';
 
+class ProductsCache extends HiveCache<_ProductsCached> {
+  DateTime get generateExpiry => DateTime.now().add(1.hours);
+
+  Product? get(String id) {
+    logs.i('ProductsCache:get');
+    _clearExpiryDate();
+    return getByKey(id)?.product;
+  }
+
+  void add(Product product) => putByKey(product.productId, _ProductsCached(product, generateExpiry));
+
+  void addAll(List<Product> products) {
+    var ex = generateExpiry;
+    addJSON({for (var e in products) e.productId: _ProductsCached(e, ex)});
+  }
+
+  void remove(String key) => deleteByKey(key);
+
+  bool contains(String key) => containsKey(key);
+
+  void clearAll() => deleteAll();
+
+  void _clearExpiryDate() {
+    var now = DateTime.now();
+    deleteWhere((e) => e.expiry.isBefore(now));
+  }
+
+  @override
+  _ProductsCached fromJson(Map<String, dynamic> json) => _ProductsCached.fromJson(json);
+
+  @override
+  Map<String, dynamic> toJson(_ProductsCached state) => state.toJson();
+}
+
 class _ProductsCached {
   final Product product;
   final DateTime expiry;
@@ -30,42 +64,4 @@ class _ProductsCached {
       DateTime.parse(json['expiry']),
     );
   }
-}
-
-class ProductsCache extends HydratedCubit<JSON<_ProductsCached>> {
-  ProductsCache() : super({});
-  DateTime get generateExpiry => DateTime.now().add(1.hours);
-
-  Product? get(String id) {
-    _clearExpiryDate();
-    return state[id]?.product;
-  }
-
-  void add(Product product) {
-    state[product.productId] = _ProductsCached(product, generateExpiry);
-  }
-
-  void addAll(List<Product> products) {
-    var ex = generateExpiry;
-    state.addAll({for (var e in products) e.productId: _ProductsCached(e, ex)});
-  }
-
-  void remove(String key) => state.remove(key);
-
-  bool contains(String key) => state.containsKey(key);
-
-  void clearAll() => state.clear();
-
-  void _clearExpiryDate() {
-    var now = DateTime.now();
-    state.removeWhere((key, value) => value.expiry.isBefore(now));
-  }
-
-  @override
-  Map<String, _ProductsCached> fromJson(Map<String, dynamic> json) =>
-      json.map((key, value) => MapEntry(key, _ProductsCached.fromJson(value)));
-
-  @override
-  Map<String, dynamic> toJson(Map<String, _ProductsCached> state) =>
-      state.map((key, value) => MapEntry(key, value.toJson()));
 }

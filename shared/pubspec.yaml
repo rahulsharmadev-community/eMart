@@ -40,3 +40,4 @@ dev_dependencies:
       ref: main
       path: copy_with_extension_gen
   lints: ^3.0.0
+  flutter_test: any

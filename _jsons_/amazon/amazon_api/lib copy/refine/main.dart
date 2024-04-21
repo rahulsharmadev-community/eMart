@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import '../amazon_gen/amazon/amazon.dart';
 import 'jsonfile.dart';
 import 'package:shared/models.dart';
 import 'package:jars_core/jars_core.dart';

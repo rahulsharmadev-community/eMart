@@ -498,6 +498,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.3"
+  hive_cache:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: db4086f62a9b4b9aeef164091a88fa32aa8ff70d
+      url: "https://github.com/rahulsharmadev-community/hive_cache.git"
+    source: git
+    version: "1.0.0"
   http:
     dependency: "direct main"
     description:

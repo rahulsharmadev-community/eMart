@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:shared/models.dart';
 
-import 'json/products.dart';
 
 void main() {
   Map<String, dynamic> reviews = {

@@ -30,6 +30,12 @@ dependencies:
   firebase_database: ^10.5.1
   firebase_core: ^2.29.0
   json_annotation: ^4.8.1
+
+  hive_cache:
+    git:
+      url: https://github.com/rahulsharmadev-community/hive_cache.git
+      ref: main
+      
   jars:
     git:
       url: https://github.com/rahulsharmadev-community/jars.git

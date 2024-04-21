@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
@@ -10,7 +9,6 @@ import 'package:shopping/modules/screens/product_query_screen/widgets/price_rang
 import 'package:ico/ico.dart';
 import 'package:shopping/modules/widgets/cards/item_card.dart';
 import 'package:shopping/modules/widgets/product_cards/product_card.dart';
-import 'package:shopping/utility/utility.dart';
 
 class ProductQueryScreen extends StatelessWidget {
   final Set<Query> initalQuery;

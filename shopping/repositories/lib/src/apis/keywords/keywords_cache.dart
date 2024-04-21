@@ -1,36 +1,25 @@
 part of 'keywords_repository.dart';
 
-///
 class KeywordsCache extends HiveCache<Keywords> {
-  KeywordsCache();
+  KeywordsCache() : super([]);
 
   Keywords get(String word) {
     logs.i("KeywordsCache:get($word) initiating");
-    var byKey = getByKey('state') ?? [];
-    return byKey
-        .where((e) => e.label.removeAllSpace.toLowerCase().startsWith(word.removeAllSpace.toLowerCase()))
-        .toList();
+    bool test(e) => e.label.removeAllSpace.toLowerCase().startsWith(word.removeAllSpace.toLowerCase());
+    return state.where(test).toList();
   }
 
   void add(Keywords latest) {
     logs.i("KeywordsCache:add($latest) initiating");
-    var temp = [...(getByKey('state') ?? [])];
-    putByKey('state', temp..addAll(latest));
+    state.addAll(latest);
   }
 
-  void remove(Keyword word) {
-    logs.i("KeywordsCache:remove($word) initiating");
-    var temp = [...(getByKey('state') ?? [])];
-    putByKey('state', temp..remove(word));
-  }
+  void remove(String word) => state.removeWhere((e) => e.label == word);
+
+  void clearAll() => state.clear();
 
   @override
-  Keywords fromJson(JSON json) {
-    return List.from(json['state']).map((e) => Keyword.fromJson(e)).toList();
-  }
-
+  fromJson(JSON json) => List.from(json['state']).map((e) => Keyword.fromJson(e)).toList();
   @override
-  JSON toJson(Keywords state) {
-    return {'state': state.map((e) => e.toJson()).toList()};
-  }
+  JSON toJson(state) => {'state': state.map((e) => e.toJson()).toList()};
 }

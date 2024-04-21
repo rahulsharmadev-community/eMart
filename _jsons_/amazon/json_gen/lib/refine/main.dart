@@ -56,6 +56,7 @@ LengthMeasurement? calculateLengthMeasurement(JSON json) {
   if (lowerCase.contains('inch')) return LengthMeasurement.inch;
   if (lowerCase.contains('km') || lowerCase.contains('kilometre')) return LengthMeasurement.km;
   if (lowerCase.endsWith('m') || lowerCase.contains('metre')) return LengthMeasurement.m;
+  return null;
 }
 
 (double, WeightMeasurement) calculateWeight(JSON json) {

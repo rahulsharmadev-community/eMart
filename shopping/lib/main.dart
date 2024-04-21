@@ -29,8 +29,10 @@ void main() async {
   var storageDirectory =
       PlatformQuery.isWeb ? HydratedStorage.webStorageDirectory : await getApplicationDocumentsDirectory();
 
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storageDirectory);
-  await HiveStorage.build(storageDirectory: storageDirectory);
+  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storageDirectory)
+      .whenComplete(() => print('HydratedBloc Complete'));
+  await HiveStorage.build(storageDirectory: storageDirectory)
+      .whenComplete(() => print('HiveStorage Complete'));
 
   runApp(const eMartShoppingAppRunner());
 }

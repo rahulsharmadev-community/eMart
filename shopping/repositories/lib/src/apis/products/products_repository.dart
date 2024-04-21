@@ -6,6 +6,7 @@ import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
+import 'package:hive_cache/hive_cache.dart';
 
 part 'product_api.dart';
 part 'products_cache.dart';
@@ -28,8 +29,9 @@ class ProductRepository {
 
   FutureOr<List<Product>> getByQuery(Set<Query> queries) async {
     logs.i('ProductRepository: getByQuery');
-    final result = await api.getByQueries(queries);
+    final result = await api.getByQueries(queries).whenComplete(() => print('Complete'));
     cache.addAll(result);
+    logs.i(result);
     return result;
   }
 }

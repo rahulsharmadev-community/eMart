@@ -2,38 +2,44 @@
 
 part of 'products_repository.dart';
 
-class ProductsCache extends HiveCache<_ProductsCached> {
+class ProductsCache extends HiveCache<JSON<_ProductsCached>> {
+  ProductsCache() : super({});
+
   DateTime get generateExpiry => DateTime.now().add(1.hours);
 
   Product? get(String id) {
-    logs.i('ProductsCache:get');
     _clearExpiryDate();
-    return getByKey(id)?.product;
+    return state[id]?.product;
   }
 
-  void add(Product product) => putByKey(product.productId, _ProductsCached(product, generateExpiry));
+  void add(Product product) {
+    state[product.productId] = _ProductsCached(product, generateExpiry);
+  }
 
   void addAll(List<Product> products) {
-    var ex = generateExpiry;
-    addJSON({for (var e in products) e.productId: _ProductsCached(e, ex)});
+    if (products.isEmpty) return;
+    logs.i('ProductsCache: addAll($products)');
+    var expiry = generateExpiry;
+    state.addAll({for (var e in products) e.productId: _ProductsCached(e, expiry)});
   }
 
-  void remove(String key) => deleteByKey(key);
+  void remove(String key) => state.remove(key);
 
-  bool contains(String key) => containsKey(key);
+  bool contains(String key) => state.containsKey(key);
 
-  void clearAll() => deleteAll();
+  void clearAll() => state.clear();
 
   void _clearExpiryDate() {
     var now = DateTime.now();
-    deleteWhere((e) => e.expiry.isBefore(now));
+    state.removeWhere((key, value) => value.expiry.isBefore(now));
   }
 
   @override
-  _ProductsCached fromJson(Map<String, dynamic> json) => _ProductsCached.fromJson(json);
+  JSON<_ProductsCached> fromJson(JSON json) =>
+      json.map((key, value) => MapEntry(key, _ProductsCached.fromJson(value)));
 
   @override
-  Map<String, dynamic> toJson(_ProductsCached state) => state.toJson();
+  JSON toJson(JSON<_ProductsCached> state) => state.map((key, value) => MapEntry(key, value.toJson()));
 }
 
 class _ProductsCached {

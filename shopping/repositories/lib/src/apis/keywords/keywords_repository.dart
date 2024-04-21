@@ -1,11 +1,10 @@
 import 'dart:convert';
 import 'package:jars/jars.dart';
 import 'package:repositories/src/utils/error_handler.dart';
-import 'package:repositories/src/utils/hive_cache.dart';
+import 'package:hive_cache/hive_cache.dart';
 import 'package:repositories/src/utils/http_request.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
 part 'keyword_api.dart';
 part 'keywords_cache.dart';
 

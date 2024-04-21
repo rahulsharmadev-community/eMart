@@ -1,10 +1,10 @@
 import 'dart:async';
-
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
 import 'package:shared/firebase_service.dart';
+import 'package:hive_cache/hive_cache.dart';
 part 'categories_api.dart';
 part 'categories_cache.dart';
 

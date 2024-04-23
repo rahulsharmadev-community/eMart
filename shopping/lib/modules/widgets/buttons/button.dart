@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'package:jars/jars.dart';
 
-class DefaultButton extends StatelessWidget {
+enum JButtonType {
+  elevated,
+  filled,
+  // ignore: constant_identifier_names
+  filled_tonal,
+  outlined,
+  text,
+}
+
+class JButton extends StatelessWidget {
   final Badge? badge;
   final AlignmentGeometry? alignment;
-  final String text;
+  final String? text;
   final void Function()? onPressed;
-  final bool filledTone;
+  final JButtonType type;
   final IconData? leadingIcon;
   final IconData? trailingIcon;
   final double? iconSize;
@@ -16,11 +25,11 @@ class DefaultButton extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final TextStyle? style;
 
-  const DefaultButton(
-    this.text, {
+  const JButton({
+    this.text,
     super.key,
     this.badge,
-    this.filledTone = false,
+    this.type = JButtonType.filled,
     this.onPressed,
     this.trailingIcon,
     this.leadingIcon,
@@ -43,9 +52,8 @@ class DefaultButton extends StatelessWidget {
       fixedSize: const Size.fromHeight(double.maxFinite),
       minimumSize: const Size.fromHeight(double.maxFinite),
     );
-    child = !filledTone
-        ? FilledButton(style: styleFrom, onPressed: onPressed, child: child)
-        : FilledButton.tonal(style: styleFrom, onPressed: onPressed, child: child);
+
+    child = buildButton(styleFrom, child);
 
     if (badge != null) {
       child = Stack(alignment: alignment ?? AlignmentDirectional.topEnd, children: [child, badge!]);
@@ -54,15 +62,36 @@ class DefaultButton extends StatelessWidget {
     return child.padding(margin);
   }
 
+  Widget buildButton(ButtonStyle styleFrom, Widget child) {
+    switch (type) {
+      case JButtonType.filled:
+        return FilledButton(style: styleFrom, onPressed: onPressed, child: child);
+      case JButtonType.filled_tonal:
+        return FilledButton.tonal(style: styleFrom, onPressed: onPressed, child: child);
+      case JButtonType.elevated:
+        return ElevatedButton(style: styleFrom, onPressed: onPressed, child: child);
+      case JButtonType.outlined:
+        return OutlinedButton(style: styleFrom, onPressed: onPressed, child: child);
+      default:
+        return TextButton(style: styleFrom, onPressed: onPressed, child: child);
+    }
+  }
+
   Widget buildButtonLayout(BuildContext context) {
-    if (leadingIcon != null || trailingIcon != null) {
+    if ((leadingIcon != null || trailingIcon != null) && text != null) {
       return Row(mainAxisSize: MainAxisSize.min, children: [
         if (leadingIcon != null) Icon(leadingIcon, size: iconSize).paddingOnly(right: 4),
-        Text(text),
+        if (text != null) Text(text!),
         if (trailingIcon != null) Icon(trailingIcon, size: iconSize).paddingOnly(left: 4),
       ]);
+    } else if (leadingIcon != null) {
+      return Icon(leadingIcon, size: iconSize);
+    } else if (trailingIcon != null) {
+      return Icon(trailingIcon, size: iconSize);
+    } else if (text != null) {
+      return Text(text!);
     } else {
-      return Text(text);
+      return const SizedBox.shrink();
     }
   }
 }

@@ -29,6 +29,7 @@ dependencies:
 
   #OTHER SERVICES
   http: ^1.2.1
+  meta: ^1.11.0
   cached_network_image: ^3.3.1
   connectivity_plus: ^6.0.2
 
@@ -55,7 +56,11 @@ dependencies:
 
   repositories:
     path: repositories
-  meta: ^1.11.0
+
+  hive_cache:
+    git:
+      url: https://github.com/rahulsharmadev-community/hive_cache.git
+      ref: main
 
   jars:
     git:

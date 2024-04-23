@@ -9,6 +9,7 @@ import 'package:repositories/repositories.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shopping/modules/flutter_app_run.dart';
 import 'package:shopping/utility/utility.dart';
+import 'package:hive_cache/hive_cache.dart';
 
 final _instance = eMartConsumerFirebaseCredential.instance;
 
@@ -26,13 +27,13 @@ void main() async {
 
   Bloc.observer = FlutterBlocObserver();
 
-  var storageDirectory =
-      PlatformQuery.isWeb ? HydratedStorage.webStorageDirectory : await getApplicationDocumentsDirectory();
-
-  HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storageDirectory)
-      .whenComplete(() => print('HydratedBloc Complete'));
-  await HiveStorage.build(storageDirectory: storageDirectory)
-      .whenComplete(() => print('HiveStorage Complete'));
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: PlatformQuery.isWeb
+          ? HydratedStorage.webStorageDirectory
+          : await getApplicationDocumentsDirectory());
+  await HiveStorage.build(
+      storageDirectory:
+          PlatformQuery.isWeb ? HiveStorage.webStorageDirectory : await getApplicationDocumentsDirectory());
 
   runApp(const eMartShoppingAppRunner());
 }

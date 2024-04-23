@@ -2,8 +2,11 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shared/models.dart';
+import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
+import 'package:shopping/modules/widgets/add_to_cart_button.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/modules/widgets/cards/badge_icon.dart';
 import 'package:shopping/modules/widgets/cards/item_card.dart';
@@ -25,7 +28,7 @@ class RegularProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     GlobalKey globalKey = GlobalKey();
     double? height;
-    if (type == ItemCardType.vertical) height = 350;
+    if (type == ItemCardType.vertical) height = 290;
     return InkWell(
       onTap: () => AppRoutes.ProductScreen.pushNamed(extra: product.productId),
       child: ItemCard(
@@ -51,21 +54,18 @@ class RegularProductCard extends StatelessWidget {
         actionsPadding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
         labels: [const Text('◈ Sponsored').fontSize(300).fittedBox()],
         actions: [
-          DefaultButton(
-            'Cart',
-            badge: Badge.count(count: 1),
-            leadingIcon: Icons.add,
-            onPressed: () {},
-            filledTone: true,
-            padding: EdgeInsets.zero,
-            borderRadius: BorderRadius.circular(100),
+          AddToCartButton(
+            productId: product.productId,
+            title: 'Cart',
+            type: JButtonType.filled_tonal,
           ).tightFit(),
           const SizedBox(width: 6),
-          DefaultButton(
-            'Buy',
+          JButton(
+            text: 'Buy',
             onPressed: () {},
             padding: EdgeInsets.zero,
             borderRadius: BorderRadius.circular(100),
+            type: JButtonType.filled,
           ).tightFit(),
         ],
       ),

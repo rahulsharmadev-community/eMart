@@ -45,9 +45,9 @@ class _AppRouter {
                 ));
               }),
           GoRoute(
-              path: '/${AppRoutes.OrdersScreen.name}',
-              name: AppRoutes.OrdersScreen.name,
-              pageBuilder: (context, state) => withFadeTran(const OrdersScreen())),
+              path: '/${AppRoutes.CartScreen.name}',
+              name: AppRoutes.CartScreen.name,
+              pageBuilder: (context, state) => withFadeTran(const CartScreen())),
           GoRoute(
               path: '/${AppRoutes.WishlistScreen.name}',
               name: AppRoutes.WishlistScreen.name,

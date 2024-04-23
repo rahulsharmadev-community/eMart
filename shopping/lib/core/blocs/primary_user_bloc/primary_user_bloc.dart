@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'dart:async';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
@@ -24,22 +26,20 @@ class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<Consumer>> {
         var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
         asyncGuard(() => PrimaryUserApi.createNewUser(result));
       } else {
-        print(event.toJson());
-        guard(
-          // ignore: invalid_use_of_visible_for_testing_member
-          () => emit(BlocStateSuccess<Consumer>(event)),
-          onError: (error) => print(error),
-        );
+        emit(BlocStateSuccess<Consumer>(event));
       }
     });
 
     on<PrimaryUserDispose>((event, emit) => emit(const BlocStateLoading()));
     on<UpdateEvent>((event, emit) {
       if (state is BlocStateSuccess) {
-        final temp = primaryUser!;
-        emit(BlocStateSuccess(event.consumer));
-        api.update(event.consumer, temp).catchError((_) {
-          emit(BlocStateSuccess(temp));
+        final oldValue = primaryUser!;
+        final newValue = event.consumer(oldValue);
+        if (oldValue == newValue) return;
+
+        emit(BlocStateSuccess(newValue));
+        api.update(newValue).catchError((_) {
+          emit(BlocStateSuccess(oldValue));
         });
       }
     });

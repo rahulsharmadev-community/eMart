@@ -6,7 +6,19 @@ import 'package:jars/jars.dart';
 import 'package:uuid/uuid.dart';
 part 'product.g.dart';
 
-enum ProductStockStatus { available, outOfStock, unavailable }
+enum ProductStockStatus {
+  available('In Stock'),
+
+  outOfStock('Out of Stock'),
+
+  unavailable('Unavailable');
+
+  final String name;
+  const ProductStockStatus(this.name);
+
+  @override
+  toString() => name;
+}
 
 class AbstractProductModel {}
 
@@ -50,6 +62,8 @@ class Product {
         productId = productId ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
+
+  double get discountedPrice => mrp - (mrp * discount * 0.01);
 
   @CopyWithField.immutable()
   final String productId; // Product Unique Identification numbers

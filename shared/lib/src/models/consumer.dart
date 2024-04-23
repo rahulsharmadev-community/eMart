@@ -3,7 +3,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
-import 'package:uuid/uuid.dart';import 'package:jars/jars.dart';
+import 'package:uuid/uuid.dart';
+import 'package:jars/jars.dart';
 part 'consumer.g.dart';
 
 @JsonSerializable(
@@ -96,6 +97,15 @@ class Consumer {
 
   factory Consumer.fromJson(JSON json) => _$ConsumerFromJson(json);
   JSON toJson() => _$ConsumerToJson(this);
+
+  @override
+  // TODO: implement hashCode
+  int get hashCode => lastUpdateAt.hashCode;
+
+  @override
+  bool operator ==(Object other) {
+    return super == other && other is Consumer && lastUpdateAt.hashCode == other.lastUpdateAt.hashCode;
+  }
 }
 
 @CopyWith()

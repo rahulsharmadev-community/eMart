@@ -7,11 +7,15 @@ export 'src/credentials/emart-consumer-only.dart';
 export 'src/credentials/emart-mix.dart';
 export 'src/credentials/emart-seller-only.dart';
 import 'dart:async';
-import 'package:firebase_core/firebase_core.dart' as core;
 import 'package:shared/src/credentials/firebase_credential.dart';
 import 'src/credentials/emart-consumer-only.dart';
 import 'src/credentials/emart-seller-only.dart';
 import 'src/credentials/emart-mix.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart' as core;
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 abstract class FirebaseService {
   static core.FirebaseApp get eMartConsumer {
@@ -47,4 +51,11 @@ abstract class FirebaseService {
           .catchError((e) => print(e.toString()));
     }));
   }
+}
+
+extension FirebaseAppExt on core.FirebaseApp {
+  FirebaseAuth get instanceOfAuth => FirebaseAuth.instanceFor(app: this);
+  FirebaseFirestore get instanceOfFirestore => FirebaseFirestore.instanceFor(app: this);
+  FirebaseDatabase get instanceOfDatabase => FirebaseDatabase.instanceFor(app: this);
+  FirebaseStorage get instanceOfStorage => FirebaseStorage.instanceFor(app: this);
 }

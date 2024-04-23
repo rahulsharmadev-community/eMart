@@ -8,15 +8,16 @@ class ProductsApi {
       : productsCol = FirebaseService.eMartSeller.instanceOfFirestore.collection('PRODUCTS'),
         metaDataReference = FirebaseService.eMartMix.instanceOfDatabase.ref('PRODUCTS-METADATA');
 
-  Future<List<Product>> getProductsByIds(List<String> productIds) async {
+  Future<List<Product>?> getProductsByIds(List<String> productIds) async {
+    logs.i('getProductsByIds:$productIds');
+    if (productIds.isEmpty) return [];
     List<Product> list = [];
     reachIncrement(productIds);
-    await productsCol.where(KeywordQuery(productIds).applyFilter()).get().then((snap) {
-      for (var e in snap.docs) {
-        if (e.data() != null) list.add(Product.fromJson(e.data()! as JSON));
-      }
-    });
-    return list;
+    var snap = await productsCol.where(fs.FieldPath.documentId, whereIn: productIds).get();
+    for (var e in snap.docs) {
+      if (e.data() != null) list.add(Product.fromJson(e.data()! as JSON));
+    }
+    return list.isEmpty ? null : list;
   }
 
   Future<Product?> getByProductId(String productId) async {

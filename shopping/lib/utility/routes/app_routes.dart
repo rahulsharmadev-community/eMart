@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
+import 'package:shopping/modules/screens/cart_screen/cart_screen.dart';
 import 'package:shopping/modules/screens/categories_screen/categories_screen.dart';
 import 'package:shopping/modules/screens/dashboard/dashboard.dart';
 import 'package:shopping/modules/screens/home_screen/home_screen.dart';

@@ -12,6 +12,7 @@ class Variant {
 }
 
 class _MobileProductScreen extends StatefulWidget {
+  final String productId;
   final String thumbnail;
   final String title;
   final String? shotDescription;
@@ -47,6 +48,7 @@ class _MobileProductScreen extends StatefulWidget {
     this.onCart,
     this.onBuy,
     this.children,
+    required this.productId,
   });
 
   @override
@@ -90,6 +92,7 @@ class _MobileProductScreenState extends State<_MobileProductScreen> {
     Widget itemBuilder(context, i) => children[i];
     return Scaffold(
       bottomNavigationBar: BottomNavigationBarBuilder(
+        productId: widget.productId,
         onBuy: widget.onBuy,
         onCart: widget.onCart,
       ),

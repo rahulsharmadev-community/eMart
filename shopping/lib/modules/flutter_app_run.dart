@@ -9,7 +9,7 @@ import 'package:repositories/repositories.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
-import 'package:shopping/cubit/e_mart_shopping_cubit.dart';
+import 'package:shopping/core/cubit/e_mart_shopping_cubit.dart';
 import 'package:shopping/modules/screens/auth_screen/auth_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';

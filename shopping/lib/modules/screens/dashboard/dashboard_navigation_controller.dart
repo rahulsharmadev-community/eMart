@@ -6,7 +6,7 @@ import 'package:shopping/utility/routes/app_routes.dart';
 const items = [
   _Item('Home', Ico.home_outline, AppRoutes.HomeScreen),
   _Item('Categories', Ico.layout_outline, AppRoutes.CategoriesScreen),
-  _Item('Orders', Ico.box_outline, AppRoutes.OrdersScreen),
+  _Item('Cart', Ico.shopping_cart_outline, AppRoutes.CartScreen),
   _Item('Wishlist', Ico.heart_outline, AppRoutes.WishlistScreen),
   _Item('Profile', Ico.user_outline, AppRoutes.ProfileScreen)
 ];

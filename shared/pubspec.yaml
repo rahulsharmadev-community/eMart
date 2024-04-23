@@ -13,8 +13,10 @@ dependencies:
   crypto: ^3.0.3
   equatable: ^2.0.5
   json_annotation: ^4.8.1
+  firebase_auth: ^4.17.9
   firebase_core: ^2.27.1
   cloud_firestore: ^4.16.1
+  firebase_storage: ^11.7.1
   firebase_database: ^10.5.1
 
   jars:
@@ -31,6 +33,7 @@ dependencies:
 
 dev_dependencies:
   test: ^1.24.9
+  lints: ^3.0.0
   build_runner: ^2.4.8
   flutter_lints: ^3.0.0
   json_serializable: ^6.7.1
@@ -39,5 +42,3 @@ dev_dependencies:
       url: https://github.com/rahulsharmadev-community/copy_with_extension.git
       ref: main
       path: copy_with_extension_gen
-  lints: ^3.0.0
-  flutter_test: any

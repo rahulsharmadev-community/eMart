@@ -2,7 +2,6 @@ library repositories;
 
 export 'src/apis/order_api.dart';
 export 'src/apis/primary_user_api.dart';
-export 'src/extenstion.dart';
 export 'src/models/query.dart';
 export 'src/apis/keywords/keywords_repository.dart';
 export 'src/apis/reviews/reviews_repository.dart';
@@ -16,8 +15,6 @@ export 'src/models/alert_model.dart';
 export 'src/models/live_countdown_model.dart';
 
 import 'dart:async';
-
-import 'src/extenstion.dart';
 import 'package:shared/firebase_service.dart';
 
 Future<void> initializeRepository({bool emulator = false}) async {

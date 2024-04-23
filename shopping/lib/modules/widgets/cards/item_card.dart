@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:jars/jars.dart';
 import 'badge_icon.dart';
 part 'base_item_cart.dart';
@@ -33,6 +34,7 @@ class ItemCard extends _ItemCard {
       super.leadingPadding,
       super.actionsPadding,
       super.actionsAlignment,
+      super.leadingFactor,
       super.elevation})
       : assert(height != null, 'height should not be `null`');
 
@@ -45,19 +47,15 @@ class ItemCard extends _ItemCard {
   }
 
   LayoutBuilder buildHorizontalLayout() {
-    return LayoutBuilder(builder: (context, constraints) { /// Usefull only for web
-      bool fix = constraints.maxWidth * 0.4 > 300;
+    return LayoutBuilder(builder: (context, constraints) {
+      /// Usefull only for web
+
+      var boxConstraints = BoxConstraints(maxWidth: constraints.maxWidth * leadingFactor);
       return Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Flexible(
-            flex: fix ? 0 : 2,
-            child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 300), child: leading.padding(leadingPadding)),
-          ),
-          Flexible(
-            flex: 3,
-            fit: FlexFit.tight,
+          ConstrainedBox(constraints: boxConstraints, child: leading.padding(leadingPadding)),
+          Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -82,7 +80,7 @@ class ItemCard extends _ItemCard {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
-          height: height! * 0.5,
+          height: height! * leadingFactor,
           child: Stack(
             fit: StackFit.expand,
             alignment: AlignmentDirectional.bottomEnd,

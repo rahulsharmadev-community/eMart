@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
 import 'package:jars/jars.dart';
-import 'package:repositories/src/extenstion.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
@@ -42,9 +41,9 @@ class PrimaryUserApi {
         .map((event) => event.data());
   }
 
-  Future<void> update(Consumer newValue, Consumer oldValue) async {
+  Future<void> update(Consumer newValue) async {
     try {
-      await _collection.update(newValue.toJson().difference(oldValue.toJson()));
+      await _collection.update(newValue.toJson());
     } catch (e) {
       logs.e(e);
     }

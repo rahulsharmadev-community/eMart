@@ -12,6 +12,13 @@ class ProductsCache extends HiveCache<JSON<_ProductsCached>> {
     return state[id]?.product;
   }
 
+  List<Product>? getAll(List<String> ids) {
+    print('ProductsCache: getAll($ids)');
+    _clearExpiryDate();
+    var list = ids.map((e) => state[e]?.product).nonNulls().toList();
+    return ids.length == list.length ? list : null;
+  }
+
   void add(Product product) {
     state[product.productId] = _ProductsCached(product, generateExpiry);
   }

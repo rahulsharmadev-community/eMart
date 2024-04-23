@@ -21,8 +21,16 @@ class ProductRepository {
     if (result == null) {
       result = await api.getByProductId(productId);
       if (result != null) cache.add(result);
-    } else {
-      api.viewIncrement([productId]);
+    }
+    api.viewIncrement([productId]);
+    return result;
+  }
+
+  FutureOr<List<Product>?> getAll(List<String> productIds) async {
+    List<Product>? result = cache.getAll(productIds);
+    if (result == null) {
+      result = await api.getProductsByIds(productIds);
+      if (result != null) cache.addAll(result);
     }
     return result;
   }

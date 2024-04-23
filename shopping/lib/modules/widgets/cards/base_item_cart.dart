@@ -10,6 +10,7 @@ const TextStyle _kTextStyle = TextStyle(
 );
 
 abstract class _ItemCard extends StatelessWidget {
+  final double leadingFactor;
   final String? bannerMsg;
   final BannerLocation? bannerLocation;
   final Color bannerColor;
@@ -38,6 +39,7 @@ abstract class _ItemCard extends StatelessWidget {
       this.bannerColor = _kColor,
       this.bannerTextStyle = _kTextStyle,
       required this.color,
+      this.leadingFactor = 0.4,
       required this.shadowColor,
       required this.surfaceTintColor,
       required this.shape,

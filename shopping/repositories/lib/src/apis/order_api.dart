@@ -3,7 +3,6 @@ import 'package:jars/jars.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
-import '../extenstion.dart';
 
 class OrderRepository with CustomExceptionHandler {
   final cf.CollectionReference collection;

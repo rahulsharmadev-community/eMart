@@ -44,13 +44,14 @@ class ProductScreen extends StatelessWidget {
             var numberFormat = const NumberFormat.en_in();
             var mrp = numberFormat.simple(product.mrp, currencySymbol: true, trimZero: true);
             var disPrice = numberFormat.simple(
-              product.mrp - (product.mrp * product.discount * 0.01),
+              product.discountedPrice,
               currencySymbol: true,
               trimZero: true,
             );
             var rating = product.rating.toRoundPrecision(1).toDouble();
 
             return _MobileProductScreen(
+              productId: productId,
               mrp: mrp,
               discountedPrice: disPrice,
               thumbnail: product.thumbnail,

@@ -1,24 +1,35 @@
+import 'dart:async';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart'
-    show EmailAuthProvider, FirebaseUIAuth, PhoneAuthProvider, setFirebaseUiIsTestMode;
+    show EmailAuthProvider, FirebaseUIAuth, PhoneAuthProvider;
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:jars/jars.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:repositories/repositories.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shopping/modules/flutter_app_run.dart';
-import 'package:shopping/utility/utility.dart';
+import 'package:shopping/utility/observers/bloc_observer.dart';
 import 'package:hive_cache/hive_cache.dart';
 
 final _instance = eMartConsumerFirebaseCredential.instance;
 
+Future<JSON?> getDeviceInfoIfValidPlatform() async {
+  if (!(PlatformQuery.isAndroid || PlatformQuery.isWeb)) return null;
+
+  var info = await DeviceInfoPlugin().deviceInfo;
+  if (info is AndroidDeviceInfo && !info.isPhysicalDevice) return null;
+
+  return info.data;
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FirebaseService.initialize(_instance);
-  await initializeRepository();
+  var deviceInfo = await getDeviceInfoIfValidPlatform();
+  if (deviceInfo == null) return;
 
-  // setFirebaseUiIsTestMode(true);
+  await FirebaseService.initialize(_instance);
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     PhoneAuthProvider(),
@@ -31,9 +42,11 @@ void main() async {
       storageDirectory: PlatformQuery.isWeb
           ? HydratedStorage.webStorageDirectory
           : await getApplicationDocumentsDirectory());
+
   await HiveStorage.build(
       storageDirectory:
           PlatformQuery.isWeb ? HiveStorage.webStorageDirectory : await getApplicationDocumentsDirectory());
 
-  runApp(const eMartShoppingAppRunner());
+  final auth = FirebaseService.eMartConsumer.instanceOfAuth;
+  runApp(eMartShoppingAppRunner(auth: auth));
 }

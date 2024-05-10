@@ -33,7 +33,7 @@ class DeliveryTile extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Row(children: [
             Text('Deliver to: ', style: regular),
-            Text(text, maxLines: 1, overflow: TextOverflow.ellipsis, style: medium),
+            Text(text, maxLines: 3, overflow: TextOverflow.ellipsis, style: medium),
             const Spacer(),
             JButton(
               text: 'Change',

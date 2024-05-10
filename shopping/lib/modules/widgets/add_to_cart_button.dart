@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 
@@ -24,7 +23,7 @@ class AddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cart = context.select<PrimaryUserBloc, Map<String, int>>((bloc) => bloc.primaryUser!.cartProducts);
+    var cart = context.select<PrimaryUserBloc, Map<String, int>>((bloc) => bloc.primaryUser!.user.cartProducts);
     var count = cart[productId] ?? 0;
     return JButton(
       text: title,

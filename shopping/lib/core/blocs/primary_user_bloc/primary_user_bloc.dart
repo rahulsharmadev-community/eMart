@@ -10,51 +10,56 @@ import 'package:shared/models.dart';
 import 'package:shopping/utility/extensions.dart';
 
 part 'primary_user_event.dart';
-// part 'primary_user_state.dart';
 
-class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<Consumer>> {
+class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<PrimaryUser>> {
   final PrimaryUserApi api;
+  final UserActivityRepository repository;
   StreamSubscription? subscription;
 
-  Consumer? get primaryUser => state is BlocStateSuccess ? (state as BlocStateSuccess<Consumer>).data : null;
+  PrimaryUser? get primaryUser =>
+      state is BlocStateSuccess ? (state as BlocStateSuccess<PrimaryUser>).data : null;
 
-  PrimaryUserBloc(
-    this.api,
-  ) : super(const BlocStateLoading()) {
-    subscription = api.getStream.listen((event) {
+  PrimaryUserBloc(this.api, this.repository) : super(const BlocStateLoading()) {
+    subscription = api.getStream.listen((event) async {
       if (event == null) {
         var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
         asyncGuard(() => PrimaryUserApi.createNewUser(result));
       } else {
-        emit(BlocStateSuccess<Consumer>(event));
+        final temp = primaryUser?.userActivity ?? await repository.get() ?? const UserActivity();
+        emit(BlocStateSuccess<PrimaryUser>(PrimaryUser(user: event, userActivity: temp)));
       }
     });
 
     on<PrimaryUserDispose>((event, emit) => emit(const BlocStateLoading()));
-    on<UpdateEvent>((event, emit) {
-      if (state is BlocStateSuccess) {
-        final oldValue = primaryUser!;
-        final newValue = event.consumer(oldValue);
-        if (oldValue == newValue) return;
 
-        emit(BlocStateSuccess(newValue));
-        api.update(newValue).catchError((_) {
-          emit(BlocStateSuccess(oldValue));
+    on<AddVisitedProductEvent>((event, emit) async {
+      if (state is BlocStateSuccess) {
+        await repository.addVisitedProduct(event.productId).then((value) {
+          emit(BlocStateSuccess(primaryUser!.copyWith.userActivity(value)));
         });
       }
     });
-  }
 
-  // void _initialize(PrimaryUserEvent event, Emitter<BlocState<Consumer>> emit) {
-  //   subscription = api.getStream.listen((event) {
-  //     if (event == null) {
-  //       var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
-  //       PrimaryUserApi.createNewUser(result);
-  //     } else {
-  //       emit(BlocStateSuccess<Consumer>(event));
-  //     }
-  //   });
-  // }
+    on<AddSuggestionKeywordsEvent>((event, emit) async {
+      if (state is BlocStateSuccess) {
+        await repository.addSuggestionKeywords(event.keywords).then((value) {
+          emit(BlocStateSuccess(primaryUser!.copyWith.userActivity(value)));
+        });
+      }
+    });
+
+    on<UpdateUserEvent>((event, emit) {
+      if (state is BlocStateSuccess) {
+        final oldValue = primaryUser!.user;
+        final newValue = event.consumer(oldValue);
+        if (oldValue == newValue) return;
+        emit(BlocStateSuccess(primaryUser!.copyWith(user: newValue)));
+        api
+            .update(newValue)
+            .catchError((_) => emit(BlocStateSuccess(primaryUser!.copyWith(user: oldValue), message: '$_')));
+      }
+    });
+  }
 
   @override
   Future<void> close() {

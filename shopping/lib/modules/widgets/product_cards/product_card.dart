@@ -16,21 +16,26 @@ import 'package:shopping/utility/size_after_render.dart';
 
 class RegularProductCard extends StatelessWidget {
   final ItemCardType type;
+  final bool hideActions;
 
   final Product product;
   const RegularProductCard({
     super.key,
     required this.type,
     required this.product,
+    this.hideActions = false,
   });
 
   @override
   Widget build(BuildContext context) {
     GlobalKey globalKey = GlobalKey();
-    double? height;
-    if (type == ItemCardType.vertical) height = 290;
+    double height = type == ItemCardType.vertical ? 290 : 200;
+
     return InkWell(
-      onTap: () => AppRoutes.ProductScreen.pushNamed(extra: product.productId),
+      onTap: () {
+        AppRoutes.ProductScreen.pushNamed(extra: product.productId);
+        context.read<PrimaryUserBloc>().add(AddVisitedProductEvent(product.productId));
+      },
       child: ItemCard(
         key: globalKey,
         type,
@@ -51,23 +56,25 @@ class RegularProductCard extends StatelessWidget {
             deliveryText(context),
           ],
         ),
-        actionsPadding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
         labels: [const Text('◈ Sponsored').fontSize(300).fittedBox()],
-        actions: [
-          AddToCartButton(
-            productId: product.productId,
-            title: 'Cart',
-            type: JButtonType.filled_tonal,
-          ).tightFit(),
-          const SizedBox(width: 6),
-          JButton(
-            text: 'Buy',
-            onPressed: () {},
-            padding: EdgeInsets.zero,
-            borderRadius: BorderRadius.circular(100),
-            type: JButtonType.filled,
-          ).tightFit(),
-        ],
+        actionsPadding: const EdgeInsets.fromLTRB(4, 4, 4, 8),
+        actions: hideActions
+            ? null
+            : [
+                AddToCartButton(
+                  productId: product.productId,
+                  title: 'Cart',
+                  type: JButtonType.filled_tonal,
+                ).tightFit(),
+                const SizedBox(width: 6),
+                JButton(
+                  text: 'Buy',
+                  onPressed: () {},
+                  padding: EdgeInsets.zero,
+                  borderRadius: BorderRadius.circular(100),
+                  type: JButtonType.filled,
+                ).tightFit(),
+              ],
       ),
     );
   }

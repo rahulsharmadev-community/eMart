@@ -7,6 +7,7 @@ import 'package:logger/logger.dart';
 class AppNavigatorObserver extends NavigatorObserver {
   /// Creates a [AppNavigatorObserver].
   List<String> stack = [];
+  final logger = Logger();
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     if (route.settings.name != null) stack.add(route.settings.name!);
@@ -49,7 +50,7 @@ class AppNavigatorObserver extends NavigatorObserver {
   void didStopUserGesture() => Logger().i('stopUserGesture');
 
   void _printLogs(String action, Route<dynamic>? route, Route<dynamic>? previousRoute) {
-    Logger().d([
+    logger.t([
       'ACTION: $action()',
       'ACTIVE ROUTE: ${route?.str ?? 'NULL'}',
       'PREVIOUS ROUTE: ${previousRoute?.str ?? 'NULL'}',

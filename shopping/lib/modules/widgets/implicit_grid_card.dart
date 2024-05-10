@@ -26,22 +26,27 @@ class ImplicitGridCard extends StatelessWidget {
       child: Container(
         width: width,
         margin: margin,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CachedNetworkImage(imageUrl: imageUrl, width: width, height: width, fit: BoxFit.fill),
-            if (label != null) Center(child: textWidget(context)),
-          ],
+        child: FittedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CachedNetworkImage(imageUrl: imageUrl, width: width, height: width, fit: BoxFit.cover),
+              if (label != null) Center(child: textWidget(context)),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Text textWidget(BuildContext context) {
-    return Text(label!,
-        maxLines: 2,
-        textAlign: TextAlign.center,
-        overflow: TextOverflow.ellipsis,
-        style: context.textTheme.labelMedium);
+  Widget textWidget(BuildContext context) {
+    return SizedBox(
+      width: width - 10,
+      child: Text(label!,
+          maxLines: maxLines,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: context.textTheme.labelMedium),
+    );
   }
 }

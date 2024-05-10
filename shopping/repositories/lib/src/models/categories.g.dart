@@ -88,6 +88,8 @@ abstract class _$CategoryCWProxy {
 
   Category relatedCategories(List<String> relatedCategories);
 
+  Category lastUpdate(DateTime? lastUpdate);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Category(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -99,6 +101,7 @@ abstract class _$CategoryCWProxy {
     String? bannerImg,
     String? leaderboardImg,
     List<String>? relatedCategories,
+    DateTime? lastUpdate,
   });
 }
 
@@ -123,6 +126,9 @@ class _$CategoryCWProxyImpl implements _$CategoryCWProxy {
       this(relatedCategories: relatedCategories);
 
   @override
+  Category lastUpdate(DateTime? lastUpdate) => this(lastUpdate: lastUpdate);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Category(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -135,6 +141,7 @@ class _$CategoryCWProxyImpl implements _$CategoryCWProxy {
     Object? bannerImg = const $CopyWithPlaceholder(),
     Object? leaderboardImg = const $CopyWithPlaceholder(),
     Object? relatedCategories = const $CopyWithPlaceholder(),
+    Object? lastUpdate = const $CopyWithPlaceholder(),
   }) {
     return Category(
       title: _value.title,
@@ -156,6 +163,10 @@ class _$CategoryCWProxyImpl implements _$CategoryCWProxy {
           ? _value.relatedCategories
           // ignore: cast_nullable_to_non_nullable
           : relatedCategories as List<String>,
+      lastUpdate: lastUpdate == const $CopyWithPlaceholder()
+          ? _value.lastUpdate
+          // ignore: cast_nullable_to_non_nullable
+          : lastUpdate as DateTime?,
     );
   }
 }
@@ -195,6 +206,9 @@ Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
               ?.map((e) => e as String)
               .toList() ??
           const [],
+      lastUpdate: json['lastUpdate'] == null
+          ? null
+          : DateTime.parse(json['lastUpdate'] as String),
     );
 
 Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
@@ -204,4 +218,5 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'bannerImg': instance.bannerImg,
       'leaderboardImg': instance.leaderboardImg,
       'relatedCategories': instance.relatedCategories,
+      'lastUpdate': instance.lastUpdate.toIso8601String(),
     };

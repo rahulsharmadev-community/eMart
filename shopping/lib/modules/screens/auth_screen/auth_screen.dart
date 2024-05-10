@@ -4,6 +4,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart' hide PhoneAuthProvider, EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
 import 'decorations.dart';
@@ -40,7 +41,7 @@ class AuthenticationScreen extends StatelessWidget {
     return MaterialApp(
       initialRoute: initialRoute,
       title: 'eMart Authentication',
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: kDebugMode,
       routes: {
         '/': (context) {
           return SignInScreen(

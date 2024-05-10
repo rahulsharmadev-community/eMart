@@ -57,12 +57,14 @@ class ItemCard extends _ItemCard {
           ConstrainedBox(constraints: boxConstraints, child: leading.padding(leadingPadding)),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (labels != null)
                   _buildRowWidgets(labels!, labelPadding, 24, labelAlignment ?? MainAxisAlignment.end),
                 content.padding(contentPadding),
-                const Spacer(),
+                if (actions?.isNotEmpty ?? false) const Spacer(),
                 if (actions?.isNotEmpty ?? false)
                   _buildRowWidgets(
                       actions!, actionsPadding, kToolbarHeight, actionsAlignment ?? MainAxisAlignment.center)
@@ -76,7 +78,7 @@ class ItemCard extends _ItemCard {
 
   Column buildVerticalLayout() {
     return Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
@@ -99,7 +101,7 @@ class ItemCard extends _ItemCard {
           ),
         ),
         content.padding(contentPadding),
-        const Spacer(),
+        if (actions?.isNotEmpty ?? false) const Spacer(),
         if (actions?.isNotEmpty ?? false)
           _buildRowWidgets(
               actions!, actionsPadding, kToolbarHeight, actionsAlignment ?? MainAxisAlignment.center)

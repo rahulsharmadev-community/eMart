@@ -6,7 +6,7 @@ sealed class eMartShoppingState {
   const eMartShoppingState();
 }
 
-final class eMartShoppingLoading extends eMartShoppingState {}
+class eMartShoppingLoading extends eMartShoppingState {}
 
 class AuthenticatedState extends eMartShoppingState {
   final String uid;

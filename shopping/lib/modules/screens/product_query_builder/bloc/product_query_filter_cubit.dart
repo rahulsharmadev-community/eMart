@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
-import 'package:shopping/modules/screens/product_query_screen/bloc/product_query_cubit.dart';
+import 'package:shopping/modules/screens/product_query_builder/bloc/product_query_cubit.dart';
 
 class QueryFilter {
   final Set<Query> pending;

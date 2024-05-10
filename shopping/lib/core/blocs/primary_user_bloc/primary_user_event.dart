@@ -3,25 +3,25 @@ part of 'primary_user_bloc.dart';
 @immutable
 sealed class PrimaryUserEvent {
   static PrimaryUserDispose dispose() => PrimaryUserDispose();
-  static UpdateEvent update(Consumer Function(Consumer value) consumer) => UpdateEvent(consumer);
+  static UpdateUserEvent update(Consumer Function(Consumer value) consumer) => UpdateUserEvent(consumer);
 
-  static UpdateEvent cartProductIncrement(String productId, [int by = 1]) => update((value) {
+  static UpdateUserEvent cartProductIncrement(String productId, [int by = 1]) => update((value) {
         var count = value.cartProducts[productId] ?? 0;
         count += by;
         return value.copyWith.cartProducts({...value.cartProducts, productId: count});
       });
-  static UpdateEvent cartProductDecrement(String productId, [int by = 1]) => update((value) {
+  static UpdateUserEvent cartProductDecrement(String productId, [int by = 1]) => update((value) {
         var count = value.cartProducts[productId] ?? 0;
         count -= by;
         if (count == 0) return value;
         return value.copyWith.cartProducts({...value.cartProducts, productId: count});
       });
 
-  static UpdateEvent cartProductRemove(String productId, [int by = 1]) => update((value) {
+  static UpdateUserEvent cartProductRemove(String productId, [int by = 1]) => update((value) {
         return value.copyWith.cartProducts(value.cartProducts..remove(productId));
       });
 
-  static UpdateEvent removeFromWishlist(String wishlistId, String productId) => update((value) {
+  static UpdateUserEvent removeFromWishlist(String wishlistId, String productId) => update((value) {
         var oldValue = value.wishlist[wishlistId];
         if (oldValue == null) return value;
 
@@ -30,7 +30,7 @@ sealed class PrimaryUserEvent {
         return value.copyWith.wishlist({...value.wishlist, newValue.wishlistId: newValue});
       });
 
-  static UpdateEvent createWishlist(String name, [List<String> productIds = const []]) => update((value) {
+  static UpdateUserEvent createWishlist(String name, [List<String> productIds = const []]) => update((value) {
         final now = DateTime.now();
         final wishlist = Wishlist(
           productIds: {for (var e in productIds) e: now},
@@ -41,11 +41,11 @@ sealed class PrimaryUserEvent {
         return value.copyWith.wishlist({...value.wishlist, wishlist.wishlistId: wishlist});
       });
 
-  static UpdateEvent deleteWishlist(String wishlistId) => update((value) {
+  static UpdateUserEvent deleteWishlist(String wishlistId) => update((value) {
         return value.copyWith.wishlist(value.wishlist..remove(wishlistId));
       });
 
-  static UpdateEvent addToWishlist(String wishlistId, String productId) => update((value) {
+  static UpdateUserEvent addToWishlist(String wishlistId, String productId) => update((value) {
         var oldValue = value.wishlist[wishlistId];
         if (oldValue == null) return value;
 
@@ -56,8 +56,20 @@ sealed class PrimaryUserEvent {
 
 class PrimaryUserDispose extends PrimaryUserEvent {}
 
-class UpdateEvent extends PrimaryUserEvent {
+class UpdateUserEvent extends PrimaryUserEvent {
   final Consumer Function(Consumer value) consumer;
 
-  UpdateEvent(this.consumer);
+  UpdateUserEvent(this.consumer);
+}
+
+class AddVisitedProductEvent extends PrimaryUserEvent {
+  final String productId;
+
+  AddVisitedProductEvent(this.productId);
+}
+
+class AddSuggestionKeywordsEvent extends PrimaryUserEvent {
+  final List<String> keywords;
+
+  AddSuggestionKeywordsEvent(this.keywords);
 }

@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:logger/logger.dart';
 
 class FlutterBlocObserver extends BlocObserver {
+  final logs = Logger();
   @override
   void onCreate(BlocBase bloc) {
     super.onCreate(bloc);
@@ -48,6 +49,6 @@ class FlutterBlocObserver extends BlocObserver {
       'CURRENT STATE': '${bloc.state}',
       'NEXT STATE': '${nextState.runtimeType}'
     };
-    Logger().d(str);
+    logs.t(str);
   }
 }

@@ -13,7 +13,9 @@ class eMartShoppingCubit extends Cubit<eMartShoppingState> {
   final Connectivity connectivity;
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<bool>? _connectivitySubscription;
-  eMartShoppingCubit(this.auth, this.connectivity) : super(eMartShoppingLoading());
+  eMartShoppingCubit(this.auth, this.connectivity) : super(eMartShoppingLoading()) {
+    _listenToAuthAndConnectivity();
+  }
 
   @override
   Future<void> close() async {
@@ -22,7 +24,7 @@ class eMartShoppingCubit extends Cubit<eMartShoppingState> {
     super.close();
   }
 
-  void listenToAuthAndConnectivity() {
+  void _listenToAuthAndConnectivity() {
     _authSubscription = auth.authStateChanges().listen((user) => emit(
           user != null ? AuthenticatedState(uid: user.uid) : UnauthenticatedState(),
         ));

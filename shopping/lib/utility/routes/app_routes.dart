@@ -11,15 +11,15 @@ import 'package:shopping/modules/screens/cart_screen/cart_screen.dart';
 import 'package:shopping/modules/screens/categories_screen/categories_screen.dart';
 import 'package:shopping/modules/screens/dashboard/dashboard.dart';
 import 'package:shopping/modules/screens/home_screen/home_screen.dart';
-import 'package:shopping/modules/screens/order_screen/order_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/image_preview_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
-import 'package:shopping/modules/screens/product_query_screen/product_query_screen.dart';
+import 'package:shopping/modules/screens/product_query_builder/product_query_builder.dart';
 import 'package:shopping/modules/screens/product_screen/product_screen.dart';
 import 'package:shopping/modules/screens/search_screen/mobile/search_screen.dart';
 import 'package:shopping/modules/screens/wishlist_screen/wishlist_screen.dart';
-import 'package:shopping/utility/utility.dart';
+import 'package:shopping/utility/navigation/app_navigator.dart';
+import 'package:shopping/utility/observers/app_navigator_observer.dart';
 part 'app_router.dart';
 
 /// This enum represents the different routes or screens available in the app.

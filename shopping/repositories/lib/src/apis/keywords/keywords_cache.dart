@@ -4,9 +4,14 @@ class KeywordsCache extends HiveCache<Keywords> {
   KeywordsCache() : super([]);
 
   Keywords get(String word) {
-    logs.i("KeywordsCache:get($word) initiating");
-    bool test(e) => e.label.removeAllSpace.toLowerCase().startsWith(word.removeAllSpace.toLowerCase());
-    return state.where(test).toList();
+    try {
+      logs.i("KeywordsCache:get($word) initiating");
+      bool test(Keyword e) =>
+          e.label.removeAllSpace.toLowerCase().startsWith(word.removeAllSpace.toLowerCase());
+      return state.where(test).toList();
+    } catch (e) {
+      return [];
+    }
   }
 
   void add(Keywords latest) {

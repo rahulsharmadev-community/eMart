@@ -13,15 +13,18 @@ class CategoriesCache extends HiveCache<List<Category>> {
   }
 
   List<Category> getAll() {
-    logs.i("AppMetaDataCache:get() initiating");
+    logs.i("AppMetaDataCache:getALL() initiating");
+    logs.t(state);
     var dateTime = DateTime.now();
     if (state.any((e) => e.expiry.isBefore(dateTime))) return [];
     return state;
   }
 
   @override
-  List<Category> fromJson(JSON json) => List.from(json['state']).map((e) => Category.fromJson(e)).toList();
+  List<Category> fromJson(JSON json) => json.values.map((e) => Category.fromJson(JSON.from(e))).toList();
 
   @override
-  JSON toJson(state) => {'state': state.map((e) => e.toJson()).toList()};
+  JSON toJson(state) => {
+        for (var e in state) ...{e.id: e.toJson()}
+      };
 }

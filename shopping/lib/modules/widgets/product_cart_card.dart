@@ -7,7 +7,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
-import 'package:shopping/modules/screens/product_query_screen/bloc/product_query_cubit.dart';
+import 'package:shopping/modules/screens/product_query_builder/bloc/product_query_cubit.dart';
 import 'package:shopping/modules/widgets/add_to_cart_button.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/modules/widgets/cards/badge_icon.dart';
@@ -143,7 +143,7 @@ class CalculationTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int count = context.select<PrimaryUserBloc, int>((bloc) {
-      return bloc.primaryUser?.cartProducts[product.productId] ?? 0;
+      return bloc.primaryUser?.user.cartProducts[product.productId] ?? 0;
     });
     const format = NumberFormat.en_in();
     var discountedPrice = format.simple(
@@ -173,7 +173,7 @@ class PlusMinusCounterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int count = context.select<PrimaryUserBloc, int>((bloc) {
-      return bloc.primaryUser?.cartProducts[productId] ?? 0;
+      return bloc.primaryUser?.user.cartProducts[productId] ?? 0;
     });
 
     final read = context.read<PrimaryUserBloc>();

@@ -22,6 +22,8 @@ class Keyword extends Equatable {
     DateTime? lastSearchedAt,
   }) : lastSearchedAt = lastSearchedAt ?? DateTime.now();
 
+  String get codeWord => label.removeAllSpace.toLowerCase();
+
   @override
   String toString() => "Keyword(label: $label,image: $image,lastSearchedAt: $lastSearchedAt)";
 

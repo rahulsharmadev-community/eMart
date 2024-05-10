@@ -63,7 +63,7 @@ class _AppRouter {
               Set<Query> child = {};
               if (state.extra is Query) child = {state.extra as Query};
               if (state.extra is Iterable) child = (state.extra as Iterable<Query>).toSet();
-              return ProductQueryScreen(child);
+              return ProductQueryBuilder(child);
             },
           ),
         ]),

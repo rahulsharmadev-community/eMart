@@ -5,30 +5,25 @@ import 'package:jars/jars.dart';
 
 part 'categories_state.dart';
 
-class CategoriesCubit extends Cubit<CategoriesState> {
+class CategoriesCubit extends Cubit<BlocState<List<Category>>> {
   final CategoriesRepository categoriesRepository;
   CategoriesCubit({
     required this.categoriesRepository,
-  }) : super(const CategoriesState.loading());
+  }) : super(const BlocStateLoading());
 
-  fetchData(List<String>? data) async {
-    CategoriesState temp = state;
-    if (data == null) {
+  fetchData(List<String>? keys) async {
+    if (keys == null) {
       categoriesRepository.getALL().then((value) {
-        temp = temp.copyWith(categories: BlocStateSuccess(value));
-        emit(temp);
+        emit(BlocStateSuccess(value));
       }).catchError((e) {
-        emit(temp.copyWith(categories: BlocStateFailure('Error fetching metadata: $e')));
+        emit(BlocStateFailure('Error fetching metadata: $e'));
       });
     } else {
-      categoriesRepository.get(data).then((value) {
-        temp = temp.copyWith(categories: BlocStateSuccess(value ?? []));
-        emit(temp);
+      categoriesRepository.get(keys).then((value) {
+        emit(BlocStateSuccess(value ?? []));
       }).catchError((e) {
-        emit(temp.copyWith(categories: BlocStateFailure('Error fetching metadata: $e')));
+        emit(BlocStateFailure('Error fetching metadata: $e'));
       });
     }
-
-    emit(temp);
   }
 }

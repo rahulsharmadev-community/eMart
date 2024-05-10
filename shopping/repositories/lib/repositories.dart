@@ -14,27 +14,6 @@ export 'src/models/policies.dart';
 export 'src/models/alert_model.dart';
 export 'src/models/live_countdown_model.dart';
 
-import 'dart:async';
-import 'package:shared/firebase_service.dart';
-
-Future<void> initializeRepository({bool emulator = false}) async {
-  if (emulator) {
-    const host = 'localhost';
-    // eMartConsumer
-    await FirebaseService.eMartConsumer.instanceOfAuth.useAuthEmulator(host, 9201);
-    FirebaseService.eMartConsumer.instanceOfFirestore.useFirestoreEmulator(host, 9202);
-    FirebaseService.eMartConsumer.instanceOfDatabase.useDatabaseEmulator(host, 9203);
-    await FirebaseService.eMartConsumer.instanceOfStorage.useStorageEmulator(host, 9204);
-
-    // // eMartSeller
-    await FirebaseService.eMartSeller.instanceOfAuth.useAuthEmulator(host, 7201);
-    FirebaseService.eMartSeller.instanceOfFirestore.useFirestoreEmulator(host, 7202);
-    FirebaseService.eMartSeller.instanceOfDatabase.useDatabaseEmulator(host, 7203);
-    await FirebaseService.eMartSeller.instanceOfStorage.useStorageEmulator(host, 7204);
-
-    // eMartMix
-    FirebaseService.eMartMix.instanceOfFirestore.useFirestoreEmulator(host, 8201);
-    FirebaseService.eMartMix.instanceOfDatabase.useDatabaseEmulator(host, 8202);
-    await FirebaseService.eMartMix.instanceOfStorage.useStorageEmulator(host, 8203);
-  }
-}
+export 'src/apis/user_activity/user_activity_repository.dart';
+export 'src/models/user_activity.dart';
+export 'src/models/primary_user.dart';

@@ -31,6 +31,7 @@ class Category {
   final List<String> relatedCategories;
   @CopyWithField.immutable()
   final DateTime expiry;
+  final DateTime lastUpdate;
 
   Category({
     required this.title,
@@ -39,7 +40,9 @@ class Category {
     this.bannerImg,
     this.leaderboardImg,
     this.relatedCategories = const [],
-  }) : expiry = DateTime.now().add(4.hours);
+    DateTime? lastUpdate,
+  })  : expiry = DateTime.now().add(4.hours),
+        lastUpdate = lastUpdate ?? DateTime.now();
   factory Category.fromJson(JSON json) => _$CategoryFromJson(json);
 
   JSON toJson() => _$CategoryToJson(this);

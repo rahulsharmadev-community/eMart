@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
@@ -5,7 +6,7 @@ import 'package:repositories/repositories.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/screens/categories_screen/cubit/categories_cubit.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
-import 'package:shopping/utility/utility.dart';
+import 'package:shopping/utility/routes/app_routes.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final String? category;
@@ -13,84 +14,85 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var data = context.read<AppMetaDataBloc>().appMetaData!;
+    var data = context.read<AppMetaDataBloc>().appMetaData;
     var categories =
-        category.ifNotNull(def: data.publicCategories, callback: (_) => data.getCategoriesByTitle(_));
+        category.ifNotNull(def: data?.publicCategories ?? [], callback: (_) => data?.getCategoriesByTitle(_));
     var repo = context.read<CategoriesRepository>();
 
-    return BlocProvider(create: (context) {
-      return CategoriesCubit(categoriesRepository: repo)..fetchData(categories);
-    }, child: Builder(builder: (context) {
-      return BlocBuilder<CategoriesCubit, CategoriesState>(builder: (context, state) {
-        return ListView(
-          shrinkWrap: true,
-          children: [
-            buildCategoriesWidget(state.categories),
-            const Divider(),
-            // buildCategoriesBanners(categoriesMetaData),
-          ],
-        );
-      });
-    }));
+    return BlocProvider(
+        create: (context) => CategoriesCubit(categoriesRepository: repo)..fetchData(categories),
+        child: BlocBuilder<CategoriesCubit, BlocState>(builder: (context, state) {
+          switch (state) {
+            case BlocStateFailure _:
+              return Text(state.message);
+            case BlocStateSuccess<List<Category>> _:
+              return ListView(
+                shrinkWrap: true,
+                children: [
+                  buildCategoriesLeaderboard(state.data),
+                  8.gap,
+                  buildCategoriesWidget(state.data),
+                  const Divider(),
+                  buildCategoriesBanners(state.data),
+                ],
+              );
+            default:
+              return const LinearProgressIndicator();
+          }
+        }));
   }
 
-  Widget buildCategoriesWidget(BlocState categories) {
-    switch (categories) {
-      case BlocStateFailure _:
-        return Text(categories.message);
-      case BlocStateSuccess<List<Category>> _:
-        return Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: categories.data
-              .where((e) => e.iconImg != null)
-              .map((e) => ImplicitGridCard(
-                    width: 90,
-                    imageUrl: e.iconImg!,
-                    label: e.title,
-                    maxLines: 3,
-                    margin: EdgeInsets.zero,
-                    onTap: () => AppRoutes.ProductQueryScreen.goNamed(extra: CategoriesQuery([e.title])),
-                  ))
-              .toList(),
-        );
-      default:
-        return const CircularProgressIndicator();
-    }
+  Widget buildCategoriesWidget(List<Category> categories) {
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      alignment: WrapAlignment.spaceEvenly,
+      children: categories
+          .where((e) => e.iconImg != null)
+          .map((e) => ImplicitGridCard(
+                width: 90,
+                imageUrl: e.iconImg!,
+                label: e.title,
+                maxLines: 3,
+                margin: EdgeInsets.zero,
+                onTap: () => AppRoutes.ProductQueryScreen.goNamed(extra: CategoriesQuery([e.title])),
+              ))
+          .toList(),
+    );
   }
 
-  // Widget buildCategoriesBanners(BlocState categories, BlocState metadata) {
-  //   switch (metadata) {
-  //     case BlocErrorState _:
-  //       return Text(metadata.errorMsg);
-  //     case BlocSuccessState<List<Categories>> _:
-  //       return ListView.builder(
-  //           shrinkWrap: true,
-  //           physics: const NeverScrollableScrollPhysics(),
-  //           itemCount: metadata.data.length,
-  //           itemBuilder: (ctx, i) {
-  //             var ls = metadata.data[i]
-  //                 .categories
-  //                 .map((e) => categories.firstWhereOrNull((element) => element.id == e))
-  //                 .nonNulls()
-  //                 .toList();
+  Widget buildCategoriesBanners(List<Category> categories) {
+    return SizedBox(
+      height: 200,
+      width: 100.w,
+      child: ListView.builder(
+          itemCount: categories.length,
+          scrollDirection: Axis.horizontal,
+          physics: const PageScrollPhysics(),
+          itemBuilder: (ctx, i) {
+            return CachedNetworkImage(
+              imageUrl: categories[i].bannerImg!,
+              fit: BoxFit.cover,
+              width: 100.w,
+            );
+          }),
+    );
+  }
 
-  //             return SizedBox(
-  //               height: 300,
-  //               child: ListView(
-  //                   scrollDirection: Axis.horizontal,
-  //                   children: ls.map((e) {
-  //                     return AspectRatio(
-  //                       aspectRatio: 16 / 9,
-  //                       child: CachedNetworkImage(
-  //                         imageUrl: e.bannerImg!,
-  //                       ),
-  //                     );
-  //                   }).toList()),
-  //             );
-  //           });
-  //     default:
-  //       return const CircularProgressIndicator();
-  //   }
-  // }
+  Widget buildCategoriesLeaderboard(List<Category> categories) {
+    return SizedBox(
+      height: kToolbarHeight,
+      child: ListView.builder(
+          itemCount: categories.length,
+          scrollDirection: Axis.horizontal,
+          physics: const PageScrollPhysics(),
+          itemBuilder: (ctx, i) {
+            return CachedNetworkImage(
+              imageUrl: categories[i].leaderboardImg!,
+              fit: BoxFit.cover,
+              width: 100.w,
+            );
+          }),
+    );
+  }
 }

@@ -6,7 +6,7 @@ import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shopping/modules/widgets/product_cart_card.dart';
 import 'cubits/cart_cubit.dart';
-import 'widgets/delivery_tile.dart';
+import '../../widgets/delivery_tile.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -14,7 +14,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bloc = context.read<PrimaryUserBloc>();
-    var productIds = bloc.primaryUser?.cartProducts.keys.toList() ?? [];
+    var productIds = bloc.primaryUser?.user.cartProducts.keys.toList() ?? [];
     return BlocProvider(
       create: (context) => CartCubit(context.read<ProductRepository>())..fetch(productIds),
       child: ListView(

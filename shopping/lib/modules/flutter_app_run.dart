@@ -1,12 +1,12 @@
 // ignore_for_file: use_build_context_synchronously, camel_case_types
 import 'dart:ui' as ui;
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
-import 'package:shared/firebase_service.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/core/cubit/e_mart_shopping_cubit.dart';
@@ -18,14 +18,14 @@ import 'package:shopping/utility/routes/app_routes.dart';
 import 'package:shopping/utility/theme/app_theme.dart';
 
 class eMartShoppingAppRunner extends StatelessWidget {
-  const eMartShoppingAppRunner({super.key});
+  final FirebaseAuth auth;
+  const eMartShoppingAppRunner({super.key, required this.auth});
 
   @override
   Widget build(BuildContext context) {
-    var auth = FirebaseService.eMartConsumer.instanceOfAuth;
-    var cubit = eMartShoppingCubit(auth, Connectivity())..listenToAuthAndConnectivity();
-    return BlocProvider.value(
-      value: cubit,
+    return BlocProvider(
+      create: (context) => eMartShoppingCubit(auth, Connectivity()),
+      lazy: false,
       child: BlocBuilder<eMartShoppingCubit, eMartShoppingState>(
         builder: (context, state) {
           switch (state) {
@@ -34,7 +34,7 @@ class eMartShoppingAppRunner extends StatelessWidget {
             case UnauthenticatedState _:
               return AuthenticationScreen(auth: auth);
             case ConnectionErrorState _:
-              return const ErrorScreen(materialAppWraper: true, msg: 'No internet connection.');
+              return const ErrorScreen(materialAppWraper: true, title: 'No internet connection.');
             default:
               return const LoadingScreen(materialAppWraper: true);
           }
@@ -61,7 +61,8 @@ class eMartAppBuilder extends StatelessWidget {
       ],
       child: MultiBlocProvider(providers: [
         BlocProvider<PrimaryUserBloc>(
-          create: (context) => PrimaryUserBloc(PrimaryUserApi(uid)),
+          create: (context) => PrimaryUserBloc(PrimaryUserApi(uid),
+              UserActivityRepository(api: UserActivityApi(uid), cache: UserActivityCache())),
           lazy: false,
         ),
         BlocProvider<AppMetaDataBloc>(
@@ -90,7 +91,7 @@ class eMartAppBuilder extends StatelessWidget {
               debugShowCheckedModeBanner: kDebugMode,
             );
           case BlocStateFailure _:
-            return ErrorScreen(materialAppWraper: true, msg: state.message);
+            return ErrorScreen(materialAppWraper: true, title: state.message);
           default:
             return const LoadingScreen(materialAppWraper: true);
         }

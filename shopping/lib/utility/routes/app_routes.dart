@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
+import 'package:shopping/modules/screens/address_screen/address_screen.dart';
+import 'package:shopping/modules/screens/address_screen/edit_address_screen.dart';
 import 'package:shopping/modules/screens/cart_screen/cart_screen.dart';
 import 'package:shopping/modules/screens/categories_screen/categories_screen.dart';
 import 'package:shopping/modules/screens/dashboard/dashboard.dart';
@@ -20,7 +22,7 @@ import 'package:shopping/modules/screens/search_screen/mobile/search_screen.dart
 import 'package:shopping/modules/screens/wishlist_screen/wishlist_screen.dart';
 import 'package:shopping/utility/navigation/app_navigator.dart';
 import 'package:shopping/utility/observers/app_navigator_observer.dart';
-part 'app_router.dart';
+part 'app_routers_config.dart';
 
 /// This enum represents the different routes or screens available in the app.
 ///
@@ -36,6 +38,8 @@ enum AppRoutes {
   NotificationsScreen('notifications'),
   SettingsScreen('settings'),
   ProductScreen('product'),
+  EditAddressScreen('address'),
+  AddressScreen('my_addresses'),
 
   SearchKeywordScreen('search_keyword'),
 
@@ -58,7 +62,7 @@ enum AppRoutes {
   const AppRoutes(this.name);
   final String name;
 
-  static GoRouter config = _AppRouter.internal().run;
+  static GoRouter config = _AppRouterConfig.initialize;
 
   static void pop<T extends Object?>({T? result, int count = 1}) =>
       AppNavigator.pop<T>(count: count, result: result);

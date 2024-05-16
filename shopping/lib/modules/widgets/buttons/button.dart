@@ -15,6 +15,7 @@ class JButton extends StatelessWidget {
   final Badge? badge;
   final AlignmentGeometry? alignment;
   final String? text;
+  final Widget? child;
   final void Function()? onPressed;
   final JButtonType type;
   final IconData? leadingIcon;
@@ -24,33 +25,36 @@ class JButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final TextStyle? style;
+  final bool infinity;
 
-  const JButton({
-    this.text,
-    super.key,
-    this.badge,
-    this.type = JButtonType.filled,
-    this.onPressed,
-    this.trailingIcon,
-    this.leadingIcon,
-    this.alignment,
-    this.iconSize,
-    this.padding,
-    this.margin,
-    this.borderRadius,
-    this.style,
-  });
+  const JButton(
+      {this.text,
+      this.child,
+      super.key,
+      this.badge,
+      this.type = JButtonType.filled,
+      this.onPressed,
+      this.trailingIcon,
+      this.leadingIcon,
+      this.alignment,
+      this.iconSize,
+      this.padding,
+      this.margin,
+      this.borderRadius,
+      this.style,
+      this.infinity = true});
 
   @override
   Widget build(BuildContext context) {
     Widget child;
     child = buildButtonLayout(context);
+
     var styleFrom = FilledButton.styleFrom(
       padding: padding,
       textStyle: style ?? context.textTheme.titleMedium,
       shape: RoundedRectangleBorder(borderRadius: borderRadius ?? BorderRadius.zero),
-      fixedSize: const Size.fromHeight(double.maxFinite),
-      minimumSize: const Size.fromHeight(double.maxFinite),
+      fixedSize: infinity ? const Size.fromWidth(double.maxFinite) : null,
+      minimumSize: infinity ? const Size.fromWidth(double.maxFinite) : null,
     );
 
     child = buildButton(styleFrom, child);
@@ -78,18 +82,19 @@ class JButton extends StatelessWidget {
   }
 
   Widget buildButtonLayout(BuildContext context) {
-    if ((leadingIcon != null || trailingIcon != null) && text != null) {
+    Widget? child = this.child ?? (text != null ? Text(text!) : null);
+    if ((leadingIcon != null || trailingIcon != null) && child != null) {
       return Row(mainAxisSize: MainAxisSize.min, children: [
         if (leadingIcon != null) Icon(leadingIcon, size: iconSize).paddingOnly(right: 4),
-        if (text != null) Text(text!),
+        child,
         if (trailingIcon != null) Icon(trailingIcon, size: iconSize).paddingOnly(left: 4),
       ]);
     } else if (leadingIcon != null) {
       return Icon(leadingIcon, size: iconSize);
     } else if (trailingIcon != null) {
       return Icon(trailingIcon, size: iconSize);
-    } else if (text != null) {
-      return Text(text!);
+    } else if (child != null) {
+      return child;
     } else {
       return const SizedBox.shrink();
     }

@@ -13,8 +13,6 @@ import 'package:shopping/modules/flutter_app_run.dart';
 import 'package:shopping/utility/observers/bloc_observer.dart';
 import 'package:hive_cache/hive_cache.dart';
 
-final _instance = eMartConsumerFirebaseCredential.instance;
-
 Future<JSON?> getDeviceInfoIfValidPlatform() async {
   if (!(PlatformQuery.isAndroid || PlatformQuery.isWeb)) return null;
 
@@ -29,11 +27,12 @@ void main() async {
   var deviceInfo = await getDeviceInfoIfValidPlatform();
   if (deviceInfo == null) return;
 
-  await FirebaseService.initialize(_instance);
+  final instance = eMartConsumerFirebaseCredential.instance;
+  await FirebaseService.initialize(instance);
   FirebaseUIAuth.configureProviders([
     EmailAuthProvider(),
     PhoneAuthProvider(),
-    GoogleProvider(clientId: _instance.clientId),
+    GoogleProvider(clientId: instance.clientId),
   ], app: FirebaseService.eMartConsumer);
 
   Bloc.observer = FlutterBlocObserver();

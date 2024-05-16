@@ -17,3 +17,6 @@ export 'src/models/live_countdown_model.dart';
 export 'src/apis/user_activity/user_activity_repository.dart';
 export 'src/models/user_activity.dart';
 export 'src/models/primary_user.dart';
+
+
+export 'src/apis/place_api.dart';

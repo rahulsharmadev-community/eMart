@@ -50,19 +50,22 @@ class eMartAppBuilder extends StatelessWidget {
   const eMartAppBuilder({super.key, required this.uid});
   @override
   Widget build(BuildContext context) {
+    final productRepository = ProductRepository(api: ProductsApi(), cache: ProductsCache());
+    final keywordsRepository = KeywordsRepository(api: KeywordsApi(), cache: KeywordsCache());
+    final categoriesRepository = CategoriesRepository(api: CategoriesApi(), cache: CategoriesCache());
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
-            create: (context) => ProductRepository(api: ProductsApi(), cache: ProductsCache())),
-        RepositoryProvider(
-            create: (context) => KeywordsRepository(api: KeywordsApi(), cache: KeywordsCache())),
-        RepositoryProvider(
-            create: (context) => CategoriesRepository(api: CategoriesApi(), cache: CategoriesCache())),
+        RepositoryProvider.value(value: productRepository),
+        RepositoryProvider.value(value: keywordsRepository),
+        RepositoryProvider.value(value: categoriesRepository),
       ],
       child: MultiBlocProvider(providers: [
         BlocProvider<PrimaryUserBloc>(
-          create: (context) => PrimaryUserBloc(PrimaryUserApi(uid),
-              UserActivityRepository(api: UserActivityApi(uid), cache: UserActivityCache())),
+          create: (context) => PrimaryUserBloc(
+              api: PrimaryUserApi(uid),
+              userActivityRepository:
+                  UserActivityRepository(api: UserActivityApi(uid), cache: UserActivityCache()),
+              productRepository: productRepository),
           lazy: false,
         ),
         BlocProvider<AppMetaDataBloc>(

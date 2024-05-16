@@ -27,7 +27,9 @@ abstract class _$ConsumerCWProxy {
 
   Consumer orders(List<String> orders);
 
-  Consumer addresses(List<String> addresses);
+  Consumer addresses(Map<String, Address> addresses);
+
+  Consumer primaryAddressId(String? primaryAddressId);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Consumer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -46,7 +48,8 @@ abstract class _$ConsumerCWProxy {
     Map<String, Wishlist>? wishlist,
     List<String>? complains,
     List<String>? orders,
-    List<String>? addresses,
+    Map<String, Address>? addresses,
+    String? primaryAddressId,
   });
 }
 
@@ -89,7 +92,12 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
   Consumer orders(List<String> orders) => this(orders: orders);
 
   @override
-  Consumer addresses(List<String> addresses) => this(addresses: addresses);
+  Consumer addresses(Map<String, Address> addresses) =>
+      this(addresses: addresses);
+
+  @override
+  Consumer primaryAddressId(String? primaryAddressId) =>
+      this(primaryAddressId: primaryAddressId);
 
   @override
 
@@ -111,6 +119,7 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
     Object? complains = const $CopyWithPlaceholder(),
     Object? orders = const $CopyWithPlaceholder(),
     Object? addresses = const $CopyWithPlaceholder(),
+    Object? primaryAddressId = const $CopyWithPlaceholder(),
   }) {
     return Consumer(
       uid: _value.uid,
@@ -158,7 +167,11 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
       addresses: addresses == const $CopyWithPlaceholder() || addresses == null
           ? _value.addresses
           // ignore: cast_nullable_to_non_nullable
-          : addresses as List<String>,
+          : addresses as Map<String, Address>,
+      primaryAddressId: primaryAddressId == const $CopyWithPlaceholder()
+          ? _value.primaryAddressId
+          // ignore: cast_nullable_to_non_nullable
+          : primaryAddressId as String?,
       joinAt: _value.joinAt,
     );
   }
@@ -284,10 +297,11 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      addresses: (json['addresses'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      addresses: (json['addresses'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, Address.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
+      primaryAddressId: json['primaryAddressId'] as String?,
       joinAt: _$JsonConverterFromJson<int, DateTime>(
           json['joinAt'], const DateTimeConverter().fromJson),
       lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
@@ -301,12 +315,13 @@ Map<String, dynamic> _$ConsumerToJson(Consumer instance) => <String, dynamic>{
       'phoneNumber': instance.phoneNumber,
       'profileImg': instance.profileImg,
       'fCMid': instance.fCMid,
+      'primaryAddressId': instance.primaryAddressId,
       'devices': instance.devices,
-      'cartProducts': instance.cartProducts,
-      'wishlist': instance.wishlist.map((k, e) => MapEntry(k, e.toJson())),
       'complains': instance.complains,
       'orders': instance.orders,
-      'addresses': instance.addresses,
+      'wishlist': instance.wishlist.map((k, e) => MapEntry(k, e.toJson())),
+      'addresses': instance.addresses.map((k, e) => MapEntry(k, e.toJson())),
+      'cartProducts': instance.cartProducts,
       'joinAt': const DateTimeConverter().toJson(instance.joinAt),
       'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };

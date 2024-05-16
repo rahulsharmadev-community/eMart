@@ -49,7 +49,8 @@ class Consumer {
     this.wishlist = const {},
     this.complains = const [],
     this.orders = const [],
-    this.addresses = const [],
+    this.addresses = const {},
+    this.primaryAddressId,
     DateTime? joinAt,
     DateTime? lastUpdateAt,
   })  : assert(name.firstName.isNotEmpty, 'name should not be empty.'),
@@ -59,15 +60,13 @@ class Consumer {
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 
   /// Unknown user which represents an unauthenticated user.
-  factory Consumer.unknown({required String fCMid, required JSON deviceInfo}) => Consumer(
-      uid: '@unknown',
-      name: PersonName(firstName: '@unknown', middleName: '@unknown', lastName: '@unknown'),
-      email: '@unknown',
-      fCMid: fCMid,
-      devices: [deviceInfo]);
+  static Consumer unknown =
+      Consumer(uid: '', name: PersonName(firstName: ''), email: '', fCMid: '', devices: const []);
 
   /// Convenience getter to determine whether the current user is Unknown.
-  bool get isUnknown => uid == '@unknown';
+  bool get isUnknown => this == unknown;
+
+  Address? get primaryAddress => primaryAddressId != null ? addresses[primaryAddressId] : null;
 
   @CopyWithField.immutable()
   final String uid;
@@ -77,17 +76,19 @@ class Consumer {
   final String? profileImg;
   final String fCMid;
 
+  final String? primaryAddressId;
+
   final List<JSON> devices;
-
-  /// Map of product IDs to their quantities in the user's cart.
-  final JSON<int> cartProducts;
-
-  /// Map of wishlist IDs to their respective data.
-  final JSON<Wishlist> wishlist;
 
   final List<String> complains;
   final List<String> orders;
-  final List<String> addresses;
+
+  /// Map of wishlist IDs to their respective data.
+  final JSON<Wishlist> wishlist;
+  final JSON<Address> addresses;
+
+  /// Map of product IDs to their quantities in the user's cart.
+  final JSON<int> cartProducts;
 
   @CopyWithField.immutable()
   final DateTime joinAt;
@@ -99,7 +100,6 @@ class Consumer {
   JSON toJson() => _$ConsumerToJson(this);
 
   @override
-  // TODO: implement hashCode
   int get hashCode => lastUpdateAt.hashCode;
 
   @override

@@ -2,7 +2,7 @@
 
 library credentials;
 
-export 'src/credentials/other.dart';
+export 'src/credentials/free_apis.dart';
 export 'src/credentials/emart-consumer-only.dart';
 export 'src/credentials/emart-mix.dart';
 export 'src/credentials/emart-seller-only.dart';

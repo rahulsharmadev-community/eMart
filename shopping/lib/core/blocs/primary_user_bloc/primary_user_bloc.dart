@@ -13,28 +13,35 @@ part 'primary_user_event.dart';
 
 class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<PrimaryUser>> {
   final PrimaryUserApi api;
-  final UserActivityRepository repository;
+  final UserActivityRepository userActivityRepository;
+  final ProductRepository productRepository;
   StreamSubscription? subscription;
 
   PrimaryUser? get primaryUser =>
       state is BlocStateSuccess ? (state as BlocStateSuccess<PrimaryUser>).data : null;
 
-  PrimaryUserBloc(this.api, this.repository) : super(const BlocStateLoading()) {
+  PrimaryUserBloc({
+    required this.api,
+    required this.userActivityRepository,
+    required this.productRepository,
+  }) : super(const BlocStateLoading()) {
     subscription = api.getStream.listen((event) async {
       if (event == null) {
         var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
         asyncGuard(() => PrimaryUserApi.createNewUser(result));
       } else {
-        final temp = primaryUser?.userActivity ?? await repository.get() ?? const UserActivity();
+        final temp = primaryUser?.userActivity ?? await userActivityRepository.get() ?? const UserActivity();
         emit(BlocStateSuccess<PrimaryUser>(PrimaryUser(user: event, userActivity: temp)));
       }
     });
 
     on<PrimaryUserDispose>((event, emit) => emit(const BlocStateLoading()));
 
+
+
     on<AddVisitedProductEvent>((event, emit) async {
       if (state is BlocStateSuccess) {
-        await repository.addVisitedProduct(event.productId).then((value) {
+        await userActivityRepository.addVisitedProduct(event.productId).then((value) {
           emit(BlocStateSuccess(primaryUser!.copyWith.userActivity(value)));
         });
       }
@@ -42,7 +49,7 @@ class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<PrimaryUser>> {
 
     on<AddSuggestionKeywordsEvent>((event, emit) async {
       if (state is BlocStateSuccess) {
-        await repository.addSuggestionKeywords(event.keywords).then((value) {
+        await userActivityRepository.addSuggestionKeywords(event.keywords).then((value) {
           emit(BlocStateSuccess(primaryUser!.copyWith.userActivity(value)));
         });
       }

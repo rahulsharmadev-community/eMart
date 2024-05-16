@@ -17,7 +17,7 @@ sealed class PrimaryUserEvent {
         return value.copyWith.cartProducts({...value.cartProducts, productId: count});
       });
 
-  static UpdateUserEvent cartProductRemove(String productId, [int by = 1]) => update((value) {
+  static UpdateUserEvent cartProductRemove(String productId) => update((value) {
         return value.copyWith.cartProducts(value.cartProducts..remove(productId));
       });
 
@@ -51,6 +51,20 @@ sealed class PrimaryUserEvent {
 
         var newValue = oldValue.copyWith.productIds({...oldValue.productIds, productId: DateTime.now()});
         return value.copyWith.wishlist({...value.wishlist, newValue.wishlistId: newValue});
+      });
+
+  static UpdateUserEvent addOrEditAdderss(Address address, {bool makePrimery = false}) => update((value) {
+        return value.copyWith(
+          addresses: {...value.addresses, address.addressId: address},
+          primaryAddressId: makePrimery ? address.addressId : value.primaryAddressId,
+        );
+      });
+
+  static UpdateUserEvent changePrimaryAddress(String addressId) => update((value) {
+        if (value.addresses[addressId] == null || value.primaryAddressId == addressId) return value;
+        return value.copyWith(
+          primaryAddressId: addressId,
+        );
       });
 }
 

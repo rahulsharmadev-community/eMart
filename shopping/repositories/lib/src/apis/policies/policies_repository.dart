@@ -12,11 +12,10 @@ part 'policies_cache.dart';
 
 // ignore: camel_case_types
 class eMartPoliciesRepository {
-  final eMartPoliciesApi api;
-  final eMartPoliciesCache cache;
-  eMartPoliciesRepository({required this.api, required this.cache});
+  final eMartPoliciesApi api = eMartPoliciesApi();
+  final eMartPoliciesCache cache = eMartPoliciesCache();
 
-  FutureOr<Policies?> get() async {
+  Future<Policies?> get() async {
     Policies? result = cache.get();
     if (result == null) {
       result = await api.getComplete();

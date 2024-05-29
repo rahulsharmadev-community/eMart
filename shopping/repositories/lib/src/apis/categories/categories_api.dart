@@ -2,7 +2,7 @@ part of 'categories_repository.dart';
 
 class CategoriesApi {
   final cf.CollectionReference _collection;
-  CategoriesApi({String lang = 'en'})
+  CategoriesApi(String lang)
       : _collection =
             FirebaseService.eMartConsumer.instanceOfFirestore.collection('AppMetaData/$lang/categories');
 

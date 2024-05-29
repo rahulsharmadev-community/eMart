@@ -3,8 +3,8 @@ part of 'app_metadata_repository.dart';
 class AppMetaDataApi {
   final fs.DocumentReference documentRef;
 
-  AppMetaDataApi({String language = 'en'})
-      : documentRef = FirebaseService.eMartConsumer.instanceOfFirestore.doc('AppMetaData/$language');
+  AppMetaDataApi(String lang)
+      : documentRef = FirebaseService.eMartConsumer.instanceOfFirestore.doc('AppMetaData/$lang');
 
   Stream<AppMetaData?> get stream {
     logs.i("AppMetaDataApi:getComplete initiating");

@@ -12,43 +12,13 @@ class Variant {
 }
 
 class _MobileProductScreen extends StatefulWidget {
-  final String productId;
-  final String thumbnail;
-  final String title;
-  final String? shotDescription;
-  final String? productBrand;
-  final String mrp;
-  final String discountedPrice;
-  final List<String> imageUrls;
-  final List<Variant> variants;
-  final List<String>? feature;
-  final JSON<String> detailedSpecs;
-  final String discount;
-  final double rating;
-  final String totalReviews;
-  final VoidCallback? onCart;
-  final VoidCallback? onBuy;
+  final model.Product product;
   final List<Widget>? children;
 
   const _MobileProductScreen({
     super.key,
-    this.feature,
-    required this.mrp,
-    required this.thumbnail,
-    required this.title,
-    this.shotDescription,
-    this.productBrand,
-    required this.imageUrls,
-    required this.variants,
-    required this.detailedSpecs,
-    required this.discount,
-    required this.discountedPrice,
-    required this.rating,
-    required this.totalReviews,
-    this.onCart,
-    this.onBuy,
     this.children,
-    required this.productId,
+    required this.product,
   });
 
   @override
@@ -87,23 +57,30 @@ class _MobileProductScreenState extends State<_MobileProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = _createChildren();
+    final List<Widget> children = [
+      MultiImageViewBuilder(widget.product.imageUrls),
+      PriceBuilder(
+        discount: widget.product.discount,
+        mrp: widget.product.mrp,
+        discountedPrice: widget.product.discountedPrice,
+      ).paddingHorizontal(12),
+      if (widget.product.feature?.isNotEmpty ?? false)
+        FeaturesBuilder(widget.product.feature!).paddingHorizontal(12),
+      if (widget.product.shotDescription != null)
+        DescriptionBuilder(widget.product.shotDescription!).paddingHorizontal(12),
+      if (widget.product.detailedSpecs.isNotEmpty)
+        DetailedSpecsBuilder(widget.product.detailedSpecs).paddingHorizontal(12),
+      if (widget.children != null) ...widget.children!
+    ];
     Widget separatorBuilder(context, i) => i > 0 ? 16.gap : 4.gap;
     Widget itemBuilder(context, i) => children[i];
+
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBarBuilder(
-        productId: widget.productId,
-        onBuy: widget.onBuy,
-        onCart: widget.onCart,
-      ),
+      bottomNavigationBar: ActionButtonsBuilder(product: widget.product),
       appBar: MobileSearchAppBar(
           bottom: BottomAppBarBuilder(
+        product: widget.product,
         isScrolOnTop: isScrolOnTop,
-        image: widget.thumbnail,
-        title: widget.title,
-        rating: widget.rating,
-        totalReviews: widget.totalReviews,
-        productBrand: widget.productBrand,
         onTap: () => scrollController.animateTo(0, duration: 300.milliseconds, curve: Curves.decelerate),
       )),
       body: ListView.separated(
@@ -113,23 +90,5 @@ class _MobileProductScreenState extends State<_MobileProductScreen> {
         itemBuilder: itemBuilder,
       ),
     );
-  }
-
-  List<Widget> _createChildren() {
-    return [
-      MultiImageViewBuilder(
-        imageUrls: widget.imageUrls,
-        variants: widget.variants,
-      ),
-      PriceBuilder(
-        discount: widget.discount,
-        mrp: widget.mrp,
-        discountedPrice: widget.discountedPrice,
-      ).paddingHorizontal(12),
-      if (widget.feature?.isNotEmpty ?? false) FeaturesBuilder(widget.feature!).paddingHorizontal(12),
-      if (widget.shotDescription != null) DescriptionBuilder(widget.shotDescription!).paddingHorizontal(12),
-      if (widget.detailedSpecs.isNotEmpty) DetailedSpecsBuilder(widget.detailedSpecs).paddingHorizontal(12),
-      if (widget.children != null) ...widget.children!
-    ];
   }
 }

@@ -8,9 +8,6 @@ import 'package:uuid/uuid.dart';
 
 part 'address.g.dart';
 
-// ignore: camel_case_types
-typedef JSON_1 = ({String key, String value});
-
 enum AddressType {
   home(Icons.home_rounded),
   office(Icons.home_work_rounded),
@@ -31,6 +28,7 @@ class Address extends Equatable {
   final String addressId;
   final PersonName personName;
   final int phoneNumber;
+  final String? email;
   final String houseNo;
   final JSON_1 state;
   final JSON_1 country;
@@ -60,6 +58,7 @@ class Address extends Equatable {
     required this.plusCode,
     required this.geoCoordinate,
     required this.phoneNumber,
+    this.email,
     this.landmark,
     this.city,
     this.area,
@@ -68,7 +67,8 @@ class Address extends Equatable {
     this.type,
     DateTime? lastUpdateAt,
     DateTime? createdAt,
-  })  : addressId = addressId ?? const Uuid().v4(),
+  })  : assert(personName.firstName.isNotEmpty, 'name should not be empty.'),
+        addressId = addressId ?? const Uuid().v4(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now(),
         createdAt = createdAt ?? DateTime.now();
 
@@ -86,7 +86,7 @@ class Address extends Equatable {
     postalCode: -1,
     personName: PersonName(firstName: '@empty'),
     plusCode: '',
-    geoCoordinate: (lat: -1, long: -1),
+    geoCoordinate: (lat: -1, lng: -1),
     phoneNumber: -1,
   );
 
@@ -110,6 +110,7 @@ class Address extends Equatable {
         floorLevel,
         district,
         type,
+        email,
         createdAt,
       ];
 }

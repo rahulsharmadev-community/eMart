@@ -74,18 +74,12 @@ class HorizontalCategoriesBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(
-        builder: (context) => BlocBuilder<AppMetaDataBloc, BlocState>(
-              builder: (context, state) {
-                switch (state) {
-                  case BlocStateFailure _:
-                    return Text(state.message);
-                  case BlocStateSuccess _:
-                    return bodyBuilder((state.data as AppMetaData).categories);
-                  default:
-                    return const LinearProgressIndicator();
-                }
-              },
-            ));
+        builder: (context) => BlocBuilder<AppMetaDataBloc, BlocState>(builder: (context, state) {
+              return state.on(
+                  onInitial: const LinearProgressIndicator(),
+                  onFailure: (state) => Text(state.message),
+                  onSuccess: (state) => bodyBuilder((state.data as AppMetaData).categories));
+            }));
   }
 }
 

@@ -1,9 +1,7 @@
 part of 'reviews_repository.dart';
 
 class ReviewsApi {
-  final db.DatabaseReference _reference;
-  ReviewsApi({String lang = 'en'})
-      : _reference = FirebaseService.eMartConsumer.instanceOfDatabase.ref('REVIEWS');
+  final db.DatabaseReference _reference = FirebaseService.eMartConsumer.instanceOfDatabase.ref('REVIEWS');
 
   Future<List<Review>> getByProductId(String id) async {
     logs.i("ReviewsApi:get($id) initiating");

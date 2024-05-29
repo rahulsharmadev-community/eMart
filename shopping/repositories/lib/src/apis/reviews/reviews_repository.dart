@@ -8,11 +8,10 @@ part 'reviews_api.dart';
 part 'reviews_cache.dart';
 
 class ReviewsRepository {
-  final ReviewsApi api;
-  final ReviewsCache cache;
-  ReviewsRepository({required this.api, required this.cache});
+  final ReviewsApi api = ReviewsApi();
+  final ReviewsCache cache = ReviewsCache();
 
-  FutureOr<List<Review>?> getReviews(String productId) async {
+  Future<List<Review>?> getReviews(String productId) async {
     List<Review>? result = cache.get(productId);
     if (result == null || result.isEmpty) {
       result = await api.getByProductId(productId);

@@ -4,7 +4,7 @@ class ProductsApi {
   final fs.CollectionReference productsCol;
   final db.DatabaseReference metaDataReference;
 
-  ProductsApi({fs.FirebaseFirestore? firestore})
+  ProductsApi()
       : productsCol = FirebaseService.eMartSeller.instanceOfFirestore.collection('PRODUCTS'),
         metaDataReference = FirebaseService.eMartMix.instanceOfDatabase.ref('PRODUCTS-METADATA');
 

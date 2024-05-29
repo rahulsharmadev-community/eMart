@@ -11,8 +11,6 @@ abstract class _$OrderedProductCWProxy {
 
   OrderedProduct title(String title);
 
-  OrderedProduct reviewId(String? reviewId);
-
   OrderedProduct quantity(int quantity);
 
   OrderedProduct thumbnail(String thumbnail);
@@ -21,13 +19,17 @@ abstract class _$OrderedProductCWProxy {
 
   OrderedProduct discount(double discount);
 
-  OrderedProduct shippingCost(double shippingCost);
+  OrderedProduct shippingCost(double? shippingCost);
 
-  OrderedProduct deliveryCost(double deliveryCost);
+  OrderedProduct deliveryCost(double? deliveryCost);
 
   OrderedProduct deliveryEstimation(DeliveryEstimation deliveryEstimation);
 
   OrderedProduct orderStatus(OrderStatus orderStatus);
+
+  OrderedProduct deliveryAddress(Address? deliveryAddress);
+
+  OrderedProduct reviewId(String? reviewId);
 
   OrderedProduct refund(DurationPeriod? refund);
 
@@ -46,7 +48,6 @@ abstract class _$OrderedProductCWProxy {
   OrderedProduct call({
     double? mrp,
     String? title,
-    String? reviewId,
     int? quantity,
     String? thumbnail,
     String? productId,
@@ -55,6 +56,8 @@ abstract class _$OrderedProductCWProxy {
     double? deliveryCost,
     DeliveryEstimation? deliveryEstimation,
     OrderStatus? orderStatus,
+    Address? deliveryAddress,
+    String? reviewId,
     DurationPeriod? refund,
     DurationPeriod? replacement,
     DurationPeriod? warrantyPeriod,
@@ -75,9 +78,6 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
   OrderedProduct title(String title) => this(title: title);
 
   @override
-  OrderedProduct reviewId(String? reviewId) => this(reviewId: reviewId);
-
-  @override
   OrderedProduct quantity(int quantity) => this(quantity: quantity);
 
   @override
@@ -90,11 +90,11 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
   OrderedProduct discount(double discount) => this(discount: discount);
 
   @override
-  OrderedProduct shippingCost(double shippingCost) =>
+  OrderedProduct shippingCost(double? shippingCost) =>
       this(shippingCost: shippingCost);
 
   @override
-  OrderedProduct deliveryCost(double deliveryCost) =>
+  OrderedProduct deliveryCost(double? deliveryCost) =>
       this(deliveryCost: deliveryCost);
 
   @override
@@ -104,6 +104,13 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
   @override
   OrderedProduct orderStatus(OrderStatus orderStatus) =>
       this(orderStatus: orderStatus);
+
+  @override
+  OrderedProduct deliveryAddress(Address? deliveryAddress) =>
+      this(deliveryAddress: deliveryAddress);
+
+  @override
+  OrderedProduct reviewId(String? reviewId) => this(reviewId: reviewId);
 
   @override
   OrderedProduct refund(DurationPeriod? refund) => this(refund: refund);
@@ -131,7 +138,6 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
   OrderedProduct call({
     Object? mrp = const $CopyWithPlaceholder(),
     Object? title = const $CopyWithPlaceholder(),
-    Object? reviewId = const $CopyWithPlaceholder(),
     Object? quantity = const $CopyWithPlaceholder(),
     Object? thumbnail = const $CopyWithPlaceholder(),
     Object? productId = const $CopyWithPlaceholder(),
@@ -140,6 +146,8 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
     Object? deliveryCost = const $CopyWithPlaceholder(),
     Object? deliveryEstimation = const $CopyWithPlaceholder(),
     Object? orderStatus = const $CopyWithPlaceholder(),
+    Object? deliveryAddress = const $CopyWithPlaceholder(),
+    Object? reviewId = const $CopyWithPlaceholder(),
     Object? refund = const $CopyWithPlaceholder(),
     Object? replacement = const $CopyWithPlaceholder(),
     Object? warrantyPeriod = const $CopyWithPlaceholder(),
@@ -154,10 +162,6 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
           ? _value.title
           // ignore: cast_nullable_to_non_nullable
           : title as String,
-      reviewId: reviewId == const $CopyWithPlaceholder()
-          ? _value.reviewId
-          // ignore: cast_nullable_to_non_nullable
-          : reviewId as String?,
       quantity: quantity == const $CopyWithPlaceholder() || quantity == null
           ? _value.quantity
           // ignore: cast_nullable_to_non_nullable
@@ -174,16 +178,14 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
           ? _value.discount
           // ignore: cast_nullable_to_non_nullable
           : discount as double,
-      shippingCost:
-          shippingCost == const $CopyWithPlaceholder() || shippingCost == null
-              ? _value.shippingCost
-              // ignore: cast_nullable_to_non_nullable
-              : shippingCost as double,
-      deliveryCost:
-          deliveryCost == const $CopyWithPlaceholder() || deliveryCost == null
-              ? _value.deliveryCost
-              // ignore: cast_nullable_to_non_nullable
-              : deliveryCost as double,
+      shippingCost: shippingCost == const $CopyWithPlaceholder()
+          ? _value.shippingCost
+          // ignore: cast_nullable_to_non_nullable
+          : shippingCost as double?,
+      deliveryCost: deliveryCost == const $CopyWithPlaceholder()
+          ? _value.deliveryCost
+          // ignore: cast_nullable_to_non_nullable
+          : deliveryCost as double?,
       deliveryEstimation: deliveryEstimation == const $CopyWithPlaceholder() ||
               deliveryEstimation == null
           ? _value.deliveryEstimation
@@ -194,6 +196,14 @@ class _$OrderedProductCWProxyImpl implements _$OrderedProductCWProxy {
               ? _value.orderStatus
               // ignore: cast_nullable_to_non_nullable
               : orderStatus as OrderStatus,
+      deliveryAddress: deliveryAddress == const $CopyWithPlaceholder()
+          ? _value.deliveryAddress
+          // ignore: cast_nullable_to_non_nullable
+          : deliveryAddress as Address?,
+      reviewId: reviewId == const $CopyWithPlaceholder()
+          ? _value.reviewId
+          // ignore: cast_nullable_to_non_nullable
+          : reviewId as String?,
       refund: refund == const $CopyWithPlaceholder()
           ? _value.refund
           // ignore: cast_nullable_to_non_nullable
@@ -223,7 +233,13 @@ extension $OrderedProductCopyWith on OrderedProduct {
 abstract class _$OrderCWProxy {
   Order products(List<OrderedProduct> products);
 
-  Order deliveryAddress(Address deliveryAddress);
+  Order defaultDeliveryAddress(Address defaultDeliveryAddress);
+
+  Order paymentMode(String? paymentMode);
+
+  Order paymentId(String? paymentId);
+
+  Order signature(String? signature);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Order(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -233,7 +249,10 @@ abstract class _$OrderCWProxy {
   /// ````
   Order call({
     List<OrderedProduct>? products,
-    Address? deliveryAddress,
+    Address? defaultDeliveryAddress,
+    String? paymentMode,
+    String? paymentId,
+    String? signature,
   });
 }
 
@@ -247,8 +266,17 @@ class _$OrderCWProxyImpl implements _$OrderCWProxy {
   Order products(List<OrderedProduct> products) => this(products: products);
 
   @override
-  Order deliveryAddress(Address deliveryAddress) =>
-      this(deliveryAddress: deliveryAddress);
+  Order defaultDeliveryAddress(Address defaultDeliveryAddress) =>
+      this(defaultDeliveryAddress: defaultDeliveryAddress);
+
+  @override
+  Order paymentMode(String? paymentMode) => this(paymentMode: paymentMode);
+
+  @override
+  Order paymentId(String? paymentId) => this(paymentId: paymentId);
+
+  @override
+  Order signature(String? signature) => this(signature: signature);
 
   @override
 
@@ -260,7 +288,10 @@ class _$OrderCWProxyImpl implements _$OrderCWProxy {
   /// ````
   Order call({
     Object? products = const $CopyWithPlaceholder(),
-    Object? deliveryAddress = const $CopyWithPlaceholder(),
+    Object? defaultDeliveryAddress = const $CopyWithPlaceholder(),
+    Object? paymentMode = const $CopyWithPlaceholder(),
+    Object? paymentId = const $CopyWithPlaceholder(),
+    Object? signature = const $CopyWithPlaceholder(),
   }) {
     return Order(
       orderId: _value.orderId,
@@ -269,11 +300,24 @@ class _$OrderCWProxyImpl implements _$OrderCWProxy {
           ? _value.products
           // ignore: cast_nullable_to_non_nullable
           : products as List<OrderedProduct>,
-      deliveryAddress: deliveryAddress == const $CopyWithPlaceholder() ||
-              deliveryAddress == null
-          ? _value.deliveryAddress
+      defaultDeliveryAddress:
+          defaultDeliveryAddress == const $CopyWithPlaceholder() ||
+                  defaultDeliveryAddress == null
+              ? _value.defaultDeliveryAddress
+              // ignore: cast_nullable_to_non_nullable
+              : defaultDeliveryAddress as Address,
+      paymentMode: paymentMode == const $CopyWithPlaceholder()
+          ? _value.paymentMode
           // ignore: cast_nullable_to_non_nullable
-          : deliveryAddress as Address,
+          : paymentMode as String?,
+      paymentId: paymentId == const $CopyWithPlaceholder()
+          ? _value.paymentId
+          // ignore: cast_nullable_to_non_nullable
+          : paymentId as String?,
+      signature: signature == const $CopyWithPlaceholder()
+          ? _value.signature
+          // ignore: cast_nullable_to_non_nullable
+          : signature as String?,
       createdAt: _value.createdAt,
     );
   }
@@ -293,17 +337,20 @@ OrderedProduct _$OrderedProductFromJson(Map<String, dynamic> json) =>
     OrderedProduct(
       mrp: (json['mrp'] as num).toDouble(),
       title: json['title'] as String,
-      reviewId: json['reviewId'] as String?,
-      quantity: json['quantity'] as int,
+      quantity: (json['quantity'] as num).toInt(),
       thumbnail: json['thumbnail'] as String,
       productId: json['productId'] as String,
       discount: (json['discount'] as num).toDouble(),
-      shippingCost: (json['shippingCost'] as num).toDouble(),
-      deliveryCost: (json['deliveryCost'] as num).toDouble(),
+      shippingCost: (json['shippingCost'] as num?)?.toDouble(),
+      deliveryCost: (json['deliveryCost'] as num?)?.toDouble(),
       deliveryEstimation:
           $enumDecode(_$DeliveryEstimationEnumMap, json['deliveryEstimation']),
       orderStatus:
           OrderStatus.fromJson(json['orderStatus'] as Map<String, dynamic>),
+      deliveryAddress: json['deliveryAddress'] == null
+          ? null
+          : Address.fromJson(json['deliveryAddress'] as Map<String, dynamic>),
+      reviewId: json['reviewId'] as String?,
       refund: json['refund'] == null
           ? null
           : DurationPeriod.fromJson(json['refund'] as Map<String, dynamic>),
@@ -325,6 +372,7 @@ Map<String, dynamic> _$OrderedProductToJson(OrderedProduct instance) =>
       'quantity': instance.quantity,
       'thumbnail': instance.thumbnail,
       'title': instance.title,
+      'deliveryAddress': instance.deliveryAddress?.toJson(),
       'mrp': instance.mrp,
       'discount': instance.discount,
       'shippingCost': instance.shippingCost,
@@ -351,8 +399,11 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       products: (json['products'] as List<dynamic>)
           .map((e) => OrderedProduct.fromJson(e as Map<String, dynamic>))
           .toList(),
-      deliveryAddress:
-          Address.fromJson(json['deliveryAddress'] as Map<String, dynamic>),
+      defaultDeliveryAddress: Address.fromJson(
+          json['defaultDeliveryAddress'] as Map<String, dynamic>),
+      paymentMode: json['paymentMode'] as String?,
+      paymentId: json['paymentId'] as String?,
+      signature: json['signature'] as String?,
       createdAt: _$JsonConverterFromJson<int, DateTime>(
           json['createdAt'], const DateTimeConverter().fromJson),
       lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
@@ -361,8 +412,11 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'orderId': instance.orderId,
+      'paymentId': instance.paymentId,
+      'signature': instance.signature,
+      'paymentMode': instance.paymentMode,
       'consumerId': instance.consumerId,
-      'deliveryAddress': instance.deliveryAddress.toJson(),
+      'defaultDeliveryAddress': instance.defaultDeliveryAddress.toJson(),
       'products': instance.products.map((e) => e.toJson()).toList(),
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),

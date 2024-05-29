@@ -20,7 +20,9 @@ enum ProductStockStatus {
   toString() => name;
 }
 
-class AbstractProductModel {}
+extension ListProductExtensions on List<Product> {
+  double get discountedPrice => fold(0.0, (e, p) => e + p.discountedPrice);
+}
 
 @CopyWith()
 @defJsonSerializable

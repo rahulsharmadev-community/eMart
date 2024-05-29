@@ -53,7 +53,6 @@ class JButton extends StatelessWidget {
       padding: padding,
       textStyle: style ?? context.textTheme.titleMedium,
       shape: RoundedRectangleBorder(borderRadius: borderRadius ?? BorderRadius.zero),
-      fixedSize: infinity ? const Size.fromWidth(double.maxFinite) : null,
       minimumSize: infinity ? const Size.fromWidth(double.maxFinite) : null,
     );
 
@@ -85,9 +84,9 @@ class JButton extends StatelessWidget {
     Widget? child = this.child ?? (text != null ? Text(text!) : null);
     if ((leadingIcon != null || trailingIcon != null) && child != null) {
       return Row(mainAxisSize: MainAxisSize.min, children: [
-        if (leadingIcon != null) Icon(leadingIcon, size: iconSize).paddingOnly(right: 4),
+        if (leadingIcon != null) Icon(leadingIcon, size: iconSize).paddingOnly(right: 8),
         child,
-        if (trailingIcon != null) Icon(trailingIcon, size: iconSize).paddingOnly(left: 4),
+        if (trailingIcon != null) Icon(trailingIcon, size: iconSize).paddingOnly(left: 8),
       ]);
     } else if (leadingIcon != null) {
       return Icon(leadingIcon, size: iconSize);

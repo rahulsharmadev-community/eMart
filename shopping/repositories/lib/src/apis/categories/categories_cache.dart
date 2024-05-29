@@ -9,7 +9,7 @@ class CategoriesCache extends HiveCache<List<Category>> {
     logs.i("AppMetaDataCache:get() initiating");
     var dateTime = DateTime.now();
     if (state.any((e) => e.expiry.isBefore(dateTime))) return [];
-    return ids.map((a) => state.firstWhereOrNull((e) => e.id == a)).nonNulls().toList();
+    return ids.map((a) => state.firstWhereOrNull((e) => e.id == a)).nonNulls.toList();
   }
 
   List<Category> getAll() {

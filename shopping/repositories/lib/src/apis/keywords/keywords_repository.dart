@@ -9,9 +9,8 @@ part 'keyword_api.dart';
 part 'keywords_cache.dart';
 
 class KeywordsRepository {
-  final KeywordsCache cache;
-  final KeywordsApi api;
-  KeywordsRepository({required this.api, required this.cache});
+  final KeywordsCache cache = KeywordsCache();
+  final KeywordsApi api = KeywordsApi();
 
   Future<Keywords> searchWord(String word) async {
     var result = cache.get(word);

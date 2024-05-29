@@ -90,6 +90,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                   labelText: 'Phone Number',
                   hintText: 'eg. 9876543210',
                   keyboardType: TextInputType.number,
+                  maxLength: 10,
                   onDone: nextFocus,
                 ),
                 Row(crossAxisAlignment: CrossAxisAlignment.start, children: [

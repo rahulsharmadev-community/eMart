@@ -7,7 +7,6 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
-import 'package:shopping/modules/screens/product_query_builder/bloc/product_query_cubit.dart';
 import 'package:shopping/modules/widgets/add_to_cart_button.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/modules/widgets/cards/badge_icon.dart';

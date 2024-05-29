@@ -2,9 +2,8 @@ part of 'policies_repository.dart';
 
 // ignore: camel_case_types
 class eMartPoliciesApi {
-  final db.DatabaseReference documentRef;
-
-  eMartPoliciesApi() : documentRef = FirebaseService.eMartConsumer.instanceOfDatabase.ref('AppPolicies');
+  final db.DatabaseReference documentRef =
+      FirebaseService.eMartConsumer.instanceOfDatabase.ref('AppPolicies');
 
   Future<Policies?> getComplete() async {
     logs.i("AppMetaDataApi:getComplete initiating");

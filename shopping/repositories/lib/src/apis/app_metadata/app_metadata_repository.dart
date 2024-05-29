@@ -7,7 +7,7 @@ part 'app_metadata_api.dart';
 
 class AppMetaDataRepository {
   final AppMetaDataApi api;
-  AppMetaDataRepository({required this.api});
+  AppMetaDataRepository(String lang) : api = AppMetaDataApi(lang);
 
   Stream<AppMetaData?> get stream => api.stream;
 }

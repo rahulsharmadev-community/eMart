@@ -40,7 +40,7 @@ class _ShuffleBoxState extends State<ShuffleBox> {
     } else {
       position.shuffle();
     }
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   int _getBestCrossAxisCount(int n, int l) {

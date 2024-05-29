@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:hive_cache/hive_cache.dart';
 import 'package:repositories/src/models/user_activity.dart';
 import 'package:repositories/src/utils/error_handler.dart';
 import 'package:firebase_database/firebase_database.dart' as db;
@@ -9,9 +10,11 @@ part 'user_activity_cache.dart';
 class UserActivityRepository {
   final UserActivityApi api;
   final UserActivityCache cache;
-  UserActivityRepository({required this.api, required this.cache});
+  UserActivityRepository({required String uid})
+      : api = UserActivityApi(uid),
+        cache = UserActivityCache();
 
-  FutureOr<UserActivity?> get() async {
+  Future<UserActivity?> get() async {
     UserActivity? result = cache.get();
     result ??= await api.get();
     if (result != null) cache.set(result);

@@ -23,7 +23,7 @@ extension UserExt on User {
     return Consumer(
       uid: uid,
       name: PersonName.fromString(displayName ?? email?.split('@').first ?? 'Unknown'),
-      devices: [],
+      devices: const [],
       fCMid: "",
       email: email,
       phoneNumber: phoneNumber,

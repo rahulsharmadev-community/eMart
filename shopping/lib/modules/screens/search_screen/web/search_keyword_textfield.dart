@@ -1,3 +1,5 @@
+// ignore_for_file: no_wildcard_variable_uses
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ico/ico.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart' show Keyword;
+import 'package:shopping/core/repository.dart';
 import 'package:shopping/modules/screens/search_screen/bloc/keyword_bloc.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
 
@@ -28,7 +31,7 @@ class _SearchKeywordTextFieldState extends State<SearchKeywordTextField> {
   @override
   void initState() {
     options = ValueNotifier([]);
-    bloc = KeywordBloc(context.read<KeywordsRepository>());
+    bloc = KeywordBloc(repository.keywords);
     controller = TextEditingController()..addListener(() => bloc.add(SearchTextChanged(controller.text)));
     super.initState();
   }
@@ -42,7 +45,7 @@ class _SearchKeywordTextFieldState extends State<SearchKeywordTextField> {
   @override
   Widget build(BuildContext context) {
     const menuStyle = MenuStyle(
-      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+      shape: WidgetStatePropertyAll(RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(16),
         bottomRight: Radius.circular(16),
@@ -99,24 +102,23 @@ class _SearchKeywordTextFieldState extends State<SearchKeywordTextField> {
   }
 
   void updateValue(BuildContext context, SearchState state) {
-    switch (state) {
-      case SearchStateSuccess _:
-        options.value = state.keywords
+    options.value = state.on(
+        onInitial: [],
+        onSuccess: (state) => state.data
             .map((e) => DropdownMenuEntry(
                 value: e,
                 label: e.label,
                 leadingIcon: e.image.ifNotNull(
                         def: null,
-                        callback: (_) => CachedNetworkImage(
-                              imageUrl: _,
-                              fit: BoxFit.cover,
-                              width: kToolbarHeight,
-                              height: kToolbarHeight,
-                            )) ??
+                        callback: (img) {
+                          return CachedNetworkImage(
+                            imageUrl: img,
+                            fit: BoxFit.cover,
+                            width: kToolbarHeight,
+                            height: kToolbarHeight,
+                          );
+                        }) ??
                     const Icon(Ico.search_outline)))
-            .toList();
-      default:
-        options.value = [];
-    }
+            .toList());
   }
 }

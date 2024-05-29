@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:logger/logger.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart' as model;
-import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 part 'form_address_state.dart';
 part 'form_event.dart';
 
@@ -35,7 +33,7 @@ class FormBloc extends Bloc<FormEvent, FormAddressState> {
         cityCr = TextEditingController(text: inital?.city),
         pincodeCr = TextEditingController(text: inital?.postalCode.toString()),
         landmarkCr = TextEditingController(text: inital?.landmark),
-        phoneNumberCr = TextEditingController(text: inital?.landmark),
+        phoneNumberCr = TextEditingController(text: inital?.phoneNumber.toString()),
         type = ValueNotifier(inital?.type),
         super(FormIdleState()) {
     on<OnSubmit>((event, emit) => event.callback(_result));
@@ -102,6 +100,7 @@ class FormBloc extends Bloc<FormEvent, FormAddressState> {
     cityCr.dispose();
     pincodeCr.dispose();
     landmarkCr.dispose();
+    phoneNumberCr.dispose();
     return super.close();
   }
 }

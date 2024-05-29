@@ -9,22 +9,17 @@ part of 'orderstatus.dart';
 OrderStatus _$OrderStatusFromJson(Map<String, dynamic> json) => OrderStatus._(
       canceledBy: json['canceledBy'] as String?,
       status: $enumDecode(_$OrderStateEnumMap, json['status']),
-      orderId: json['orderId'] as String,
-      paymentMode:
-          $enumDecodeNullable(_$PaymentModeEnumMap, json['paymentMode']),
       deliveryStatus:
           $enumDecodeNullable(_$DeliveryStatusEnumMap, json['deliveryStatus']),
       reason: json['reason'] as String?,
-      lastUpdateAt:
-          const DateTimeConverter().fromJson(json['lastUpdateAt'] as int),
+      lastUpdateAt: const DateTimeConverter()
+          .fromJson((json['lastUpdateAt'] as num).toInt()),
     );
 
 Map<String, dynamic> _$OrderStatusToJson(OrderStatus instance) =>
     <String, dynamic>{
-      'orderId': instance.orderId,
       'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
       'status': _$OrderStateEnumMap[instance.status]!,
-      'paymentMode': _$PaymentModeEnumMap[instance.paymentMode],
       'reason': instance.reason,
       'canceledBy': instance.canceledBy,
       'deliveryStatus': _$DeliveryStatusEnumMap[instance.deliveryStatus],
@@ -36,15 +31,6 @@ const _$OrderStateEnumMap = {
   OrderState.shipped: 'shipped',
   OrderState.delivered: 'delivered',
   OrderState.cancelled: 'cancelled',
-};
-
-const _$PaymentModeEnumMap = {
-  PaymentMode.creditCard: 'creditCard',
-  PaymentMode.debitCard: 'debitCard',
-  PaymentMode.upi: 'upi',
-  PaymentMode.amazonPay: 'amazonPay',
-  PaymentMode.giftCard: 'giftCard',
-  PaymentMode.cashOnDelivery: 'cashOnDelivery',
 };
 
 const _$DeliveryStatusEnumMap = {

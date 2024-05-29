@@ -4,6 +4,7 @@ import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
+import 'package:shopping/core/repository.dart';
 import 'package:shopping/modules/widgets/cards/item_card.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
 import 'package:shopping/modules/widgets/product_cards/product_card.dart';
@@ -21,7 +22,6 @@ class ProductsShowcaseBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShowCaseType type = this.type ?? ShowCaseType.values.getRandom()!;
-    var repos = context.read<ProductRepository>();
 
     Widget buildView(List<Product> data) {
       switch (type) {
@@ -36,7 +36,7 @@ class ProductsShowcaseBuilder extends StatelessWidget {
     }
 
     return FutureBuilder<List<Product>>(
-        future: Future.value(repos.getByQuery(queries)),
+        future: repository.product.getByQuery(queries),
         builder: (context, snapshot) {
           if (snapshot.data != null) {
             final data = snapshot.data!;

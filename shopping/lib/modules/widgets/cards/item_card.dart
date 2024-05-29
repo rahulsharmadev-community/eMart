@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jars/jars.dart';
 import 'badge_icon.dart';
 part 'base_item_cart.dart';

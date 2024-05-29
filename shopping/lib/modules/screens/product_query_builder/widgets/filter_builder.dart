@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:shared/models.dart';
-import 'package:shopping/modules/screens/product_query_builder/bloc/product_query_cubit.dart';
+import 'package:shopping/core/blocs/products_cubit/products_cubit.dart';
 import 'package:shopping/modules/widgets/cards/item_card.dart';
 import 'package:shopping/modules/widgets/product_cards/product_card.dart';
 
@@ -12,17 +12,10 @@ class ProductQueryFilterBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, BlocState<List<Product>>>(
-      builder: (context, state) {
-        switch (state) {
-          case BlocStateSuccess _:
-            var data = ((state as BlocStateSuccess).data as List<Product>);
-            return buildProductList(data);
-          case BlocStateLoading _:
-            return const Center(child: CircularProgressIndicator());
-          default:
-            return const Center(child: Text('Error'));
-        }
-      },
+      builder: (context, state) => state.on(
+          onInitial: const Center(child: CircularProgressIndicator()),
+          onFailure: (state) => Center(child: Text(state.message)),
+          onSuccess: (state) => buildProductList(state.data)),
     );
   }
 

@@ -1,10 +1,12 @@
 // ignore_for_file: unused_element
 
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
 import 'package:uuid/uuid.dart';
 import 'package:jars/jars.dart';
+
 part 'consumer.g.dart';
 
 @JsonSerializable(
@@ -31,12 +33,13 @@ class AbstractConsumerInfo {
   });
 
   factory AbstractConsumerInfo.fromJson(JSON json) => _$AbstractConsumerInfoFromJson(json);
+
   JSON toJson() => _$AbstractConsumerInfoToJson(this);
 }
 
 @defJsonSerializable
 @CopyWith()
-class Consumer {
+class Consumer extends Equatable {
   Consumer({
     String? uid,
     required this.name,
@@ -45,28 +48,32 @@ class Consumer {
     this.profileImg,
     this.email,
     this.phoneNumber,
+    this.gstNumber,
     this.cartProducts = const {},
     this.wishlist = const {},
     this.complains = const [],
     this.orders = const [],
     this.addresses = const {},
     this.primaryAddressId,
+    this.razorPayUid,
     DateTime? joinAt,
     DateTime? lastUpdateAt,
-  })  : assert(name.firstName.isNotEmpty, 'name should not be empty.'),
-        assert(!(email == null && phoneNumber == null), 'email or phoneNumber should not be empty.'),
+  })  : assert(!(email == null && phoneNumber == null), 'email or phoneNumber both should not be null.'),
         uid = uid ?? const Uuid().v4(),
         joinAt = joinAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 
   /// Unknown user which represents an unauthenticated user.
-  static Consumer unknown =
-      Consumer(uid: '', name: PersonName(firstName: ''), email: '', fCMid: '', devices: const []);
+  static Consumer unknown = Consumer(
+      uid: '', name: PersonName(firstName: '@unknown'), email: '@unknown', fCMid: '', devices: const []);
 
   /// Convenience getter to determine whether the current user is Unknown.
   bool get isUnknown => this == unknown;
 
   Address? get primaryAddress => primaryAddressId != null ? addresses[primaryAddressId] : null;
+
+  JSON<Wishlist>? findWishlist(String pid) =>
+      wishlist.entries.firstWhereOrNull((e) => e.value.productIds.containsKey(pid))?.map;
 
   @CopyWithField.immutable()
   final String uid;
@@ -75,6 +82,8 @@ class Consumer {
   final String? phoneNumber;
   final String? profileImg;
   final String fCMid;
+  final String? gstNumber;
+  final String? razorPayUid;
 
   final String? primaryAddressId;
 
@@ -83,7 +92,7 @@ class Consumer {
   final List<String> complains;
   final List<String> orders;
 
-  /// Map of wishlist IDs to their respective data.
+  /// key represent uniqe name for wishlist
   final JSON<Wishlist> wishlist;
   final JSON<Address> addresses;
 
@@ -97,6 +106,7 @@ class Consumer {
   final DateTime lastUpdateAt;
 
   factory Consumer.fromJson(JSON json) => _$ConsumerFromJson(json);
+
   JSON toJson() => _$ConsumerToJson(this);
 
   @override
@@ -106,28 +116,41 @@ class Consumer {
   bool operator ==(Object other) {
     return super == other && other is Consumer && lastUpdateAt.hashCode == other.lastUpdateAt.hashCode;
   }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        uid,
+        name,
+        fCMid,
+        devices,
+        profileImg,
+        email,
+        phoneNumber,
+        gstNumber,
+        cartProducts,
+        wishlist,
+        complains,
+        orders,
+        addresses,
+        primaryAddressId,
+        razorPayUid,
+        joinAt
+      ];
 }
 
 @CopyWith()
 @defJsonSerializable
-class Wishlist {
+class Wishlist extends Equatable {
   Wishlist({
     required this.productIds,
-    required this.name,
-    String? wishlistId,
     DateTime? lastUpdateAt,
     DateTime? createdAt,
-  })  : wishlistId = const Uuid().v4(),
-        createdAt = createdAt ?? DateTime.now(),
+  })  : createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
-
-  @CopyWithField.immutable()
-  final String wishlistId;
 
   /// A map of product IDs to the time when they were added.
   final Map<String, DateTime> productIds;
-
-  final String name;
 
   @CopyWithField.immutable()
   final DateTime createdAt;
@@ -136,5 +159,9 @@ class Wishlist {
   final DateTime lastUpdateAt;
 
   factory Wishlist.fromJson(JSON json) => _$WishlistFromJson(json);
+
   JSON toJson() => _$WishlistToJson(this);
+
+  @override
+  List<Object?> get props => [productIds, createdAt];
 }

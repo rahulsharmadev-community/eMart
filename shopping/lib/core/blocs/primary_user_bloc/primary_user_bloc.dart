@@ -7,63 +7,63 @@ import 'package:meta/meta.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
+import 'package:shopping/core/repository.dart';
 import 'package:shopping/utility/extensions.dart';
 
 part 'primary_user_event.dart';
 
-class PrimaryUserBloc extends Bloc<PrimaryUserEvent, BlocState<PrimaryUser>> {
-  final PrimaryUserApi api;
+typedef PrimaryUserState = BlocState<PrimaryUser>;
+typedef PrimaryUserInitialState = BlocStateInitial<PrimaryUser>;
+typedef PrimaryUserLoadingState = BlocStateLoading<PrimaryUser>;
+typedef PrimaryUserSuccessState = BlocStateSuccess<PrimaryUser>;
+typedef PrimaryUserFailureState = BlocStateFailure<PrimaryUser>;
+
+class PrimaryUserBloc extends Bloc<PrimaryUserEvent, PrimaryUserState> {
+  final PrimaryUserRepository primaryUserRepository;
   final UserActivityRepository userActivityRepository;
-  final ProductRepository productRepository;
   StreamSubscription? subscription;
 
   PrimaryUser? get primaryUser =>
       state is BlocStateSuccess ? (state as BlocStateSuccess<PrimaryUser>).data : null;
 
-  PrimaryUserBloc({
-    required this.api,
-    required this.userActivityRepository,
-    required this.productRepository,
-  }) : super(const BlocStateLoading()) {
-    subscription = api.getStream.listen((event) async {
-      if (event == null) {
+  PrimaryUserBloc({required String uid})
+      : primaryUserRepository = repository.primaryUser(uid),
+        userActivityRepository = repository.userActivity(uid),
+        super(const PrimaryUserLoadingState()) {
+    subscription = primaryUserRepository.getStream.listen((user) async {
+      if (user == null) {
         var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
-        asyncGuard(() => PrimaryUserApi.createNewUser(result));
+        asyncGuard(() => PrimaryUserRepository.createNewUser(result));
       } else {
         final temp = primaryUser?.userActivity ?? await userActivityRepository.get() ?? const UserActivity();
-        emit(BlocStateSuccess<PrimaryUser>(PrimaryUser(user: event, userActivity: temp)));
+        emit(PrimaryUserSuccessState(PrimaryUser(user: user, userActivity: temp)));
       }
     });
 
-    on<PrimaryUserDispose>((event, emit) => emit(const BlocStateLoading()));
-
-
+    on<PrimaryUserDispose>((event, emit) => emit(const PrimaryUserLoadingState()));
 
     on<AddVisitedProductEvent>((event, emit) async {
-      if (state is BlocStateSuccess) {
+      if (state.isSuccess) {
         await userActivityRepository.addVisitedProduct(event.productId).then((value) {
-          emit(BlocStateSuccess(primaryUser!.copyWith.userActivity(value)));
+          emit(PrimaryUserSuccessState(primaryUser!.copyWith.userActivity(value)));
         });
       }
     });
 
     on<AddSuggestionKeywordsEvent>((event, emit) async {
-      if (state is BlocStateSuccess) {
+      if (state.isSuccess) {
         await userActivityRepository.addSuggestionKeywords(event.keywords).then((value) {
-          emit(BlocStateSuccess(primaryUser!.copyWith.userActivity(value)));
+          emit(PrimaryUserSuccessState(primaryUser!.copyWith.userActivity(value)));
         });
       }
     });
 
-    on<UpdateUserEvent>((event, emit) {
-      if (state is BlocStateSuccess) {
+    on<UpdateUserEvent>((event, emit) async {
+      if (state.isSuccess) {
         final oldValue = primaryUser!.user;
         final newValue = event.consumer(oldValue);
         if (oldValue == newValue) return;
-        emit(BlocStateSuccess(primaryUser!.copyWith(user: newValue)));
-        api
-            .update(newValue)
-            .catchError((_) => emit(BlocStateSuccess(primaryUser!.copyWith(user: oldValue), message: '$_')));
+        await primaryUserRepository.update(newValue: newValue, oldValue: oldValue);
       }
     });
   }

@@ -40,7 +40,7 @@ final class PlaceApi {
   String googleUrl(String extra) => "https://maps.googleapis.com/maps/api/$extra&key=$GOOGLE_MAP_APIKEY";
 
   Future<String?> plusCode(GeoCoordinate coordinate) async {
-    var url = Uri.parse("https://plus.codes/api?address=${coordinate.lat},${coordinate.long}");
+    var url = Uri.parse("https://plus.codes/api?address=${coordinate.lat},${coordinate.lng}");
     final response = await http.get(url);
     return jsonDecode(response.body)['plus_code']?['global_code'] as String?;
   }
@@ -48,10 +48,10 @@ final class PlaceApi {
   Future<List<Place>?> geoapifyGeoCoordinate(GeoCoordinate code, {int limit = 10}) async {
     try {
       String url =
-          geoapifyUrl(GEOAPIFY_APIKEY_1, 'geocode/reverse?lat=${code.lat}&lon=${code.long}&limit=$limit');
+          geoapifyUrl(GEOAPIFY_APIKEY_1, 'geocode/reverse?lat=${code.lat}&lon=${code.lng}&limit=$limit');
       final response = await http.get(Uri.parse(url));
       var x = List<Map>.from(jsonDecode(response.body)['results']);
-      return x.map((e) => _geoapifyToPlace(e)).nonNulls().toList();
+      return x.map((e) => _geoapifyToPlace(e)).nonNulls.toList();
     } catch (e) {
       rethrow;
     }
@@ -64,7 +64,7 @@ final class PlaceApi {
       String url = geoapifyUrl(GEOAPIFY_APIKEY_1, 'geocode/autocomplete?text=$trim&limit=$limit');
       final response = await http.get(Uri.parse(url));
       var x = List<Map>.from(jsonDecode(response.body)['results']);
-      return x.map((e) => _geoapifyToPlace(e)).nonNulls().toList();
+      return x.map((e) => _geoapifyToPlace(e)).nonNulls.toList();
     } catch (e) {
       rethrow;
     }
@@ -72,11 +72,11 @@ final class PlaceApi {
 
   Future<List<Place>?> googleGeoCoordinate(GeoCoordinate code) async {
     try {
-      String url = googleUrl('geocode/json?latlng=${code.lat},${code.long}');
+      String url = googleUrl('geocode/json?latlng=${code.lat},${code.lng}');
       final response = await http.get(Uri.parse(url));
       var raw = jsonDecode(response.body);
       var x = List<Map>.from(raw['results']);
-      return x.map((e) => _googleToPlace(e, raw['plus_code']['global_code'].toString())).nonNulls().toList();
+      return x.map((e) => _googleToPlace(e, raw['plus_code']['global_code'].toString())).nonNulls.toList();
     } catch (e) {
       rethrow;
     }
@@ -94,8 +94,8 @@ final class PlaceApi {
     if (json['country_code'] != null && json['country'] != null) {
       country = (key: json['country_code'].toUpperCase(), value: json['country']);
     }
-    if (json['lat'] != null && json['lon'] != null) {
-      loc = (lat: (json['lat'] as num).toDouble(), long: (json['lon'] as num).toDouble());
+    if (json['lat'] != null && json['lng'] != null) {
+      loc = (lat: (json['lat'] as num).toDouble(), lng: (json['lng'] as num).toDouble());
     }
     if ([state, country, postalCode, plusCode, loc].contains(null)) return null;
 
@@ -150,7 +150,7 @@ final class PlaceApi {
 
     var temp = json['geometry']?['location'];
     if (temp != null && temp['lat'] != null && temp['lng'] != null) {
-      loc = (lat: (temp['lat'] as num).toDouble(), long: (temp['lng'] as num).toDouble());
+      loc = (lat: (temp['lat'] as num).toDouble(), lng: (temp['lng'] as num).toDouble());
     }
 
     plusCode ??= json['plus_code']?['global_code'] ?? defaultPlusCode;

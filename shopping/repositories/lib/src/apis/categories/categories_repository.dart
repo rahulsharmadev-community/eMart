@@ -11,7 +11,10 @@ part 'categories_cache.dart';
 class CategoriesRepository {
   final CategoriesApi api;
   final CategoriesCache cache;
-  CategoriesRepository({required this.api, required this.cache});
+
+  CategoriesRepository(String lang)
+      : api = CategoriesApi(lang),
+        cache = CategoriesCache();
 
   Future<List<Category>?> get(List<String> ids) async {
     List<Category>? result = cache.get(ids);

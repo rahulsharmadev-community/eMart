@@ -1,12 +1,14 @@
+// ignore_for_file: no_wildcard_variable_uses
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shopping/modules/screens/payment_screen/payment_screen.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/modules/widgets/product_cart_card.dart';
 import 'cubits/cart_cubit.dart';
-import 'delivery_tile.dart';
+import '../../widgets/delivery_tile.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -15,17 +17,15 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CartCubit(
-        context.read<ProductRepository>(),
         context.read<PrimaryUserBloc>(),
       ),
       lazy: false,
       child: BlocBuilder<CartCubit, BlocState>(builder: (context, state) {
-        return switch (state) {
-          BlocStateInitial _ => const Center(child: CircularProgressIndicator()),
-          BlocStateLoading _ => const Center(child: CircularProgressIndicator()),
-          BlocStateFailure _ => Center(child: Text(state.message)),
-          BlocStateSuccess _ => buildContext((state as BlocStateSuccess<Cart>).data)
-        };
+        return state.on(
+          onInitial: const Center(child: CircularProgressIndicator()),
+          onFailure: (_) => Center(child: Text(_.message)),
+          onSuccess: (_) => buildContext(_.data as Cart),
+        );
       }),
     );
   }
@@ -44,8 +44,9 @@ class CartScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       itemCount: cart.list.length,
       itemBuilder: (context, i) {
+        var item = cart.list[i];
         return Dismissible(
-            key: Key('$i'),
+            key: Key(item.hashCode.toString()),
             direction: DismissDirection.endToStart,
             background: Material(
               color: context.theme.colorScheme.errorContainer,
@@ -62,11 +63,9 @@ class CartScreen extends StatelessWidget {
               ),
             ),
             onDismissed: (direction) {
-              context
-                  .read<PrimaryUserBloc>()
-                  .add(PrimaryUserEvent.cartProductRemove(cart.list[i].product.productId));
+              context.read<PrimaryUserBloc>().add(PrimaryUserEvent.cartProductRemove(item.product.productId));
             },
-            child: ProductCartCard(product: cart.list[i].product));
+            child: ProductCartCard(product: item.product));
       },
       // separatorBuilder: (context, index) => const Gap(2),
     );
@@ -75,6 +74,7 @@ class CartScreen extends StatelessWidget {
 
 class BottomPlaceOrderBar extends StatelessWidget {
   final Cart cart;
+
   const BottomPlaceOrderBar(this.cart, {super.key});
 
   @override
@@ -89,7 +89,9 @@ class BottomPlaceOrderBar extends StatelessWidget {
       ),
       child: Column(
         children: [
+          8.gap,
           const DeliveryTile(),
+          8.gap,
           const Divider(height: 0, indent: 10, endIndent: 10),
           8.gap,
           Container(
@@ -106,7 +108,9 @@ class BottomPlaceOrderBar extends StatelessWidget {
                   JButton(
                     text: 'Place order',
                     borderRadius: BorderRadius.circular(8),
-                    onPressed: () {},
+                    onPressed: () => showPaymentBottomSheet(context, {
+                      for (var e in cart.list) ...{e.product.productId: e.count}
+                    }),
                   ).tightFit(),
                 ],
               )),

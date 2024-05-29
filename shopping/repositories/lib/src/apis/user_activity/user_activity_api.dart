@@ -2,9 +2,9 @@ part of 'user_activity_repository.dart';
 
 class UserActivityApi {
   final db.DatabaseReference _reference;
-  final String userId;
-  UserActivityApi(this.userId, {String lang = 'en'})
-      : _reference = FirebaseService.eMartConsumer.instanceOfDatabase.ref('USER_ACTIVITY/$userId');
+  final String uid;
+  UserActivityApi(this.uid)
+      : _reference = FirebaseService.eMartConsumer.instanceOfDatabase.ref('USER_ACTIVITY/$uid');
 
   Future<UserActivity?> get() async => await _reference.get().then((_) {
         if (_.value == null) return null;

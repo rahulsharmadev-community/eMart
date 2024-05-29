@@ -8,7 +8,7 @@ part of 'durationperiod.dart';
 
 DurationPeriod _$DurationPeriodFromJson(Map<String, dynamic> json) =>
     DurationPeriod._(
-      json['duration'] as int,
+      (json['duration'] as num).toInt(),
       json['durationType'] as String,
     );
 

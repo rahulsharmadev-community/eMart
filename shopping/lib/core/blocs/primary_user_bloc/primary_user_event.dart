@@ -21,36 +21,35 @@ sealed class PrimaryUserEvent {
         return value.copyWith.cartProducts(value.cartProducts..remove(productId));
       });
 
-  static UpdateUserEvent removeFromWishlist(String wishlistId, String productId) => update((value) {
-        var oldValue = value.wishlist[wishlistId];
+  static UpdateUserEvent removeFromWishlist(String name, String productId) => update((value) {
+        var oldValue = value.wishlist[name];
         if (oldValue == null) return value;
 
         var productIds = oldValue.productIds..remove(productId);
         var newValue = oldValue.copyWith.productIds(productIds);
-        return value.copyWith.wishlist({...value.wishlist, newValue.wishlistId: newValue});
+        return value.copyWith.wishlist({...value.wishlist, name: newValue});
       });
 
   static UpdateUserEvent createWishlist(String name, [List<String> productIds = const []]) => update((value) {
         final now = DateTime.now();
         final wishlist = Wishlist(
           productIds: {for (var e in productIds) e: now},
-          name: name,
           lastUpdateAt: now,
           createdAt: now,
         );
-        return value.copyWith.wishlist({...value.wishlist, wishlist.wishlistId: wishlist});
+        return value.copyWith.wishlist({...value.wishlist, name: wishlist});
       });
 
   static UpdateUserEvent deleteWishlist(String wishlistId) => update((value) {
         return value.copyWith.wishlist(value.wishlist..remove(wishlistId));
       });
 
-  static UpdateUserEvent addToWishlist(String wishlistId, String productId) => update((value) {
-        var oldValue = value.wishlist[wishlistId];
+  static UpdateUserEvent addToWishlist(String name, String productId) => update((value) {
+        var oldValue = value.wishlist[name];
         if (oldValue == null) return value;
 
         var newValue = oldValue.copyWith.productIds({...oldValue.productIds, productId: DateTime.now()});
-        return value.copyWith.wishlist({...value.wishlist, newValue.wishlistId: newValue});
+        return value.copyWith.wishlist({...value.wishlist, name: newValue});
       });
 
   static UpdateUserEvent addOrEditAdderss(Address address, {bool makePrimery = false}) => update((value) {

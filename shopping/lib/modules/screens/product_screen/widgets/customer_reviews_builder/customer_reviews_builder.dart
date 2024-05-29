@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:readmore/readmore.dart';
 import 'package:shopping/modules/screens/product_screen/widgets/customer_reviews_builder/customer_reviews_cubit.dart';
@@ -92,10 +91,7 @@ class CustomerReviewsBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CustomerReviewsCubit(
-        productId: productId,
-        repository: context.read<ReviewsRepository>(),
-      ),
+      create: (context) => CustomerReviewsCubit(productId: productId),
       child: ListView(
           shrinkWrap: true, physics: const NeverScrollableScrollPhysics(), children: buildItems(context)),
     );
@@ -139,21 +135,15 @@ class CustomerReviewsBuilder extends StatelessWidget {
 
   BlocBuilder<CustomerReviewsCubit, BlocState<dynamic>> customerReviewsCard() {
     return BlocBuilder<CustomerReviewsCubit, BlocState>(
-      builder: (context, state) {
-        switch (state) {
-          case BlocStateSuccess _:
-            var ls = state.data as List<Review>;
-            return ls.isEmpty
-                ? const SizedBox.shrink()
-                : ListView.builder(
-                    itemCount: ls.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, i) => CustomerReviewCard(review: ls[i]));
-          default:
-            return const CircularProgressIndicator();
-        }
-      },
+      builder: (context, state) => state.on(
+          onInitial: const CircularProgressIndicator(),
+          onSuccess: (state) => state.data.isEmpty
+              ? const SizedBox.shrink()
+              : ListView.builder(
+                  itemCount: state.data.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, i) => CustomerReviewCard(review: state.data[i]))),
     );
   }
 }

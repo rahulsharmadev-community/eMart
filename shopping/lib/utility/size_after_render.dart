@@ -32,7 +32,7 @@
 
 // class _MesureSizeState extends State<MesureSize> with AfterLayoutMixin {
 //   @override
-//   FutureOr<void> afterFirstLayout(BuildContext context, Duration timeStamp) {
+//   Future<void> afterFirstLayout(BuildContext context, Duration timeStamp) {
 //       var context = widgetKey.currentContext;
 //       if (context == null) return;
 

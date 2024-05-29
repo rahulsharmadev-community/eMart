@@ -1,7 +1,7 @@
 library repositories;
 
 export 'src/apis/order_api.dart';
-export 'src/apis/primary_user_api.dart';
+export 'src/apis/primary_user/primary_user_api.dart';
 export 'src/models/query.dart';
 export 'src/apis/keywords/keywords_repository.dart';
 export 'src/apis/reviews/reviews_repository.dart';

@@ -63,9 +63,9 @@ class DescriptionBuilder extends StatelessWidget {
 }
 
 class PriceBuilder extends StatelessWidget {
-  final String mrp;
-  final String discountedPrice;
-  final String discount;
+  final num mrp;
+  final num discountedPrice;
+  final num discount;
   const PriceBuilder({
     super.key,
     required this.mrp,
@@ -75,16 +75,21 @@ class PriceBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var nf = const NumberFormat.en_in();
+    var mrp = nf.simple(this.mrp, currencySymbol: true, trimZero: true);
+    var discount = nf.simple(this.discount);
+    var discountedPrice = nf.simple(this.discountedPrice);
+
     var titleMedium = context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.normal);
     var titleLarge = context.textTheme.titleLarge;
-    var dp = discountedPrice;
+
     return SizedBox(
       height: kToolbarHeight,
       child: FittedBox(
         alignment: Alignment.centerLeft,
         child: Text.rich(
           TextSpan(
-            text: dp,
+            text: discountedPrice,
             style: context.textTheme.headlineLarge,
             children: [
               TextSpan(text: ' M.R.P: ', style: titleMedium),

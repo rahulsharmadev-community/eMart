@@ -1,19 +1,21 @@
-import 'dart:async';
+// ignore_for_file: camel_case_types
 
-import 'package:connectivity_plus/connectivity_plus.dart';
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 
-part 'e_mart_shopping_state.dart';
+typedef AuthenticationState = BlocState<String>;
+typedef AuthenticatedState = BlocStateSuccess<String>;
+typedef UnauthenticatedState = BlocStateInitial<String>;
+typedef AuthenticatingState = BlocStateLoading<String>;
+typedef AuthenticationFailureState = BlocStateFailure<String>;
 
-// ignore: camel_case_types
-class eMartShoppingCubit extends Cubit<eMartShoppingState> {
+class eMartShoppingCubit extends Cubit<AuthenticationState> {
   final FirebaseAuth auth;
-  final Connectivity connectivity;
   StreamSubscription<User?>? _authSubscription;
   StreamSubscription<bool>? _connectivitySubscription;
-  eMartShoppingCubit(this.auth, this.connectivity) : super(eMartShoppingLoading()) {
+  eMartShoppingCubit(this.auth) : super(const AuthenticatingState()) {
     _listenToAuthAndConnectivity();
   }
 
@@ -25,24 +27,12 @@ class eMartShoppingCubit extends Cubit<eMartShoppingState> {
   }
 
   void _listenToAuthAndConnectivity() {
-    _authSubscription = auth.authStateChanges().listen((user) => emit(
-          user != null ? AuthenticatedState(uid: user.uid) : UnauthenticatedState(),
-        ));
-    if (PlatformQuery.isMobileorTablet) {
-      _connectivitySubscription = connectivity.onConnectivityChanged
-          .map((event) => !event.anyOf([ConnectivityResult.mobile, ConnectivityResult.wifi]))
-          .listen((event) {
-        if (event) emit(ConnectionErrorState());
-      });
-    }
-  }
-}
-
-extension on List<Object> {
-  bool anyOf(List<Object> ls) {
-    for (var e in ls) {
-      if (contains(e)) return true;
-    }
-    return false;
+    _authSubscription = auth.authStateChanges().listen((user) {
+      emit(
+        user != null ? AuthenticatedState(user.uid) : UnauthenticatedState(),
+      );
+    }, onError: (e) {
+      emit(AuthenticationFailureState(e.toString()));
+    });
   }
 }

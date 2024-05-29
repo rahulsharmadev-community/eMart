@@ -4,6 +4,7 @@ import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
+import 'package:shopping/core/repository.dart';
 import 'package:shopping/modules/screens/search_screen/bloc/keyword_bloc.dart';
 import 'package:ico/ico.dart';
 import 'package:shopping/utility/routes/app_routes.dart';
@@ -30,7 +31,7 @@ class SearchKeywordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => KeywordBloc(context.read<KeywordsRepository>()),
+      create: (context) => KeywordBloc(repository.keywords),
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(
@@ -38,25 +39,19 @@ class SearchKeywordScreen extends StatelessWidget {
                 inital: initalText,
                 hintText: hintText,
                 prefixIcon: const Icon(Ico.search_outline),
-                onSubmitted: (_) => {},
+                onSubmitted: (value) => onDone(value, context),
                 onChange: (text) {
                   context.read<KeywordBloc>().add(SearchTextChanged(text));
                 }),
           ),
           body: BlocBuilder<KeywordBloc, SearchState>(
             builder: (context, state) {
-              switch (state) {
-                case SearchStateEmpty _:
-                  return whenEmpty ?? textWidget('i am waiting');
-                case SearchStateLoading _:
-                  return loadingWidget();
-                case SearchStateSuccess _:
-                  return state.keywords.isEmpty
+              return state.on(
+                  onInitial: whenEmpty ?? textWidget('i am waiting'),
+                  onLoading: (state) => loadingWidget(),
+                  onSuccess: (state) => state.data.isEmpty
                       ? whenEmpty ?? textWidget('Not Found!')
-                      : displaySearchResults(state.keywords);
-                default:
-                  return const Placeholder();
-              }
+                      : displaySearchResults(state.data));
             },
           ),
         );
@@ -64,13 +59,9 @@ class SearchKeywordScreen extends StatelessWidget {
     );
   }
 
-  Widget loadingWidget() {
-    return const CircularProgressIndicator().align.center();
-  }
+  Widget loadingWidget() => const CircularProgressIndicator().align.center();
 
-  Center textWidget(String text) => Center(
-        child: Text(text),
-      );
+  Center textWidget(String text) => Center(child: Text(text));
 
   displaySearchResults(Keywords keywords) {
     return ListView.builder(

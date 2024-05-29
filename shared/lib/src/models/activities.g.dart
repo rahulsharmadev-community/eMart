@@ -67,9 +67,9 @@ extension $ActivitiesCopyWith on Activities {
 // **************************************************************************
 
 Activities _$ActivitiesFromJson(Map<String, dynamic> json) => Activities(
-      json['sold'] as int? ?? 0,
-      json['reach'] as int? ?? 0,
-      json['views'] as int? ?? 0,
+      (json['sold'] as num?)?.toInt() ?? 0,
+      (json['reach'] as num?)?.toInt() ?? 0,
+      (json['views'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$ActivitiesToJson(Activities instance) =>

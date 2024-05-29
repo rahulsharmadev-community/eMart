@@ -135,7 +135,7 @@ extension on AppRoutes {
     Page<dynamic> Function(BuildContext, GoRouterState)? pageBuilder,
     GlobalKey<NavigatorState>? parentNavigatorKey,
     FutureOr<String?> Function(BuildContext, GoRouterState)? redirect,
-    FutureOr<bool> Function(BuildContext)? onExit,
+    FutureOr<bool> Function(BuildContext, GoRouterState)? onExit,
     List<RouteBase> routes = const <RouteBase>[],
   }) =>
       GoRoute(

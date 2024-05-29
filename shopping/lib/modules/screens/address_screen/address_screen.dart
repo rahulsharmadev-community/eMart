@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
 import 'package:shared/models.dart' as model;
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';

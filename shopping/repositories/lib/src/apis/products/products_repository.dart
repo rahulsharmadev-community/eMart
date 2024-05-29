@@ -12,12 +12,11 @@ part 'product_api.dart';
 part 'products_cache.dart';
 
 class ProductRepository {
-  final ProductsApi api;
-  final ProductsCache cache;
-  ProductRepository({required this.api, required this.cache});
+  final ProductsApi api = ProductsApi();
+  final ProductsCache cache = ProductsCache();
 
-  FutureOr<Product?> get(String productId) async {
-    Product? result = cache.get(productId);
+  Future<Product?> get(String productId, {bool disableCache = false}) async {
+    Product? result = disableCache ? null : cache.get(productId);
     if (result == null) {
       result = await api.getByProductId(productId);
       if (result != null) cache.add(result);
@@ -26,8 +25,8 @@ class ProductRepository {
     return result;
   }
 
-  FutureOr<List<Product>?> getAll(List<String> productIds) async {
-    List<Product>? result = cache.getAll(productIds);
+  Future<List<Product>?> getAll(List<String> productIds, {bool disableCache = false}) async {
+    List<Product>? result = disableCache ? null : cache.getAll(productIds);
     if (result == null) {
       result = await api.getProductsByIds(productIds);
       if (result != null) cache.addAll(result);
@@ -35,7 +34,7 @@ class ProductRepository {
     return result;
   }
 
-  FutureOr<List<Product>> getByQuery(Set<Query> queries) async {
+  Future<List<Product>> getByQuery(Set<Query> queries) async {
     logs.i('ProductRepository: getByQuery');
     final result = await api.getByQueries(queries).whenComplete(() => print('Complete'));
     cache.addAll(result);

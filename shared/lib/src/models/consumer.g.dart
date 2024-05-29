@@ -19,6 +19,8 @@ abstract class _$ConsumerCWProxy {
 
   Consumer phoneNumber(String? phoneNumber);
 
+  Consumer gstNumber(String? gstNumber);
+
   Consumer cartProducts(Map<String, int> cartProducts);
 
   Consumer wishlist(Map<String, Wishlist> wishlist);
@@ -30,6 +32,8 @@ abstract class _$ConsumerCWProxy {
   Consumer addresses(Map<String, Address> addresses);
 
   Consumer primaryAddressId(String? primaryAddressId);
+
+  Consumer razorPayUid(String? razorPayUid);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Consumer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -44,12 +48,14 @@ abstract class _$ConsumerCWProxy {
     String? profileImg,
     String? email,
     String? phoneNumber,
+    String? gstNumber,
     Map<String, int>? cartProducts,
     Map<String, Wishlist>? wishlist,
     List<String>? complains,
     List<String>? orders,
     Map<String, Address>? addresses,
     String? primaryAddressId,
+    String? razorPayUid,
   });
 }
 
@@ -79,6 +85,9 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
   Consumer phoneNumber(String? phoneNumber) => this(phoneNumber: phoneNumber);
 
   @override
+  Consumer gstNumber(String? gstNumber) => this(gstNumber: gstNumber);
+
+  @override
   Consumer cartProducts(Map<String, int> cartProducts) =>
       this(cartProducts: cartProducts);
 
@@ -100,6 +109,9 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
       this(primaryAddressId: primaryAddressId);
 
   @override
+  Consumer razorPayUid(String? razorPayUid) => this(razorPayUid: razorPayUid);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Consumer(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -114,12 +126,14 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
     Object? profileImg = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
+    Object? gstNumber = const $CopyWithPlaceholder(),
     Object? cartProducts = const $CopyWithPlaceholder(),
     Object? wishlist = const $CopyWithPlaceholder(),
     Object? complains = const $CopyWithPlaceholder(),
     Object? orders = const $CopyWithPlaceholder(),
     Object? addresses = const $CopyWithPlaceholder(),
     Object? primaryAddressId = const $CopyWithPlaceholder(),
+    Object? razorPayUid = const $CopyWithPlaceholder(),
   }) {
     return Consumer(
       uid: _value.uid,
@@ -147,6 +161,10 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
           ? _value.phoneNumber
           // ignore: cast_nullable_to_non_nullable
           : phoneNumber as String?,
+      gstNumber: gstNumber == const $CopyWithPlaceholder()
+          ? _value.gstNumber
+          // ignore: cast_nullable_to_non_nullable
+          : gstNumber as String?,
       cartProducts:
           cartProducts == const $CopyWithPlaceholder() || cartProducts == null
               ? _value.cartProducts
@@ -172,6 +190,10 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
           ? _value.primaryAddressId
           // ignore: cast_nullable_to_non_nullable
           : primaryAddressId as String?,
+      razorPayUid: razorPayUid == const $CopyWithPlaceholder()
+          ? _value.razorPayUid
+          // ignore: cast_nullable_to_non_nullable
+          : razorPayUid as String?,
       joinAt: _value.joinAt,
     );
   }
@@ -186,8 +208,6 @@ extension $ConsumerCopyWith on Consumer {
 abstract class _$WishlistCWProxy {
   Wishlist productIds(Map<String, DateTime> productIds);
 
-  Wishlist name(String name);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Wishlist(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -196,7 +216,6 @@ abstract class _$WishlistCWProxy {
   /// ````
   Wishlist call({
     Map<String, DateTime>? productIds,
-    String? name,
   });
 }
 
@@ -211,9 +230,6 @@ class _$WishlistCWProxyImpl implements _$WishlistCWProxy {
       this(productIds: productIds);
 
   @override
-  Wishlist name(String name) => this(name: name);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Wishlist(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -223,7 +239,6 @@ class _$WishlistCWProxyImpl implements _$WishlistCWProxy {
   /// ````
   Wishlist call({
     Object? productIds = const $CopyWithPlaceholder(),
-    Object? name = const $CopyWithPlaceholder(),
   }) {
     return Wishlist(
       productIds:
@@ -231,11 +246,6 @@ class _$WishlistCWProxyImpl implements _$WishlistCWProxy {
               ? _value.productIds
               // ignore: cast_nullable_to_non_nullable
               : productIds as Map<String, DateTime>,
-      name: name == const $CopyWithPlaceholder() || name == null
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-      wishlistId: _value.wishlistId,
       createdAt: _value.createdAt,
     );
   }
@@ -281,8 +291,9 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
       profileImg: json['profileImg'] as String?,
       email: json['email'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
+      gstNumber: json['gstNumber'] as String?,
       cartProducts: (json['cartProducts'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as int),
+            (k, e) => MapEntry(k, (e as num).toInt()),
           ) ??
           const {},
       wishlist: (json['wishlist'] as Map<String, dynamic>?)?.map(
@@ -302,6 +313,7 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
           ) ??
           const {},
       primaryAddressId: json['primaryAddressId'] as String?,
+      razorPayUid: json['razorPayUid'] as String?,
       joinAt: _$JsonConverterFromJson<int, DateTime>(
           json['joinAt'], const DateTimeConverter().fromJson),
       lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
@@ -315,6 +327,8 @@ Map<String, dynamic> _$ConsumerToJson(Consumer instance) => <String, dynamic>{
       'phoneNumber': instance.phoneNumber,
       'profileImg': instance.profileImg,
       'fCMid': instance.fCMid,
+      'gstNumber': instance.gstNumber,
+      'razorPayUid': instance.razorPayUid,
       'primaryAddressId': instance.primaryAddressId,
       'devices': instance.devices,
       'complains': instance.complains,
@@ -334,10 +348,9 @@ Value? _$JsonConverterFromJson<Json, Value>(
 
 Wishlist _$WishlistFromJson(Map<String, dynamic> json) => Wishlist(
       productIds: (json['productIds'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(k, const DateTimeConverter().fromJson(e as int)),
+        (k, e) =>
+            MapEntry(k, const DateTimeConverter().fromJson((e as num).toInt())),
       ),
-      name: json['name'] as String,
-      wishlistId: json['wishlistId'] as String?,
       lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
           json['lastUpdateAt'], const DateTimeConverter().fromJson),
       createdAt: _$JsonConverterFromJson<int, DateTime>(
@@ -345,10 +358,8 @@ Wishlist _$WishlistFromJson(Map<String, dynamic> json) => Wishlist(
     );
 
 Map<String, dynamic> _$WishlistToJson(Wishlist instance) => <String, dynamic>{
-      'wishlistId': instance.wishlistId,
       'productIds': instance.productIds
           .map((k, e) => MapEntry(k, const DateTimeConverter().toJson(e))),
-      'name': instance.name,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };

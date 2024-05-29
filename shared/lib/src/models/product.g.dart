@@ -518,7 +518,7 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
               ) ??
               const {},
       rating: (json['rating'] as num?)?.toDouble() ?? 0,
-      totalReviews: json['totalReviews'] as int? ?? 0,
+      totalReviews: (json['totalReviews'] as num?)?.toInt() ?? 0,
       status:
           $enumDecodeNullable(_$ProductStockStatusEnumMap, json['status']) ??
               ProductStockStatus.available,
@@ -629,7 +629,7 @@ Map<String, dynamic> _$ProductUnitToJson(ProductUnit instance) =>
           _$WeightMeasurementEnumMap[instance.weightMeasurement],
       'dimension': instance.dimension == null
           ? null
-          : {
+          : <String, dynamic>{
               'h': instance.dimension!.h,
               'l': instance.dimension!.l,
               'w': instance.dimension!.w,

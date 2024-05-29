@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jars/jars.dart';
 import 'package:repositories/repositories.dart';
-import 'package:shopping/modules/screens/product_query_builder/bloc/product_query_cubit.dart';
+import 'package:shopping/core/blocs/products_cubit/products_cubit.dart';
 
 class QueryFilter {
   final Set<Query> pending;
@@ -19,9 +18,8 @@ class QueryFilter {
 }
 
 class ProductQueryFilterCubit extends Cubit<QueryFilter> {
-  final ProductRepository repository;
   final ProductsCubit productsCubit;
-  ProductQueryFilterCubit(this.repository, this.productsCubit, {Set<Query>? inital}) : super(QueryFilter()) {
+  ProductQueryFilterCubit(this.productsCubit, {Set<Query>? inital}) : super(QueryFilter()) {
     if (inital != null) add(inital.toList());
   }
 
@@ -52,15 +50,5 @@ class ProductQueryFilterCubit extends Cubit<QueryFilter> {
   removeAll(List<Query> queries) => emit(state.copyWith(pending: {}, complete: {}));
 
 // Fetch data based on queries
-  Future<void> _fetch() async {
-    try {
-      // query should hold an existing filter and upcoming pending filter
-      var result = await repository.getByQuery({...state.complete, ...state.pending});
-      print(result);
-      productsCubit.emit(BlocStateSuccess(result));
-      // ignore: empty_catches
-    } catch (e) {
-      print(e);
-    }
-  }
+  Future<void> _fetch() => productsCubit.fetchByQuery({...state.complete, ...state.pending});
 }

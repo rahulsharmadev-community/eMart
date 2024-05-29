@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repositories/repositories.dart';
+import 'package:shopping/core/blocs/products_cubit/products_cubit.dart';
 import 'package:shopping/modules/screens/product_query_builder/widgets/filter_bar.dart';
 import 'package:shopping/modules/screens/product_query_builder/widgets/filter_builder.dart';
 import 'bloc/product_query_filter_cubit.dart';
-import 'bloc/product_query_cubit.dart';
 
 class ProductQueryBuilder extends StatelessWidget {
   final Set<Query> initalQuery;
@@ -18,11 +18,7 @@ class ProductQueryBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var productsCubit = ProductsCubit();
-    var controller = ProductQueryFilterCubit(
-      context.read<ProductRepository>(),
-      productsCubit,
-      inital: initalQuery,
-    );
+    var controller = ProductQueryFilterCubit(productsCubit, inital: initalQuery);
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(value: controller),

@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:ico/ico.dart';
 import 'package:jars/jars.dart';
 
-class BottomAppBarBuilder extends StatelessWidget implements PreferredSizeWidget {
+class BottomAppBarBuilder extends StatelessWidget
+    implements PreferredSizeWidget {
   final String image;
   final String title;
   final VoidCallback? onTap;
@@ -11,6 +13,7 @@ class BottomAppBarBuilder extends StatelessWidget implements PreferredSizeWidget
   final String? productBrand;
   final double rating;
   final String totalReviews;
+
   const BottomAppBarBuilder({
     super.key,
     this.onTap,
@@ -28,16 +31,19 @@ class BottomAppBarBuilder extends StatelessWidget implements PreferredSizeWidget
       var ratingBar = RatingBarIndicator(
         rating: rating,
         itemSize: 12,
-        itemBuilder: (context, index) => const Icon(Icons.star, color: Colors.amber),
+        itemBuilder: (context, index) =>
+            const Icon(Icons.star, color: Colors.amber),
       );
       var label = context.textTheme.labelMedium;
       return Row(
         children: [
-          if (productBrand != null) Text("Brand: ${productBrand!}").fontWeight(FontWeight.w500),
+          if (productBrand != null)
+            Text("Brand: ${productBrand!}").fontWeight(FontWeight.w500),
           const Spacer(),
           Text('$rating ', style: label),
           ratingBar,
-          Text(' $totalReviews', style: label?.copyWith(color: label.color?.withOpacity(.5))),
+          Text(' $totalReviews',
+              style: label?.copyWith(color: label.color?.withOpacity(.5))),
         ],
       );
     }
@@ -68,10 +74,15 @@ class BottomAppBarBuilder extends StatelessWidget implements PreferredSizeWidget
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   brandAndRating(),
-                  Text(
-                    title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ).tightFit(),
+                      InkWell(child: Icon(Ico.bookmark_outline)),
+                    ],
                   )
                 ],
               ).tightFit()

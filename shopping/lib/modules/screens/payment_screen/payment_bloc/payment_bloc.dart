@@ -1,5 +1,6 @@
 // ignore_for_file: unused_element
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
 import 'package:razorpay_api/razorpay_api.dart';
 import 'package:repositories/repositories.dart';
@@ -24,78 +25,111 @@ class PaymentBloc extends Cubit<PaymentState> {
       : razorPayAPI = RazorPayAPI(),
         super(PaymentInital());
 
-  // on<onTapCODPaymentButton>((event, emit) {});
+  onTapCODPaymentButton({required List<OrderedProduct> products}) {
+    return user.primaryAddress.ifNotNull(
+      def: null,
+      callback: (value) async {
+        try {
+          emit(const PaymentInProgress('Initiating your order...'));
+          var order = Order(
+            consumerId: user.uid,
+            products: products,
+            defaultDeliveryAddress: value,
+            paymentMode: 'cod',
+          );
+          await orderApi.createOrder(order);
+          bloc.add(PrimaryUserEvent.update(
+            (e) => e.copyWith.orders([...e.orders, order.orderId]),
+          ));
+          emit(PaymentSuccess(order));
+        } catch (e) {
+          const message = 'Failed to create an order! Please try agin.';
+          emit(const PaymentFailure(message));
+        }
+      },
+    );
+  }
 
-  Future<void> onTapOnlinePaymentButton({
-    required Address defaultDeliveryAddress,
+  VoidCallback? onTapOnlinePaymentButton({
     required List<OrderedProduct> products,
     RazorPayCheckOutTheme? razorPayTheme,
-  }) async {
-    defaultDeliveryAddress;
-    try {
-      emit(const PaymentInProgress('Initiating your order...'));
+  }) {
+    return user.primaryAddress.ifNotNull(
+        def: null,
+        callback: (value) {
+          return () async {
+            try {
+              emit(const PaymentInProgress('Initiating your order...'));
 
-      var orderId = await orderApi.placingOrder(
-        amount: products.calcaulateFinalPrice,
-        consumerId: user.uid,
-        products: products.map((e) => e.productId).toList(),
-      );
+              var orderId = await orderApi.placingPrePaidOrder(
+                amount: products.calcaulateFinalPrice,
+                consumerId: user.uid,
+                products: products.map((e) => e.productId).toList(),
+              );
 
-      bloc.add(PrimaryUserEvent.update((e) => e.copyWith.orders([...e.orders, orderId])));
+              bloc.add(PrimaryUserEvent.update((e) => e.copyWith.orders([...e.orders, orderId])));
 
-      emit(const PaymentInProgress('Order created successfully'));
+              emit(const PaymentInProgress('Order created successfully'));
 
-      razorPayAPI.handler(
-        (r) => _handlePaymentSuccess(r, defaultDeliveryAddress, products),
-        _handlePaymentError,
-        _handleExternalWallet,
-      );
+              razorPayAPI.handler(
+                (r) => _handlePaymentSuccess(r, value, products),
+                _handlePaymentError,
+                _handleExternalWallet,
+              );
 
-      razorPayAPI.checkout(RazorpayCheckout(
-          amount: products.calcaulateFinalPrice,
-          currency: RazorpayCurrency.INR,
-          prefill: Prefill(
-            name: user.name.toString(),
-            contact: user.phoneNumber,
-            email: user.email,
-          ),
-          name: eMart.name,
-          image: eMart.logoBase64,
-          readonly: Readonly(name: true, contact: true, email: true),
-          sendSmsHash: true,
-          theme: razorPayTheme,
-          rememberCustomer: true,
-          customerId: user.razorPayUid,
-          orderId: orderId,
-          timeout: 10.minutes,
-          externalWallet: [
-            'paytm',
-            'phonepe',
-            'amazonpay'
-          ],
-          notes: {
-            'uid': user.uid,
-            'pids': products.map((e) => e.productId).toList(),
-          }));
-    } catch (e) {
-      emit(PaymentFailure('Failed to create order: ${e.toString()}'));
-    }
+              razorPayAPI.checkout(RazorpayCheckout(
+                  amount: products.calcaulateFinalPrice,
+                  currency: RazorpayCurrency.INR,
+                  prefill: Prefill(
+                    name: user.name.toString(),
+                    contact: user.phoneNumber,
+                    email: user.email,
+                  ),
+                  name: eMart.name,
+                  image: eMart.logoBase64,
+                  readonly: Readonly(name: true, contact: true, email: true),
+                  sendSmsHash: true,
+                  theme: razorPayTheme,
+                  rememberCustomer: true,
+                  customerId: user.razorPayUid,
+                  orderId: orderId,
+                  timeout: 10.minutes,
+                  externalWallet: [
+                    'paytm',
+                    'phonepe',
+                    'amazonpay'
+                  ],
+                  notes: {
+                    'uid': user.uid,
+                    'pids': products.map((e) => e.productId).toList(),
+                  }));
+            } catch (e) {
+              emit(PaymentFailure(e.toString()));
+            }
+          };
+        });
   }
 
   void _handlePaymentSuccess(
     PaymentSuccessResponse response,
     Address defaultDeliveryAddress,
     List<OrderedProduct> products,
-  ) {
-    var order = Order(
-        orderId: response.orderId,
-        consumerId: user.uid,
-        products: products,
-        paymentId: response.paymentId,
-        signature: response.signature,
-        defaultDeliveryAddress: defaultDeliveryAddress,
-        paymentMode: 'razorpay');
-    orderApi.create(order).then((_) => emit(PaymentSuccess(order)));
+  ) async {
+    try {
+      var order = Order(
+          orderId: response.orderId,
+          consumerId: user.uid,
+          products: products,
+          paymentId: response.paymentId,
+          signature: response.signature,
+          defaultDeliveryAddress: defaultDeliveryAddress,
+          paymentMode: 'razorpay');
+      await orderApi.createOrder(order);
+      emit(PaymentSuccess(order));
+    } catch (e) {
+      const message = 'Payment successfully but Order not created!\nPlease contect to support team';
+      emit(const PaymentFailure(message));
+    }
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

@@ -34,7 +34,7 @@ class OrderApi with CustomExceptionHandler {
 
   Future<void> update(Order order) => collection.doc(order.paymentId).update(order.toJson());
 
-  Future<void> create(Order order) => collection
+  Future<void> createOrder(Order order) => collection
       .doc(order.paymentId)
       .withConverter<Order>(
         fromFirestore: (_, s) => Order.fromJson(_.data()!),
@@ -42,8 +42,11 @@ class OrderApi with CustomExceptionHandler {
       )
       .set(order);
 
-  Future<String> placingOrder(
-      {required String consumerId, required List<String> products, required double amount}) async {
+  Future<String> placingPrePaidOrder({
+    required String consumerId,
+    required List<String> products,
+    required double amount,
+  }) async {
     var razorpayOrder = RazorPayOrder(
         amount: amount, currency: RazorpayCurrency.INR, notes: {'uid': consumerId, 'pids': products});
 

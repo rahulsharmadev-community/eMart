@@ -68,12 +68,6 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
     super.dispose();
   }
 
-  Widget safteyText() => Text(
-        'Safe and secure payments, Easy returns,100% Authentic products.',
-        textAlign: TextAlign.center,
-        style: context.textTheme.labelMedium,
-      ).opacity(0.5).boxWidth(70.w);
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -103,44 +97,43 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                 );
               }),
               8.gap,
-              safteyText(),
+              Text(
+                'Safe and secure payments, Easy returns,100% Authentic products.',
+                textAlign: TextAlign.center,
+                style: context.textTheme.labelMedium,
+              ).opacity(0.5).boxWidth(70.w),
             ],
           ),
         ));
   }
 
+  get address => context.primaryUser.user.primaryAddress;
+
   Widget successfully(ProductLoadedState state) {
     var products = state.data
         .map((e) => e.toOrderedProduct(widget.cart[e.productId]!, model.State.INDL, e.discountedPrice > 1000))
         .toList();
+
     var nf = const NumberFormat.en_in();
-    var razorPayTheme = RazorPayCheckOutTheme(color: context.theme.cardColor);
+    var razorPayTheme = RazorPayCheckOutTheme(
+      color: context.theme.cardColor,
+    );
     return Row(
       children: [
-        SizedBox(
-            width: 100,
-            child: JButton(
-              type: JButtonType.filled_tonal,
-              text: 'COD',
-              infinity: false,
-              borderRadius: BorderRadius.circular(8),
-            )),
+        JButton(
+          type: JButtonType.filled_tonal,
+          text: 'COD',
+          infinity: false,
+          borderRadius: BorderRadius.circular(8),
+          onPressed: paymentBloc.onTapCODPaymentButton(products: products),
+        ).boxWidth(100),
         8.gap,
         JButton(
           text: 'PAY ${nf.simple(products.calcaulateFinalPrice, currencySymbol: true, trimZero: true)}',
           leadingIcon: Icons.assured_workload,
           infinity: false,
           borderRadius: BorderRadius.circular(8),
-          onPressed: () {
-            var address = context.primaryUser.user.primaryAddress;
-            if (address != null) {
-              paymentBloc.onTapOnlinePaymentButton(
-                defaultDeliveryAddress: address,
-                products: products,
-                razorPayTheme: razorPayTheme,
-              );
-            }
-          },
+          onPressed: paymentBloc.onTapOnlinePaymentButton(products: products, razorPayTheme: razorPayTheme),
         ).tightFit()
       ],
     );

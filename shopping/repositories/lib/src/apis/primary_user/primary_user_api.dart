@@ -64,6 +64,7 @@ class PrimaryUserRepository {
       }
       await _collection.update(newValue.toJson());
     } catch (e) {
+      print('Error PrimaryUser.update $e');
       logs.e(e);
     }
   }

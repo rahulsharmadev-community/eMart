@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:jars/jars.dart';
+import 'package:shared/src/models/general/contact.dart';
 import 'package:uuid/uuid.dart';
 
 part 'address.g.dart';
 
 enum AddressType {
   home(Icons.home_rounded),
+  business(Icons.store),
   office(Icons.home_work_rounded),
   hotel(Icons.cottage_rounded),
   other(Icons.location_on);
@@ -23,22 +25,23 @@ enum AddressType {
 
 @CopyWith()
 @defJsonSerializable
-class Address extends Equatable {
+class Address extends Equatable with ValidatorMixin {
   @CopyWithField.immutable()
   final String addressId;
-  final PersonName personName;
-  final int phoneNumber;
-  final String? email;
   final String houseNo;
   final JSON_1 state;
   final JSON_1 country;
-  final int postalCode;
+  final String postalCode;
+  final GeoCoordinate geoCoordinate;
+
+  final PersonName? personName;
+  final PhoneNumber? phoneNumber;
+  final Email? email;
   final String? city;
   final String? area;
   final String? landmark;
   final int? floorLevel;
   final String? district;
-  final GeoCoordinate geoCoordinate;
   // also known as global_code
   final String plusCode;
   final AddressType? type;
@@ -54,10 +57,10 @@ class Address extends Equatable {
     required this.state,
     required this.country,
     required this.postalCode,
-    required this.personName,
     required this.plusCode,
     required this.geoCoordinate,
-    required this.phoneNumber,
+    this.personName,
+    this.phoneNumber,
     this.email,
     this.landmark,
     this.city,
@@ -67,32 +70,42 @@ class Address extends Equatable {
     this.type,
     DateTime? lastUpdateAt,
     DateTime? createdAt,
-  })  : assert(personName.firstName.isNotEmpty, 'name should not be empty.'),
-        addressId = addressId ?? const Uuid().v4(),
+  })  : addressId = addressId ?? const Uuid().v4(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now(),
         createdAt = createdAt ?? DateTime.now();
-
-  bool get isNotEmpty => !houseNo.isBlank && !plusCode.isBlank && floorLevel != null;
 
   String get formattedAddress {
     var set = {houseNo, area, city, state.value, postalCode, country.value}..remove(null);
     return set.join(', ');
   }
 
-  static final empty = Address(
-    houseNo: '',
-    state: (key: '', value: ''),
-    country: (key: '', value: ''),
-    postalCode: -1,
-    personName: PersonName(firstName: '@empty'),
-    plusCode: '',
-    geoCoordinate: (lat: -1, lng: -1),
-    phoneNumber: -1,
-  );
-
   factory Address.fromJson(JSON json) => _$AddressFromJson(json);
 
   JSON toJson() => _$AddressToJson(this);
+
+  @override
+  void validator() {
+    if (houseNo.isBlank) throw ArgumentError('Must be non-empty and null.', 'HouseNo');
+    if (type == null) throw ArgumentError('Must be non-empty and null.', 'AddressType');
+
+    if (floorLevel == null || floorLevel! < -10 || floorLevel! > 200) {
+      throw ArgumentError('Valid floorLevel values typically range from -10 to 200', 'floorLevel');
+    }
+    if (geoCoordinate.lat < -90 ||
+        geoCoordinate.lat > 90 ||
+        geoCoordinate.lng < -180 ||
+        geoCoordinate.lng > 180) {
+      throw ArgumentError(
+          'Valid latitude values typically range from -90 to 90, while valid longitude values range from -180 to 180',
+          'geoCoordinate');
+    }
+
+    postalCode.regNotMatch(regPatterns.postalCode(), throwError: true);
+    plusCode.regNotMatch(regPatterns.googlePlusCode, throwError: true);
+    email?.validator();
+    phoneNumber?.validator();
+    personName?.validator();
+  }
 
   @override
   List<Object?> get props => [
@@ -112,5 +125,6 @@ class Address extends Equatable {
         type,
         email,
         createdAt,
+        // ignore lastUpdateAt
       ];
 }

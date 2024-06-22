@@ -26,7 +26,7 @@ extension ListProductExtensions on List<Product> {
 
 @CopyWith()
 @defJsonSerializable
-class Product {
+class Product with ValidatorMixin {
   Product({
     String? productId,
     required this.shopId,
@@ -53,15 +53,7 @@ class Product {
     this.status = ProductStockStatus.available,
     DateTime? createdAt,
     DateTime? lastUpdateAt,
-  })  : assert(shopId.length > 8, 'Invalid Seller ID.'),
-        assert(mrp > 0, 'MRP must be greater than zero.'),
-        assert(title.length >= 3 && title.length <= 500, 'Title should be between 3 and 150 characters.'),
-        assert(Uri.parse(thumbnail).isAbsolute, 'Invalid thumbnail URL.'),
-        assert((discount >= 0 && discount <= 100), 'Discount should be between 0 and 100.'),
-        assert(shotDescription == null || shotDescription.length > 30,
-            'Shot description should be more than 30 characters.'),
-        assert(imageUrls.every((e) => Uri.parse(e).isAbsolute), 'Invalid image URL in imageUrls.'),
-        productId = productId ?? const Uuid().v4(),
+  })  : productId = productId ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 
@@ -140,6 +132,26 @@ class Product {
 
   factory Product.fromJson(JSON json) => _$ProductFromJson(json);
   JSON toJson() => _$ProductToJson(this);
+
+  @override
+  void validator() {
+    if (shopId.length < 8) throw ArgumentError('Invalid Seller ID.');
+    if (mrp < 0) throw ArgumentError('MRP must be greater than zero.');
+    if (title.length < 3 && title.length > 500) {
+      throw ArgumentError('Title should be between 3 and 150 characters.');
+    }
+
+    if (!Uri.parse(thumbnail).isAbsolute) throw ArgumentError('Invalid thumbnail URL.');
+    if (discount < 0 && discount > 100) throw ArgumentError('Discount should be between 0 and 100.');
+    if (shotDescription != null && shotDescription!.length < 30) {
+      throw ArgumentError('Shot description should be more than 30 characters.');
+    }
+    for (var url in imageUrls) {
+      if (!Uri.parse(url).isAbsolute) {
+        throw ArgumentError('Invalid image URL in imageUrls.');
+      }
+    }
+  }
 }
 
 enum LengthMeasurement { cm, m, km, inch, foot }

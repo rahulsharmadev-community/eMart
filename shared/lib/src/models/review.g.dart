@@ -7,13 +7,13 @@ part of 'review.dart';
 // **************************************************************************
 
 abstract class _$ReviewCWProxy {
-  Review title(String? title);
+  Review title(String title);
 
   Review text(String? text);
 
-  Review rating(double rating);
+  Review rating(double? rating);
 
-  Review imageUrls(List<String> imageUrls);
+  Review imageUrls(List<String>? imageUrls);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Review(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -36,16 +36,16 @@ class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
   final Review _value;
 
   @override
-  Review title(String? title) => this(title: title);
+  Review title(String title) => this(title: title);
 
   @override
   Review text(String? text) => this(text: text);
 
   @override
-  Review rating(double rating) => this(rating: rating);
+  Review rating(double? rating) => this(rating: rating);
 
   @override
-  Review imageUrls(List<String> imageUrls) => this(imageUrls: imageUrls);
+  Review imageUrls(List<String>? imageUrls) => this(imageUrls: imageUrls);
 
   @override
 
@@ -63,24 +63,24 @@ class _$ReviewCWProxyImpl implements _$ReviewCWProxy {
   }) {
     return Review(
       reviewId: _value.reviewId,
-      title: title == const $CopyWithPlaceholder()
+      title: title == const $CopyWithPlaceholder() || title == null
           ? _value.title
           // ignore: cast_nullable_to_non_nullable
-          : title as String?,
+          : title as String,
       text: text == const $CopyWithPlaceholder()
           ? _value.text
           // ignore: cast_nullable_to_non_nullable
           : text as String?,
-      rating: rating == const $CopyWithPlaceholder() || rating == null
+      rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
-          : rating as double,
+          : rating as double?,
       reviewedBy: _value.reviewedBy,
       createdAt: _value.createdAt,
-      imageUrls: imageUrls == const $CopyWithPlaceholder() || imageUrls == null
+      imageUrls: imageUrls == const $CopyWithPlaceholder()
           ? _value.imageUrls
           // ignore: cast_nullable_to_non_nullable
-          : imageUrls as List<String>,
+          : imageUrls as List<String>?,
     );
   }
 }
@@ -97,18 +97,17 @@ extension $ReviewCopyWith on Review {
 
 Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
       reviewId: json['reviewId'] as String?,
-      title: json['title'] as String?,
+      title: json['title'] as String,
       text: json['text'] as String?,
-      rating: (json['rating'] as num).toDouble(),
-      reviewedBy: json['reviewedBy'] as String,
+      rating: (json['rating'] as num?)?.toDouble(),
+      reviewedBy: json['reviewedBy'] as String?,
       createdAt: _$JsonConverterFromJson<int, DateTime>(
           json['createdAt'], const DateTimeConverter().fromJson),
       lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
           json['lastUpdateAt'], const DateTimeConverter().fromJson),
       imageUrls: (json['imageUrls'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{

@@ -15,9 +15,9 @@ abstract class _$ConsumerCWProxy {
 
   Consumer profileImg(String? profileImg);
 
-  Consumer email(String? email);
+  Consumer email(Email? email);
 
-  Consumer phoneNumber(String? phoneNumber);
+  Consumer phoneNumber(PhoneNumber? phoneNumber);
 
   Consumer gstNumber(String? gstNumber);
 
@@ -46,8 +46,8 @@ abstract class _$ConsumerCWProxy {
     String? fCMid,
     List<Map<String, dynamic>>? devices,
     String? profileImg,
-    String? email,
-    String? phoneNumber,
+    Email? email,
+    PhoneNumber? phoneNumber,
     String? gstNumber,
     Map<String, int>? cartProducts,
     Map<String, Wishlist>? wishlist,
@@ -79,10 +79,11 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
   Consumer profileImg(String? profileImg) => this(profileImg: profileImg);
 
   @override
-  Consumer email(String? email) => this(email: email);
+  Consumer email(Email? email) => this(email: email);
 
   @override
-  Consumer phoneNumber(String? phoneNumber) => this(phoneNumber: phoneNumber);
+  Consumer phoneNumber(PhoneNumber? phoneNumber) =>
+      this(phoneNumber: phoneNumber);
 
   @override
   Consumer gstNumber(String? gstNumber) => this(gstNumber: gstNumber);
@@ -156,11 +157,11 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
       email: email == const $CopyWithPlaceholder()
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String?,
+          : email as Email?,
       phoneNumber: phoneNumber == const $CopyWithPlaceholder()
           ? _value.phoneNumber
           // ignore: cast_nullable_to_non_nullable
-          : phoneNumber as String?,
+          : phoneNumber as PhoneNumber?,
       gstNumber: gstNumber == const $CopyWithPlaceholder()
           ? _value.gstNumber
           // ignore: cast_nullable_to_non_nullable
@@ -289,8 +290,12 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
           .map((e) => e as Map<String, dynamic>)
           .toList(),
       profileImg: json['profileImg'] as String?,
-      email: json['email'] as String?,
-      phoneNumber: json['phoneNumber'] as String?,
+      email: json['email'] == null
+          ? null
+          : Email.fromJson(json['email'] as Map<String, dynamic>),
+      phoneNumber: json['phoneNumber'] == null
+          ? null
+          : PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
       gstNumber: json['gstNumber'] as String?,
       cartProducts: (json['cartProducts'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, (e as num).toInt()),
@@ -323,8 +328,8 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
 Map<String, dynamic> _$ConsumerToJson(Consumer instance) => <String, dynamic>{
       'uid': instance.uid,
       'name': instance.name.toJson(),
-      'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
+      'email': instance.email?.toJson(),
+      'phoneNumber': instance.phoneNumber?.toJson(),
       'profileImg': instance.profileImg,
       'fCMid': instance.fCMid,
       'gstNumber': instance.gstNumber,

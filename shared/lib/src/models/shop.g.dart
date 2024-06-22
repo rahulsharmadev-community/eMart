@@ -11,15 +11,17 @@ abstract class _$ShopCWProxy {
 
   Shop address(Address address);
 
-  Shop email(String email);
+  Shop email(Email email);
 
-  Shop phoneNumber(String phoneNumber);
+  Shop phoneNumber(PhoneNumber phoneNumber);
 
-  Shop profileImg(String profileImg);
+  Shop gstNumber(String gstNumber);
 
-  Shop gstNumber(String? gstNumber);
+  Shop panNumber(String panNumber);
 
-  Shop panNumber(String? panNumber);
+  Shop profileImg(String? profileImg);
+
+  Shop employees(List<String> employees);
 
   Shop gstDocImg(String? gstDocImg);
 
@@ -27,7 +29,7 @@ abstract class _$ShopCWProxy {
 
   Shop electricityBillDocImg(String? electricityBillDocImg);
 
-  Shop rating(double rating);
+  Shop rating(double? rating);
 
   Shop electricityBillNumber(String? electricityBillNumber);
 
@@ -46,11 +48,12 @@ abstract class _$ShopCWProxy {
   Shop call({
     String? name,
     Address? address,
-    String? email,
-    String? phoneNumber,
-    String? profileImg,
+    Email? email,
+    PhoneNumber? phoneNumber,
     String? gstNumber,
     String? panNumber,
+    String? profileImg,
+    List<String>? employees,
     String? gstDocImg,
     String? panDocImg,
     String? electricityBillDocImg,
@@ -75,19 +78,22 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
   Shop address(Address address) => this(address: address);
 
   @override
-  Shop email(String email) => this(email: email);
+  Shop email(Email email) => this(email: email);
 
   @override
-  Shop phoneNumber(String phoneNumber) => this(phoneNumber: phoneNumber);
+  Shop phoneNumber(PhoneNumber phoneNumber) => this(phoneNumber: phoneNumber);
 
   @override
-  Shop profileImg(String profileImg) => this(profileImg: profileImg);
+  Shop gstNumber(String gstNumber) => this(gstNumber: gstNumber);
 
   @override
-  Shop gstNumber(String? gstNumber) => this(gstNumber: gstNumber);
+  Shop panNumber(String panNumber) => this(panNumber: panNumber);
 
   @override
-  Shop panNumber(String? panNumber) => this(panNumber: panNumber);
+  Shop profileImg(String? profileImg) => this(profileImg: profileImg);
+
+  @override
+  Shop employees(List<String> employees) => this(employees: employees);
 
   @override
   Shop gstDocImg(String? gstDocImg) => this(gstDocImg: gstDocImg);
@@ -100,7 +106,7 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
       this(electricityBillDocImg: electricityBillDocImg);
 
   @override
-  Shop rating(double rating) => this(rating: rating);
+  Shop rating(double? rating) => this(rating: rating);
 
   @override
   Shop electricityBillNumber(String? electricityBillNumber) =>
@@ -130,9 +136,10 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
     Object? address = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
-    Object? profileImg = const $CopyWithPlaceholder(),
     Object? gstNumber = const $CopyWithPlaceholder(),
     Object? panNumber = const $CopyWithPlaceholder(),
+    Object? profileImg = const $CopyWithPlaceholder(),
+    Object? employees = const $CopyWithPlaceholder(),
     Object? gstDocImg = const $CopyWithPlaceholder(),
     Object? panDocImg = const $CopyWithPlaceholder(),
     Object? electricityBillDocImg = const $CopyWithPlaceholder(),
@@ -144,7 +151,7 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
   }) {
     return Shop(
       shopId: _value.shopId,
-      sellerId: _value.sellerId,
+      ownerId: _value.ownerId,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -156,25 +163,28 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
       email: email == const $CopyWithPlaceholder() || email == null
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String,
+          : email as Email,
       phoneNumber:
           phoneNumber == const $CopyWithPlaceholder() || phoneNumber == null
               ? _value.phoneNumber
               // ignore: cast_nullable_to_non_nullable
-              : phoneNumber as String,
-      profileImg:
-          profileImg == const $CopyWithPlaceholder() || profileImg == null
-              ? _value.profileImg
-              // ignore: cast_nullable_to_non_nullable
-              : profileImg as String,
-      gstNumber: gstNumber == const $CopyWithPlaceholder()
+              : phoneNumber as PhoneNumber,
+      gstNumber: gstNumber == const $CopyWithPlaceholder() || gstNumber == null
           ? _value.gstNumber
           // ignore: cast_nullable_to_non_nullable
-          : gstNumber as String?,
-      panNumber: panNumber == const $CopyWithPlaceholder()
+          : gstNumber as String,
+      panNumber: panNumber == const $CopyWithPlaceholder() || panNumber == null
           ? _value.panNumber
           // ignore: cast_nullable_to_non_nullable
-          : panNumber as String?,
+          : panNumber as String,
+      profileImg: profileImg == const $CopyWithPlaceholder()
+          ? _value.profileImg
+          // ignore: cast_nullable_to_non_nullable
+          : profileImg as String?,
+      employees: employees == const $CopyWithPlaceholder() || employees == null
+          ? _value.employees
+          // ignore: cast_nullable_to_non_nullable
+          : employees as List<String>,
       gstDocImg: gstDocImg == const $CopyWithPlaceholder()
           ? _value.gstDocImg
           // ignore: cast_nullable_to_non_nullable
@@ -188,10 +198,10 @@ class _$ShopCWProxyImpl implements _$ShopCWProxy {
               ? _value.electricityBillDocImg
               // ignore: cast_nullable_to_non_nullable
               : electricityBillDocImg as String?,
-      rating: rating == const $CopyWithPlaceholder() || rating == null
+      rating: rating == const $CopyWithPlaceholder()
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
-          : rating as double,
+          : rating as double?,
       electricityBillNumber:
           electricityBillNumber == const $CopyWithPlaceholder()
               ? _value.electricityBillNumber
@@ -256,14 +266,19 @@ Map<String, dynamic> _$AbstractShopInfoToJson(AbstractShopInfo instance) =>
 
 Shop _$ShopFromJson(Map<String, dynamic> json) => Shop(
       shopId: json['shopId'] as String?,
-      sellerId: json['sellerId'] as String,
+      ownerId: json['ownerId'] as String,
       name: json['name'] as String,
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
-      email: json['email'] as String,
-      phoneNumber: json['phoneNumber'] as String,
-      profileImg: json['profileImg'] as String,
-      gstNumber: json['gstNumber'] as String?,
-      panNumber: json['panNumber'] as String?,
+      email: Email.fromJson(json['email'] as Map<String, dynamic>),
+      phoneNumber:
+          PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+      gstNumber: json['gstNumber'] as String,
+      panNumber: json['panNumber'] as String,
+      profileImg: json['profileImg'] as String?,
+      employees: (json['employees'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
       gstDocImg: json['gstDocImg'] as String?,
       panDocImg: json['panDocImg'] as String?,
       electricityBillDocImg: json['electricityBillDocImg'] as String?,
@@ -288,12 +303,12 @@ Shop _$ShopFromJson(Map<String, dynamic> json) => Shop(
 
 Map<String, dynamic> _$ShopToJson(Shop instance) => <String, dynamic>{
       'shopId': instance.shopId,
-      'sellerId': instance.sellerId,
+      'ownerId': instance.ownerId,
       'profileImg': instance.profileImg,
       'name': instance.name,
       'address': instance.address.toJson(),
-      'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
+      'email': instance.email.toJson(),
+      'phoneNumber': instance.phoneNumber.toJson(),
       'rating': instance.rating,
       'gstNumber': instance.gstNumber,
       'gstDocImg': instance.gstDocImg,
@@ -305,6 +320,7 @@ Map<String, dynamic> _$ShopToJson(Shop instance) => <String, dynamic>{
       'electricityBillNumber': instance.electricityBillNumber,
       'afterSalesServices':
           instance.afterSalesServices.map((k, e) => MapEntry(k, e.toJson())),
+      'employees': instance.employees,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
     };

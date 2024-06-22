@@ -14,7 +14,7 @@ extension ListOrderedProductExt on List<OrderedProduct> {
 
 @defJsonSerializable
 @CopyWith()
-class OrderedProduct extends Equatable {
+class OrderedProduct extends Equatable with ValidatorMixin {
   const OrderedProduct({
     required this.mrp,
     required this.title,
@@ -80,6 +80,17 @@ class OrderedProduct extends Equatable {
         afterSalesServiceId,
         deliveryAddress
       ];
+
+  @override
+  void validator() {
+    if (mrp.isNegative) throw ArgumentError(mrp);
+    if (title.isBlank) throw ArgumentError(mrp);
+    if (quantity.isNegative) throw ArgumentError(title);
+    if (quantity.isInfiniteOrNuN || quantity.isInfinite) {
+      throw ArgumentError('quantity sould be positive integer');
+    }
+    if (thumbnail.regNotMatch(regPatterns.url)) throw ArgumentError(thumbnail);
+  }
 }
 
 @defJsonSerializable

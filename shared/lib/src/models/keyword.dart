@@ -13,7 +13,7 @@ class Keyword extends Equatable {
   final String label;
   final String? image;
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeToJson: false, includeFromJson: false)
   final DateTime lastSearchedAt;
 
   Keyword({
@@ -32,5 +32,5 @@ class Keyword extends Equatable {
   JSON toJson() => _$KeywordToJson(this);
 
   @override
-  List<Object?> get props => [label];
+  List<Object?> get props => [label, image];
 }

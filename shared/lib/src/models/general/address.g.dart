@@ -13,17 +13,17 @@ abstract class _$AddressCWProxy {
 
   Address country(({String key, dynamic value}) country);
 
-  Address postalCode(int postalCode);
-
-  Address personName(PersonName personName);
+  Address postalCode(String postalCode);
 
   Address plusCode(String plusCode);
 
   Address geoCoordinate(({double lat, double lng}) geoCoordinate);
 
-  Address phoneNumber(int phoneNumber);
+  Address personName(PersonName? personName);
 
-  Address email(String? email);
+  Address phoneNumber(PhoneNumber? phoneNumber);
+
+  Address email(Email? email);
 
   Address landmark(String? landmark);
 
@@ -47,12 +47,12 @@ abstract class _$AddressCWProxy {
     String? houseNo,
     ({String key, dynamic value})? state,
     ({String key, dynamic value})? country,
-    int? postalCode,
-    PersonName? personName,
+    String? postalCode,
     String? plusCode,
     ({double lat, double lng})? geoCoordinate,
-    int? phoneNumber,
-    String? email,
+    PersonName? personName,
+    PhoneNumber? phoneNumber,
+    Email? email,
     String? landmark,
     String? city,
     String? area,
@@ -79,10 +79,7 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
       this(country: country);
 
   @override
-  Address postalCode(int postalCode) => this(postalCode: postalCode);
-
-  @override
-  Address personName(PersonName personName) => this(personName: personName);
+  Address postalCode(String postalCode) => this(postalCode: postalCode);
 
   @override
   Address plusCode(String plusCode) => this(plusCode: plusCode);
@@ -92,10 +89,14 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
       this(geoCoordinate: geoCoordinate);
 
   @override
-  Address phoneNumber(int phoneNumber) => this(phoneNumber: phoneNumber);
+  Address personName(PersonName? personName) => this(personName: personName);
 
   @override
-  Address email(String? email) => this(email: email);
+  Address phoneNumber(PhoneNumber? phoneNumber) =>
+      this(phoneNumber: phoneNumber);
+
+  @override
+  Address email(Email? email) => this(email: email);
 
   @override
   Address landmark(String? landmark) => this(landmark: landmark);
@@ -128,9 +129,9 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
     Object? state = const $CopyWithPlaceholder(),
     Object? country = const $CopyWithPlaceholder(),
     Object? postalCode = const $CopyWithPlaceholder(),
-    Object? personName = const $CopyWithPlaceholder(),
     Object? plusCode = const $CopyWithPlaceholder(),
     Object? geoCoordinate = const $CopyWithPlaceholder(),
+    Object? personName = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
     Object? landmark = const $CopyWithPlaceholder(),
@@ -158,12 +159,7 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
           postalCode == const $CopyWithPlaceholder() || postalCode == null
               ? _value.postalCode
               // ignore: cast_nullable_to_non_nullable
-              : postalCode as int,
-      personName:
-          personName == const $CopyWithPlaceholder() || personName == null
-              ? _value.personName
-              // ignore: cast_nullable_to_non_nullable
-              : personName as PersonName,
+              : postalCode as String,
       plusCode: plusCode == const $CopyWithPlaceholder() || plusCode == null
           ? _value.plusCode
           // ignore: cast_nullable_to_non_nullable
@@ -173,15 +169,18 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
               ? _value.geoCoordinate
               // ignore: cast_nullable_to_non_nullable
               : geoCoordinate as ({double lat, double lng}),
-      phoneNumber:
-          phoneNumber == const $CopyWithPlaceholder() || phoneNumber == null
-              ? _value.phoneNumber
-              // ignore: cast_nullable_to_non_nullable
-              : phoneNumber as int,
+      personName: personName == const $CopyWithPlaceholder()
+          ? _value.personName
+          // ignore: cast_nullable_to_non_nullable
+          : personName as PersonName?,
+      phoneNumber: phoneNumber == const $CopyWithPlaceholder()
+          ? _value.phoneNumber
+          // ignore: cast_nullable_to_non_nullable
+          : phoneNumber as PhoneNumber?,
       email: email == const $CopyWithPlaceholder()
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String?,
+          : email as Email?,
       landmark: landmark == const $CopyWithPlaceholder()
           ? _value.landmark
           // ignore: cast_nullable_to_non_nullable
@@ -238,9 +237,7 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
           value: $jsonValue['value'],
         ),
       ),
-      postalCode: (json['postalCode'] as num).toInt(),
-      personName:
-          PersonName.fromJson(json['personName'] as Map<String, dynamic>),
+      postalCode: json['postalCode'] as String,
       plusCode: json['plusCode'] as String,
       geoCoordinate: _$recordConvert(
         json['geoCoordinate'],
@@ -249,8 +246,15 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
           lng: ($jsonValue['lng'] as num).toDouble(),
         ),
       ),
-      phoneNumber: (json['phoneNumber'] as num).toInt(),
-      email: json['email'] as String?,
+      personName: json['personName'] == null
+          ? null
+          : PersonName.fromJson(json['personName'] as Map<String, dynamic>),
+      phoneNumber: json['phoneNumber'] == null
+          ? null
+          : PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+      email: json['email'] == null
+          ? null
+          : Email.fromJson(json['email'] as Map<String, dynamic>),
       landmark: json['landmark'] as String?,
       city: json['city'] as String?,
       area: json['area'] as String?,
@@ -265,9 +269,6 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
       'addressId': instance.addressId,
-      'personName': instance.personName.toJson(),
-      'phoneNumber': instance.phoneNumber,
-      'email': instance.email,
       'houseNo': instance.houseNo,
       'state': <String, dynamic>{
         'key': instance.state.key,
@@ -278,15 +279,18 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
         'value': instance.country.value,
       },
       'postalCode': instance.postalCode,
+      'geoCoordinate': <String, dynamic>{
+        'lat': instance.geoCoordinate.lat,
+        'lng': instance.geoCoordinate.lng,
+      },
+      'personName': instance.personName?.toJson(),
+      'phoneNumber': instance.phoneNumber?.toJson(),
+      'email': instance.email?.toJson(),
       'city': instance.city,
       'area': instance.area,
       'landmark': instance.landmark,
       'floorLevel': instance.floorLevel,
       'district': instance.district,
-      'geoCoordinate': <String, dynamic>{
-        'lat': instance.geoCoordinate.lat,
-        'lng': instance.geoCoordinate.lng,
-      },
       'plusCode': instance.plusCode,
       'type': _$AddressTypeEnumMap[instance.type],
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
@@ -301,6 +305,7 @@ $Rec _$recordConvert<$Rec>(
 
 const _$AddressTypeEnumMap = {
   AddressType.home: 'home',
+  AddressType.business: 'business',
   AddressType.office: 'office',
   AddressType.hotel: 'hotel',
   AddressType.other: 'other',

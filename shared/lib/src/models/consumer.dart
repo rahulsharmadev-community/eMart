@@ -4,6 +4,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
+import 'package:shared/src/models/general/contact.dart';
 import 'package:uuid/uuid.dart';
 import 'package:jars/jars.dart';
 
@@ -39,14 +40,14 @@ class AbstractConsumerInfo {
 
 @defJsonSerializable
 @CopyWith()
-class Consumer extends Equatable {
+class Consumer extends Equatable with ValidatorMixin {
   Consumer({
     String? uid,
     required this.name,
     required this.fCMid,
     required this.devices,
+    required this.email,
     this.profileImg,
-    this.email,
     this.phoneNumber,
     this.gstNumber,
     this.cartProducts = const {},
@@ -58,14 +59,17 @@ class Consumer extends Equatable {
     this.razorPayUid,
     DateTime? joinAt,
     DateTime? lastUpdateAt,
-  })  : assert(!(email == null && phoneNumber == null), 'email or phoneNumber both should not be null.'),
-        uid = uid ?? const Uuid().v4(),
+  })  : uid = uid ?? const Uuid().v4(),
         joinAt = joinAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 
   /// Unknown user which represents an unauthenticated user.
   static Consumer unknown = Consumer(
-      uid: '', name: PersonName(firstName: '@unknown'), email: '@unknown', fCMid: '', devices: const []);
+      uid: '',
+      name: const PersonName(firstName: '@unknown'),
+      email: const Email('@unknown'),
+      fCMid: '',
+      devices: const []);
 
   /// Convenience getter to determine whether the current user is Unknown.
   bool get isUnknown => this == unknown;
@@ -78,8 +82,8 @@ class Consumer extends Equatable {
   @CopyWithField.immutable()
   final String uid;
   final PersonName name;
-  final String? email;
-  final String? phoneNumber;
+  final Email email;
+  final PhoneNumber? phoneNumber;
   final String? profileImg;
   final String fCMid;
   final String? gstNumber;
@@ -110,15 +114,6 @@ class Consumer extends Equatable {
   JSON toJson() => _$ConsumerToJson(this);
 
   @override
-  int get hashCode => lastUpdateAt.hashCode;
-
-  @override
-  bool operator ==(Object other) {
-    return super == other && other is Consumer && lastUpdateAt.hashCode == other.lastUpdateAt.hashCode;
-  }
-
-  @override
-  // TODO: implement props
   List<Object?> get props => [
         uid,
         name,
@@ -135,8 +130,26 @@ class Consumer extends Equatable {
         addresses,
         primaryAddressId,
         razorPayUid,
-        joinAt
+        joinAt,
+        // ignore lastUpdateAt
       ];
+
+  @override
+  void validator() {
+    RegPattern pattern = regPatterns.url;
+    if (profileImg?.regNotMatch(pattern) ?? false) throw ArgumentError(pattern.message);
+
+    pattern = regPatterns.gstNumber(typeRestriction: PanType.INDIVIDUAL_PERSON);
+    if (gstNumber?.regNotMatch(pattern) ?? false) throw ArgumentError(pattern.message);
+
+    name.validator();
+    email.validator();
+    phoneNumber?.validator();
+
+    for (var address in addresses.values) {
+      address.validator();
+    }
+  }
 }
 
 @CopyWith()

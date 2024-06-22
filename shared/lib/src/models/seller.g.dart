@@ -7,23 +7,29 @@ part of 'seller.dart';
 // **************************************************************************
 
 abstract class _$SellerCWProxy {
+  Seller uid(String? uid);
+
   Seller name(PersonName name);
 
-  Seller email(String email);
+  Seller email(Email email);
 
-  Seller phoneNumber(String phoneNumber);
+  Seller phoneNumber(PhoneNumber phoneNumber);
 
   Seller sellerType(SellerType sellerType);
 
-  Seller panNumber(String? panNumber);
+  Seller panNumber(String panNumber);
 
-  Seller address(Address? address);
+  Seller address(Address address);
 
   Seller profileImg(String? profileImg);
 
   Seller isVerified(bool isVerified);
 
   Seller shopIds(List<String> shopIds);
+
+  Seller createdAt(DateTime? createdAt);
+
+  Seller lastUpdateAt(DateTime? lastUpdateAt);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Seller(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -32,15 +38,18 @@ abstract class _$SellerCWProxy {
   /// Seller(...).copyWith(id: 12, name: "My name")
   /// ````
   Seller call({
+    String? uid,
     PersonName? name,
-    String? email,
-    String? phoneNumber,
+    Email? email,
+    PhoneNumber? phoneNumber,
     SellerType? sellerType,
     String? panNumber,
     Address? address,
     String? profileImg,
     bool? isVerified,
     List<String>? shopIds,
+    DateTime? createdAt,
+    DateTime? lastUpdateAt,
   });
 }
 
@@ -51,22 +60,25 @@ class _$SellerCWProxyImpl implements _$SellerCWProxy {
   final Seller _value;
 
   @override
+  Seller uid(String? uid) => this(uid: uid);
+
+  @override
   Seller name(PersonName name) => this(name: name);
 
   @override
-  Seller email(String email) => this(email: email);
+  Seller email(Email email) => this(email: email);
 
   @override
-  Seller phoneNumber(String phoneNumber) => this(phoneNumber: phoneNumber);
+  Seller phoneNumber(PhoneNumber phoneNumber) => this(phoneNumber: phoneNumber);
 
   @override
   Seller sellerType(SellerType sellerType) => this(sellerType: sellerType);
 
   @override
-  Seller panNumber(String? panNumber) => this(panNumber: panNumber);
+  Seller panNumber(String panNumber) => this(panNumber: panNumber);
 
   @override
-  Seller address(Address? address) => this(address: address);
+  Seller address(Address address) => this(address: address);
 
   @override
   Seller profileImg(String? profileImg) => this(profileImg: profileImg);
@@ -78,6 +90,13 @@ class _$SellerCWProxyImpl implements _$SellerCWProxy {
   Seller shopIds(List<String> shopIds) => this(shopIds: shopIds);
 
   @override
+  Seller createdAt(DateTime? createdAt) => this(createdAt: createdAt);
+
+  @override
+  Seller lastUpdateAt(DateTime? lastUpdateAt) =>
+      this(lastUpdateAt: lastUpdateAt);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Seller(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -86,6 +105,7 @@ class _$SellerCWProxyImpl implements _$SellerCWProxy {
   /// Seller(...).copyWith(id: 12, name: "My name")
   /// ````
   Seller call({
+    Object? uid = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
@@ -95,9 +115,14 @@ class _$SellerCWProxyImpl implements _$SellerCWProxy {
     Object? profileImg = const $CopyWithPlaceholder(),
     Object? isVerified = const $CopyWithPlaceholder(),
     Object? shopIds = const $CopyWithPlaceholder(),
+    Object? createdAt = const $CopyWithPlaceholder(),
+    Object? lastUpdateAt = const $CopyWithPlaceholder(),
   }) {
     return Seller(
-      uid: _value.uid,
+      uid: uid == const $CopyWithPlaceholder()
+          ? _value.uid
+          // ignore: cast_nullable_to_non_nullable
+          : uid as String?,
       name: name == const $CopyWithPlaceholder() || name == null
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
@@ -105,25 +130,25 @@ class _$SellerCWProxyImpl implements _$SellerCWProxy {
       email: email == const $CopyWithPlaceholder() || email == null
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
-          : email as String,
+          : email as Email,
       phoneNumber:
           phoneNumber == const $CopyWithPlaceholder() || phoneNumber == null
               ? _value.phoneNumber
               // ignore: cast_nullable_to_non_nullable
-              : phoneNumber as String,
+              : phoneNumber as PhoneNumber,
       sellerType:
           sellerType == const $CopyWithPlaceholder() || sellerType == null
               ? _value.sellerType
               // ignore: cast_nullable_to_non_nullable
               : sellerType as SellerType,
-      panNumber: panNumber == const $CopyWithPlaceholder()
+      panNumber: panNumber == const $CopyWithPlaceholder() || panNumber == null
           ? _value.panNumber
           // ignore: cast_nullable_to_non_nullable
-          : panNumber as String?,
-      address: address == const $CopyWithPlaceholder()
+          : panNumber as String,
+      address: address == const $CopyWithPlaceholder() || address == null
           ? _value.address
           // ignore: cast_nullable_to_non_nullable
-          : address as Address?,
+          : address as Address,
       profileImg: profileImg == const $CopyWithPlaceholder()
           ? _value.profileImg
           // ignore: cast_nullable_to_non_nullable
@@ -137,7 +162,14 @@ class _$SellerCWProxyImpl implements _$SellerCWProxy {
           ? _value.shopIds
           // ignore: cast_nullable_to_non_nullable
           : shopIds as List<String>,
-      createdAt: _value.createdAt,
+      createdAt: createdAt == const $CopyWithPlaceholder()
+          ? _value.createdAt
+          // ignore: cast_nullable_to_non_nullable
+          : createdAt as DateTime?,
+      lastUpdateAt: lastUpdateAt == const $CopyWithPlaceholder()
+          ? _value.lastUpdateAt
+          // ignore: cast_nullable_to_non_nullable
+          : lastUpdateAt as DateTime?,
     );
   }
 }
@@ -155,13 +187,12 @@ extension $SellerCopyWith on Seller {
 Seller _$SellerFromJson(Map<String, dynamic> json) => Seller(
       uid: json['uid'] as String?,
       name: PersonName.fromJson(json['name'] as Map<String, dynamic>),
-      email: json['email'] as String,
-      phoneNumber: json['phoneNumber'] as String,
+      email: Email.fromJson(json['email'] as Map<String, dynamic>),
+      phoneNumber:
+          PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
       sellerType: $enumDecode(_$SellerTypeEnumMap, json['sellerType']),
-      panNumber: json['panNumber'] as String?,
-      address: json['address'] == null
-          ? null
-          : Address.fromJson(json['address'] as Map<String, dynamic>),
+      panNumber: json['panNumber'] as String,
+      address: Address.fromJson(json['address'] as Map<String, dynamic>),
       profileImg: json['profileImg'] as String?,
       isVerified: json['isVerified'] as bool? ?? false,
       shopIds: (json['shopIds'] as List<dynamic>?)
@@ -178,15 +209,15 @@ Map<String, dynamic> _$SellerToJson(Seller instance) => <String, dynamic>{
       'uid': instance.uid,
       'profileImg': instance.profileImg,
       'name': instance.name.toJson(),
-      'email': instance.email,
-      'phoneNumber': instance.phoneNumber,
-      'address': instance.address?.toJson(),
-      'isVerified': instance.isVerified,
-      'sellerType': _$SellerTypeEnumMap[instance.sellerType]!,
-      'shopIds': instance.shopIds,
+      'email': instance.email.toJson(),
+      'phoneNumber': instance.phoneNumber.toJson(),
+      'address': instance.address.toJson(),
       'panNumber': instance.panNumber,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
       'lastUpdateAt': const DateTimeConverter().toJson(instance.lastUpdateAt),
+      'isVerified': instance.isVerified,
+      'sellerType': _$SellerTypeEnumMap[instance.sellerType]!,
+      'shopIds': instance.shopIds,
     };
 
 const _$SellerTypeEnumMap = {

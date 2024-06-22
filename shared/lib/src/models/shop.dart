@@ -3,7 +3,6 @@ import 'package:jars/jars.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:uuid/uuid.dart';
-
 part 'shop.g.dart';
 
 // Class for representing abstract shop information fetched from the server
@@ -40,19 +39,20 @@ class AbstractShopInfo {
 
 @CopyWith()
 @defJsonSerializable
-class Shop {
+class Shop with ValidatorMixin {
   /// Shop Class: Represents a real shop owned by a seller.\
   /// This class facilitates the creation, reading, and updating of shop data on the server.
   Shop({
     String? shopId,
-    required this.sellerId,
+    required this.ownerId,
     required this.name,
     required this.address,
     required this.email,
     required this.phoneNumber,
-    required this.profileImg,
-    this.gstNumber,
-    this.panNumber,
+    required this.gstNumber,
+    required this.panNumber,
+    this.profileImg,
+    this.employees = const [],
     this.gstDocImg,
     this.panDocImg,
     this.electricityBillDocImg,
@@ -63,40 +63,56 @@ class Shop {
     this.afterSalesServices = const {},
     DateTime? createdAt,
     DateTime? lastUpdateAt,
-  })  : assert(sellerId.length > 8, 'Invalid seller id.'),
-        assert(RegPatterns.email.hasMatch(email), 'Invalid email.'),
-        assert(rating >= 0 && rating <= 5, 'Invalid rating. Rating should be between 0 and 5.'),
-        assert(RegPatterns.phone.hasMatch(phoneNumber), 'Invalid phone number.'),
-        assert(gstDocImg == null || Uri.parse(gstDocImg).isAbsolute, 'Invalid gstDocImg URL.'),
-        assert(panDocImg == null || Uri.parse(panDocImg).isAbsolute, 'Invalid panDocImg URL.'),
-        assert(electricityBillDocImg == null || Uri.parse(electricityBillDocImg).isAbsolute,
-            'Invalid electricityBillDocImg URL.'),
-        assert(shopImgs == null || shopImgs.every((e) => Uri.parse(e).isAbsolute),
-            'Invalid image URL in shopImgs.'),
-        shopId = shopId ?? const Uuid().v4(),
+  })  : shopId = shopId ?? const Uuid().v4(),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
+
+  @override
+  void validator() {
+    if (rating == null || rating! < 0 || rating! > 5) {
+      throw ArgumentError('Rating must be between 0 and 5.');
+    }
+
+    name.regNotMatch(regPatterns.name, throwError: true);
+    gstNumber.regNotMatch(regPatterns.gstNumber(typeRestriction: PanType.COMPANY), throwError: true);
+    panNumber.regNotMatch(regPatterns.panNumber(typeRestriction: PanType.COMPANY), throwError: true);
+
+    var urlpattern = regPatterns.url;
+    profileImg?.regNotMatch(urlpattern, throwError: true);
+    gstDocImg?.regNotMatch(urlpattern, throwError: true);
+    panDocImg?.regNotMatch(urlpattern, throwError: true);
+    electricityBillDocImg?.regNotMatch(urlpattern, throwError: true);
+    electricityBillNumber?.regNotMatch(regPatterns.number(), throwError: true);
+
+    if (rating == null || rating! < 0 || rating! > 5) {
+      throw ArgumentError('Rating must be between 0 and 5.');
+    }
+
+    email.validator();
+    phoneNumber.validator();
+    address.validator();
+  }
 
   @CopyWithField.immutable()
   final String shopId;
   @CopyWithField.immutable()
-  final String sellerId;
+  final String ownerId;
 
-  final String profileImg;
+  final String? profileImg;
   final String name;
   final Address address;
-  final String email;
-  final String phoneNumber;
+  final Email email;
+  final PhoneNumber phoneNumber;
 
   /// Represents the rating of the shop, indicating its overall performance or customer satisfaction.The rating should be within the range of 0.0 to 5.0, inclusive.
-  final double rating;
+  final double? rating;
 
   /// The Goods and Services Tax (GST) number associated with the shop, if applicable. This identifier is used for taxation purposes.
-  final String? gstNumber;
+  final String gstNumber;
   final String? gstDocImg;
 
   /// The Permanent Account Number (PAN) associated with the shop, if applicable. PAN is a unique alphanumeric identifier for taxation.
-  final String? panNumber;
+  final String panNumber;
   final String? panDocImg;
 
   final List<String>? shopImgs;
@@ -109,6 +125,9 @@ class Shop {
   /// Represents services applicable to products that have been sold.
   /// Sellers are permitted to create or read these services, but deletion is not allowed.
   final JSON<AfterSalesService> afterSalesServices;
+
+  /// employees except owner of shop
+  final List<String> employees;
 
   @CopyWithField.immutable()
   final DateTime createdAt;

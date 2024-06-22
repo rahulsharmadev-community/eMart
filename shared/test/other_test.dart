@@ -1,8 +1,6 @@
 // ignore: file_names
-import 'dart:convert';
-
 import 'package:shared/models.dart';
-
+import 'package:test/test.dart';
 
 void main() {
   Map<String, dynamic> reviews = {
@@ -69,37 +67,77 @@ void main() {
       reviewedBy: "VisualBuyer",
     ).toJson(),
   };
-  print(jsonEncode(reviews));
 
-  // group('Product Validation\n\t- ', () {
-  //   int i = 0;
-  //   for (var map in productsJson) {
-  //     test("Test - ${i++}", () {
-  //       try {
-  //         Product.fromJson(json.jsonDecode(json.jsonEncode(map["model"])));
-  //         if (map["result"] == "fail") fail("Expected the test to fail, but it passed.");
-  //       } on AssertionError catch (e) {
-  //         if (map['result'] == 'pass') fail("Expected the test to pass, but it fails.\neror: ${e.message}");
-  //       } catch (e) {
-  //         fail("Unexpected error not cover by manually type: $e");
-  //       }
-  //     });
-  //   }
-  // });
+  group('Other Models\n\t- ', () {
+    test('PersonName - ', () {
+      const persons = [
+        PersonName(firstName: 'John'),
+        PersonName(firstName: 'John'),
+        PersonName(firstName: 'John', lastName: 'Doe'),
+        PersonName(firstName: 'John', middleName: 'Wick', lastName: 'Doe'),
+      ];
 
-  // group('Shop Validation\n\t- ', () {
-  //   int i = 0;
-  //   for (var map in shopsJson) {
-  //     test("Test - ${i++}", () {
-  //       try {
-  //         Shop.fromJson(json.jsonDecode(json.jsonEncode(map["model"])));
-  //         if (map["result"] == "fail") fail("Expected the test to fail, but it passed.");
-  //       } on AssertionError catch (e) {
-  //         if (map['result'] == 'pass') fail("Expected the test to pass, but it fails.\neror: ${e.message}");
-  //       } catch (e) {
-  //         fail("Unexpected error not cover by manually type: $e");
-  //       }
-  //     });
-  //   }
-  // });
+      for (var p in persons) {
+        expect(p.isValid(), true);
+      }
+    });
+  });
+
+  group('Shop Validation\n\t- ', () {
+    const validGeoCoordinate = (lat: 40.7128, lng: -74.0060);
+    const validState = (key: 'DL', value: 'Delhi');
+    const validCountry = (key: 'IN', value: 'India');
+    const validPersonName = PersonName(firstName: 'John', lastName: 'Doe');
+    test('Shop.isValid should validate geo coordinates correctly', () {
+      final address = Address(
+        houseNo: '123',
+        state: validState,
+        country: validCountry,
+        postalCode: '110042',
+        personName: validPersonName,
+        plusCode: '87G8P7X8+M6',
+        geoCoordinate: validGeoCoordinate,
+        phoneNumber: const PhoneNumber('1234567890'),
+      );
+      // Valid geo coordinate
+      final validShop = Shop(
+          ownerId: 'owner123',
+          name: 'My Shop',
+          phoneNumber: const PhoneNumber('1234567890'),
+          email: const Email('example@gmail.com'),
+          rating: 4.5,
+          gstNumber: 'GST123',
+          panNumber: 'AAACR5055K',
+          electricityBillNumber: '21332142',
+          address: address);
+
+      expect(validShop.isValid(), isTrue);
+
+      // // Invalid latitude
+      // final invalidLatitude = Shop(
+      //     ownerId: 'owner123',
+      //     name: 'My Shop',
+      //     phoneNumber: '1234567890',
+      //     rating: 4.5,
+      //     gstNumber: 'GST123',
+      //     panNumber: 'PAN456',
+      //     electricityBillNumber: 'EBN789',
+      //     address: Address());
+
+      // expect(invalidLatitude.isValid(true), isFalse);
+
+      // // Invalid longitude
+      // final invalidLongitude = Shop(
+      //     ownerId: 'owner123',
+      //     name: 'My Shop',
+      //     phoneNumber: '1234567890',
+      //     rating: 4.5,
+      //     gstNumber: 'GST123',
+      //     panNumber: 'PAN456',
+      //     electricityBillNumber: 'EBN789',
+      //     address: Address());
+
+      // expect(invalidLongitude.isValid(true), isFalse);
+    });
+  });
 }

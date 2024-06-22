@@ -1,0 +1,23 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "emart-seller-only",
+          "appId": "1:749696932223:android:7727b5cebc9b29abfba24a",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "emart-seller-only",
+          "configurations": {
+            "android": "1:749696932223:android:7727b5cebc9b29abfba24a",
+            "web": "1:749696932223:web:ce6a9b83420724c6fba24a",
+            "windows": "1:749696932223:web:c89915add1a3766cfba24a"
+          }
+        }
+      }
+    }
+  }
+}

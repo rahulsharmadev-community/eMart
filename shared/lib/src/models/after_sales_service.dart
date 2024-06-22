@@ -7,7 +7,7 @@ part 'after_sales_service.g.dart';
 
 @CopyWith()
 @defJsonSerializable
-class AfterSalesService {
+class AfterSalesService with ValidatorMixin {
   /// [AfterSalesService] class represents information about after-sales services for a product.
   /// It includes details such as serviceId, serviceName, free call support, free technical support,
   /// repairing discount, and the duration period for the service.
@@ -41,4 +41,15 @@ class AfterSalesService {
 
   factory AfterSalesService.fromJson(JSON json) => _$AfterSalesServiceFromJson(json);
   JSON toJson() => _$AfterSalesServiceToJson(this);
+
+  @override
+  void validator() {
+    if (repairingDiscount < 0 || repairingDiscount > 100) {
+      throw ArgumentError('The invalid repair discount should fall between 0 and 100.');
+    }
+    var pattern = regPatterns.username(allowSpace: true);
+    if (serviceName.regNotMatch(pattern)) {
+      throw ArgumentError(pattern.message);
+    }
+  }
 }

@@ -15,9 +15,9 @@ abstract class _$AddressCWProxy {
 
   Address postalCode(String postalCode);
 
-  Address plusCode(String plusCode);
+  Address plusCode(String? plusCode);
 
-  Address geoCoordinate(({double lat, double lng}) geoCoordinate);
+  Address geoCoordinate(({double lat, double lng})? geoCoordinate);
 
   Address personName(PersonName? personName);
 
@@ -82,10 +82,10 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
   Address postalCode(String postalCode) => this(postalCode: postalCode);
 
   @override
-  Address plusCode(String plusCode) => this(plusCode: plusCode);
+  Address plusCode(String? plusCode) => this(plusCode: plusCode);
 
   @override
-  Address geoCoordinate(({double lat, double lng}) geoCoordinate) =>
+  Address geoCoordinate(({double lat, double lng})? geoCoordinate) =>
       this(geoCoordinate: geoCoordinate);
 
   @override
@@ -160,15 +160,14 @@ class _$AddressCWProxyImpl implements _$AddressCWProxy {
               ? _value.postalCode
               // ignore: cast_nullable_to_non_nullable
               : postalCode as String,
-      plusCode: plusCode == const $CopyWithPlaceholder() || plusCode == null
+      plusCode: plusCode == const $CopyWithPlaceholder()
           ? _value.plusCode
           // ignore: cast_nullable_to_non_nullable
-          : plusCode as String,
-      geoCoordinate:
-          geoCoordinate == const $CopyWithPlaceholder() || geoCoordinate == null
-              ? _value.geoCoordinate
-              // ignore: cast_nullable_to_non_nullable
-              : geoCoordinate as ({double lat, double lng}),
+          : plusCode as String?,
+      geoCoordinate: geoCoordinate == const $CopyWithPlaceholder()
+          ? _value.geoCoordinate
+          // ignore: cast_nullable_to_non_nullable
+          : geoCoordinate as ({double lat, double lng})?,
       personName: personName == const $CopyWithPlaceholder()
           ? _value.personName
           // ignore: cast_nullable_to_non_nullable
@@ -238,8 +237,8 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
         ),
       ),
       postalCode: json['postalCode'] as String,
-      plusCode: json['plusCode'] as String,
-      geoCoordinate: _$recordConvert(
+      plusCode: json['plusCode'] as String?,
+      geoCoordinate: _$recordConvertNullable(
         json['geoCoordinate'],
         ($jsonValue) => (
           lat: ($jsonValue['lat'] as num).toDouble(),
@@ -251,10 +250,10 @@ Address _$AddressFromJson(Map<String, dynamic> json) => Address(
           : PersonName.fromJson(json['personName'] as Map<String, dynamic>),
       phoneNumber: json['phoneNumber'] == null
           ? null
-          : PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+          : PhoneNumber.fromJson(json['phoneNumber'] as String),
       email: json['email'] == null
           ? null
-          : Email.fromJson(json['email'] as Map<String, dynamic>),
+          : Email.fromJson(json['email'] as String),
       landmark: json['landmark'] as String?,
       city: json['city'] as String?,
       area: json['area'] as String?,
@@ -279,10 +278,12 @@ Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
         'value': instance.country.value,
       },
       'postalCode': instance.postalCode,
-      'geoCoordinate': <String, dynamic>{
-        'lat': instance.geoCoordinate.lat,
-        'lng': instance.geoCoordinate.lng,
-      },
+      'geoCoordinate': instance.geoCoordinate == null
+          ? null
+          : <String, dynamic>{
+              'lat': instance.geoCoordinate!.lat,
+              'lng': instance.geoCoordinate!.lng,
+            },
       'personName': instance.personName?.toJson(),
       'phoneNumber': instance.phoneNumber?.toJson(),
       'email': instance.email?.toJson(),
@@ -302,6 +303,12 @@ $Rec _$recordConvert<$Rec>(
   $Rec Function(Map) convert,
 ) =>
     convert(value as Map<String, dynamic>);
+
+$Rec? _$recordConvertNullable<$Rec>(
+  Object? value,
+  $Rec Function(Map) convert,
+) =>
+    value == null ? null : convert(value as Map<String, dynamic>);
 
 const _$AddressTypeEnumMap = {
   AddressType.home: 'home',

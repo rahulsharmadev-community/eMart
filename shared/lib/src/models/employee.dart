@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:jars/jars.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
-import 'package:shared/src/models/general/contact.dart';
 import 'package:uuid/uuid.dart';
 part 'employee.g.dart';
 

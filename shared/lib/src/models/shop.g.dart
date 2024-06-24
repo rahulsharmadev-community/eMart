@@ -269,9 +269,8 @@ Shop _$ShopFromJson(Map<String, dynamic> json) => Shop(
       ownerId: json['ownerId'] as String,
       name: json['name'] as String,
       address: Address.fromJson(json['address'] as Map<String, dynamic>),
-      email: Email.fromJson(json['email'] as Map<String, dynamic>),
-      phoneNumber:
-          PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+      email: Email.fromJson(json['email'] as String),
+      phoneNumber: PhoneNumber.fromJson(json['phoneNumber'] as String),
       gstNumber: json['gstNumber'] as String,
       panNumber: json['panNumber'] as String,
       profileImg: json['profileImg'] as String?,

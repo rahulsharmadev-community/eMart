@@ -67,6 +67,12 @@ dependencies:
       url: https://github.com/rahulsharmadev-community/copy_with_extension.git
       ref: main
       path: copy_with_extension
+      
+  hive_cache:
+    git:
+      url: https://github.com/rahulsharmadev-community/hive_cache.git
+      ref: main
+
 
 
 dev_dependencies:

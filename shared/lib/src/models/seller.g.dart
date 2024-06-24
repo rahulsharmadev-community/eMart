@@ -187,9 +187,8 @@ extension $SellerCopyWith on Seller {
 Seller _$SellerFromJson(Map<String, dynamic> json) => Seller(
       uid: json['uid'] as String?,
       name: PersonName.fromJson(json['name'] as Map<String, dynamic>),
-      email: Email.fromJson(json['email'] as Map<String, dynamic>),
-      phoneNumber:
-          PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+      email: Email.fromJson(json['email'] as String),
+      phoneNumber: PhoneNumber.fromJson(json['phoneNumber'] as String),
       sellerType: $enumDecode(_$SellerTypeEnumMap, json['sellerType']),
       panNumber: json['panNumber'] as String,
       address: Address.fromJson(json['address'] as Map<String, dynamic>),

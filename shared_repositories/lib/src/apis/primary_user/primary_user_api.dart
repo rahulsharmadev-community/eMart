@@ -85,7 +85,7 @@ _canRazorPayEdit(Map diff) => _razorPayCustomerPram.any((e) => diff.containsKey(
 extension on Consumer {
   RazorPayCustomer get convertToRazorpayInstance => RazorPayCustomer(
       name: name.toString(),
-      email: email.value,
+      email: email?.value,
       contact: phoneNumber?.value ?? '',
       gstin: gstNumber ?? '',
       notes: {'uid': uid},

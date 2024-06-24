@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:jars/jars.dart';
-import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
 import 'package:shared_repositories/repositories.dart';
 part 'auth_state.dart';
@@ -21,38 +19,20 @@ class AuthCubit extends Cubit<AuthState> {
           await firebaseAuth.signInWithPopup(GoogleAuthProvider());
         }
 
-        if (user?.email != null) {
-          var employee = await repository.getByEmail(user!.email!);
-          if (employee == null) {
-            emit(InValidEmployeeId(user!));
-          } else {
-            emit(Authenticated(employee));
-          }
-        }
+        await employeeVarification();
       },
     );
   }
 
-  void createEmployee({
-    required PersonName name,
-    required String phoneNumber,
-    required String panNumber,
-    required Address address,
-    String? profileImg,
-  }) async {
-    tryCatch(() async {
-      var employee = Employee(
-        name: name,
-        email: user!.email!,
-        phoneNumber: phoneNumber,
-        address: address,
-        panNumber: panNumber,
-        profileImg: profileImg ?? user?.photoURL,
-        role: EmployeeRole.primaryOwner,
-      );
-      await repository.createNewEmployee(employee);
-      emit(Authenticated(employee));
-    });
+  Future<void> employeeVarification() async {
+    if (user?.email != null) {
+      var employee = await repository.getByEmail(user!.email!);
+      if (employee == null) {
+        emit(InValidEmployeeId(user!));
+      } else {
+        emit(Authenticated(employee));
+      }
+    }
   }
 
   void signOut() async {

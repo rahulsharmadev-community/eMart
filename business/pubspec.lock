@@ -675,7 +675,7 @@ packages:
     source: hosted
     version: "2.2.3"
   hive_cache:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "."
       ref: main
@@ -728,7 +728,7 @@ packages:
     description:
       path: "packages/jars"
       ref: main
-      resolved-ref: "6fc0fee8aafb2ebb3c088b354fb37c4af63bf87d"
+      resolved-ref: d7578a419d9ffa9eaed43df06a22db660ac450ba
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
     version: "0.1.2"
@@ -737,10 +737,10 @@ packages:
     description:
       path: "packages/jars_core"
       ref: main
-      resolved-ref: "6fc0fee8aafb2ebb3c088b354fb37c4af63bf87d"
+      resolved-ref: d7578a419d9ffa9eaed43df06a22db660ac450ba
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
-    version: "0.1.3"
+    version: "0.1.4"
   js:
     dependency: transitive
     description:
@@ -1100,7 +1100,7 @@ packages:
     description:
       path: "packages/regpatterns"
       ref: main
-      resolved-ref: "6fc0fee8aafb2ebb3c088b354fb37c4af63bf87d"
+      resolved-ref: d7578a419d9ffa9eaed43df06a22db660ac450ba
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
     version: "0.0.9"

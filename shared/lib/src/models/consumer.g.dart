@@ -13,9 +13,9 @@ abstract class _$ConsumerCWProxy {
 
   Consumer devices(List<Map<String, dynamic>> devices);
 
-  Consumer profileImg(String? profileImg);
-
   Consumer email(Email? email);
+
+  Consumer profileImg(String? profileImg);
 
   Consumer phoneNumber(PhoneNumber? phoneNumber);
 
@@ -45,8 +45,8 @@ abstract class _$ConsumerCWProxy {
     PersonName? name,
     String? fCMid,
     List<Map<String, dynamic>>? devices,
-    String? profileImg,
     Email? email,
+    String? profileImg,
     PhoneNumber? phoneNumber,
     String? gstNumber,
     Map<String, int>? cartProducts,
@@ -76,10 +76,10 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
       this(devices: devices);
 
   @override
-  Consumer profileImg(String? profileImg) => this(profileImg: profileImg);
+  Consumer email(Email? email) => this(email: email);
 
   @override
-  Consumer email(Email? email) => this(email: email);
+  Consumer profileImg(String? profileImg) => this(profileImg: profileImg);
 
   @override
   Consumer phoneNumber(PhoneNumber? phoneNumber) =>
@@ -124,8 +124,8 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
     Object? name = const $CopyWithPlaceholder(),
     Object? fCMid = const $CopyWithPlaceholder(),
     Object? devices = const $CopyWithPlaceholder(),
-    Object? profileImg = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
+    Object? profileImg = const $CopyWithPlaceholder(),
     Object? phoneNumber = const $CopyWithPlaceholder(),
     Object? gstNumber = const $CopyWithPlaceholder(),
     Object? cartProducts = const $CopyWithPlaceholder(),
@@ -150,14 +150,14 @@ class _$ConsumerCWProxyImpl implements _$ConsumerCWProxy {
           ? _value.devices
           // ignore: cast_nullable_to_non_nullable
           : devices as List<Map<String, dynamic>>,
-      profileImg: profileImg == const $CopyWithPlaceholder()
-          ? _value.profileImg
-          // ignore: cast_nullable_to_non_nullable
-          : profileImg as String?,
       email: email == const $CopyWithPlaceholder()
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
           : email as Email?,
+      profileImg: profileImg == const $CopyWithPlaceholder()
+          ? _value.profileImg
+          // ignore: cast_nullable_to_non_nullable
+          : profileImg as String?,
       phoneNumber: phoneNumber == const $CopyWithPlaceholder()
           ? _value.phoneNumber
           // ignore: cast_nullable_to_non_nullable
@@ -289,13 +289,13 @@ Consumer _$ConsumerFromJson(Map<String, dynamic> json) => Consumer(
       devices: (json['devices'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
           .toList(),
-      profileImg: json['profileImg'] as String?,
       email: json['email'] == null
           ? null
-          : Email.fromJson(json['email'] as Map<String, dynamic>),
+          : Email.fromJson(json['email'] as String),
+      profileImg: json['profileImg'] as String?,
       phoneNumber: json['phoneNumber'] == null
           ? null
-          : PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+          : PhoneNumber.fromJson(json['phoneNumber'] as String),
       gstNumber: json['gstNumber'] as String?,
       cartProducts: (json['cartProducts'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, (e as num).toInt()),

@@ -53,6 +53,7 @@ final class PlaceApi {
       var x = List<Map>.from(jsonDecode(response.body)['results']);
       return x.map((e) => _geoapifyToPlace(e)).nonNulls.toList();
     } catch (e) {
+      print('===>' + e.toString());
       rethrow;
     }
   }
@@ -94,8 +95,8 @@ final class PlaceApi {
     if (json['country_code'] != null && json['country'] != null) {
       country = (key: json['country_code'].toUpperCase(), value: json['country']);
     }
-    if (json['lat'] != null && json['lng'] != null) {
-      loc = (lat: (json['lat'] as num).toDouble(), lng: (json['lng'] as num).toDouble());
+    if (json['lat'] != null && json['lon'] != null) {
+      loc = (lat: (json['lat'] as num).toDouble(), lng: (json['lon'] as num).toDouble());
     }
     if ([state, country, postalCode, plusCode, loc].contains(null)) return null;
 

@@ -1,24 +1,20 @@
-part of 'form_bloc.dart';
+part of 'registration_form_bloc.dart';
 
-sealed class RFormState {}
-
-class FormIdleState extends RFormState {
-  FormIdleState();
+sealed class RegistrationFormState {
+  RegistrationFormState();
 }
 
-class FormFillingState extends RFormState {
-  FormFillingState();
+class FormIdleState extends RegistrationFormState {}
+
+class FormLoadingState extends RegistrationFormState {
+  FormLoadingState();
 }
 
-class FormReadyToSubmitState extends RFormState {
-  FormReadyToSubmitState();
-}
-
-class FormSubmitedSuccessState extends RFormState {
+class FormSubmitedSuccessState extends RegistrationFormState {
   FormSubmitedSuccessState();
 }
 
-class FormErrorState extends RFormState {
+class FormErrorState extends RegistrationFormState {
   final String message;
   FormErrorState(this.message);
 }

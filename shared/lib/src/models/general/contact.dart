@@ -5,7 +5,7 @@ abstract class Contact extends Equatable with ValidatorMixin {
   final String value;
   const Contact(this.value);
 
-  JSON toJson();
+  String toJson();
 
   @override
   String toString() => value;
@@ -21,9 +21,9 @@ class Email extends Contact {
     value.regNotMatch(regPatterns.email, throwError: true);
   }
 
-  factory Email.fromJson(JSON json) => Email(json['email']);
+  factory Email.fromJson(String json) => Email(json);
   @override
-  JSON toJson() => {'email': value};
+  String toJson() => value;
 }
 
 class PhoneNumber extends Contact {
@@ -34,7 +34,7 @@ class PhoneNumber extends Contact {
     value.regNotMatch(regPatterns.phoneNumber, throwError: true);
   }
 
-  factory PhoneNumber.fromJson(JSON json) => PhoneNumber(json['phoneNumber']);
+  factory PhoneNumber.fromJson(String json) => PhoneNumber(json);
   @override
-  JSON toJson() => {'phoneNumber': value};
+  String toJson() => value;
 }

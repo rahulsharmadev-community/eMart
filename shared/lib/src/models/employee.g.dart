@@ -132,9 +132,8 @@ extension $EmployeeCopyWith on Employee {
 Employee _$EmployeeFromJson(Map<String, dynamic> json) => Employee(
       uid: json['uid'] as String?,
       name: PersonName.fromJson(json['name'] as Map<String, dynamic>),
-      email: Email.fromJson(json['email'] as Map<String, dynamic>),
-      phoneNumber:
-          PhoneNumber.fromJson(json['phoneNumber'] as Map<String, dynamic>),
+      email: Email.fromJson(json['email'] as String),
+      phoneNumber: PhoneNumber.fromJson(json['phoneNumber'] as String),
       role: EmployeeRole.fromJson(json['role'] as Map<String, dynamic>),
       panNumber: json['panNumber'] as String,
       address: Address.fromJson(json['address'] as Map<String, dynamic>),

@@ -23,13 +23,14 @@ class GoogleOAuthButton extends StatelessWidget {
 
     return InkWell(
       onTap: context.read<AuthCubit>().signIn,
+  
       child: Material(
           color: bgColor,
           elevation: 1,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(round ? 100 : 4)),
           clipBehavior: Clip.hardEdge,
           child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 4, 12, 4),
+              padding: const EdgeInsets.fromLTRB(12, 4, 20, 4),
               child: disableIcon
                   ? text
                   : Row(mainAxisSize: MainAxisSize.min, children: [resolveIcon(bgColor), text]))),

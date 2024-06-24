@@ -3,12 +3,12 @@ part of 'employees_repository.dart';
 class EmployeesApi {
   final cf.CollectionReference cRef = FirebaseService.eMartSeller.instanceOfFirestore.collection('EMPLOYEES');
 
-  Future<Employee?> getByEmail(String email) async {
+  Future<Seller?> getByEmail(String email) async {
     var result = await cRef
         .doc(email)
-        .withConverter<Employee?>(
+        .withConverter<Seller?>(
           fromFirestore: (snapshot, options) =>
-              snapshot.data().ifNotNull(def: null, callback: (value) => Employee.fromJson(value)),
+              snapshot.data().ifNotNull(def: null, callback: (value) => Seller.fromJson(value)),
           toFirestore: (employee, options) => employee?.toJson() ?? {},
         )
         .get();

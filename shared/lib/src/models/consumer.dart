@@ -82,7 +82,7 @@ class Consumer extends Equatable with ValidatorMixin {
   @CopyWithField.immutable()
   final String uid;
   final PersonName name;
-  final Email email;
+  final Email? email;
   final PhoneNumber? phoneNumber;
   final String? profileImg;
   final String fCMid;
@@ -143,9 +143,11 @@ class Consumer extends Equatable with ValidatorMixin {
     if (gstNumber?.regNotMatch(pattern) ?? false) throw ArgumentError(pattern.message);
 
     name.validator();
-    email.validator();
+    email?.validator();
     phoneNumber?.validator();
-
+    if (email == null && phoneNumber == null) {
+      throw ArgumentError('Email & Phone number both should not be null.');
+    }
     for (var address in addresses.values) {
       address.validator();
     }

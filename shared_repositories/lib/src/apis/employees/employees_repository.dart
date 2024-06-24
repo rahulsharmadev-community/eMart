@@ -11,8 +11,8 @@ part 'employees_api.dart';
 class EmployeesRepository {
   final EmployeesApi api = EmployeesApi();
 
-  Future<Employee?> getByEmail(String email) async {
-    Employee? result = await api.getByEmail(email);
+  Future<Seller?> getByEmail(String email) async {
+    Seller? result = await api.getByEmail(email);
     return result;
   }
 

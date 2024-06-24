@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:jars/jars.dart';
-import 'package:shared/src/models/general/contact.dart';
 import 'package:uuid/uuid.dart';
 
 part 'address.g.dart';
@@ -31,9 +30,9 @@ class Address extends Equatable with ValidatorMixin {
   final String houseNo;
   final JSON_1 state;
   final JSON_1 country;
-  final String postalCode;
-  final GeoCoordinate geoCoordinate;
 
+  final String postalCode;
+  final GeoCoordinate? geoCoordinate;
   final PersonName? personName;
   final PhoneNumber? phoneNumber;
   final Email? email;
@@ -43,7 +42,7 @@ class Address extends Equatable with ValidatorMixin {
   final int? floorLevel;
   final String? district;
   // also known as global_code
-  final String plusCode;
+  final String? plusCode;
   final AddressType? type;
 
   @CopyWithField.immutable()
@@ -57,8 +56,8 @@ class Address extends Equatable with ValidatorMixin {
     required this.state,
     required this.country,
     required this.postalCode,
-    required this.plusCode,
-    required this.geoCoordinate,
+    this.plusCode,
+    this.geoCoordinate,
     this.personName,
     this.phoneNumber,
     this.email,
@@ -91,17 +90,17 @@ class Address extends Equatable with ValidatorMixin {
     if (floorLevel == null || floorLevel! < -10 || floorLevel! > 200) {
       throw ArgumentError('Valid floorLevel values typically range from -10 to 200', 'floorLevel');
     }
-    if (geoCoordinate.lat < -90 ||
-        geoCoordinate.lat > 90 ||
-        geoCoordinate.lng < -180 ||
-        geoCoordinate.lng > 180) {
+    if (geoCoordinate != null && geoCoordinate!.lat < -90 ||
+        geoCoordinate!.lat > 90 ||
+        geoCoordinate!.lng < -180 ||
+        geoCoordinate!.lng > 180) {
       throw ArgumentError(
           'Valid latitude values typically range from -90 to 90, while valid longitude values range from -180 to 180',
           'geoCoordinate');
     }
 
     postalCode.regNotMatch(regPatterns.postalCode(), throwError: true);
-    plusCode.regNotMatch(regPatterns.googlePlusCode, throwError: true);
+    plusCode?.regNotMatch(regPatterns.googlePlusCode, throwError: true);
     email?.validator();
     phoneNumber?.validator();
     personName?.validator();

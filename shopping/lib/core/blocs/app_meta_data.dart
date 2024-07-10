@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:jars/jars.dart';
 import 'package:shopping/core/repository.dart';
 

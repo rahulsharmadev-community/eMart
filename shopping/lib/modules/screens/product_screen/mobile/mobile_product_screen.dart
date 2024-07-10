@@ -25,22 +25,26 @@ class _MobileProductScreen extends StatefulWidget {
   State<_MobileProductScreen> createState() => _MobileProductScreenState();
 }
 
-class _MobileProductScreenState extends State<_MobileProductScreen> {
+class _MobileProductScreenState extends State<_MobileProductScreen> with AfterLayoutMixin {
   late final ScrollController scrollController;
   late final ValueNotifier<bool> isScrolOnTop;
 
   @override
   void initState() {
     isScrolOnTop = ValueNotifier(true);
-    var limit = PlatformQuery.height / 2;
-    scrollController = ScrollController()
-      ..addListener(() {
-        var newValue = scrollController.offset < limit;
-        if (isScrolOnTop.value != newValue) {
-          isScrolOnTop.value = newValue;
-        }
-      });
+    scrollController = ScrollController();
     super.initState();
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context, Duration timeStamp) {
+    var limit = context.height / 2;
+    scrollController.addListener(() {
+      var newValue = scrollController.offset < limit;
+      if (isScrolOnTop.value != newValue) {
+        isScrolOnTop.value = newValue;
+      }
+    });
   }
 
   @override

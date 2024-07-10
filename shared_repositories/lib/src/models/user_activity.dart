@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import '/src/utils/json_converters.dart';
 
 part 'user_activity.g.dart';

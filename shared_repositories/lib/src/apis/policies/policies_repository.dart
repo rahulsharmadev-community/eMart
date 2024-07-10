@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import '/repositories.dart';
 import '/src/utils/error_handler.dart';
 import 'package:shared/firebase_service.dart';

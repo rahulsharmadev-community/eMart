@@ -1,4 +1,4 @@
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'alert_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';

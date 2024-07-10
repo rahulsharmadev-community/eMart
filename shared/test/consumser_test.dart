@@ -28,25 +28,18 @@ void main() {
     });
 
     test('Consumer creation with both email and phone number should pass', () {
+      const email = Email('alice.smith@example.com');
+      const phoneNumber = PhoneNumber('0987654321');
       final consumer = Consumer(
         name: const PersonName(firstName: 'Alice', lastName: 'Smith'),
-        email: const Email('alice.smith@example.com'),
-        phoneNumber: const PhoneNumber('0987654321'),
+        email: email,
+        phoneNumber: phoneNumber,
         fCMid: 'testFCMid',
         devices: const [],
       );
 
-      expect(consumer.email, 'alice.smith@example.com');
-      expect(consumer.phoneNumber, '0987654321');
-    });
-
-    test('Unknown consumer should have specific properties', () {
-      final unknownConsumer = Consumer.unknown;
-
-      expect(unknownConsumer.uid, '');
-      expect(unknownConsumer.name.firstName, '@unknown');
-      expect(unknownConsumer.email, '@unknown');
-      expect(unknownConsumer.isUnknown, isTrue);
+      expect(consumer.email, email);
+      expect(consumer.phoneNumber, phoneNumber);
     });
 
     test('Validator should throw errors for invalid email, phone, and profile image', () {

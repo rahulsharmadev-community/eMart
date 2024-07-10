@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:jars/jars.dart';
 import 'package:shared/models.dart' as model;
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/utility/extensions.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
 class AddressScreen extends StatefulWidget {
   final String? oldAddressId;
@@ -65,7 +64,7 @@ class _AddressScreenState extends State<AddressScreen> {
           infinity: false,
           type: JButtonType.filled,
           borderRadius: BorderRadius.circular(8),
-          onPressed: () => AppRoutes.EditAddressScreen.pushNamed(),
+          onPressed: () => context.pushNamed(AppRoutes.EditAddressRoute.name),
         ),
         const Text('Save Addresses').paddingOnly(top: 16, bottom: 8),
         ListView.separated(
@@ -125,8 +124,10 @@ class AddressTile extends StatelessWidget {
               TextSpan(text: address.formattedAddress, style: regular)
             ])).tightFit(),
             InkWell(
-              onTap: () =>
-                  AppRoutes.EditAddressScreen.pushNamed(queryParameters: {'edit': address.addressId}),
+              onTap: () {
+                context
+                    .pushNamed(AppRoutes.EditAddressRoute.name, queryParameters: {'edit': address.addressId});
+              },
               child: Icon(
                 Icons.edit_location_alt_outlined,
                 color: isSelected ? color : null,

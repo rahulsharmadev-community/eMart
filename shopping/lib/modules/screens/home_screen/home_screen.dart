@@ -2,14 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/modules/screens/products_showcase_builder/products_showcase_builder.dart';
 import 'package:shopping/modules/widgets/alert_banner/alert_banner.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
 import 'package:shopping/modules/widgets/live_countdown_banner/live_countdown_banner.dart';
 import 'package:shopping/utility/extensions.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -53,7 +53,7 @@ class HorizontalCategoriesBar extends StatelessWidget {
   final double widthOfItem, height;
   const HorizontalCategoriesBar({super.key, required this.widthOfItem, required this.height});
 
-  Widget bodyBuilder(List<Categories> list) {
+  Widget bodyBuilder(BuildContext context, List<Categories> list) {
     const edgeInsets = EdgeInsets.symmetric(horizontal: 4);
     return SizedBox(
         height: height,
@@ -62,12 +62,13 @@ class HorizontalCategoriesBar extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           padding: edgeInsets,
           itemBuilder: (ctx, i) => ImplicitGridCard(
-            maxLines: 1,
-            label: list[i].title,
-            imageUrl: list[i].iconImg,
-            width: widthOfItem,
-            onTap: () => AppRoutes.CategoriesScreen.goNamed(queryParameters: {'search': list[i].title}),
-          ),
+              maxLines: 1,
+              label: list[i].title,
+              imageUrl: list[i].iconImg,
+              width: widthOfItem,
+              onTap: () {
+                context.goNamed(AppRoutes.CategoriesRoute.name, queryParameters: {'search': list[i].title});
+              }),
         ));
   }
 
@@ -78,7 +79,7 @@ class HorizontalCategoriesBar extends StatelessWidget {
               return state.on(
                   onInitial: const LinearProgressIndicator(),
                   onFailure: (state) => Text(state.message),
-                  onSuccess: (state) => bodyBuilder((state.data as AppMetaData).categories));
+                  onSuccess: (state) => bodyBuilder(context, (state.data as AppMetaData).categories));
             }));
   }
 }

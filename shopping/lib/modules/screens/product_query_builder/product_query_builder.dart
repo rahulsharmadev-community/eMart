@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shopping/core/blocs/products_cubit/products_cubit.dart';
 import 'package:shopping/modules/screens/product_query_builder/widgets/filter_bar.dart';
 import 'package:shopping/modules/screens/product_query_builder/widgets/filter_builder.dart';

@@ -10,12 +10,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:razorpay_api/razorpay_api.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shopping/modules/flutter_app_run.dart';
-import 'package:shopping/utility/observers/bloc_observer.dart';
 import 'package:hive_cache/hive_cache.dart';
 
 
 // Future<JSON?> getDeviceInfoIfValidPlatform() async {
-//   if (!(PlatformQuery.isAndroid || PlatformQuery.isWeb)) return null;
+//   if (!(Platform.isAndroid || Platform.isWeb)) return null;
 //
 //   var info = await DeviceInfoPlugin().deviceInfo;
 //   if (info is AndroidDeviceInfo && !info.isPhysicalDevice) return null;
@@ -42,13 +41,13 @@ void main() async {
   Bloc.observer = FlutterBlocObserver();
 
   HydratedBloc.storage = await HydratedStorage.build(
-      storageDirectory: PlatformQuery.isWeb
+      storageDirectory: Platform.isWeb
           ? HydratedStorage.webStorageDirectory
           : await getApplicationDocumentsDirectory());
 
   await HiveStorage.build(
       storageDirectory:
-          PlatformQuery.isWeb ? HiveStorage.webStorageDirectory : await getApplicationDocumentsDirectory());
+          Platform.isWeb ? HiveStorage.webStorageDirectory : await getApplicationDocumentsDirectory());
 
   final auth = FirebaseService.eMartConsumer.instanceOfAuth;
   runApp(eMartShoppingAppRunner(auth: auth));

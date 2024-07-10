@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:ico/ico.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart' show Keyword;
 import 'package:shopping/core/repository.dart';
 import 'package:shopping/modules/screens/search_screen/bloc/keyword_bloc.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
 class SearchKeywordTextField extends StatefulWidget {
   final String? hintText;
@@ -97,7 +97,7 @@ class _SearchKeywordTextFieldState extends State<SearchKeywordTextField> {
     value.ifNotNull(
         def: null,
         callback: (_) {
-          return AppRoutes.ProductQueryScreen.goNamed(extra: KeywordQuery([_.label]));
+          return context.pushNamed(AppRoutes.ProductQueryRoute.name, extra: KeywordQuery([_.label]));
         });
   }
 

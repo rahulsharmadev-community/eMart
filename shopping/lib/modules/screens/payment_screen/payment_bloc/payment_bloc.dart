@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
 import 'package:razorpay_api/razorpay_api.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/const/applogo.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
@@ -82,8 +82,8 @@ class PaymentBloc extends Cubit<PaymentState> {
                   currency: RazorpayCurrency.INR,
                   prefill: Prefill(
                     name: user.name.toString(),
-                    contact: user.phoneNumber,
-                    email: user.email,
+                    contact: user.phoneNumber?.value,
+                    email: user.email?.value,
                   ),
                   name: eMart.name,
                   image: eMart.logoBase64,

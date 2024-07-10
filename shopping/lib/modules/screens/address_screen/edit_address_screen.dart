@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart' as model;
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/screens/address_screen/bloc/form_bloc.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/services/geolocator_service.dart';
 import 'package:shopping/utility/extensions.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
 
 class EditAddressScreen extends StatefulWidget {
   final String? oldAddressId;
@@ -33,7 +32,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
 
   actionNewAddressCreate() {
     var user = context.primaryUser.user;
-    bloc.add(OverrideNamePhoneNo(user.name, user.phoneNumber));
+    bloc.add(OverrideNamePhoneNo(user.name, user.phoneNumber?.value));
     GeolocatorService.determinePosition().then((x) {
       bloc.add(FetchGeoCoordinate(x.geoCoordinate));
     });
@@ -59,7 +58,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
         child: BlocListener<FormBloc, FormAddressState>(
             listener: (context, state) {
               if (state is FormFetchCompleteState) {
-                AppRoutes.pop();
+                Navigator.pop(context);
               }
             },
             child: Scaffold(
@@ -90,7 +89,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                         labelText: 'Full Name',
                         hintText: 'eg. Rahul Sharma',
                         keyboardType: TextInputType.name,
-                        validatorPattern: RegPatterns.username(allowSpace: true, maxLength: 30),
+                        validatorPattern: regPatterns.username(allowSpace: true, maxLength: 30),
                         onDone: nextFocus,
                       ),
                       JTextField(
@@ -136,7 +135,7 @@ class _EditAddressScreenState extends State<EditAddressScreen> {
                             labelText: 'Pincode',
                             hintText: 'eg. 110059',
                             keyboardType: TextInputType.number,
-                            validatorPattern: RegPatterns.postalCode(),
+                            validatorPattern: regPatterns.postalCode(),
                             onDone: nextFocus,
                           ).tightFit(2),
                         ],

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import '/src/utils/error_handler.dart';
 import 'package:firebase_database/firebase_database.dart' as db;
 import 'package:shared/firebase_service.dart';

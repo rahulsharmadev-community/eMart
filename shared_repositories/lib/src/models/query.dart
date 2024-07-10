@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as fs;
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 
 enum DescendingSortBy {
   mrp('mrp'),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shopping/modules/screens/product_query_builder/bloc/product_query_filter_cubit.dart';
 
 import 'package:ico/ico.dart';

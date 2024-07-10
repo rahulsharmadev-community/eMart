@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/utility/extensions.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
+
 
 class DeliveryTile extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
@@ -23,7 +24,7 @@ class DeliveryTile extends StatelessWidget {
     if (addresses.isEmpty) {
       return JButton(
         text: 'Add Your Delivery Address!',
-        onPressed: () => AppRoutes.EditAddressScreen.pushNamed(),
+        onPressed: () => context.pushNamed(AppRoutes.EditAddressRoute.name),
         type: JButtonType.filled_tonal,
         margin: const EdgeInsets.all(8),
         borderRadius: BorderRadius.circular(8),
@@ -39,7 +40,7 @@ class DeliveryTile extends StatelessWidget {
       ])).tightFit(),
       TextButton(
         child: const Text('Change'),
-        onPressed: () => AppRoutes.AddressScreen.pushNamed(),
+        onPressed: () => context.pushNamed(AppRoutes.AddressRoute.name),
       )
     ]).padding(padding);
   }

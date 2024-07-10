@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import '/src/utils/error_handler.dart';
 import 'package:hive_cache/hive_cache.dart';
 import '/src/utils/http_request.dart';

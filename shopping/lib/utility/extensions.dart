@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' show User;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 
@@ -25,8 +25,8 @@ extension UserExt on User {
       name: PersonName.fromString(displayName ?? email?.split('@').first ?? 'Unknown'),
       devices: const [],
       fCMid: "",
-      email: email,
-      phoneNumber: phoneNumber,
+      email: email != null ? Email(email!) : null,
+      phoneNumber: phoneNumber != null ? PhoneNumber(phoneNumber!) : null,
       profileImg: photoURL,
     );
   }

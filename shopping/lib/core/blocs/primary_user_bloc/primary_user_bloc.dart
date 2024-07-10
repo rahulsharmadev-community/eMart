@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:meta/meta.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/repository.dart';
@@ -33,7 +33,7 @@ class PrimaryUserBloc extends Bloc<PrimaryUserEvent, PrimaryUserState> {
     subscription = primaryUserRepository.getStream.listen((user) async {
       if (user == null) {
         var result = FirebaseService.eMartConsumer.instanceOfAuth.currentUser!.createConsumer;
-        asyncGuard(() => PrimaryUserRepository.createNewUser(result));
+        await PrimaryUserRepository.createNewUser(result);
       } else {
         final temp = primaryUser?.userActivity ?? await userActivityRepository.get() ?? const UserActivity();
         emit(PrimaryUserSuccessState(PrimaryUser(user: user, userActivity: temp)));

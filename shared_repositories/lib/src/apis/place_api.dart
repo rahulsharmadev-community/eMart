@@ -3,7 +3,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:shared/models.dart';
 
 class Place {

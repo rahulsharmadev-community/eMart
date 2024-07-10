@@ -1,4 +1,4 @@
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import '/repositories.dart';
 import '/src/utils/json_converters.dart';
 

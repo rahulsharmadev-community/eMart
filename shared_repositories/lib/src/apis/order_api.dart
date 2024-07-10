@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:razorpay_api/razorpay_api.dart';
 import '/src/utils/error_handler.dart';
 import 'package:shared/firebase_service.dart';

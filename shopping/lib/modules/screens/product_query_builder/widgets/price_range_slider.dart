@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class PriceRangeSlider extends StatefulWidget {

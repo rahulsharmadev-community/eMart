@@ -4,16 +4,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/modules/widgets/add_to_cart_button.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/modules/widgets/cards/badge_icon.dart';
 import 'package:shopping/modules/widgets/cards/item_card.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 import 'package:jars/jars.dart';
-import 'package:shopping/utility/size_after_render.dart';
 
 class ProductCartCard extends StatelessWidget {
   final Product product;
@@ -26,7 +25,7 @@ class ProductCartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var textTheme = context.textTheme;
     return InkWell(
-      onTap: () => AppRoutes.ProductScreen.pushNamed(extra: product.productId),
+      onTap: () => context.pushNamed(AppRoutes.ProductRoute.name, extra: product.productId),
       child: ItemCard(
         height: 160,
         leadingFactor: 0.3,

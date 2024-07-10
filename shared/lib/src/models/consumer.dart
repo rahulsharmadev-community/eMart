@@ -1,12 +1,12 @@
 // ignore_for_file: unused_element
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:jars/equatable.dart';
+import 'package:jars/jars_core.dart';
+import 'package:jars/regpatterns.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
-import 'package:shared/src/models/general/contact.dart';
 import 'package:uuid/uuid.dart';
-import 'package:jars/jars.dart';
 
 part 'consumer.g.dart';
 
@@ -46,7 +46,7 @@ class Consumer extends Equatable with ValidatorMixin {
     required this.name,
     required this.fCMid,
     required this.devices,
-    required this.email,
+    this.email,
     this.profileImg,
     this.phoneNumber,
     this.gstNumber,
@@ -63,16 +63,19 @@ class Consumer extends Equatable with ValidatorMixin {
         joinAt = joinAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 
-  /// Unknown user which represents an unauthenticated user.
-  static Consumer unknown = Consumer(
-      uid: '',
-      name: const PersonName(firstName: '@unknown'),
-      email: const Email('@unknown'),
-      fCMid: '',
-      devices: const []);
+  /// Creates a anonymous consumer with the given uid FCM ID and devices,
+  /// Used for unauthenticated users.
+  factory Consumer.anonymous(
+          {required String uid, required String fCMid, required Map<String, dynamic> devices}) =>
+      Consumer(
+          uid: uid,
+          name: const PersonName(firstName: 'anonymous'),
+          email: Email('$uid@anonymous.com'),
+          fCMid: fCMid,
+          devices: [devices]);
 
-  /// Convenience getter to determine whether the current user is Unknown.
-  bool get isUnknown => this == unknown;
+  bool get isAnonymous =>
+      name.toString() == 'anonymous' || (email?.toString().endsWith('@anonymous.com') ?? false);
 
   Address? get primaryAddress => primaryAddressId != null ? addresses[primaryAddressId] : null;
 

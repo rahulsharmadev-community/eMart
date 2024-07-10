@@ -1,7 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:jars/regpatterns.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:uuid/uuid.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 part 'review.g.dart';
 
 @CopyWith()

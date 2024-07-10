@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 import 'package:ico/ico.dart';
 
 class MobileSearchAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -36,7 +36,7 @@ class MobileSearchAppBar extends StatelessWidget implements PreferredSizeWidget 
         backgroundColor: context.theme.canvasColor,
         fixedSize: const Size.fromHeight(48),
       ),
-      onPressed: () => AppRoutes.SearchKeywordScreen.pushNamed(),
+      onPressed: () => context.pushNamed(AppRoutes.SearchKeywordRoute.name),
       child: Row(
         children: [
           const Icon(Ico.search_outline).paddingAll(4),

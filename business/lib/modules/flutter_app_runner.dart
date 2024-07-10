@@ -3,11 +3,10 @@ import 'package:business/modules/screens/auth_screen/auth_cubit/auth_cubit.dart'
 import 'package:business/modules/screens/auth_screen/registration_screen/registration_screen.dart';
 import 'package:business/modules/screens/auth_screen/widgets/google_oauth_button.dart';
 import 'package:business/modules/screens/other/loading_screen.dart';
+import 'package:business/utility/routes/route_config.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:shared/firebase_service.dart';
 
 class eMartBusinessAppRunner extends StatelessWidget {
   const eMartBusinessAppRunner({super.key});
@@ -27,10 +26,11 @@ class eMartBusinessAppRunner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(FirebaseService.eMartSeller.instanceOfAuth)..signIn(),
-      child: BlocBuilder<AuthCubit, AuthState>(builder: builder),
-    );
+    return const eMartBusiness();
+    // return BlocProvider(
+    //   create: (context) => AuthCubit(FirebaseService.eMartSeller.instanceOfAuth)..signIn(),
+    //   child: BlocBuilder<AuthCubit, AuthState>(builder: builder),
+    // );
   }
 }
 
@@ -74,15 +74,9 @@ class eMartBusiness extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var data = (context.read<AuthCubit>().state as Authenticated).data;
-    return MaterialApp(
-      home: Scaffold(
-        bottomNavigationBar: FloatingActionButton(
-          onPressed: context.read<AuthCubit>().signOut,
-          child: const Text('SignOut'),
-        ),
-        body: Text(data.toString()),
-      ),
+    return GoMaterialApp(
+      config: defaultRouterConfig,
+      theme: ThemeData(textTheme: const TextTheme(bodyLarge: TextStyle(fontSize: 14))),
     );
   }
 }

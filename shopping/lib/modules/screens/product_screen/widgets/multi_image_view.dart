@@ -43,7 +43,7 @@ class _MultiImageViewBuilderState extends State<MultiImageViewBuilder> {
                 itemCount: widget.imageUrls.length,
                 controller: controller,
                 itemBuilder: (context, i) => CachedNetworkImage(
-                  width: context.screenSize.width,
+                  width: context.width,
                   imageUrl: widget.imageUrls[i],
                   fit: BoxFit.contain,
                 ),

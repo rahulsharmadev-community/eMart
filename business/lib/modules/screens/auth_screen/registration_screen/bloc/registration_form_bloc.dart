@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:logger/logger.dart';
 import 'package:shared/models.dart' as model;
 import 'package:shared_repositories/repositories.dart';
 part 'form_state.dart';

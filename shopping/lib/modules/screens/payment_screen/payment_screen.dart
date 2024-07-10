@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:razorpay_api/razorpay_api.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart' as model;
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/core/blocs/products_cubit/products_cubit.dart';
@@ -12,7 +12,7 @@ import 'package:shopping/modules/widgets/delivery_tile.dart';
 import 'package:shopping/modules/screens/payment_screen/payment_bloc/payment_bloc.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/utility/extensions.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
 Future<T?> showPaymentBottomSheet<T>(context, JSON<int> cart) => showModalBottomSheet<T>(
     context: context,
@@ -48,14 +48,14 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
   onStateChange(PaymentState state) {
     if (state is PaymentSuccess) {
       showJTost(context, msg: '✅ Payment Successfully');
-      AppRoutes.pop();
+      Navigator.pop(context);
     } else if (state is PaymentFailure) {
       showJTost(context,
           msg: state.message,
           config: JToastConfig(
               forgroundColor: context.theme.colorScheme.error,
               backgroundColor: context.theme.colorScheme.errorContainer));
-      AppRoutes.pop();
+      Navigator.pop(context);
     } else if (state is PaymentInProgress) {
       showJTost(context, msg: state.message ?? 'Please wait...');
     }
@@ -101,7 +101,7 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
                 'Safe and secure payments, Easy returns,100% Authentic products.',
                 textAlign: TextAlign.center,
                 style: context.textTheme.labelMedium,
-              ).opacity(0.5).boxWidth(70.w),
+              ).opacity(0.5),
             ],
           ),
         ));

@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Route;
 import 'package:ico/ico.dart';
 import 'package:jars/jars.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routers_config.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
-const items = [
-  _Item('Home', Ico.home_outline, AppRoutes.HomeScreen),
-  _Item('Categories', Ico.layout_outline, AppRoutes.CategoriesScreen),
-  _Item('Cart', Ico.shopping_cart_outline, AppRoutes.CartScreen),
-  _Item('Wishlist', Ico.heart_outline, AppRoutes.WishlistScreen),
-  _Item('Profile', Ico.user_outline, AppRoutes.ProfileScreen)
+final items = [
+  _Item('Home', Ico.home_outline, AppRoutes.HomeRoute),
+  _Item('Categories', Ico.layout_outline, AppRoutes.CategoriesRoute),
+  _Item('Cart', Ico.shopping_cart_outline, AppRoutes.CartRoute),
+  _Item('Wishlist', Ico.heart_outline, AppRoutes.WishlistRoute),
+  _Item('Profile', Ico.user_outline, AppRoutes.ProfileRoute)
 ];
 
 class _Item {
   final String title;
   final IconData icon;
-  final AppRoutes route;
+  final Route route;
   const _Item(this.title, this.icon, this.route);
 }
 
@@ -25,7 +26,7 @@ class DashboardNavigationController {
   int lastIndex = 0;
 
   int get selectedIndex {
-    final String location = AppRoutes.config.routerDelegate.currentConfiguration.uri.toString();
+    final String location = AppRouterConfig.instance.currentConfig.uri.toString();
     var result = items.firstWhereOrNull((e) => location.startsWith('/${e.route.name}'));
 
     if (result == null) return lastIndex;

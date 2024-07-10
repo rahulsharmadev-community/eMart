@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:business/modules/flutter_app_runner.dart';
-import 'package:business/utility/observers/bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_cache/hive_cache.dart';
-import 'package:logger/logger.dart';
 import 'package:razorpay_api/razorpay_api.dart';
 import 'package:shared/firebase_service.dart';
+import 'package:jars/jars.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = FlutterBlocObserver();
   await FirebaseService.initialize(eMartSellerFirebaseCredential.instance);

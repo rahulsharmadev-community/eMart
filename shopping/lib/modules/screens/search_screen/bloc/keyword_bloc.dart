@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
 import 'package:meta/meta.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:shared/models.dart';
 

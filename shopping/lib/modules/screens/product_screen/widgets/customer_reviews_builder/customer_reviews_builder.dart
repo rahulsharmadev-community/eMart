@@ -19,7 +19,7 @@ class CustomerReviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var label = context.textTheme.labelMedium;
     var ratingBar = RatingBarIndicator(
-      rating: review.rating.toRoundPrecision(1).toDouble(),
+      rating: review.rating!.toRoundPrecision(1).toDouble(),
       itemSize: 12,
       itemBuilder: (context, index) => const Icon(Icons.star, color: Colors.amber),
     );
@@ -31,7 +31,7 @@ class CustomerReviewCard extends StatelessWidget {
         Row(children: [
           const Icon(Icons.account_circle_rounded, size: 12),
           2.gap,
-          Text(review.reviewedBy, style: label),
+          Text(review.reviewedBy!, style: label),
           const Spacer(),
           Text(review.lastUpdateAt.format().yMMMd(), style: label),
         ]),
@@ -55,7 +55,7 @@ class CustomerReviewCard extends StatelessWidget {
             )
           ],
         ),
-        if (review.title != null) Text(review.title!).paddingOnly(top: 4),
+        Text(review.title).paddingOnly(top: 4),
         // if (review.imageUrls.isNotEmpty)
         //   SizedBox(
         //     height: 68,

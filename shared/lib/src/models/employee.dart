@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/equatable.dart';
+import 'package:jars/jars_core.dart';
+import 'package:jars/regpatterns.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:uuid/uuid.dart';

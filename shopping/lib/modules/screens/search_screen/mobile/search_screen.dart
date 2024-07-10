@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart';
 import 'package:shopping/core/blocs/primary_user_bloc/primary_user_bloc.dart';
 import 'package:shopping/core/repository.dart';
 import 'package:shopping/modules/screens/search_screen/bloc/keyword_bloc.dart';
 import 'package:ico/ico.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
 class SearchKeywordScreen extends StatelessWidget {
   final String? initalText;
@@ -25,7 +25,7 @@ class SearchKeywordScreen extends StatelessWidget {
   onDone(String keyword, BuildContext context) {
     var keywords = [keyword];
     context.read<PrimaryUserBloc>().add(AddSuggestionKeywordsEvent(keywords));
-    AppRoutes.ProductQueryScreen.goNamed(extra: KeywordQuery(keywords));
+    context.goNamed(AppRoutes.ProductQueryRoute.name, extra: KeywordQuery(keywords));
   }
 
   @override

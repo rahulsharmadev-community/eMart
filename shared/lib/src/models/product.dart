@@ -1,8 +1,9 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:jars/intl.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
 import 'states.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:uuid/uuid.dart';
 part 'product.g.dart';
 
@@ -192,8 +193,10 @@ enum DeliveryEstimation {
   @override
   String toString() => "$minDay - $maxDay days";
 
-  String get label =>
-      DateTime.now().add(Duration(days: maxDay)).format().yMMMEd(isFull: true).split(',').first;
+  String get label {
+    var date = DateTime.now().add(Duration(days: maxDay));
+    return DateFormat.yMMMEd().format(date).split(',').first;
+  }
 }
 
 @CopyWith()

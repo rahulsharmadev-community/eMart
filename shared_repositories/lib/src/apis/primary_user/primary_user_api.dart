@@ -5,7 +5,7 @@ import 'package:razorpay_api/razorpay_api.dart';
 import '/src/utils/error_handler.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:shared/models.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 
 class PrimaryUserRepository {
   final cf.DocumentReference _collection;
@@ -15,8 +15,8 @@ class PrimaryUserRepository {
 
   static Future<void> createNewUser(Consumer value) async {
     try {
-      var razorPayUid = await createRazorpayUid(value);
-      var json = value.copyWith.razorPayUid(razorPayUid).toJson();
+      // var razorPayUid = await createRazorpayUid(value);
+      var json = value.copyWith.razorPayUid('cust_OEuUz7LkqAt4m9').toJson();
       await FirebaseService.eMartConsumer.instanceOfFirestore
           .collection('USERS')
           .doc(value.uid)

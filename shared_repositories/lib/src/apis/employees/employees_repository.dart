@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:shared/models.dart';
 import 'package:shared/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as cf;

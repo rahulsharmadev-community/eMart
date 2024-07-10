@@ -1,5 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 
@@ -9,7 +9,7 @@ enum SellerType { retailer, distributor, wholesaler }
 
 @CopyWith()
 @defJsonSerializable
-class Seller extends Employee {
+class Seller extends Employee with ValidatorMixin {
   Seller({
     super.uid,
     required super.name,

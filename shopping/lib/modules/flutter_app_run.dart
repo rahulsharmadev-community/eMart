@@ -11,8 +11,7 @@ import 'package:shopping/core/cubit/e_mart_shopping_cubit.dart';
 import 'package:shopping/modules/screens/auth_screen/auth_screen.dart';
 import 'package:shopping/modules/screens/other_screens/error_screen.dart';
 import 'package:shopping/modules/screens/other_screens/loading_screen.dart';
-import 'package:shopping/utility/navigation/app_navigator.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routers_config.dart';
 import 'package:shopping/utility/theme/app_theme.dart';
 
 class eMartShoppingAppRunner extends StatelessWidget {
@@ -57,6 +56,7 @@ class eMartAppBuilder extends StatelessWidget {
 
   Widget bodyBuilder(BuildContext context) {
     var theme = AppThemes.SANDRED.appTheme;
+
     return BlocBuilder<PrimaryUserBloc, PrimaryUserState>(
       builder: (context, state) {
         return state.on(
@@ -64,15 +64,14 @@ class eMartAppBuilder extends StatelessWidget {
             onFailure: (state) => ErrorScreen(materialAppWraper: true, title: state.message),
             onSuccess: (state) {
               const msb = MaterialScrollBehavior();
-              return MaterialApp.router(
-                scrollBehavior: !PlatformQuery.isMobileorTablet
-                    ? msb.copyWith(dragDevices: {ui.PointerDeviceKind.mouse})
-                    : msb,
+              return GoMaterialApp(
+                config: AppRouterConfig.instance,
                 theme: theme.themeData,
                 title: 'eMart Shopping',
-                routerConfig: AppRoutes.config,
-                scaffoldMessengerKey: AppNavigator.messengerKey,
                 debugShowCheckedModeBanner: kDebugMode,
+                scrollBehavior: !Platform.isMobileorTablet
+                    ? msb.copyWith(dragDevices: {ui.PointerDeviceKind.mouse})
+                    : msb,
               );
             });
       },

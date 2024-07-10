@@ -7,6 +7,7 @@ import 'package:shared/models.dart' as models;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
+import 'package:jars/regpatterns.dart';
 
 part 'widget/form_content.dart';
 part 'widget/form_header.dart';
@@ -82,7 +83,7 @@ class FormLayoutBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      var notCompact = PlatformQuery.activeWindowSize == WindowSize.expanded;
+      var notCompact = context.activeWindowSize != WindowSize.COMPACT;
       var constraints = BoxConstraints(maxHeight: notCompact ? 500 : 600, maxWidth: 1000);
       var padding = EdgeInsets.symmetric(horizontal: notCompact ? 32 : 24, vertical: notCompact ? 24 : 24);
       return Center(

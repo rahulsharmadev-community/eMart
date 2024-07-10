@@ -4,12 +4,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shopping/core/blocs/app_meta_data.dart';
 import 'package:shopping/core/repository.dart';
 import 'package:shopping/modules/screens/categories_screen/cubit/categories_cubit.dart';
 import 'package:shopping/modules/widgets/implicit_grid_card.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 
 class CategoriesScreen extends StatelessWidget {
   final String? category;
@@ -33,7 +33,7 @@ class CategoriesScreen extends StatelessWidget {
                     children: [
                       buildCategoriesLeaderboard(state.data),
                       8.gap,
-                      buildCategoriesWidget(state.data),
+                      buildCategoriesWidget(context, state.data),
                       const Divider(),
                       buildCategoriesBanners(state.data),
                     ],
@@ -41,7 +41,7 @@ class CategoriesScreen extends StatelessWidget {
         }));
   }
 
-  Widget buildCategoriesWidget(List<Category> categories) {
+  Widget buildCategoriesWidget(BuildContext context, List<Category> categories) {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
@@ -54,7 +54,9 @@ class CategoriesScreen extends StatelessWidget {
                 label: e.title,
                 maxLines: 3,
                 margin: EdgeInsets.zero,
-                onTap: () => AppRoutes.ProductQueryScreen.goNamed(extra: CategoriesQuery([e.title])),
+                onTap: () {
+                  context.goNamed(AppRoutes.ProductQueryRoute.name, extra: CategoriesQuery([e.title]));
+                },
               ))
           .toList(),
     );
@@ -63,7 +65,7 @@ class CategoriesScreen extends StatelessWidget {
   Widget buildCategoriesBanners(List<Category> categories) {
     return SizedBox(
       height: 200,
-      width: 100.w,
+      width: 100,
       child: ListView.builder(
           itemCount: categories.length,
           scrollDirection: Axis.horizontal,
@@ -72,7 +74,7 @@ class CategoriesScreen extends StatelessWidget {
             return CachedNetworkImage(
               imageUrl: categories[i].bannerImg!,
               fit: BoxFit.cover,
-              width: 100.w,
+              width: 100,
             );
           }),
     );
@@ -89,7 +91,7 @@ class CategoriesScreen extends StatelessWidget {
             return CachedNetworkImage(
               imageUrl: categories[i].leaderboardImg!,
               fit: BoxFit.cover,
-              width: 100.w,
+              width: 100,
             );
           }),
     );

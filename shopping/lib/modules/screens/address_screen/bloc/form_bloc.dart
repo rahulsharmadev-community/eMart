@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jars/jars.dart';
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 import 'package:shared/models.dart' as model;
 part 'form_address_state.dart';
 part 'form_event.dart';
@@ -24,7 +24,13 @@ class FormBloc extends Bloc<FormEvent, FormAddressState> {
   model.Address _result;
 
   FormBloc({model.Address? inital, required this.placeApi})
-      : _result = inital ?? model.Address.empty,
+      : _result = inital ??
+            model.Address(
+              houseNo: '',
+              country: (key: '', value: ''),
+              state: (key: '', value: ''),
+              postalCode: '',
+            ),
         formKey = GlobalKey<FormState>(),
         nameCr = TextEditingController(text: inital?.personName.toString()),
         floorCr = TextEditingController(text: inital?.floorLevel.toString()),
@@ -64,10 +70,7 @@ class FormBloc extends Bloc<FormEvent, FormAddressState> {
 
     on<OnChange>((event, emit) {
       _updateResultValue();
-      if (type.value != null &&
-          (inital != _result) &&
-          (_result.isNotEmpty) &&
-          (formKey.currentState?.validate() ?? false)) {
+      if (type.value != null && (formKey.currentState?.validate() ?? false) && _result.isValid()) {
         emit(FormReadyToSubmitState());
       } else {
         emit(FormIdleState());
@@ -82,8 +85,8 @@ class FormBloc extends Bloc<FormEvent, FormAddressState> {
       houseNo: houseNoCr.text.trim(),
       area: areaCr.text.trim(),
       city: cityCr.text.trim(),
-      postalCode: int.tryParse(pincodeCr.text.trim()),
-      phoneNumber: int.tryParse(phoneNumberCr.text.trim()),
+      postalCode: pincodeCr.text.trim(),
+      phoneNumber: model.PhoneNumber(phoneNumberCr.text.trim()),
       landmark: landmarkCr.text.trim(),
       type: type.value,
     );

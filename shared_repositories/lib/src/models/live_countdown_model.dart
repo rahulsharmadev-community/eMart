@@ -1,11 +1,12 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import '/src/utils/json_converters.dart';
 
 part 'live_countdown_model.g.dart';
 
-textFrom(Map<String, dynamic> json) => json['backgroundColor'].ifNotNull(null, (_) => _.toColor);
+textFrom(Map<String, dynamic> json) => json['backgroundColor'].ifNotNull(null, (e) => e.toColor);
 textTo(LiveCountdownModel inst) => inst.backgroundColor?.toHex;
 
 @CopyWith()

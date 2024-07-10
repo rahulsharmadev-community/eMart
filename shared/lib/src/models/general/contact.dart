@@ -1,5 +1,6 @@
-import 'package:equatable/equatable.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/equatable.dart';
+import 'package:jars/jars_core.dart';
+import 'package:jars/regpatterns.dart';
 
 abstract class Contact extends Equatable with ValidatorMixin {
   final String value;

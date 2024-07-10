@@ -1,4 +1,6 @@
 // ignore: file_names
+// ignore_for_file: unused_local_variable
+
 import 'package:shared/models.dart';
 import 'package:test/test.dart';
 

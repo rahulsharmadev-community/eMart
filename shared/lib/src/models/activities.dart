@@ -1,5 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:shared/src/json_converters.dart';
 
 part 'activities.g.dart';

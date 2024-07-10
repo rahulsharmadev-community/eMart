@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, library_private_types_in_public_api
 
-import 'package:repositories/repositories.dart';
+import 'package:shared_repositories/repositories.dart';
 
 // Singleton instance for the repository
 Repository? _instance;

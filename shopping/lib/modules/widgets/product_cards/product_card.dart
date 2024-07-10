@@ -10,9 +10,8 @@ import 'package:shopping/modules/widgets/add_to_cart_button.dart';
 import 'package:shopping/modules/widgets/buttons/button.dart';
 import 'package:shopping/modules/widgets/cards/badge_icon.dart';
 import 'package:shopping/modules/widgets/cards/item_card.dart';
-import 'package:shopping/utility/routes/app_routes.dart';
+import 'package:shopping/utility/routes/routes_initialise.dart';
 import 'package:jars/jars.dart';
-import 'package:shopping/utility/size_after_render.dart';
 
 class RegularProductCard extends StatelessWidget {
   final ItemCardType type;
@@ -33,7 +32,7 @@ class RegularProductCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        AppRoutes.ProductScreen.pushNamed(extra: product.productId);
+        context.pushNamed(AppRoutes.ProductRoute.name, extra: product.productId);
         context.read<PrimaryUserBloc>().add(AddVisitedProductEvent(product.productId));
       },
       child: ItemCard(

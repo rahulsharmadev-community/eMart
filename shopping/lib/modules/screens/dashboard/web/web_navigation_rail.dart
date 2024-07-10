@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ico/ico.dart';
 import 'package:jars/jars.dart';
+
 import '../dashboard_navigation_controller.dart';
 
 class WebNavigationRail extends StatelessWidget {
@@ -10,7 +11,7 @@ class WebNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MediaQuery.of(context);
-    var extended = PlatformQuery.returnSmartly(mobile: false, tablet: false, desktop: true);
+    var extended = context.activeWindowSize == WindowSize.EXPANDED;
     return NavigationRail(
       extended: extended,
       trailing: Expanded(
@@ -27,7 +28,7 @@ class WebNavigationRail extends StatelessWidget {
       destinations: items.map((e) => _navItem(e.icon, e.title)).toList(),
       selectedIndex: DashboardNavigationController.instance.selectedIndex,
       onDestinationSelected: (i) {
-        items[i].route.goNamed();
+        context.goNamed(items[i].route.name);
       },
       useIndicator: true,
     );

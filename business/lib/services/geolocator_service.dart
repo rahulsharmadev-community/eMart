@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 
 extension PositionExt on Position {
   GeoCoordinate get geoCoordinate => (lat: latitude, lng: longitude);

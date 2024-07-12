@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
 import 'package:shared/models.dart' as models;
 
 class FormController {

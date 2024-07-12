@@ -744,16 +744,16 @@ packages:
     description:
       path: "packages/jars"
       ref: main
-      resolved-ref: "6a7891225babf68fc877254536e31b660b2e776b"
+      resolved-ref: "3eab6e8577c1a71f24881e969851ef5f4fe52716"
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
     version: "0.1.4"
   jars_core:
     dependency: transitive
     description:
-      path: "packages\\jars_core"
+      path: "packages/jars_core"
       ref: main
-      resolved-ref: "6a7891225babf68fc877254536e31b660b2e776b"
+      resolved-ref: "3eab6e8577c1a71f24881e969851ef5f4fe52716"
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
     version: "0.1.6"
@@ -1114,9 +1114,9 @@ packages:
   regpatterns:
     dependency: transitive
     description:
-      path: "packages\\regpatterns"
+      path: "packages/regpatterns"
       ref: main
-      resolved-ref: "6a7891225babf68fc877254536e31b660b2e776b"
+      resolved-ref: "3eab6e8577c1a71f24881e969851ef5f4fe52716"
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
     version: "0.0.9"

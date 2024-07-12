@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
+import 'package:jars/logger.dart';
 
 import 'forms/product_details.dart';
 
@@ -8,6 +9,7 @@ class EditProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log.i('EditProductScreen build');
     return Scaffold(
       body: FormProgressStepper(
         stepNotifier: ValueNotifier(0),

@@ -107,6 +107,11 @@ class _VariationInputFieldState extends State<VariationInputField> {
     );
   }
 
+  var data = {
+    {'type': 'Pattern', 'id': '861JGHYWKJ30FD8902', 'label': 'Red'},
+    {'type': 'Color', 'id': '861JGHYWKJ30FD8902', 'label': 'Red'},
+    {'type': 'Style', 'id': '861JGHYWKJ30FD8902', 'label': 'Red'},
+  };
   var list = [
     'Pattern',
     'Color',
@@ -119,7 +124,7 @@ class _VariationInputFieldState extends State<VariationInputField> {
         padding: (4, 0).edgesSymmetric,
         child: Column(
           children: [
-            Wrap(
+            Row(
               children: [
                 Material(
                   child: DropdownButtonFormField<String>(
@@ -129,7 +134,8 @@ class _VariationInputFieldState extends State<VariationInputField> {
                     items: list.map((e) => DropdownMenuItem<String>(value: e, child: Text(e))).toList(),
                     onChanged: (value) => setState(() => _selectedVariant = value),
                   ),
-                ),
+                ).tightFit(),
+                32.gap,
                 JTextField(
                   labelText: 'Variant Product ID',
                   hintText: 'eg. 861JGHYWKJ30FD8902',
@@ -149,6 +155,12 @@ class _VariationInputFieldState extends State<VariationInputField> {
                 'such as size. Select “yes” if you are listing different variants of this product, to ensure that your '
                 'product and its variants are displayed as a group on the website, making it easier for customers to find.',
                 style: context.textTheme.labelMedium),
+            Align(
+                alignment: Alignment.centerRight,
+                child: FilledButton(onPressed: () {}, child: const Text('Add Variant'))),
+            Wrap(
+              children: [],
+            )
           ],
         ));
   }

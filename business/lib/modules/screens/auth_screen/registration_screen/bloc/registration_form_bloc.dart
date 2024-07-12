@@ -6,7 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:jars/jars.dart';
+import 'package:jars/jars_core.dart';
+import 'package:jars/logger.dart';
 import 'package:shared/models.dart' as model;
 import 'package:shared_repositories/repositories.dart';
 part 'form_state.dart';
@@ -85,7 +86,7 @@ class RegistrationFormBloc extends Cubit<RegistrationFormState> {
       );
       isfetchGeo = true;
     } catch (e) {
-      Logger().e(e);
+      log.e(e);
     }
   }
 

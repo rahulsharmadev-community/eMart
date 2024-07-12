@@ -7,7 +7,6 @@ import 'package:shared/firebase_service.dart';
 import 'package:jars/jars.dart';
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = FlutterBlocObserver();
   await FirebaseService.initialize(eMartSellerFirebaseCredential.instance);

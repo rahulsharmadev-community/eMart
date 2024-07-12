@@ -13,6 +13,6 @@ class _AppRoutes extends _RoutesDefine<Route> {
   @override
   Route get EditProductRoute => Route(
         name: 'edit_product',
-        builder: (ctx, state) => FadeTransitionPage(child: const EditProductScreen()),
+        builder: (ctx, state) => const EditProductScreen(),
       );
 }

@@ -9,7 +9,7 @@ enum SellerType { retailer, distributor, wholesaler }
 
 @CopyWith()
 @defJsonSerializable
-class Seller extends Employee with ValidatorMixin {
+class Seller extends Employee {
   Seller({
     super.uid,
     required super.name,

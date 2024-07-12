@@ -3,6 +3,7 @@ import 'package:jars/intl.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
 import 'states.dart';
+
 import 'package:jars/jars_core.dart';
 import 'package:uuid/uuid.dart';
 part 'product.g.dart';
@@ -44,7 +45,8 @@ class Product with ValidatorMixin {
     this.discount = 0,
     this.feature = const [],
     this.imageUrls = const [],
-    this.variants = const [],
+    this.colors = const [],
+    this.size = const [],
     this.category = const [],
     this.keywords = const [],
     this.detailedSpecs = const {},
@@ -89,14 +91,16 @@ class Product with ValidatorMixin {
   ///(lazy load) List of URLs for additional images.
   final List<String> imageUrls;
 
-  ///(lazy load) slightly different form product
-  final List<String> variants;
+  ///(lazy load)
+  final List<Variation> colors;
+
+  final List<Variation> size;
 
   ///(lazy load) Warranty information for the product.
   final DurationPeriod? warrantyPeriod;
 
   ///(lazy load) List of features or specifications of the product.
-  final List<String>? feature;
+  final List<Variation>? feature;
 
   ///(lazy load) Represents a unit of measurement for a product, including quantity, dimension, and symbol.
   final ProductUnit unit;
@@ -218,3 +222,19 @@ class DeliveryMetaData {
   factory DeliveryMetaData.fromJson(JSON json) => _$DeliveryMetaDataFromJson(json);
   JSON toJson() => _$DeliveryMetaDataToJson(this);
 }
+
+class Variation {
+  final String productId;
+  final String label;
+  const Variation(this.productId, this.label);
+}
+
+String gen(String prefix, String v1) {
+  const uuid = Uuid();
+  var id = uuid.v5(Uuid.NAMESPACE_NIL, v1).substring(0, 8); // 8,
+  var random = uuid.v4().substring(19); // 24
+  return (prefix + id + random).replaceAll('-', '');
+}
+
+
+xxxxxxxxNxxxxxxxxxxxxxxx

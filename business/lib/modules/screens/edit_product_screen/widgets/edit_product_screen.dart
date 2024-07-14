@@ -1,20 +1,31 @@
+import 'dart:async';
+
+import 'package:business/modules/screens/edit_product_screen/widgets/path_selection/path_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:jars/jars.dart';
-import 'package:jars/logger.dart';
 
 import 'forms/product_details.dart';
 
-class EditProductScreen extends StatelessWidget {
+class EditProductScreen extends StatefulWidget {
   const EditProductScreen({super.key});
 
   @override
+  State<EditProductScreen> createState() => _EditProductScreenState();
+}
+
+class _EditProductScreenState extends State<EditProductScreen> with AfterLayoutMixin {
+  @override
   Widget build(BuildContext context) {
-    log.i('EditProductScreen build');
     return Scaffold(
       body: FormProgressStepper(
         stepNotifier: ValueNotifier(0),
       ),
     );
+  }
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context, Duration timeStamp) {
+    if (context.mounted) showDialog(context: context, builder: (context) => const CategoryDialog());
   }
 }
 

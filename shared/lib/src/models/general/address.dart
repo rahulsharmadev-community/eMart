@@ -5,6 +5,7 @@ import 'package:jars/regpatterns.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:jars/jars_core.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'package:uuid/uuid.dart';
 
 part 'address.g.dart';
@@ -70,7 +71,7 @@ class Address extends Equatable with ValidatorMixin {
     this.type,
     DateTime? lastUpdateAt,
     DateTime? createdAt,
-  })  : addressId = addressId ?? const Uuid().v4(),
+  })  : addressId = addressId ?? uidGenerator(prefix: 'adr'),
         lastUpdateAt = lastUpdateAt ?? DateTime.now(),
         createdAt = createdAt ?? DateTime.now();
 

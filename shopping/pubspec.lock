@@ -1302,9 +1302,9 @@ packages:
   regpatterns:
     dependency: transitive
     description:
-      path: "packages/regpatterns"
+      path: "packages\\regpatterns"
       ref: main
-      resolved-ref: c63a13f9a9b2465ac0784638027bfb5ffc2a1d89
+      resolved-ref: "218ccc0fb719d6426d3237a87bb8ce4467d1e115"
       url: "https://github.com/rahulsharmadev-community/jars.git"
     source: git
     version: "0.0.9"

@@ -1,4 +1,6 @@
-// SKDB: Search Keyword Database
+// ignore_for_file: constant_identifier_names
+
+/// SKDB: Search Keyword Database
 class SKDB {
   static const List values = <SKDB>[
     SKDB._('aeimr',
@@ -28,6 +30,5 @@ class SKDB {
   }
 }
 
-
-
-
+const PRODUCT_CATEGORIES_API =
+    "https://raw.githubusercontent.com/rahulsharmadev-community/dummy-json-generater/master/database/ecommerce/product_categories.json";

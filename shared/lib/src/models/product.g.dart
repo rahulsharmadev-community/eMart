@@ -29,11 +29,13 @@ abstract class _$ProductCWProxy {
 
   Product discount(double discount);
 
-  Product feature(List<String>? feature);
+  Product feature(List<Variation>? feature);
 
   Product imageUrls(List<String> imageUrls);
 
-  Product variants(List<String> variants);
+  Product colors(List<Variation> colors);
+
+  Product size(List<Variation> size);
 
   Product category(List<String> category);
 
@@ -67,9 +69,10 @@ abstract class _$ProductCWProxy {
     DurationPeriod? refund,
     String? afterSalesServiceId,
     double? discount,
-    List<String>? feature,
+    List<Variation>? feature,
     List<String>? imageUrls,
-    List<String>? variants,
+    List<Variation>? colors,
+    List<Variation>? size,
     List<String>? category,
     List<String>? keywords,
     Map<String, String>? detailedSpecs,
@@ -99,39 +102,37 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
   Product unit(ProductUnit unit) => this(unit: unit);
 
   @override
-  Product productBrand(String? productBrand) =>
-      this(productBrand: productBrand);
+  Product productBrand(String? productBrand) => this(productBrand: productBrand);
 
   @override
-  Product shotDescription(String? shotDescription) =>
-      this(shotDescription: shotDescription);
+  Product shotDescription(String? shotDescription) => this(shotDescription: shotDescription);
 
   @override
-  Product warrantyPeriod(DurationPeriod? warrantyPeriod) =>
-      this(warrantyPeriod: warrantyPeriod);
+  Product warrantyPeriod(DurationPeriod? warrantyPeriod) => this(warrantyPeriod: warrantyPeriod);
 
   @override
-  Product replacement(DurationPeriod? replacement) =>
-      this(replacement: replacement);
+  Product replacement(DurationPeriod? replacement) => this(replacement: replacement);
 
   @override
   Product refund(DurationPeriod? refund) => this(refund: refund);
 
   @override
-  Product afterSalesServiceId(String? afterSalesServiceId) =>
-      this(afterSalesServiceId: afterSalesServiceId);
+  Product afterSalesServiceId(String? afterSalesServiceId) => this(afterSalesServiceId: afterSalesServiceId);
 
   @override
   Product discount(double discount) => this(discount: discount);
 
   @override
-  Product feature(List<String>? feature) => this(feature: feature);
+  Product feature(List<Variation>? feature) => this(feature: feature);
 
   @override
   Product imageUrls(List<String> imageUrls) => this(imageUrls: imageUrls);
 
   @override
-  Product variants(List<String> variants) => this(variants: variants);
+  Product colors(List<Variation> colors) => this(colors: colors);
+
+  @override
+  Product size(List<Variation> size) => this(size: size);
 
   @override
   Product category(List<String> category) => this(category: category);
@@ -140,8 +141,7 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
   Product keywords(List<String> keywords) => this(keywords: keywords);
 
   @override
-  Product detailedSpecs(Map<String, String> detailedSpecs) =>
-      this(detailedSpecs: detailedSpecs);
+  Product detailedSpecs(Map<String, String> detailedSpecs) => this(detailedSpecs: detailedSpecs);
 
   @override
   Product deliveryMetaData(Map<State, DeliveryMetaData> deliveryMetaData) =>
@@ -178,7 +178,8 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
     Object? discount = const $CopyWithPlaceholder(),
     Object? feature = const $CopyWithPlaceholder(),
     Object? imageUrls = const $CopyWithPlaceholder(),
-    Object? variants = const $CopyWithPlaceholder(),
+    Object? colors = const $CopyWithPlaceholder(),
+    Object? size = const $CopyWithPlaceholder(),
     Object? category = const $CopyWithPlaceholder(),
     Object? keywords = const $CopyWithPlaceholder(),
     Object? detailedSpecs = const $CopyWithPlaceholder(),
@@ -237,15 +238,19 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
       feature: feature == const $CopyWithPlaceholder()
           ? _value.feature
           // ignore: cast_nullable_to_non_nullable
-          : feature as List<String>?,
+          : feature as List<Variation>?,
       imageUrls: imageUrls == const $CopyWithPlaceholder() || imageUrls == null
           ? _value.imageUrls
           // ignore: cast_nullable_to_non_nullable
           : imageUrls as List<String>,
-      variants: variants == const $CopyWithPlaceholder() || variants == null
-          ? _value.variants
+      colors: colors == const $CopyWithPlaceholder() || colors == null
+          ? _value.colors
           // ignore: cast_nullable_to_non_nullable
-          : variants as List<String>,
+          : colors as List<Variation>,
+      size: size == const $CopyWithPlaceholder() || size == null
+          ? _value.size
+          // ignore: cast_nullable_to_non_nullable
+          : size as List<Variation>,
       category: category == const $CopyWithPlaceholder() || category == null
           ? _value.category
           // ignore: cast_nullable_to_non_nullable
@@ -254,13 +259,11 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           ? _value.keywords
           // ignore: cast_nullable_to_non_nullable
           : keywords as List<String>,
-      detailedSpecs:
-          detailedSpecs == const $CopyWithPlaceholder() || detailedSpecs == null
-              ? _value.detailedSpecs
-              // ignore: cast_nullable_to_non_nullable
-              : detailedSpecs as Map<String, String>,
-      deliveryMetaData: deliveryMetaData == const $CopyWithPlaceholder() ||
-              deliveryMetaData == null
+      detailedSpecs: detailedSpecs == const $CopyWithPlaceholder() || detailedSpecs == null
+          ? _value.detailedSpecs
+          // ignore: cast_nullable_to_non_nullable
+          : detailedSpecs as Map<String, String>,
+      deliveryMetaData: deliveryMetaData == const $CopyWithPlaceholder() || deliveryMetaData == null
           ? _value.deliveryMetaData
           // ignore: cast_nullable_to_non_nullable
           : deliveryMetaData as Map<State, DeliveryMetaData>,
@@ -268,11 +271,10 @@ class _$ProductCWProxyImpl implements _$ProductCWProxy {
           ? _value.rating
           // ignore: cast_nullable_to_non_nullable
           : rating as double,
-      totalReviews:
-          totalReviews == const $CopyWithPlaceholder() || totalReviews == null
-              ? _value.totalReviews
-              // ignore: cast_nullable_to_non_nullable
-              : totalReviews as int,
+      totalReviews: totalReviews == const $CopyWithPlaceholder() || totalReviews == null
+          ? _value.totalReviews
+          // ignore: cast_nullable_to_non_nullable
+          : totalReviews as int,
       status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -331,8 +333,7 @@ class _$ProductUnitCWProxyImpl implements _$ProductUnitCWProxy {
       this(weightMeasurement: weightMeasurement);
 
   @override
-  ProductUnit dimension(({double h, double l, double w})? dimension) =>
-      this(dimension: dimension);
+  ProductUnit dimension(({double h, double l, double w})? dimension) => this(dimension: dimension);
 
   @override
   ProductUnit dimensionMeasurement(LengthMeasurement? dimensionMeasurement) =>
@@ -411,12 +412,10 @@ class _$DeliveryMetaDataCWProxyImpl implements _$DeliveryMetaDataCWProxy {
   final DeliveryMetaData _value;
 
   @override
-  DeliveryMetaData shippingCost(double shippingCost) =>
-      this(shippingCost: shippingCost);
+  DeliveryMetaData shippingCost(double shippingCost) => this(shippingCost: shippingCost);
 
   @override
-  DeliveryMetaData deliveryCost(double deliveryCost) =>
-      this(deliveryCost: deliveryCost);
+  DeliveryMetaData deliveryCost(double deliveryCost) => this(deliveryCost: deliveryCost);
 
   @override
   DeliveryMetaData deliveryEstimation(DeliveryEstimation deliveryEstimation) =>
@@ -436,18 +435,15 @@ class _$DeliveryMetaDataCWProxyImpl implements _$DeliveryMetaDataCWProxy {
     Object? deliveryEstimation = const $CopyWithPlaceholder(),
   }) {
     return DeliveryMetaData(
-      shippingCost:
-          shippingCost == const $CopyWithPlaceholder() || shippingCost == null
-              ? _value.shippingCost
-              // ignore: cast_nullable_to_non_nullable
-              : shippingCost as double,
-      deliveryCost:
-          deliveryCost == const $CopyWithPlaceholder() || deliveryCost == null
-              ? _value.deliveryCost
-              // ignore: cast_nullable_to_non_nullable
-              : deliveryCost as double,
-      deliveryEstimation: deliveryEstimation == const $CopyWithPlaceholder() ||
-              deliveryEstimation == null
+      shippingCost: shippingCost == const $CopyWithPlaceholder() || shippingCost == null
+          ? _value.shippingCost
+          // ignore: cast_nullable_to_non_nullable
+          : shippingCost as double,
+      deliveryCost: deliveryCost == const $CopyWithPlaceholder() || deliveryCost == null
+          ? _value.deliveryCost
+          // ignore: cast_nullable_to_non_nullable
+          : deliveryCost as double,
+      deliveryEstimation: deliveryEstimation == const $CopyWithPlaceholder() || deliveryEstimation == null
           ? _value.deliveryEstimation
           // ignore: cast_nullable_to_non_nullable
           : deliveryEstimation as DeliveryEstimation,
@@ -476,56 +472,45 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       shotDescription: json['shotDescription'] as String?,
       warrantyPeriod: json['warrantyPeriod'] == null
           ? null
-          : DurationPeriod.fromJson(
-              json['warrantyPeriod'] as Map<String, dynamic>),
+          : DurationPeriod.fromJson(json['warrantyPeriod'] as Map<String, dynamic>),
       replacement: json['replacement'] == null
           ? null
-          : DurationPeriod.fromJson(
-              json['replacement'] as Map<String, dynamic>),
-      refund: json['refund'] == null
-          ? null
-          : DurationPeriod.fromJson(json['refund'] as Map<String, dynamic>),
+          : DurationPeriod.fromJson(json['replacement'] as Map<String, dynamic>),
+      refund: json['refund'] == null ? null : DurationPeriod.fromJson(json['refund'] as Map<String, dynamic>),
       afterSalesServiceId: json['afterSalesServiceId'] as String?,
       discount: (json['discount'] as num?)?.toDouble() ?? 0,
       feature: (json['feature'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => Variation.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      imageUrls: (json['imageUrls'] as List<dynamic>?)
-              ?.map((e) => e as String)
+      imageUrls: (json['imageUrls'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
+      colors: (json['colors'] as List<dynamic>?)
+              ?.map((e) => Variation.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      variants: (json['variants'] as List<dynamic>?)
-              ?.map((e) => e as String)
+      size: (json['size'] as List<dynamic>?)
+              ?.map((e) => Variation.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      category: (json['category'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      keywords: (json['keywords'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      category: (json['category'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
+      keywords: (json['keywords'] as List<dynamic>?)?.map((e) => e as String).toList() ?? const [],
       detailedSpecs: (json['detailedSpecs'] as Map<String, dynamic>?)?.map(
             (k, e) => MapEntry(k, e as String),
           ) ??
           const {},
-      deliveryMetaData:
-          (json['deliveryMetaData'] as Map<String, dynamic>?)?.map(
-                (k, e) => MapEntry($enumDecode(_$StateEnumMap, k),
-                    DeliveryMetaData.fromJson(e as Map<String, dynamic>)),
-              ) ??
-              const {},
+      deliveryMetaData: (json['deliveryMetaData'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(
+                $enumDecode(_$StateEnumMap, k), DeliveryMetaData.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
       rating: (json['rating'] as num?)?.toDouble() ?? 0,
       totalReviews: (json['totalReviews'] as num?)?.toInt() ?? 0,
       status:
-          $enumDecodeNullable(_$ProductStockStatusEnumMap, json['status']) ??
-              ProductStockStatus.available,
-      createdAt: _$JsonConverterFromJson<int, DateTime>(
-          json['createdAt'], const DateTimeConverter().fromJson),
-      lastUpdateAt: _$JsonConverterFromJson<int, DateTime>(
-          json['lastUpdateAt'], const DateTimeConverter().fromJson),
+          $enumDecodeNullable(_$ProductStockStatusEnumMap, json['status']) ?? ProductStockStatus.available,
+      createdAt:
+          _$JsonConverterFromJson<int, DateTime>(json['createdAt'], const DateTimeConverter().fromJson),
+      lastUpdateAt:
+          _$JsonConverterFromJson<int, DateTime>(json['lastUpdateAt'], const DateTimeConverter().fromJson),
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -539,9 +524,10 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'productBrand': instance.productBrand,
       'mrp': instance.mrp,
       'imageUrls': instance.imageUrls,
-      'variants': instance.variants,
+      'colors': instance.colors.map((e) => e.toJson()).toList(),
+      'size': instance.size.map((e) => e.toJson()).toList(),
       'warrantyPeriod': instance.warrantyPeriod?.toJson(),
-      'feature': instance.feature,
+      'feature': instance.feature?.map((e) => e.toJson()).toList(),
       'unit': instance.unit.toJson(),
       'detailedSpecs': instance.detailedSpecs,
       'replacement': instance.replacement?.toJson(),
@@ -549,8 +535,7 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'afterSalesServiceId': instance.afterSalesServiceId,
       'status': _$ProductStockStatusEnumMap[instance.status]!,
       'discount': instance.discount,
-      'deliveryMetaData': instance.deliveryMetaData
-          .map((k, e) => MapEntry(_$StateEnumMap[k]!, e.toJson())),
+      'deliveryMetaData': instance.deliveryMetaData.map((k, e) => MapEntry(_$StateEnumMap[k]!, e.toJson())),
       'totalReviews': instance.totalReviews,
       'rating': instance.rating,
       'createdAt': const DateTimeConverter().toJson(instance.createdAt),
@@ -607,8 +592,7 @@ Value? _$JsonConverterFromJson<Json, Value>(
 ProductUnit _$ProductUnitFromJson(Map<String, dynamic> json) => ProductUnit(
       quantity: (json['quantity'] as num?)?.toDouble(),
       weight: (json['weight'] as num?)?.toDouble(),
-      weightMeasurement: $enumDecodeNullable(
-          _$WeightMeasurementEnumMap, json['weightMeasurement']),
+      weightMeasurement: $enumDecodeNullable(_$WeightMeasurementEnumMap, json['weightMeasurement']),
       dimension: _$recordConvertNullable(
         json['dimension'],
         ($jsonValue) => (
@@ -617,16 +601,13 @@ ProductUnit _$ProductUnitFromJson(Map<String, dynamic> json) => ProductUnit(
           w: ($jsonValue['w'] as num).toDouble(),
         ),
       ),
-      dimensionMeasurement: $enumDecodeNullable(
-          _$LengthMeasurementEnumMap, json['dimensionMeasurement']),
+      dimensionMeasurement: $enumDecodeNullable(_$LengthMeasurementEnumMap, json['dimensionMeasurement']),
     );
 
-Map<String, dynamic> _$ProductUnitToJson(ProductUnit instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ProductUnitToJson(ProductUnit instance) => <String, dynamic>{
       'quantity': instance.quantity,
       'weight': instance.weight,
-      'weightMeasurement':
-          _$WeightMeasurementEnumMap[instance.weightMeasurement],
+      'weightMeasurement': _$WeightMeasurementEnumMap[instance.weightMeasurement],
       'dimension': instance.dimension == null
           ? null
           : <String, dynamic>{
@@ -634,8 +615,7 @@ Map<String, dynamic> _$ProductUnitToJson(ProductUnit instance) =>
               'l': instance.dimension!.l,
               'w': instance.dimension!.w,
             },
-      'dimensionMeasurement':
-          _$LengthMeasurementEnumMap[instance.dimensionMeasurement],
+      'dimensionMeasurement': _$LengthMeasurementEnumMap[instance.dimensionMeasurement],
     };
 
 const _$WeightMeasurementEnumMap = {
@@ -657,20 +637,16 @@ const _$LengthMeasurementEnumMap = {
   LengthMeasurement.foot: 'foot',
 };
 
-DeliveryMetaData _$DeliveryMetaDataFromJson(Map<String, dynamic> json) =>
-    DeliveryMetaData(
+DeliveryMetaData _$DeliveryMetaDataFromJson(Map<String, dynamic> json) => DeliveryMetaData(
       shippingCost: (json['shippingCost'] as num?)?.toDouble() ?? 0,
       deliveryCost: (json['deliveryCost'] as num?)?.toDouble() ?? 0,
-      deliveryEstimation:
-          $enumDecode(_$DeliveryEstimationEnumMap, json['deliveryEstimation']),
+      deliveryEstimation: $enumDecode(_$DeliveryEstimationEnumMap, json['deliveryEstimation']),
     );
 
-Map<String, dynamic> _$DeliveryMetaDataToJson(DeliveryMetaData instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$DeliveryMetaDataToJson(DeliveryMetaData instance) => <String, dynamic>{
       'shippingCost': instance.shippingCost,
       'deliveryCost': instance.deliveryCost,
-      'deliveryEstimation':
-          _$DeliveryEstimationEnumMap[instance.deliveryEstimation]!,
+      'deliveryEstimation': _$DeliveryEstimationEnumMap[instance.deliveryEstimation]!,
     };
 
 const _$DeliveryEstimationEnumMap = {
@@ -679,3 +655,13 @@ const _$DeliveryEstimationEnumMap = {
   DeliveryEstimation.fiveToSeven: 'fiveToSeven',
   DeliveryEstimation.tenToFifteen: 'tenToFifteen',
 };
+
+Variation _$VariationFromJson(Map<String, dynamic> json) => Variation(
+      json['productId'] as String,
+      json['label'] as String,
+    );
+
+Map<String, dynamic> _$VariationToJson(Variation instance) => <String, dynamic>{
+      'productId': instance.productId,
+      'label': instance.label,
+    };

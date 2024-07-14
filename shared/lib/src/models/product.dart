@@ -2,10 +2,9 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:jars/intl.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'states.dart';
-
 import 'package:jars/jars_core.dart';
-import 'package:uuid/uuid.dart';
 part 'product.g.dart';
 
 enum ProductStockStatus {
@@ -56,7 +55,7 @@ class Product with ValidatorMixin {
     this.status = ProductStockStatus.available,
     DateTime? createdAt,
     DateTime? lastUpdateAt,
-  })  : productId = productId ?? const Uuid().v4(),
+  })  : productId = productId ?? uidGenerator(prefix: 'pid', baseStr: shopId),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 
@@ -91,9 +90,10 @@ class Product with ValidatorMixin {
   ///(lazy load) List of URLs for additional images.
   final List<String> imageUrls;
 
-  ///(lazy load)
+  ///(lazy load) List of available colors for the product.
   final List<Variation> colors;
 
+  ///(lazy load) List of available sizes for the product.
   final List<Variation> size;
 
   ///(lazy load) Warranty information for the product.
@@ -223,18 +223,15 @@ class DeliveryMetaData {
   JSON toJson() => _$DeliveryMetaDataToJson(this);
 }
 
+/// Represents a variation of a product, such as color or size.
+@defJsonSerializable
 class Variation {
   final String productId;
+
+  // The lable of the variation may display in the UI.
   final String label;
   const Variation(this.productId, this.label);
+
+  factory Variation.fromJson(JSON json) => _$VariationFromJson(json);
+  JSON toJson() => _$VariationToJson(this);
 }
-
-String gen(String prefix, String v1) {
-  const uuid = Uuid();
-  var id = uuid.v5(Uuid.NAMESPACE_NIL, v1).substring(0, 8); // 8,
-  var random = uuid.v4().substring(19); // 24
-  return (prefix + id + random).replaceAll('-', '');
-}
-
-
-xxxxxxxxNxxxxxxxxxxxxxxx

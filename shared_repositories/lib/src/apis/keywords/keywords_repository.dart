@@ -3,7 +3,7 @@ import 'package:jars/jars_core.dart';
 import '/src/utils/error_handler.dart';
 import 'package:hive_cache/hive_cache.dart';
 import '/src/utils/http_request.dart';
-import 'package:shared/firebase_service.dart';
+import 'package:shared/apis.dart';
 import 'package:shared/models.dart';
 part 'keyword_api.dart';
 part 'keywords_cache.dart';

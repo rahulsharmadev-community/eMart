@@ -6,10 +6,10 @@ export 'src/models/query.dart';
 export 'src/apis/keywords/keywords_repository.dart';
 export 'src/apis/reviews/reviews_repository.dart';
 export 'src/apis/products/products_repository.dart';
-export 'src/apis/categories/categories_repository.dart';
 export 'src/apis/app_metadata/app_metadata_repository.dart';
 export 'src/apis/employees/employees_repository.dart';
 export 'src/apis/policies/policies_repository.dart';
+export 'src/apis/b.categories/categories_repository.dart';
 
 export 'src/models/appmetadata.dart';
 export 'src/models/categories.dart';

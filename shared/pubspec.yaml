@@ -33,7 +33,7 @@ dependencies:
 dev_dependencies:
   test: ^1.24.9
   lints: ^4.0.0
-  build_runner: ^2.4.8
+  build_runner: ^2.4.11
   flutter_lints: ^4.0.0
   json_serializable: ^6.7.1
   copy_with_extension_gen:

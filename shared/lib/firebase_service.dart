@@ -2,10 +2,10 @@
 
 library credentials;
 
-export 'src/credentials/free_apis.dart';
 export 'src/credentials/emart-consumer-only.dart';
 export 'src/credentials/emart-mix.dart';
 export 'src/credentials/emart-seller-only.dart';
+
 import 'dart:async';
 import 'package:shared/src/credentials/firebase_credential.dart';
 import 'src/credentials/emart-consumer-only.dart';

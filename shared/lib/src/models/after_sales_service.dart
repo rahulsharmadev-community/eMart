@@ -2,6 +2,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:jars/jars_core.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'package:uuid/uuid.dart';
 import 'package:jars/regpatterns.dart';
 part 'after_sales_service.g.dart';
@@ -19,7 +20,7 @@ class AfterSalesService with ValidatorMixin {
     required this.freeCallSupport,
     required this.freeTechnicalSupport,
     this.repairingDiscount = 0.0,
-  }) : serviceId = serviceId ?? const Uuid().v4();
+  }) : serviceId = serviceId ?? uidGenerator(prefix: 'ass', compact: true);
 
   /// Unique identifier for the after-sales service.
   @CopyWithField.immutable()

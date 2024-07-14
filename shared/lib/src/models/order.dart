@@ -6,6 +6,7 @@ import 'package:jars/regpatterns.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:jars/jars_core.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'package:uuid/uuid.dart';
 part 'order.g.dart';
 
@@ -107,7 +108,7 @@ class Order extends Equatable {
     this.signature,
     DateTime? createdAt,
     DateTime? lastUpdateAt,
-  })  : orderId = orderId ?? const Uuid().v4(),
+  })  : orderId = orderId ?? uidGenerator(prefix: 'ord', baseStr: consumerId),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 

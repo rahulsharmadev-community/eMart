@@ -614,10 +614,10 @@ packages:
     dependency: transitive
     description:
       name: go_router
-      sha256: cdae1b9c8bd7efadcef6112e81c903662ef2ce105cbd220a04bbb7c3425b5554
+      sha256: "39dd52168d6c59984454183148dc3a5776960c61083adfc708cc79a7b3ce1ba8"
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.0"
+    version: "14.2.1"
   google_identity_services_web:
     dependency: transitive
     description:
@@ -751,7 +751,7 @@ packages:
   jars_core:
     dependency: transitive
     description:
-      path: "packages/jars_core"
+      path: "packages\\jars_core"
       ref: main
       resolved-ref: "3eab6e8577c1a71f24881e969851ef5f4fe52716"
       url: "https://github.com/rahulsharmadev-community/jars.git"
@@ -1114,7 +1114,7 @@ packages:
   regpatterns:
     dependency: transitive
     description:
-      path: "packages/regpatterns"
+      path: "packages\\regpatterns"
       ref: main
       resolved-ref: "3eab6e8577c1a71f24881e969851ef5f4fe52716"
       url: "https://github.com/rahulsharmadev-community/jars.git"
@@ -1183,10 +1183,10 @@ packages:
     dependency: "direct main"
     description:
       name: smooth_page_indicator
-      sha256: "725bc638d5e79df0c84658e1291449996943f93bacbc2cec49963dbbab48d8ae"
+      sha256: eebe23a5bd887ca4bc7b9c6173362edb2c625e37aee6043a567a342973357a7b
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   source_gen:
     dependency: transitive
     description:
@@ -1327,10 +1327,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: "814e9e88f21a176ae1359149021870e87f7cddaf633ab678a5d2b0bff7fd1ba8"
+      sha256: "83d37c7ad7aaf9aa8e275490669535c8080377cfa7a7004c24dfac53afffaa90"
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.0"
+    version: "4.4.2"
   vector_graphics:
     dependency: transitive
     description:

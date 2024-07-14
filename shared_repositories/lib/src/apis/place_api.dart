@@ -37,7 +37,7 @@ final class PlaceApi {
   String geoapifyUrl(String token, String extra) =>
       "https://api.geoapify.com/v1/$extra&format=json&apiKey=$token";
 
-  String googleUrl(String extra) => "https://maps.googleapis.com/maps/api/$extra&key=$GOOGLE_MAP_APIKEY";
+  String googleUrl(String extra) => "https://maps.googleapis.com/maps/api/$extra&key=$GOOGLE_MAP_API_KEY";
 
   Future<String?> plusCode(GeoCoordinate coordinate) async {
     var url = Uri.parse("https://plus.codes/api?address=${coordinate.lat},${coordinate.lng}");
@@ -48,7 +48,7 @@ final class PlaceApi {
   Future<List<Place>?> geoapifyGeoCoordinate(GeoCoordinate code, {int limit = 10}) async {
     try {
       String url =
-          geoapifyUrl(GEOAPIFY_APIKEY_1, 'geocode/reverse?lat=${code.lat}&lon=${code.lng}&limit=$limit');
+          geoapifyUrl(GEOAPIFY_API_KEY_1, 'geocode/reverse?lat=${code.lat}&lon=${code.lng}&limit=$limit');
       final response = await http.get(Uri.parse(url));
       var x = List<Map>.from(jsonDecode(response.body)['results']);
       return x.map((e) => _geoapifyToPlace(e)).nonNulls.toList();
@@ -62,7 +62,7 @@ final class PlaceApi {
     var trim = text.trim();
     if (trim.isEmpty) return null;
     try {
-      String url = geoapifyUrl(GEOAPIFY_APIKEY_1, 'geocode/autocomplete?text=$trim&limit=$limit');
+      String url = geoapifyUrl(GEOAPIFY_API_KEY_1, 'geocode/autocomplete?text=$trim&limit=$limit');
       final response = await http.get(Uri.parse(url));
       var x = List<Map>.from(jsonDecode(response.body)['results']);
       return x.map((e) => _geoapifyToPlace(e)).nonNulls.toList();

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, constant_identifier_names
 
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:jars/equatable.dart';
@@ -6,6 +6,7 @@ import 'package:jars/jars_core.dart';
 import 'package:jars/regpatterns.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'package:uuid/uuid.dart';
 
 part 'consumer.g.dart';
@@ -41,6 +42,8 @@ class AbstractConsumerInfo {
 @defJsonSerializable
 @CopyWith()
 class Consumer extends Equatable with ValidatorMixin {
+  static const String UID_PREFIX = 'cid';
+
   Consumer({
     String? uid,
     required this.name,
@@ -59,7 +62,7 @@ class Consumer extends Equatable with ValidatorMixin {
     this.razorPayUid,
     DateTime? joinAt,
     DateTime? lastUpdateAt,
-  })  : uid = uid ?? const Uuid().v4(),
+  })  : uid = uid ?? uidGenerator(prefix: UID_PREFIX),
         joinAt = joinAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 

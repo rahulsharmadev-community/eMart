@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:business/modules/screens/edit_product_screen/edit_product_screen.dart';
+import 'package:business/modules/screens/edit_product_screen/widgets/edit_product_screen.dart';
 import 'package:jars/jars.dart';
 
 abstract interface class _RoutesDefine<T> {

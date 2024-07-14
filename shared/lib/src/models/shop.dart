@@ -3,6 +3,7 @@ import 'package:jars/jars_core.dart';
 import 'package:jars/regpatterns.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'package:uuid/uuid.dart';
 part 'shop.g.dart';
 
@@ -64,7 +65,7 @@ class Shop with ValidatorMixin {
     this.afterSalesServices = const {},
     DateTime? createdAt,
     DateTime? lastUpdateAt,
-  })  : shopId = shopId ?? const Uuid().v4(),
+  })  : shopId = shopId ?? uidGenerator(prefix: 'shp', baseStr: ownerId),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 

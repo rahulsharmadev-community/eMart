@@ -1,6 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:jars/regpatterns.dart';
 import 'package:shared/src/json_converters.dart';
+import 'package:shared/src/utils/uidgenerator.dart';
 import 'package:uuid/uuid.dart';
 import 'package:jars/jars_core.dart';
 part 'review.g.dart';
@@ -17,7 +18,7 @@ class Review with ValidatorMixin {
     DateTime? createdAt,
     DateTime? lastUpdateAt,
     this.imageUrls,
-  })  : reviewId = reviewId ?? const Uuid().v4(),
+  })  : reviewId = reviewId ?? uidGenerator(),
         createdAt = createdAt ?? DateTime.now(),
         lastUpdateAt = lastUpdateAt ?? DateTime.now();
 

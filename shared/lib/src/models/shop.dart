@@ -1,10 +1,10 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/jars_core.dart';
-import 'package:jars/regpatterns.dart';
+import 'package:flutter_suite/flutter_suite.dart';
+
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/utils/uidgenerator.dart';
-import 'package:uuid/uuid.dart';
+
 part 'shop.g.dart';
 
 // Class for representing abstract shop information fetched from the server

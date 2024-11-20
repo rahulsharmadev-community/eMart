@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/equatable.dart';
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:jars/jars_core.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 
 part 'keyword.g.dart';
 
@@ -9,7 +9,7 @@ typedef Keywords = List<Keyword>;
 
 @CopyWith()
 @JsonSerializable()
-class Keyword extends Equatable {
+class Keyword  {
   final String label;
   final String? image;
 
@@ -31,6 +31,5 @@ class Keyword extends Equatable {
 
   JSON toJson() => _$KeywordToJson(this);
 
-  @override
-  List<Object?> get props => [label, image];
+
 }

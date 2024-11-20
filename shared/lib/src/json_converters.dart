@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jars/extensions.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:json_annotation/json_annotation.dart';
 export 'package:json_annotation/json_annotation.dart';
 

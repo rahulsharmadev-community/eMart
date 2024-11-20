@@ -1,13 +1,13 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/equatable.dart';
-import 'package:jars/jars_core.dart';
+
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/permission.dart';
 part 'employee_role.g.dart';
 
 @CopyWith()
 @defJsonSerializable
-class EmployeeRole extends Equatable {
+class EmployeeRole {
   final String title;
   final Set<PermissionType> permissions;
   const EmployeeRole(this.title, this.permissions);
@@ -39,9 +39,6 @@ class EmployeeRole extends Equatable {
     PermissionType.ordersManagement,
     PermissionType.inventoryMonitoring,
   });
-
-  @override
-  List<Object?> get props => [title, permissions];
 
   factory EmployeeRole.fromJson(JSON json) => _$EmployeeRoleFromJson(json);
 

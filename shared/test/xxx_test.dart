@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:jars/jars_core.dart';
 import 'package:shared/src/credentials/const_credential.dart';
 import 'package:uuid/uuid.dart';
-import 'dart:typed_data';
 
 /// Generates a unique identifier by combining a prefix with segments of UUIDs.
 String uidGenerator({String? prefix, String? baseStr, bool compact = false}) {

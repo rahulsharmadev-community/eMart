@@ -1,18 +1,18 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/equatable.dart';
-import 'package:jars/jars_core.dart';
-import 'package:jars/regpatterns.dart';
+
+import 'package:flutter_suite/flutter_suite.dart';
+
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/utils/uidgenerator.dart';
-import 'package:uuid/uuid.dart';
+
 part 'employee.g.dart';
 
 @CopyWith()
 @defJsonSerializable
-class Employee extends Equatable with ValidatorMixin {
+class Employee with ValidatorMixin {
   static const String UID_PREFIX = 'eid';
 
   Employee({
@@ -85,18 +85,4 @@ class Employee extends Equatable with ValidatorMixin {
   factory Employee.fromJson(JSON json) => _$EmployeeFromJson(json);
 
   JSON toJson() => _$EmployeeToJson(this);
-
-  @override
-  List<Object?> get props => [
-        uid,
-        name,
-        email,
-        phoneNumber,
-        role,
-        panNumber,
-        address,
-        profileImg,
-        createdAt,
-        // ignore lastUpdateAt
-      ];
 }

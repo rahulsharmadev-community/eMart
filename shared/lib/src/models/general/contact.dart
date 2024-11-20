@@ -1,8 +1,8 @@
-import 'package:jars/equatable.dart';
-import 'package:jars/jars_core.dart';
-import 'package:jars/regpatterns.dart';
 
-abstract class Contact extends Equatable with ValidatorMixin {
+import 'package:flutter_suite/flutter_suite.dart';
+
+
+abstract class Contact  with ValidatorMixin {
   final String value;
   const Contact(this.value);
 
@@ -11,8 +11,7 @@ abstract class Contact extends Equatable with ValidatorMixin {
   @override
   String toString() => value;
 
-  @override
-  List<Object?> get props => [value];
+
 }
 
 class Email extends Contact {

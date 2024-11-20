@@ -1,10 +1,10 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/intl.dart';
+import 'package:intl/intl.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/src/models/general/durationperiod.dart';
 import 'package:shared/src/utils/uidgenerator.dart';
 import 'states.dart';
-import 'package:jars/jars_core.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 part 'product.g.dart';
 
 enum ProductStockStatus {

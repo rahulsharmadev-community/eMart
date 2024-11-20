@@ -1,12 +1,11 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/equatable.dart';
+
 import 'package:flutter/material.dart';
-import 'package:jars/regpatterns.dart';
+
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
-import 'package:jars/jars_core.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:shared/src/utils/uidgenerator.dart';
-import 'package:uuid/uuid.dart';
 
 part 'address.g.dart';
 
@@ -26,7 +25,7 @@ enum AddressType {
 
 @CopyWith()
 @defJsonSerializable
-class Address extends Equatable with ValidatorMixin {
+class Address with ValidatorMixin {
   @CopyWithField.immutable()
   final String addressId;
   final String houseNo;
@@ -107,25 +106,4 @@ class Address extends Equatable with ValidatorMixin {
     phoneNumber?.validator();
     personName?.validator();
   }
-
-  @override
-  List<Object?> get props => [
-        addressId,
-        houseNo,
-        state,
-        country,
-        personName,
-        plusCode,
-        geoCoordinate,
-        phoneNumber,
-        landmark,
-        city,
-        area,
-        floorLevel,
-        district,
-        type,
-        email,
-        createdAt,
-        // ignore lastUpdateAt
-      ];
 }

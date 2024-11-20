@@ -1,5 +1,5 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/jars_core.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
 

@@ -92,28 +92,30 @@ void main() {
     const validPersonName = PersonName(firstName: 'John', lastName: 'Doe');
     test('Shop.isValid should validate geo coordinates correctly', () {
       final address = Address(
+        type: AddressType.home,
         houseNo: '123',
         state: validState,
         country: validCountry,
+        floorLevel: 12,
         postalCode: '110042',
         personName: validPersonName,
-        plusCode: '87G8P7X8+M6',
         geoCoordinate: validGeoCoordinate,
         phoneNumber: const PhoneNumber('1234567890'),
       );
       // Valid geo coordinate
-      final validShop = Shop(
+      final inValidShop = Shop(
           ownerId: 'owner123',
           name: 'My Shop',
           phoneNumber: const PhoneNumber('1234567890'),
           email: const Email('example@gmail.com'),
           rating: 4.5,
-          gstNumber: 'GST123',
-          panNumber: 'AAACR5055K',
+          gstNumber: 'GST123', // invalid
+          panNumber: 'AAACR5055K', // invalid
           electricityBillNumber: '21332142',
           address: address);
 
-      expect(validShop.isValid(), isTrue);
+      expect(address.isValid(), isTrue);
+      expect(inValidShop.isValid(), isFalse);
 
       // // Invalid latitude
       // final invalidLatitude = Shop(

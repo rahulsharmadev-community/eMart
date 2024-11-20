@@ -1,13 +1,11 @@
 // ignore_for_file: equal_keys_in_map
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/equatable.dart';
-import 'package:jars/regpatterns.dart';
+
 import 'package:shared/models.dart';
 import 'package:shared/src/json_converters.dart';
-import 'package:jars/jars_core.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:shared/src/utils/uidgenerator.dart';
-import 'package:uuid/uuid.dart';
 part 'order.g.dart';
 
 extension ListOrderedProductExt on List<OrderedProduct> {
@@ -16,7 +14,7 @@ extension ListOrderedProductExt on List<OrderedProduct> {
 
 @defJsonSerializable
 @CopyWith()
-class OrderedProduct extends Equatable with ValidatorMixin {
+class OrderedProduct with ValidatorMixin {
   const OrderedProduct({
     required this.mrp,
     required this.title,
@@ -64,26 +62,6 @@ class OrderedProduct extends Equatable with ValidatorMixin {
   JSON toJson() => _$OrderedProductToJson(this);
 
   @override
-  List<Object?> get props => [
-        mrp,
-        title,
-        reviewId,
-        quantity,
-        thumbnail,
-        productId,
-        discount,
-        shippingCost,
-        deliveryCost,
-        deliveryEstimation,
-        orderStatus,
-        refund,
-        replacement,
-        warrantyPeriod,
-        afterSalesServiceId,
-        deliveryAddress
-      ];
-
-  @override
   void validator() {
     if (mrp.isNegative) throw ArgumentError(mrp);
     if (title.isBlank) throw ArgumentError(mrp);
@@ -97,7 +75,7 @@ class OrderedProduct extends Equatable with ValidatorMixin {
 
 @defJsonSerializable
 @CopyWith()
-class Order extends Equatable {
+class Order {
   Order({
     String? orderId,
     required this.consumerId,
@@ -138,9 +116,6 @@ class Order extends Equatable {
   factory Order.fromJson(JSON json) => _$OrderFromJson(json);
 
   JSON toJson() => _$OrderToJson(this);
-
-  @override
-  List<Object?> get props => [orderId, consumerId, defaultDeliveryAddress, products, createdAt];
 }
 
 extension OrderedProductExt on Product {

@@ -1,14 +1,10 @@
 // ignore_for_file: unused_element, constant_identifier_names
 
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:jars/equatable.dart';
-import 'package:jars/jars_core.dart';
-import 'package:jars/regpatterns.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:shared/src/json_converters.dart';
 import 'package:shared/models.dart';
 import 'package:shared/src/utils/uidgenerator.dart';
-import 'package:uuid/uuid.dart';
-
 part 'consumer.g.dart';
 
 @JsonSerializable(
@@ -41,7 +37,7 @@ class AbstractConsumerInfo {
 
 @defJsonSerializable
 @CopyWith()
-class Consumer extends Equatable with ValidatorMixin {
+class Consumer with ValidatorMixin {
   static const String UID_PREFIX = 'cid';
 
   Consumer({
@@ -120,27 +116,6 @@ class Consumer extends Equatable with ValidatorMixin {
   JSON toJson() => _$ConsumerToJson(this);
 
   @override
-  List<Object?> get props => [
-        uid,
-        name,
-        fCMid,
-        devices,
-        profileImg,
-        email,
-        phoneNumber,
-        gstNumber,
-        cartProducts,
-        wishlist,
-        complains,
-        orders,
-        addresses,
-        primaryAddressId,
-        razorPayUid,
-        joinAt,
-        // ignore lastUpdateAt
-      ];
-
-  @override
   void validator() {
     RegPattern pattern = regPatterns.url;
     if (profileImg?.regNotMatch(pattern) ?? false) throw ArgumentError(pattern.message);
@@ -162,7 +137,7 @@ class Consumer extends Equatable with ValidatorMixin {
 
 @CopyWith()
 @defJsonSerializable
-class Wishlist extends Equatable {
+class Wishlist {
   Wishlist({
     required this.productIds,
     DateTime? lastUpdateAt,
@@ -182,7 +157,4 @@ class Wishlist extends Equatable {
   factory Wishlist.fromJson(JSON json) => _$WishlistFromJson(json);
 
   JSON toJson() => _$WishlistToJson(this);
-
-  @override
-  List<Object?> get props => [productIds, createdAt];
 }

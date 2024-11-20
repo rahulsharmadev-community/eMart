@@ -1,4 +1,4 @@
-import 'package:jars/jars_core.dart';
+import 'package:flutter_suite/flutter_suite.dart';
 import 'package:shared/src/json_converters.dart';
 part 'orderstatus.g.dart';
 

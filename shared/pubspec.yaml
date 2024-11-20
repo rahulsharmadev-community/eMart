@@ -18,10 +18,10 @@ dependencies:
   firebase_storage: ^12.0.1
   firebase_database: ^11.0.1
 
-  jars:
+  flutter_suite:
     git:
-      url: https://github.com/rahulsharmadev-community/jars.git
-      path: packages/jars
+      url: https://github.com/rahulsharmadev-community/suite.git
+      path: packages/flutter_suite
       ref: main
 
   copy_with_extension:
@@ -41,3 +41,4 @@ dev_dependencies:
       url: https://github.com/rahulsharmadev-community/copy_with_extension.git
       ref: main
       path: copy_with_extension_gen
+  intl: ^0.20.0
